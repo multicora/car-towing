@@ -6,7 +6,15 @@
   Mongodb should be installed and runned
 
   * npm i
-  * node dev/server
+
+  # Without server autoreloading
+
+    * node dev/server
+
+  # With server autoreloading
+
+    * npm install nodemon -g
+    * nodemon dev/server
 
 ## Code convention
 

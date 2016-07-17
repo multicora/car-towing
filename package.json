@@ -1,0 +1,27 @@
+{
+  "name": "car-towing",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dev/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multicora/car-towing.git"
+  },
+  "author": "Multicora",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/multicora/car-towing/issues"
+  },
+  "homepage": "https://github.com/multicora/car-towing#readme",
+  "dependencies": {
+    "good": "^7.0.1",
+    "good-console": "^6.1.2",
+    "good-squeeze": "^4.0.0",
+    "hapi": "^13.5.0",
+    "inert": "^4.0.1",
+    "mongoose": "^4.5.4"
+  }
+}

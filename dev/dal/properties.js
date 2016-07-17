@@ -9,13 +9,7 @@ const property = new Schema({
   logo: String,
   rules: [String],
   manager: Schema.Types.ObjectId,
-  license:
+  license: Schema.Types.ObjectId,
+  blocked: { type: Boolean, default: false },
   updated: { type: Date, default: Date.now }
-  // comments: [{ body: String, date: Date }],
-  // date: { type: Date, default: Date.now },
-  // hidden: Boolean,
-  // meta: {
-  //   votes: Number,
-  //   favs:  Number
-  // }
 });

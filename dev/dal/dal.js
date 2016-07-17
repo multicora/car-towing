@@ -4,3 +4,4 @@
 // Photos
 // Users
 // Roles
+// Licenses

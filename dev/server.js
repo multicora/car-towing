@@ -3,7 +3,6 @@
 // External
 const Hapi = require('hapi');
 const path = require('path');
-const mongoose = require('mongoose');
 const _ = require('lodash');
 
 const server = new Hapi.Server();

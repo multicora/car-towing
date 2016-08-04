@@ -10,11 +10,13 @@
   # Without server autoreloading
 
     * node dev/server
+    * open http://localhost:3000/
 
   # With server autoreloading
 
     * npm install nodemon -g
     * nodemon dev/server
+    * open http://localhost:3000/
 
 ## Code convention
 

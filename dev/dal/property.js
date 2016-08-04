@@ -1,10 +1,12 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const path = require('path');
+
+mongoose.connect('mongodb://localhost/carTowing');
 
 const Schema = mongoose.Schema;
-
-const property = new Schema({
+const schema = new Schema({
   name: String,
   logo: String,
   rules: [String],
@@ -13,3 +15,7 @@ const property = new Schema({
   blocked: { type: Boolean, default: false },
   updated: { type: Date, default: Date.now }
 });
+
+let model = mongoose.model(path.basename(module.filename, '.js'), schema);
+
+module.exports = model;

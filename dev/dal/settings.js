@@ -6,12 +6,7 @@ const path = require('path');
 const Schema = mongoose.Schema;
 const schema = new Schema({
   name: String,
-  logo: String,
-  rules: [String],
-  manager: Schema.Types.ObjectId,
-  license: Schema.Types.ObjectId,
-  blocked: { type: Boolean, default: false },
-  updated: { type: Date, default: Date.now }
+  value: String
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

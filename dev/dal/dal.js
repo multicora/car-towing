@@ -7,10 +7,6 @@ const Property = require('./property.js');
 
 DAL.properties = {
   get: (cb) => {
-    // const list = Property.find({}, (err, res) => {
-      
-    // });
-    // console.log(' -| ' + JSON.stringify(Property));
     return Property.find({}, cb);
   },
   create: (model, cb) => {
@@ -26,4 +22,16 @@ DAL.properties = {
 // Users
 // Roles
 // Licenses
+// Settings
+const Settings = require('./settings.js');
+
+DAL.settings = {
+  get: (cb) => {
+    return Settings.find({}, cb);
+  },
+  update: function (model, cb) {
+    const settingsIns = new Settings(model);
+    settingsIns.save(cb);
+  }
+};
 module.exports = DAL;

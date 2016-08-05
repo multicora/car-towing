@@ -2,36 +2,19 @@
 
 // External
 const Hapi = require('hapi');
+const mongoose = require('mongoose');
 const path = require('path');
 const _ = require('lodash');
 
-const server = new Hapi.Server();
-server.connection({ port: 3000 });
+mongoose.connect('mongodb://localhost/carTowing');
 
-const cbBinded = _.bind(
-  function (server, err) {
-    if (err) throw err
-    const routing = require('./routing');
-    routing.init(server);
-  },
-  null,
-  server
-);
-registerStaticFilesServer(server, cbBinded);
-
-const registerLogCb = _.bind(
-  (server, err) => {
-    if (err) throw err; // something bad happened loading the plugin
-
-    server.start((err) => {
-      if (err) throw err;
-      server.log('info', 'Server running at: ' + server.info.uri);
-    });
-  },
-  null,
-  server
-);
-registerLoging(server, registerLogCb);
+// Migration
+const migrations = require('./migrations/migrations');
+console.log('-| Migrations start');
+migrations(function () {
+  console.log('-| Migrations end');
+  startServer();
+});
 
 function registerStaticFilesServer(server, cb) {
   const plugin = require('inert');
@@ -58,4 +41,34 @@ function registerLoging(server, cb) {
       }
     }
   }, cb);
+}
+
+function startServer() {
+  const server = new Hapi.Server();
+  server.connection({ port: 3000 });
+
+  const cbBinded = _.bind(
+    function (server, err) {
+      if (err) throw err
+      const routing = require('./routing');
+      routing.init(server);
+    },
+    null,
+    server
+  );
+  registerStaticFilesServer(server, cbBinded);
+
+  const registerLogCb = _.bind(
+    (server, err) => {
+      if (err) throw err; // something bad happened loading the plugin
+
+      server.start((err) => {
+        if (err) throw err;
+        server.log('info', 'Server running at: ' + server.info.uri);
+      });
+    },
+    null,
+    server
+  );
+  registerLoging(server, registerLogCb);
 }

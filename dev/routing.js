@@ -57,4 +57,11 @@ module.exports.init = function (server) {
       });
     }
   });
+  server.route({
+    method: 'GET',
+    path: '/api/test',
+    handler: function (request, reply) {
+      reply('Test api ready!');
+    }
+  });
 };

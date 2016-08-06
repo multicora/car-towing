@@ -8,21 +8,29 @@
 
   * npm i
 
-  # Without server autoreloading
+
+  ### Without server autoreloading
 
     * gulp build
     * node dev/server
     * open http://localhost:3000/
 
-  # With server autoreloading
+
+  ### With server autoreloading
 
     * npm install nodemon -g
     * Run in different consoles
       * nodemon dev/server
       * gulp dev
 
+
 ## Code convention
 
   * two spaces insted of tab
 
-### Front end development folder: dev/publicDev
+
+## Info
+
+  Front end development folder: dev/publicDev
+
+  Static part deployed at http://advocate-meeting-62733.netlify.com/

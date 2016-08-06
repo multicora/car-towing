@@ -4,20 +4,25 @@
 
   Node.js should be installed
   Mongodb should be installed and runned
+  Gulp should be installed
 
   * npm i
 
   # Without server autoreloading
 
+    * gulp build
     * node dev/server
     * open http://localhost:3000/
 
   # With server autoreloading
 
     * npm install nodemon -g
-    * nodemon dev/server
-    * open http://localhost:3000/
+    * Run in different consoles
+      * nodemon dev/server
+      * gulp dev
 
 ## Code convention
 
   * two spaces insted of tab
+
+### Front end development folder: dev/publicDev

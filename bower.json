@@ -1,0 +1,21 @@
+{
+  "name": "car-towing",
+  "description": "",
+  "main": "dev/index.js",
+  "authors": [
+    "Multicora"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/multicora/car-towing",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}

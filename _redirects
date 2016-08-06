@@ -1,1 +1,2 @@
-/api/*  https://api.example.com/:splat  200
+/api/*  https://google.com/:splat  200
+/api/asd  https://google.com/  200

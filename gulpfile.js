@@ -135,9 +135,14 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
+gulp.task('netlify', function() {
+  return gulp.src('_redirects')
+    .pipe( gulp.dest(path.dest) );
+});
+
 // --------------------------------------------------
 
-var buildTasks = ['assets', 'compile-jade', 'app-js', 'lib-js', 'app-css', 'lib-css'];
+var buildTasks = ['assets', 'compile-jade', 'app-js', 'lib-js', 'app-css', 'lib-css', 'netlify'];
 
 gulp.task('build', function() {
   return sequence(['clean'], buildTasks, function () {

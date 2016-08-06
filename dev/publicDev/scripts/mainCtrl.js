@@ -10,6 +10,9 @@
     $http.get('/api/test').then(function (res) {
       console.log(res);
     });
+    $http.get('/api/asd').then(function (res) {
+      console.log(res);
+    });
 
     console.log('mainCtrl');
   }

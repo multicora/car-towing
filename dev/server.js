@@ -3,7 +3,6 @@
 // External
 const Hapi = require('hapi');
 const mongoose = require('mongoose');
-const path = require('path');
 const _ = require('lodash');
 
 mongoose.connect('mongodb://localhost/carTowing');

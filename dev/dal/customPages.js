@@ -13,7 +13,9 @@ const schema = new Schema({
     type: String,
     required: true
   },
+  // Content for WYSIWYG editor
   editableContent: String,
+  // Custom data, need to be sanitized
   customJson: String
 });
 

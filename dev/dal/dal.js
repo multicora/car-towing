@@ -34,4 +34,15 @@ DAL.settings = {
     settingsIns.save(cb);
   }
 };
+
+// Custom pages
+const CustomPages = require('./customPages.js');
+
+DAL.customPages = {
+  getByKey: (key, cb) => {
+    return CustomPages.findOne({key: key}, cb);
+  }
+};
+
+
 module.exports = DAL;

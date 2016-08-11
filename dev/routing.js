@@ -64,4 +64,60 @@ module.exports.init = function (server) {
       reply('Test api ready!');
     }
   });
+
+
+  server.route({
+    method: 'GET',
+    path: '/api/properties',
+    handler: function (request, reply) {
+      DAL.properties.get(function (err, docs) {
+        reply(JSON.stringify(docs));
+      });
+    }
+  });
+  server.route({
+    method: 'GET',
+    path: '/api/property/{id}',
+    handler: function (request, reply) {
+      console.log(request.params.id);
+      //reply(request.params.id);
+      DAL.properties.getById(request.params.id, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+  server.route({
+    method: 'POST',
+    path: '/api/property',
+    handler: function (request, reply) {
+      DAL.properties.create(request.payload, function (err, docs) {
+        !err ? reply('Done') : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  /*Content-Type: application/x-www-form-urlencoded*/
+  server.route({
+    method: 'PUT',
+    path: '/api/property/{id}',
+    handler: function (request, reply) {
+      console.log(request.params.id);
+      console.log(request.payload);
+      //reply(request.params.id);
+      DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  server.route({
+    method: 'DELETE',
+    path: '/api/property/{id}',
+    handler: function (request, reply) {
+      console.log(request.params.id);
+      DAL.properties.remove(request.params.id, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
 };

@@ -64,4 +64,13 @@ module.exports.init = function (server) {
       reply('Test api ready!');
     }
   });
+  server.route({
+    method: 'GET',
+    path: '/api/{objId}',
+    handler: function (request, reply) {
+      DAL.properties.getById(function (err, docs) {
+        reply('Docs: ' + JSON.stringify(docs));
+      });
+    }
+  });
 };

@@ -66,10 +66,10 @@ module.exports.init = function (server) {
   });
   server.route({
     method: 'GET',
-    path: '/api/{objId}',
+    path: '/api/property/{objId}',
     handler: function (request, reply) {
-      DAL.properties.getById(function (err, docs) {
-        reply('Docs: ' + JSON.stringify(docs));
+      DAL.properties.getById(request.params.objId, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err))
       });
     }
   });

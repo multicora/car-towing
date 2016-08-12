@@ -1,7 +1,7 @@
 {
   "name": "car-towing",
   "version": "0.0.0",
-  "description": "",
+  "description": "## How to run",
   "main": "dev/index.js",
   "scripts": {
     "postinstall": "bower i"

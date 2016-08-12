@@ -57,11 +57,15 @@ module.exports.init = function (server) {
       });
     }
   });
+
+  // Custom pages
   server.route({
     method: 'GET',
-    path: '/api/test',
+    path: '/api/gotTowed',
     handler: function (request, reply) {
-      reply('Test api ready!');
+      DAL.customPages.getByKey('got-towed', function (err, docs) {
+        !err ? reply(docs) : reply('Error: ' + err);
+      });
     }
   });
 };

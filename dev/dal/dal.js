@@ -29,9 +29,20 @@ DAL.settings = {
   get: (cb) => {
     return Settings.find({}, cb);
   },
+  getByName: function (name, cb) {
+    return Settings.findOne({name: name}, cb);
+  },
   update: function (model, cb) {
-    const settingsIns = new Settings(model);
-    settingsIns.save(cb);
+    Settings.findOneAndUpdate(
+      {
+        name: model.name
+      },
+      model,
+      {
+        upsert:true
+      },
+      cb
+    );
   }
 };
 
@@ -39,8 +50,16 @@ DAL.settings = {
 const CustomPages = require('./customPages.js');
 
 DAL.customPages = {
-  getByKey: (key, cb) => {
+  get: function (cb) {
+    return CustomPages.find({}, cb);
+  },
+  getByKey: function (key, cb) {
     return CustomPages.findOne({key: key}, cb);
+  },
+  create: function (data, cb) {
+    let customPage = new CustomPages(data);
+
+    customPage.save(cb);
   }
 };
 

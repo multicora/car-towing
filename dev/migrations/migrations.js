@@ -9,6 +9,9 @@ module.exports = function (cb) {
   const migrationOptions = {
     setDbVersion: setDbVersion,
     getDbVersion: getDbVersion,
+    migrations: [
+      require('./scripts/v001_Add_towed_page.js')
+    ],
     done: cb
   };
 
@@ -29,8 +32,8 @@ function setDbVersion(v, cb) {
 }
 
 function getDbVersion(cb) {
-  DAL.settings.get(function (res) {
-    const v = res && res.version;
+  DAL.settings.getByName('version', function (err, res) {
+    const v = res && res.value;
     cb(v);
   });
 }

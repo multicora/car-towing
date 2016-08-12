@@ -5,10 +5,20 @@ const path = require('path');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true,
+    required: true
+  },
   value: String
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
 
+model.on('index', function(error) {
+  if (error) {
+    console.log('-| Error creating index');
+    console.log(error);
+  }
+});
 module.exports = model;

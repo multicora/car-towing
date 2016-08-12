@@ -5,11 +5,11 @@ const path = require('path');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, max: 255 },
   logo: String,
   rules: [String],
-  manager: Schema.Types.ObjectId,
-  license: Schema.Types.ObjectId,
+  /*manager: Schema.Types.ObjectId,
+  license: Schema.Types.ObjectId,*/
   blocked: { type: Boolean, default: false },
   updated: { type: Date, default: Date.now }
 });

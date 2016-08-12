@@ -13,6 +13,9 @@ DAL.properties = {
     const propertyIns = new Property(model);
 
     propertyIns.save(cb);
+  },
+  getById: (objId, cb) => {
+    return Property.findOne({objId: objId}, cb);
   }
 };
 

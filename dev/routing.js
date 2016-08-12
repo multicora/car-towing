@@ -68,4 +68,13 @@ module.exports.init = function (server) {
       });
     }
   });
+  server.route({
+    method: 'GET',
+    path: '/api/property/{objId}',
+    handler: function (request, reply) {
+      DAL.properties.getById(request.params.objId, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err))
+      });
+    }
+  });
 };

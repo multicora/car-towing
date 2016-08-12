@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   name: { type: String, required: true, max: 255 },
   logo: String,
+  objId: String,
   rules: [String],
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/

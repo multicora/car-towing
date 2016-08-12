@@ -71,7 +71,7 @@ module.exports.init = function (server) {
     path: '/api/properties',
     handler: function (request, reply) {
       DAL.properties.get(function (err, docs) {
-        reply(JSON.stringify(docs));
+        !err ? reply(docs) : reply(JSON.stringify(err));
       });
     }
   });
@@ -79,8 +79,6 @@ module.exports.init = function (server) {
     method: 'GET',
     path: '/api/property/{id}',
     handler: function (request, reply) {
-      console.log(request.params.id);
-      //reply(request.params.id);
       DAL.properties.getById(request.params.id, function (err, docs) {
         !err ? reply(docs) : reply(JSON.stringify(err));
       });
@@ -101,9 +99,6 @@ module.exports.init = function (server) {
     method: 'PUT',
     path: '/api/property/{id}',
     handler: function (request, reply) {
-      console.log(request.params.id);
-      console.log(request.payload);
-      //reply(request.params.id);
       DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
         !err ? reply(docs) : reply(JSON.stringify(err));
       });
@@ -114,7 +109,6 @@ module.exports.init = function (server) {
     method: 'DELETE',
     path: '/api/property/{id}',
     handler: function (request, reply) {
-      console.log(request.params.id);
       DAL.properties.remove(request.params.id, function (err, docs) {
         !err ? reply(docs) : reply(JSON.stringify(err));
       });

@@ -14,8 +14,8 @@ DAL.properties = {
 
     propertyIns.save(cb);
   },
-  getById: (cb) => {
-    return Property.find({objId}, cd);
+  getById: (objId, cb) => {
+    return Property.findOne({objId: objId}, cb);
   }
 };
 

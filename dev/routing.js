@@ -22,7 +22,7 @@ module.exports.init = function (server) {
     method: 'GET',
     path: '/{fileName}',
     handler: function (request, reply) {
-      reply.file( path.resolve(__dirname, './public/' + encodeURIComponent(request.params.fileName)) );
+      reply.file( path.resolve(__dirname, './public/app.css' + encodeURIComponent(request.params.fileName)) );
     }
   });
   server.route({

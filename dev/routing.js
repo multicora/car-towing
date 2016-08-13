@@ -1,3 +1,5 @@
+// TODO: separate static url frpm API
+
 'use strict';
 
 const path = require('path');
@@ -61,6 +63,14 @@ module.exports.init = function (server) {
   // Custom pages
   server.route({
     method: 'GET',
+    path: '/gotTowed',
+    handler: function (request, reply) {
+      reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );
+    }
+  });
+
+  server.route({
+    method: 'GET',
     path: '/api/gotTowed',
     handler: function (request, reply) {
       DAL.customPages.getByKey('got-towed', function (err, docs) {
@@ -68,14 +78,17 @@ module.exports.init = function (server) {
       });
     }
   });
-
-  // Custom pages
   server.route({
-    method: 'GET',
-    path: '/gotTowed',
+    method: 'POST',
+    path: '/api/gotTowed',
     handler: function (request, reply) {
-      console.log(path.resolve(__dirname, './gotTowed/markup.html'));
-      reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );
+      DAL.customPages.update(request.payload, function (err, doc) {
+        if (!err && doc) {
+          reply(doc);
+        } else {
+          reply(JSON.stringify(err));
+        }
+      });
     }
   });
 

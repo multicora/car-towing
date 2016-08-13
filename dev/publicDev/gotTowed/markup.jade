@@ -69,21 +69,11 @@ html
           option(value='justify', label='Justify')
       span.ql-format-group
         span.ql-format-button.ql-link(title='Link')
+      span.ql-format-group
+        a.btn.btn-default#saveBtn Save
 
     // Create the editor container
-    #editor.
-      One Ring to Rule Them All
-      http://en.wikipedia.org/wiki/One_Ring
-
-      Three Rings for the Elven-kings under the sky,ttyty
-      Seven for the Dwarf-lords in halls of stone,
-      Nine for Mortal Men, doomed to die,
-      One for the Dark Lord on his dark throne.
-
-      In the Land of Mordor where the Shadows lie.
-      One Ring to rule them all, One Ring to find them,
-      One Ring to bring them all and in the darkness bind them.
-      In the Land of Mordor where the Shadows lie.
+    #editor
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
     script(src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
     // Include the Quill library
@@ -98,4 +88,31 @@ html
           'link-tooltip': true
         },
         theme: 'snow'
+      });
+
+      var saveBtn = $('#saveBtn'),
+        customPage;
+
+      saveBtn.on('click', function() {
+        var content = editor.getContents();
+
+        customPage.editableContent = JSON.stringify(content);
+
+        $.ajax('/api/gotTowed', {
+          data: customPage,
+          method: 'POST'
+        });
+      });
+
+
+      $.ajax('/api/gotTowed', {
+        method: 'GET',
+        complete: function (res) {
+          var editableContent;
+
+          customPage = res.responseJSON,
+          editableContent = JSON.parse(customPage.editableContent) || {ops:[]};
+
+          editor.setContents(editableContent);
+        }
       });

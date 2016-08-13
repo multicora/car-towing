@@ -59,10 +59,14 @@ DAL.customPages = {
   getByKey: function (key, cb) {
     return CustomPages.findOne({key: key}, cb);
   },
-  create: function (data, cb) {
-    let customPage = new CustomPages(data);
-
-    customPage.save(cb);
+  update: function (model, cb) {
+    CustomPages.findOneAndUpdate(
+      {
+        key: model.key
+      },
+      model,
+      cb
+    );
   }
 };
 

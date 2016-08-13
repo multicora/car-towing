@@ -14,6 +14,8 @@ const schema = new Schema({
     type: String,
     required: true
   },
+  // Content need to be sanitized
+  content: String,
   // Content for WYSIWYG editor
   editableContent: String,
   // Custom data, need to be sanitized

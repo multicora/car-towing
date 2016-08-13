@@ -63,6 +63,14 @@ module.exports.init = function (server) {
   // Custom pages
   server.route({
     method: 'GET',
+    path: '/gotTowedEdit',
+    handler: function (request, reply) {
+      reply.file( path.resolve(__dirname, './public/gotTowed/markupEdit.html') );
+    }
+  });
+
+  server.route({
+    method: 'GET',
     path: '/gotTowed',
     handler: function (request, reply) {
       reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );

@@ -68,6 +68,18 @@ module.exports.init = function (server) {
       });
     }
   });
+
+  // Custom pages
+  server.route({
+    method: 'GET',
+    path: '/gotTowed',
+    handler: function (request, reply) {
+      console.log(path.resolve(__dirname, './gotTowed/markup.html'));
+      reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );
+    }
+  });
+
+  // Properties
   server.route({
     method: 'GET',
     path: '/api/property/{objId}',

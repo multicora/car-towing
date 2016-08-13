@@ -10,7 +10,7 @@ module.exports = function (cb) {
     setDbVersion: setDbVersion,
     getDbVersion: getDbVersion,
     migrations: [
-      require('./scripts/v001_Add_towed_page.js')
+      require('./scripts/v001.js')
     ],
     done: cb
   };

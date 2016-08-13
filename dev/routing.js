@@ -63,7 +63,14 @@ module.exports.init = function (server) {
   // Custom pages
   server.route({
     method: 'GET',
-    path: '/api/property/{objId}',
+    path: '/gotTowed',
+    handler: function (request, reply) {
+      reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );
+    }
+  });
+
+  server.route({
+    method: 'GET',
     path: '/api/gotTowed',
     handler: function (request, reply) {
       DAL.customPages.getByKey('got-towed', function (err, docs) {

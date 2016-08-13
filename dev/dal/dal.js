@@ -9,13 +9,19 @@ DAL.properties = {
   get: (cb) => {
     return Property.find({}, cb);
   },
+  getById: (id, cb) => {
+    return Property.findOne({_id: id }, cb);
+  },
   create: (model, cb) => {
     const propertyIns = new Property(model);
 
     propertyIns.save(cb);
   },
-  getById: (objId, cb) => {
-    return Property.findOne({objId: objId}, cb);
+  edit: (id, model, cb) => {
+    return Property.findOneAndUpdate({_id: id}, model, cb);
+  },
+  remove: (id, cb) => {
+    return Property.findOneAndRemove({_id: id}, cb);
   }
 };
 

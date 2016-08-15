@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   name: String,
   logo: String,
+  roles: [String], 
   rules: [String],
   manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,

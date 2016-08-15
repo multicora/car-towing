@@ -73,6 +73,11 @@ DAL.customPages = {
       model,
       cb
     );
+  },
+  create: function (model, cb) {
+    const instance = new CustomPages(model);
+
+    instance.save(cb);
   }
 };
 

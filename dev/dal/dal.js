@@ -85,13 +85,17 @@ DAL.customPages = {
 const ParkingRules = require('./parkingRules.js');
 
 DAL.parkingRules = {
-  getByPropId: (idProperty, cb) => {
-    console.log(idProperty);
-    ParkingRules.find({propertyId: idProperty}, cb);
+  getByPropId: (propertyId, cb) => {
+    ParkingRules.find({propertyId: propertyId}, cb);
   },
-  setByPropId: (model, cb) => {
-    const parkingRulesMod = new ParkingRules(model);
-    parkingRulesMod.save(cb);
+  setByPropId: (propertyId, rules, cb) => {
+    let rulesArr = [];
+    rules.forEach((item) => {
+      rulesArr.push({propertyId: propertyId, text: item});
+    });
+    ParkingRules.remove({propertyId: propertyId}, (err, docs) => {
+      !err ? ParkingRules.create(rulesArr, cb) : cb(err, docs);
+    });
   }
 };
 

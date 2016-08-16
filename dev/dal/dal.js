@@ -81,5 +81,19 @@ DAL.customPages = {
   }
 };
 
+// parking rules
+const ParkingRules = require('./parkingRules.js');
+
+DAL.parkingRules = {
+  getByPropId: (idProperty, cb) => {
+    console.log(idProperty);
+    ParkingRules.find({propertyId: idProperty}, cb);
+  },
+  setByPropId: (model, cb) => {
+    const parkingRulesMod = new ParkingRules(model);
+    parkingRulesMod.save(cb);
+  }
+};
+
 
 module.exports = DAL;

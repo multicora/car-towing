@@ -150,4 +150,29 @@ module.exports.init = function (server) {
       });
     }
   });
+
+  server.route({
+    method: 'GET',
+    path: '/api/parkingRules/{idProperty}',
+    handler: function (request, reply) {
+      console.log(request.params.idProperty);
+      console.log("******************************");
+      DAL.parkingRules.getByPropId(request.params.idProperty, function (err, docs) {
+        console.log(docs);
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/api/parkingRules',
+    handler: function (request, reply) {
+      DAL.parkingRules.setByPropId(request.payload, function (err, docs) {
+        console.log(docs);
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
 };

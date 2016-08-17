@@ -1,3 +1,5 @@
+// TODO: separate static url frpm API
+
 'use strict';
 
 const path = require('path');
@@ -57,11 +59,95 @@ module.exports.init = function (server) {
       });
     }
   });
+
+  // Custom pages
   server.route({
     method: 'GET',
-    path: '/api/test',
+    path: '/gotTowedEdit',
     handler: function (request, reply) {
-      reply('Test api ready!');
+      reply.file( path.resolve(__dirname, './public/gotTowed/markupEdit.html') );
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/gotTowed',
+    handler: function (request, reply) {
+      reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/gotTowed',
+    handler: function (request, reply) {
+      DAL.customPages.getByKey('got-towed', function (err, docs) {
+        !err ? reply(docs) : reply('Error: ' + err);
+      });
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/api/gotTowed',
+    handler: function (request, reply) {
+      DAL.customPages.update(request.payload, function (err, doc) {
+        if (!err && doc) {
+          reply(doc);
+        } else {
+          reply(JSON.stringify(err));
+        }
+      });
+    }
+  });
+
+  // Properties
+  server.route({
+    method: 'GET',
+    path: '/api/properties',
+    handler: function (request, reply) {
+      DAL.properties.get(function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+  server.route({
+    method: 'GET',
+    path: '/api/property/{id}',
+    handler: function (request, reply) {
+      DAL.properties.getById(request.params.id, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+  server.route({
+    method: 'POST',
+    path: '/api/property',
+    handler: function (request, reply) {
+      DAL.properties.create(request.payload, function (err, docs) {
+        !err ? reply('Done') : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  /*Content-Type: application/x-www-form-urlencoded*/
+  server.route({
+    method: 'PUT',
+    path: '/api/property/{id}',
+    handler: function (request, reply) {
+      DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  server.route({
+    method: 'DELETE',
+    path: '/api/property/{id}',
+    handler: function (request, reply) {
+      DAL.properties.remove(request.params.id, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
     }
   });
 };

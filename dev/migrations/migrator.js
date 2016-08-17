@@ -18,7 +18,18 @@ module.exports = function (options) {
   function versionCb(v) {
     var migrations = fillMigrations(options.migrations || []);
 
-    runAllMigrations(migrations, parseInt(v, 10), options.done);
+    runAllMigrations(
+      migrations,
+      parseInt(v, 10),
+      function (v) {
+        if (!DEBUG) {
+          console.log('    DB version: ' + v)
+          options.setDbVersion(v, options.done);
+        } else {
+          options.done();
+        }
+      }
+    );
   }
 
   function fillMigrations(migrations) {
@@ -38,17 +49,7 @@ module.exports = function (options) {
   function runAllMigrations(migrations, currentDbVersion, doneCallback) {
     var index = currentDbVersion;
 
-    if (migrations[index + 1]) {
-      next();
-    } else {
-      doneCallback();
-    }
-
-    // if (index < DB_VERSION) {
-    //   next();
-    // } else {
-    //   doneCallback();
-    // }
+    next(migrations, index + 1, doneCallback);
 
     function next (migrations, v, cb) {
       var currentMigration = migrations[v];
@@ -60,7 +61,7 @@ module.exports = function (options) {
           _.bind(next, null, migrations, v + 1, cb)
         );
       } else {
-        cb();
+        cb(v - 1);
       }
     }
   }
@@ -70,19 +71,17 @@ module.exports = function (options) {
   // callback {function}
   function runMigration (migrationFunc, msg, callback) {
     migrationFunc(
-      _.bind(migrationEnd, null, msg, callback),
-      error
+      _.bind(migrationEnd, null, msg, callback)
     );
   }
 
-  function migrationEnd(msg, cb) {
-    console.log('    ' + msg);
-    cb();
+  function migrationEnd(msg, cb, err) {
+    if (err) {
+      console.log('    Error while migrating:');
+      console.log(err);
+    } else {
+      console.log('    Finished: ' + msg);
+      cb();
+    }
   }
-
-  function error(err) {
-    console.log('Error:');
-    console.log(err);
-  }
-
 };

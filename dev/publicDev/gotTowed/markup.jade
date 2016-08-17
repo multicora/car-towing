@@ -1,0 +1,22 @@
+html
+  head
+    link(href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet")
+    link(href="http://cdn.quilljs.com/0.20.1/quill.snow.css" rel="stylesheet")
+    //- link(href="http://cdn.quilljs.com/0.20.1/quill.snow.css" rel="stylesheet")
+  body
+
+    #content
+
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+
+    script.
+      $.ajax('/api/gotTowed', {
+        method: 'GET',
+        complete: function (res) {
+          var content = $('#content'),
+            customPage;
+
+          customPage = res.responseJSON,
+          content.html( customPage.content );
+        }
+      });

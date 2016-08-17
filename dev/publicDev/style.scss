@@ -5,9 +5,8 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  height: 1080px;
   background-image: url(background.png);
-  background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -29,13 +28,12 @@ header {
 }
 
 .contacts {
-  width: 538px;
   color:  #f22930;
   font-size: 20px;
   font-weight: 600;
   line-height: 26px;
   float: left;
-  margin: 26px 40px 0 66px;
+  margin: 26px 0 0 66px;
 }
 
 .contacts img {
@@ -47,13 +45,12 @@ header {
   float: left;
 }
 
-.phone {
-  margin-right: 20px;
-  width: 205px;
+.contacts p {
+  display: inline-block;
 }
 
-.location {
-  width: 310px;
+.phone {
+  margin-right: 20px;
 }
 
 .navigation {
@@ -67,6 +64,14 @@ header {
 .navigation a {
   text-decoration: none;
   margin-left: 20px;
+}
+
+.navigation a:active {
+  color: #298ED5;
+}
+
+.navigation a:visited {
+  color: #081C2A;
 }
 
 .navigation a:hover {

@@ -99,5 +99,24 @@ DAL.parkingRules = {
   }
 };
 
+// users
+const Users = require('./users.js');
+
+DAL.users = {
+  checkToken: (token, cb) => {
+    Users.findOne({token: token}, cb);
+  },
+  updateToken: (token, email, cb) => {
+    console.log("update");
+    Users.findOneAndUpdate({email: email}, {token: token}, cb);
+  },
+  getUserByEmail: (email, cb) => {
+    Users.findOne({email: email}, cb);
+  },
+  createUser: (email, password, token, cb) => {
+    Users.create({email: email, password: password, token: token}, cb);
+  }
+};
+
 
 module.exports = DAL;

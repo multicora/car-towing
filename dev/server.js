@@ -49,7 +49,9 @@ function startServer() {
   const cbBinded = _.bind(
     function (server, err) {
       if (err) throw err
+      const auth = require('./auth.js');
       const routing = require('./routing');
+      auth.init(server);
       routing.init(server);
     },
     null,

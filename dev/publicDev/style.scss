@@ -1,32 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: 'Arial';
-  text-align: center;
+  font-family: 'Arial', sans-serif;
+  height: 1080px;
+  background-image: url(background.png);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 header {
-  height: 150px;
-  margin-top: 50px
+  width: 1016px;
+  height: 81px;
+  padding: 41px;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow: hidden;
 }
 
-.title {
-  color: #585858;
-  font-size: 22pt;
-  margin: 5px;
+.logo {
+  width: 186px;
+  height: 75px;
+  background-image: url(logo-280.png);
+  background-size: cover;
+  float: left;
 }
 
-.name {
-  color: #585858;
-  font-size: 22pt;
+.contacts {
+  width: 538px;
+  color:  #f22930;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  float: left;
+  margin: 26px 40px 0 66px;
+}
+
+.contacts img {
+  margin-right: 5px;
+  float: left;
+}
+
+.phone, .location {
+  float: left;
 }
 
 .phone {
-  color: #D91C48;
-  font-size: 20pt;
-  font-weight: bold;
-  margin: 50px;
+  margin-right: 20px;
+  width: 205px;
 }
 
-.massege-info {
-  color: #585858;
-  font-size: 13pt;
+.location {
+  width: 310px;
+}
+
+.navigation {
+  float: right;
+  color:  #3191d8;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+.navigation a {
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.navigation a:hover {
+  color: #7fbbe6;
 }

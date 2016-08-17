@@ -5,7 +5,7 @@ const path = require('path');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
-  roles: String
+  name: String
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

@@ -6,6 +6,27 @@
 .properties {
   width: 1018px;
   font-family: 'Arial', sans-serif;
+  margin: 0 auto; /* befor merge should be remove*/
+}
+
+.info {
+  height: 110px;
+  background: #f7f7f7;
+  padding: 0 41px;
+  width: 100%;
+  color: #4f4f4f;
+
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+    padding-top: 20px;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: 400px;
+    line-height: 30px;
+  }
 }
 
 .title {
@@ -23,22 +44,26 @@
 
 .letters {
   padding: 20px 0;
+  height: 20px;
 
   a {
     text-decoration: none;
-    display: block;
     width: 20px;
     color:  #3191d8;
     font-size: 18px;
     font-weight: 600;
     float: left;
     text-align: center;
-    padding: 20px 0;
   }
 
   a:hover {
     color: #7fbbe6;
   }
+
+  a:active {
+    color: #298ED5;
+  }
+
 }
 
 .propertiesList {
@@ -76,6 +101,10 @@
   width: 18px;
   height: 188px;
   border-radius: 10px;
+}
+
+.propertiesList::-webkit-scrollbar-thumb:active {
+  background-color:  #bbbbbb;
 }
 
 .name {

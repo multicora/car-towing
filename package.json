@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/multicora/car-towing#readme",
   "dependencies": {
+    "angular-route": "^1.5.8",
     "bower": "^1.7.9",
     "good": "^7.0.1",
     "good-console": "^6.1.2",

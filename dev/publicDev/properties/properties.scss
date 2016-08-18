@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.properties {
+  width: 1018px;
+  font-family: 'Arial', sans-serif;
+}
+
+.title {
+  color:  #1c1b1b;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 38px 41px;
+}
+
+.propertiesContent {
+  padding: 0 41px 25px 41px;
+  border: 1px solid #eaeaea;
+  width: 100%;
+}
+
+.letters {
+  padding: 20px 0;
+
+  a {
+    text-decoration: none;
+    display: block;
+    width: 20px;
+    color:  #3191d8;
+    font-size: 18px;
+    font-weight: 600;
+    float: left;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  a:hover {
+    color: #7fbbe6;
+  }
+}
+
+.propertiesList {
+  height: 220px;
+  color:  #1c1c1c;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  overflow-y: scroll;
+  li {
+    list-style: none;
+    width: 100%;
+    display: inline-block;
+    height: 25px;
+  }
+}
+
+.propertiesList::-webkit-scrollbar {
+  width: 20px;
+  background-color: #fff;
+}
+
+.propertiesLists::-webkit-scrollbar-button {
+  background: #eaeaea;
+  width: 20px;
+  height: 20px;
+}
+
+.propertiesList::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+.propertiesList::-webkit-scrollbar-thumb {
+  background-color:  #eaeaea;
+  width: 18px;
+  height: 188px;
+  border-radius: 10px;
+}
+
+.name {
+  float: left;
+}
+
+.adress {
+  float: right;
+  margin-right: 23px;
+}

@@ -5,7 +5,11 @@ const Hapi = require('hapi');
 const mongoose = require('mongoose');
 const _ = require('lodash');
 
-mongoose.connect('mongodb://localhost/carTowing');
+mongoose.connect('mongodb://localhost/carTowing', function(err) {
+  if (err)  {
+    throw 'Error connecting to mongodb';
+  }
+});
 
 // Migration
 const migrations = require('./migrations/migrations');

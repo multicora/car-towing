@@ -6,7 +6,7 @@ const path = require('path');
 const Schema = mongoose.Schema;
 const schema = new Schema({
   name: { type: String, required: true, max: 255 },
-  address: { type: String, max: 255 },
+  address: String,
   logo: String,
   objId: String,
   rules: [String],

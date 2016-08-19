@@ -46,22 +46,32 @@
   padding: 20px 0;
   height: 20px;
 
-  a {
+  button {
     text-decoration: none;
+    background: none;
+    border: none;
     width: 20px;
     color:  #3191d8;
     font-size: 18px;
     font-weight: 600;
     float: left;
     text-align: center;
+    outline: none;
   }
 
-  a:hover {
+  button:last-child {
+    width: 40px;
+    margin-left: 40px;
+  }
+
+  button:hover {
     color: #7fbbe6;
   }
 
-  a:active {
-    color: #298ED5;
+  button:focus {
+    color: #15466a;
+    // text-decoration: underline;
+    border-bottom: 2px solid #15466a;
   }
 
 }
@@ -73,6 +83,7 @@
   font-size: 16px;
   font-weight: 400;
   overflow-y: scroll;
+  
   li {
     list-style: none;
     width: 100%;

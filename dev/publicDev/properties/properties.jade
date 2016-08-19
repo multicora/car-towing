@@ -31,33 +31,33 @@ div.properties(ng-controller="propertiesCtrl as vm")
       a(href="") Y
       a(href="") Z
     ul.propertiesList
-      li 
-        p.name Property1
-        p.adress Adress1
-      li 
-        p.name Property2
-        p.adress Adress2  
-      li 
-        p.name Property3
-        p.adress Adress3
-      li 
-        p.name Property4
-        p.adress Adress4
-      li 
-        p.name Property1
-        p.adress Adress1
-      li 
-        p.name Property2
-        p.adress Adress2  
-      li 
-        p.name Property3
-        p.adress Adress3
-      li 
-        p.name Property4
-        p.adress Adress4
-      li 
-        p.name Property3
-        p.adress Adress3
-      li 
-        p.name Property4
-        p.adress Adress4
+      li(ng-repeat = "property in vm.properties")
+        p.name {{ property.name }}
+        p.adress {{ property.address }}
+      //- li 
+      //-   p.name Property2
+      //-   p.adress Adress2  
+      //- li 
+      //-   p.name Property3
+      //-   p.adress Adress3
+      //- li 
+      //-   p.name Property4
+      //-   p.adress Adress4
+      //- li 
+      //-   p.name Property1
+      //-   p.adress Adress1
+      //- li 
+      //-   p.name Property2
+      //-   p.adress Adress2  
+      //- li 
+      //-   p.name Property3
+      //-   p.adress Adress3
+      //- li 
+      //-   p.name Property4
+      //-   p.adress Adress4
+      //- li 
+      //-   p.name Property3
+      //-   p.adress Adress3
+      //- li 
+      //-   p.name Property4
+      //-   p.adress Adress4

@@ -10,8 +10,12 @@ body {
   background-position: center;
 }
 
-header {
+.container {
   width: 1016px;
+  margin: 0 auto;
+}
+
+header {
   height: 81px;
   padding: 41px;
   margin: 0 auto;

@@ -8,21 +8,20 @@
 
   * npm i
 
+### Without server autoreloading
+```
+gulp build
+node dev/server
+open http://localhost:3000/
+```
 
-  ### Without server autoreloading
-
-    * gulp build
-    * node dev/server
-    * open http://localhost:3000/
-
-
-  ### With server autoreloading
-
-    * npm install nodemon -g
-    * Run in different consoles
-      * nodemon dev/server
-      * gulp dev
-
+### With server autoreloading
+```
+npm install nodemon -g
+Run in different consoles
+  nodemon dev/server
+  gulp dev
+```
 ---
 
 ## Code convention
@@ -41,15 +40,19 @@
 
 ## Branching
 
-  New feature:
-    > git branch -b feature/{JiraTicketNumber}_{Description_with_lodashs}
-    > git branch -b feature/CART-5_property_page
+New feature:
+```
+git branch -b feature/{JiraTicketNumber}_{Description_with_lodashs}
+git branch -b feature/CART-5_property_page
+```
 
-  Finish feature:
-    > git checkout develop
-    > git pull
-    > git checkout {branchName}
-    > git merge develop
-    > {resolve conflicts}
-    > git checkout develop
-    > git merge {branchName}
+Finish feature:
+```
+git checkout develop
+git pull
+git checkout {branchName}
+git merge develop
+{resolve conflicts}
+git checkout develop
+git merge {branchName}
+```

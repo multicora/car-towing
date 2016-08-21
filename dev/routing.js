@@ -98,11 +98,17 @@ module.exports.init = function (server) {
   server.route({
     method: 'GET',
     path: '/api/properties',
-    handler: function (request, reply) {
-      DAL.properties.get(function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
+    config: { 
+      pre: [
+        { method: 'checkTokin(raw.req.headers.token)', assign: "token" }
+      ],
+      handler: function (request, reply) {
+        DAL.properties.get(function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
     }
+    
   });
   server.route({
     method: 'GET',
@@ -143,6 +149,49 @@ module.exports.init = function (server) {
       });
     }
   });
+
+  server.route({
+    method: 'GET',
+    path: '/api/parkingRules/{propertyId}',
+    handler: function (request, reply) {
+      DAL.parkingRules.getByPropId(request.params.propertyId, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/api/parkingRules/{propertyId}',
+    handler: function (request, reply) {
+      DAL.parkingRules.setByPropId(request.params.propertyId, request.payload, function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/api/login',
+    handler: function (request, reply) {
+      const Auth = require('./auth.js');
+      Auth.login(request.payload.login, request.payload.password, (response) => {
+        reply(response);
+      });
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/api/create',
+    handler: function (request, reply) {
+      const Auth = require('./auth.js');
+      Auth.create((err, docs) => {
+        reply(docs);
+      });
+    }
+  });
+
 
   server.route({
     method: 'GET',

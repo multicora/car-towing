@@ -81,5 +81,42 @@ DAL.customPages = {
   }
 };
 
+// parking rules
+const ParkingRules = require('./parkingRules.js');
+
+DAL.parkingRules = {
+  getByPropId: (propertyId, cb) => {
+    ParkingRules.find({propertyId: propertyId}, cb);
+  },
+  setByPropId: (propertyId, rules, cb) => {
+    let rulesArr = [];
+    rules.forEach((item) => {
+      rulesArr.push({propertyId: propertyId, text: item});
+    });
+    ParkingRules.remove({propertyId: propertyId}, (err, docs) => {
+      !err ? ParkingRules.create(rulesArr, cb) : cb(err, docs);
+    });
+  }
+};
+
+// users
+const Users = require('./users.js');
+
+DAL.users = {
+  checkToken: (token, cb) => {
+    Users.findOne({token: token}, cb);
+  },
+  updateToken: (token, email, cb) => {
+    console.log("update");
+    Users.findOneAndUpdate({email: email}, {token: token}, cb);
+  },
+  getUserByEmail: (email, cb) => {
+    Users.findOne({email: email}, cb);
+  },
+  createUser: (email, password, token, cb) => {
+    Users.create({email: email, password: password, token: token}, cb);
+  }
+};
+
 
 module.exports = DAL;

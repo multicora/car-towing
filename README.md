@@ -23,11 +23,13 @@
       * nodemon dev/server
       * gulp dev
 
+---
 
 ## Code convention
 
   * two spaces insted of tab
 
+---
 
 ## Info
 
@@ -35,17 +37,19 @@
 
   Static part deployed at http://advocate-meeting-62733.netlify.com/
 
+---
+
 ## Branching
 
   New feature:
-    git branch -b feature/{JiraTicketNumber}_{Description_with_lodashs}
-    git branch -b feature/CART-5_property_page
+    > git branch -b feature/{JiraTicketNumber}_{Description_with_lodashs}
+    > git branch -b feature/CART-5_property_page
 
   Finish feature:
-    git checkout develop
-    git pull
-    git checkout {branchName}
-    git merge develop
-    {resolve conflicts}
-    git checkout develop
-    git merge {branchName}
+    > git checkout develop
+    > git pull
+    > git checkout {branchName}
+    > git merge develop
+    > {resolve conflicts}
+    > git checkout develop
+    > git merge {branchName}

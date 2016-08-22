@@ -12,6 +12,11 @@
       .state('notFound', {
           url: '/not-found',
           template: '404',
-      });
+      })
+      .state('login', {
+          url: '/login',
+          templateUrl: 'autorisation/login.html',
+          controller: 'LoginController as vm'
+        });
 	}
 })()

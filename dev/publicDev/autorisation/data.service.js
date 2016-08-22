@@ -14,7 +14,7 @@
     	};
 
     	function login(login, password) {
-    		return $http.post("/api/login", {login: login, password: password});
+    		return $http.post("http://WINDOWS-SFQ7090:3000/api/login", {login: login, password: password});
     	}
 		}
 })();

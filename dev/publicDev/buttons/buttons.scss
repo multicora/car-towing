@@ -1,12 +1,8 @@
 .buttons {
-  margin: 0 auto;
-  position: relative;
-
   a {
     background: #007a62;
-    display: block;
-    float: left;
-    width: 220px;
+    display: inline-block;
+    width: 20%;
     color:  #ffffff;
     font-size: 20px;
     font-weight: 400;
@@ -14,6 +10,7 @@
     text-align: center;
     text-decoration: none;
     border-right: 2px solid #80bdb1;
+    box-sizing: border-box;
   }
 
   a:last-child {

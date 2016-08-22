@@ -1,22 +1,17 @@
 "use strict";
 
 (function () {
-  angular.module('app', ["ui.router", "Autorisation"])
+  angular.module('app', ["ngRoute", "Autorisation"])
   .config(config);
 		
-	config.$inject = ["$stateProvider", "$urlRouterProvider"];
+	config.$inject = ["$routeProvider"];
 
-  function config($stateProvider, $urlRouterProvider) {
-  	$urlRouterProvider.otherwise("/not-found");
-    $stateProvider
-      .state('notFound', {
-          url: '/not-found',
-          template: '404',
-      })
-      .state('login', {
-          url: '/login',
-          templateUrl: 'autorisation/login.html',
-          controller: 'LoginController as vm'
-        });
+  function config($routeProvider) {
+  	//$urlRouterProvider.otherwise("/not-found");
+
+    $routeProvider
+      .when('/not-found', {
+        template: '404'
+      });
 	}
 })()

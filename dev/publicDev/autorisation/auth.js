@@ -2,12 +2,18 @@
 
 (() => {
 	angular
-		.module('Autorisation', ['ui.router'])
+		.module('Autorisation', ['ngRoute'])
 		.config(config);
 		
-		config.$inject = ['$stateProvider'];
+		config.$inject = ['$routeProvider'];
 
-    function config($stateProvider) {
+    function config($routeProvider) {
+      $routeProvider
+        .when('/login', {
+          templateUrl: 'autorisation/login.html',
+          controller: 'LoginController',
+          controllerAs: 'vm'
+        });
       /*$stateProvider
         .state('login', {
           url: '/login',

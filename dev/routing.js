@@ -22,13 +22,6 @@ module.exports.init = function (server) {
   });
   server.route({
     method: 'GET',
-    path: '/{fileName}',
-    handler: function (request, reply) {
-      reply.file( path.resolve(__dirname, './public/' + encodeURIComponent(request.params.fileName)) );
-    }
-  });
-  server.route({
-    method: 'GET',
     path: '/1',
     handler: function (request, reply) {
       reply.file( path.resolve(__dirname, './public/1.png') );
@@ -199,4 +192,14 @@ module.exports.init = function (server) {
     }
   });
 
+
+  server.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+      directory: {
+        path: path.resolve(__dirname, './public')
+      }
+    }
+  });
 };

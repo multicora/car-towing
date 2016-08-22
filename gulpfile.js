@@ -25,7 +25,8 @@ var config = {
     browsers: ['last 2 versions'],
     cascade: false
   },
-  scssOrder: ['**/app.scss']
+  scssOrder: ['**/app.scss'],
+  jsOrder: ['**/app.js']
 };
 
 var path = {};
@@ -63,6 +64,7 @@ gulp.task('app-css', function () {
 gulp.task('app-js', function () {
   return gulp.src(path.js)
     .pipe( plumber() )
+    .pipe( order(config.jsOrder) )
     .pipe( concat('app.js') )
     // .pipe( minJs() )
     .on( 'error', log )

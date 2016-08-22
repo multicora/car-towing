@@ -192,6 +192,8 @@ module.exports.init = function (server) {
     }
   });
 
+  // Blocking
+  require('./routing/blocking.js')(server);
 
   server.route({
     method: 'GET',

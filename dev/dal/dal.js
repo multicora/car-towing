@@ -118,5 +118,7 @@ DAL.users = {
   }
 };
 
+// Blocking info
+DAL.blocking = require('./blocking.js').dal;
 
 module.exports = DAL;

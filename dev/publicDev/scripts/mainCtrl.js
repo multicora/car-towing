@@ -6,8 +6,6 @@
   ctrl.$inject = ['$http'];
   function ctrl ($http) {
     var vm = this;
-
-    console.log('mainCtrl');
   }
 
   app.controller('mainCtrl', ctrl);

@@ -5,18 +5,7 @@ html(lang='en-US', ng-app='app')
     link(rel='stylesheet', href='app.css')
   body(ng-controller="mainCtrl as vm")
     .container
-      header
-        div.logo
-        div.contacts
-          div.phone
-            img(src="phone-icon.png")
-            p 844-CAR-TOWED /
-          div.location
-            img(src="location-icon.png")
-            p 907 SW 3rd St. Gainesville,FL
-        div.navigation
-          a(href="#/home" title="Home") Home
-          a(href="#" titke="Login") Login
+      header-directive
       div(ng-view)
       footer
         p @ 2016 All rights reserved

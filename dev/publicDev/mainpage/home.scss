@@ -1,8 +1,8 @@
-.content {
+.content.main-page {
   margin-top: 20px;
   overflow: hidden;
 
-  a {
+  .button {
     display: block;
     width: 440px;
     height: 95px;
@@ -14,17 +14,17 @@
     text-decoration: none;
   }
 
-  a:hover {
+  .button:hover {
     background: #0088ee;
   }
 }
 
-.borderLeft, .borderRight {
+.borderLeft,
+.borderRight {
   height: 500px;
   width: 12px;
   background: #ffffff;
   border-radius: 6px;
-  float: left;
 }
 
 .title {
@@ -38,8 +38,8 @@
 
 .leftButton {
   float: left;
-  
-  a:last-child {
+
+  .button:last-child {
     margin-top: 60px;
   }
 }
@@ -47,9 +47,13 @@
 .rightButton {
   float: right;
 
-  a:last-child {
+  .button:last-child {
     margin-top: 60px;
   }
+}
+
+.borderLeft {
+  float: left;
 }
 
 .borderRight {

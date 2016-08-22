@@ -1,0 +1,66 @@
+header {
+  height: 81px;
+  padding: 41px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  .logo {
+    width: 186px;
+    height: 75px;
+    background-image: url(logo-280.png);
+    background-size: cover;
+    float: left;
+  }
+
+  .contacts {
+    color: #f22930;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+    float: left;
+    margin: 26px 0 0 66px;
+  }
+
+  .contacts img {
+    margin-right: 5px;
+    float: left;
+  }
+
+  .phone,
+  .location {
+    float: left;
+  }
+
+  .contacts p {
+    display: inline-block;
+  }
+
+  .phone {
+    margin-right: 20px;
+  }
+
+  .navigation {
+    float: right;
+    color: #3191d8;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+
+  .navigation a {
+    text-decoration: none;
+    margin-left: 20px;
+  }
+
+  .navigation a:active {
+    color: #298ed5;
+  }
+
+  .navigation a:visited {
+    color: #081c2a;
+  }
+
+  .navigation a:hover {
+    color: #7fbbe6;
+  }
+}

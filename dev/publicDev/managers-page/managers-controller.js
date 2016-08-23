@@ -5,20 +5,16 @@
   }
 
   var app = NG.module('app'),
-    configInjections = ['$routeProvider', 'managersRoute'];
+    injections = [];
 
-  app.constant('managersRoute', {
-    path: '/managers-page',
-    route: {
-      templateUrl: 'managers-page/managers.html',
-      controller: 'managersCtrl as vm'
-    }
-  });
 
-  function managersConfig($routeProvider, managersRoute) {
-    $routeProvider.when(managersRoute.path, managersRoute.route);
+  function managersCtrl() {
+    var vm = this;
+
+    vm.managerName = 'Hugo Boss';
   }
-  managersConfig.$inject = configInjections;
-  app.config(managersConfig);
+
+  managersCtrl.$inject = injections;
+  app.controller('managersCtrl', managersCtrl);
 
 })(window, document, angular);

@@ -11,8 +11,14 @@ body {
 }
 
 .container {
-  width: 1366px;
+  width: 1106px;
   margin: 0 auto;
+}
+
+footer {
+  width: 100%;
+  padding: 0 40px 60px 40px;
+  color: #ffffff;
 }
 
 header {
@@ -60,13 +66,11 @@ header {
   float: right;
   color:  #3191d8;
   font-size: 18px;
-  font-weight: 600;
-  margin-top: 30px;
-}
+  box-sizing: border-box;
 
-.navigation a {
-  text-decoration: none;
-  margin-left: 20px;
+  p:first-child {
+    float: left;
+  }
 }
 
 .navigation a:active {
@@ -208,4 +212,3 @@ html, body {
 .btn-blue {
   background-color:  #3191d8;
 }
-

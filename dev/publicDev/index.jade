@@ -5,7 +5,9 @@ html(lang='en-US', ng-app='app')
     link(rel='stylesheet', href='app.css')
   body(ng-controller="mainCtrl as vm")
     .container
-      include header/header.jade
       div(ng-view)
+      footer
+        p @ 2016 All rights reserved
+        p Design by Juless Design
     script(src="libs.js")
     script(src="app.js")

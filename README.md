@@ -42,8 +42,8 @@ Run in different consoles
 
 New feature:
 ```
-git branch -b feature/{JiraTicketNumber}_{Description_with_lodashs}
-git branch -b feature/CART-5_property_page
+git checkout -b feature/{JiraTicketNumber}_{Description_with_lodashs}
+git checkout -b feature/CART-5_property_page
 ```
 
 Finish feature:

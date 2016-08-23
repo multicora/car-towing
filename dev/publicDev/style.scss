@@ -11,13 +11,12 @@ body {
 }
 
 .container {
-  width: 1016px;
+  width: 1366px;
   margin: 0 auto;
 }
 
 header {
   height: 81px;
-  padding: 41px;
   margin: 0 auto;
   background: #ffffff;
   overflow: hidden;
@@ -81,3 +80,132 @@ header {
 .navigation a:hover {
   color: #7fbbe6;
 }
+
+// reusable blocks______________________________________________________
+.container {
+
+  .row {
+    &.main-height {
+      height: 44px;
+      [class*="col-"] {
+        height: 100%;
+        line-height: 44px;
+      }
+    }
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+
+  [class*="col-"] {
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+  }
+
+  .col-1 {
+    width: 20%;
+  }
+
+  .col-2 {
+    width: 40%;
+  }
+
+  .col-3 {
+    width: 60%;
+  }
+
+  .col-4 {
+    width: 80%;
+  }
+
+  .col-5 {
+    width: 100%;
+  }
+  .col-rest {
+    width:100%;
+  }
+}
+
+// .clearfix:after {
+//   content: "";
+//   display: table;
+//   clear: both;
+// }
+
+.main-padding-bottom {
+  padding-bottom: 15px;
+}
+.big-padding-bottom {
+  padding-bottom: 25px;
+}
+.main-padding-top {
+  padding-top: 15px;
+}
+
+.big-padding-top {
+  padding-top: 25px;
+}
+.main-padding-left {
+  padding-left: 10%;
+}
+.main-padding-right {
+  padding-right: 10%;
+}
+
+.main-border-bottom {
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+input {
+  outline: none;
+}
+
+// fonts__________________________________________________________________
+html, body {
+  font-family: OpenSans, Arial;
+  color: #4D4D4D;
+}
+
+.font-regular {
+  font-size: 26px;
+}
+.font-small {
+  font-size: 20px;
+}
+.font-big {
+  font-size: 30px;
+}
+
+// controls__________________________________________________________________
+.btn {
+  border-radius: 5px;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn_text {
+  color: #FFFFFF;
+}
+
+.btn-regular {
+  width: 220px;
+  height: 44px;
+}
+
+.btn-blue {
+  background-color:  #3191d8;
+}
+

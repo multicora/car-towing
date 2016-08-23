@@ -1,0 +1,21 @@
+.blocking-part
+  .container.big-padding-bottom.main-border-bottom
+    .row.main-height.main-padding-bottom.main-padding-left.main-padding-right
+      .col-4.float-left.font-regular
+        span(ng-bind="'Welcome, ' + vm.managerName +'!'")
+      .col-1
+        .btn.btn-regular.btn-blue.float-right
+          .btn_text Report Exec
+    .row.main-height.main-padding-bottom.main-padding-left.main-padding-right
+      .col-4.date-range.float-left.font-small
+        .float-left Block towing from
+        input.float-left(type="date" ng-model="vm.blockingData.dateFrom")
+        .float-left to
+        input.float-left(type="date" ng-model="vm.blockingData.dateTo")
+      .col-1
+        .btn.btn-regular.btn-blue.float-right
+          .btn_text Block
+    .row.main-height.main-padding-bottom.main-padding-left.font-small
+      .reason-block.col-5.float-left
+        span Reason
+        input(ng-model="vm.blockingData.reason")

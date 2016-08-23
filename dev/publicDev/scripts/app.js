@@ -1,5 +1,5 @@
 "use strict";
 
-(function () {
-  angular.module('app', ['ngRoute']);
-})()
+(function (NG) {
+  NG.module('app', ['ngRoute']);
+})(angular);

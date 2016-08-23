@@ -1,0 +1,24 @@
+.blocking-part {
+  background: #FFFFFF;
+
+  .date-range {
+    input {
+      border-radius: 5px;
+      border-color: #d4d4d4;
+      height: 44px;
+      margin: 0 30px;
+      width: 220px;
+    }
+  }
+
+  .reason-block {
+    input {
+      border: none;
+      border-bottom: 1px solid #d4d4d4;
+      font-size: 20px;
+      padding-left: 10px;
+      // TODO: fix this;
+      width: 635px;
+    }
+  }
+}

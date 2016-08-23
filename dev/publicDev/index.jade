@@ -5,18 +5,7 @@ html(lang='en-US', ng-app='app')
     link(rel='stylesheet', href='app.css')
   body(ng-controller="mainCtrl as vm")
     .container
-      header
-        div.logo
-        div.contacts
-          div.phone
-            img(src="phone-icon.png")
-            p 844-CAR-TOWED /
-          div.location
-            img(src="location-icon.png")
-            p 907 SW 3rd St. Gainesville,FL
-        div.navigation
-          a(href="#" title="Home") Home
-          a(href="#" titke="Login") Login
+      include header/header.jade
       div(ng-view)
     script(src="libs.js")
     script(src="app.js")

@@ -1,0 +1,16 @@
+header.big-padding-bottom.big-padding-top
+  .container
+    .row.main-padding-left.main-padding-right
+      div.logo
+      div.contacts
+        div.phone
+          img(src="phone-icon.png")
+          p 844-CAR-TOWED /
+        div.location
+          img(src="location-icon.png")
+          p 907 SW 3rd St. Gainesville,FL
+      div.navigation(ng-if="!vm.user")
+        a(href="#" title="Home") Home
+        a(href="#" titke="Login") Login
+      div.navigation(ng-if="vm.user")
+        a(href="#" titke="Login") Logout

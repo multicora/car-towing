@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-  width: 1106px;
+  width: 1306px;
   margin: 0 auto;
 }
 
@@ -89,11 +89,18 @@ header {
 .container {
 
   .row {
+    // box-sizing: border-box;
+    max-width: 100%;
     &.main-height {
       height: 44px;
+      overflow:hidden;
+      white-space: nowrap;
+
       [class*="col-"] {
         height: 100%;
         line-height: 44px;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
     &:after {
@@ -131,6 +138,10 @@ header {
   .col-rest {
     width:100%;
   }
+
+  .bold-title {
+    font-weight: 600;
+  }
 }
 
 // .clearfix:after {
@@ -139,24 +150,27 @@ header {
 //   clear: both;
 // }
 
-.main-padding-bottom {
+.min-indent-bottom {
+  padding-bottom: 5px;
+}
+.main-indent-bottom {
   padding-bottom: 15px;
 }
-.big-padding-bottom {
+.big-indent-bottom {
   padding-bottom: 25px;
 }
-.main-padding-top {
+.main-indent-top {
   padding-top: 15px;
 }
-
-.big-padding-top {
+.big-indent-top {
   padding-top: 25px;
 }
-.main-padding-left {
-  padding-left: 10%;
+
+.main-indent-left {
+  padding-left: 75px;
 }
-.main-padding-right {
-  padding-right: 10%;
+.main-indent-right {
+  padding-right: 75px;
 }
 
 .main-border-bottom {
@@ -192,23 +206,38 @@ html, body {
 }
 
 // controls__________________________________________________________________
+// block
 .btn {
-  border-radius: 5px;
+  font-size: 18px;
+  height: 44px;
   text-align: center;
   &:hover {
     cursor: pointer;
   }
 }
 
+// element
 .btn_text {
   color: #FFFFFF;
 }
+.btn_icon {
+  color: #FFFFFF;
+}
 
+// modifier
 .btn-regular {
+  border-radius: 5px;
   width: 220px;
-  height: 44px;
+}
+.btn-short {
+  border-radius: 5px;
+  width: 160px;
+}
+.btn-round {
+  border-radius: 50%;
+  width: 44px;
+}
+.btn-blue {
+  background-color: #3191d8;
 }
 
-.btn-blue {
-  background-color:  #3191d8;
-}

@@ -1,0 +1,29 @@
+.parking-rules
+  .container.big-indent-bottom.big-indent-top.main-border-bottom
+    .row.rule.main-height.min-indent-bottom.main-indent-left.main-indent-right
+      .col-1.font-small
+        .bold-title Parking Rules
+      .col-3.font-small
+        span 1. You cannot leave a car on the grass
+      .col-1
+        .btn.btn-short.btn-blue.float-right
+          .btn_text Edit
+        .btn.btn-round.btn-blue.float-right
+          .btn_text X
+    .row.rule.main-height.main-indent-bottom.main-indent-left.main-indent-right
+      .col-1.font-small
+        span
+      .col-3.font-small
+        span 2. You cannot leave a car near the entrance
+      .col-1
+        .btn.btn-short.btn-blue.float-right
+          .btn_text Edit
+        .btn.btn-round.btn-blue.float-right
+          .btn_text X
+    .row.new-rule-block.main-height.main-indent-bottom.main-indent-left.main-indent-right
+      .col-1
+      .col-3
+        input(ng-model="vm.newRule.name" placeholder="Write your rule")
+      .col-1
+        .btn.btn-regular.btn-blue.float-right
+          .btn_text Add Rule

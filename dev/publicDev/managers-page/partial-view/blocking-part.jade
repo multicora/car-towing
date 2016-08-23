@@ -1,21 +1,22 @@
 .blocking-part
-  .container.big-padding-bottom.main-border-bottom
-    .row.main-height.main-padding-bottom.main-padding-left.main-padding-right
+  .container.big-indent-bottom.main-border-bottom
+    .row.main-height.main-indent-bottom.main-indent-left.main-indent-right
       .col-4.float-left.font-regular
         span(ng-bind="'Welcome, ' + vm.managerName +'!'")
       .col-1
         .btn.btn-regular.btn-blue.float-right
           .btn_text Report Exec
-    .row.main-height.main-padding-bottom.main-padding-left.main-padding-right
-      .col-4.date-range.float-left.font-small
-        .float-left Block towing from
+    .row.main-height.main-indent-bottom.main-indent-left.main-indent-right.font-small
+      .col-1
+        span Block towing from
+      .col-3.date-range
         input.float-left(type="date" ng-model="vm.blockingData.dateFrom")
-        .float-left to
+        .connector.float-left to
         input.float-left(type="date" ng-model="vm.blockingData.dateTo")
       .col-1
         .btn.btn-regular.btn-blue.float-right
           .btn_text Block
-    .row.main-height.main-padding-bottom.main-padding-left.font-small
+    .row.main-height.main-indent-bottom.main-indent-left.font-small
       .reason-block.col-5.float-left
         span Reason
         input(ng-model="vm.blockingData.reason")

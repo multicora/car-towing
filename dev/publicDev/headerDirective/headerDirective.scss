@@ -1,5 +1,5 @@
 header {
-  padding: 5px 15px;
+  padding: 5px 6px;
   margin: 0 auto;
   overflow: hidden;
 
@@ -14,7 +14,7 @@ header {
     font-size: 13px;
     font-weight: 600;
     line-height: 26px;
-    margin-top: 15px;
+    margin-top: 12px;
     white-space: nowrap;
 
     .icon {
@@ -29,15 +29,16 @@ header {
   }
 
   .phone {
+    display: inline-block;
     margin: 0 20px 10px 0;
   }
 
   .navigation {
     float: right;
     color: #5b90d5;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    margin-top: 15px;
+    margin: 11px 3px;
 
      a {
       text-decoration: none;

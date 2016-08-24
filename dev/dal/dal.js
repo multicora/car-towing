@@ -99,7 +99,7 @@ DAL.parkingRules = {
   }
 };
 
-// users
+// Users
 const Users = require('./users.js');
 
 DAL.users = {
@@ -107,7 +107,6 @@ DAL.users = {
     Users.findOne({token: token}, cb);
   },
   updateToken: (token, email, cb) => {
-    console.log("update");
     Users.findOneAndUpdate({email: email}, {token: token}, cb);
   },
   getUserByEmail: (email, cb) => {

@@ -7,8 +7,6 @@
 	config.$inject = ["$routeProvider"];
 
   function config($routeProvider) {
-  	//$urlRouterProvider.otherwise("/not-found");
-
     $routeProvider
       .when('/not-found', {
         template: '404'

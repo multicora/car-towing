@@ -175,7 +175,7 @@ module.exports.init = function (server) {
     path: '/api/login',
     handler: function (request, reply) {
       const Auth = require('./auth.js');
-      Auth.login(request.payload.login, request.payload.password, (response) => {
+      Auth.login(request.payload, (response) => {
         reply(response);
       });
     }

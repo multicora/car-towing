@@ -4,5 +4,8 @@ var app = angular.module('app');
 
 app.
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/property', {templateUrl: 'property.page/propertyPage.html'});
+  $routeProvider.when('/property', {
+    templateUrl: 'property.page/propertyPage.html',
+    controller: 'propertyCtrl as vm'
+  });
 }]);

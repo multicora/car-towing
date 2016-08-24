@@ -1,13 +1,13 @@
 div.container
-  div.property-page(ng-controller="propertyCtrl as vm")
+  div.property-page
     div.row.name
       div.col-md-9
         div.title
           p Hugo Boss
           p Parking rules & Regulation
-      div.col-md-3(ng-repeat="property in vm.property")
-        img.logo{{ property.logo }}
-    div.row.property(ng-repeat="rule in vm.rule")
+      div.col-md-3
+        img.logo(ng-src="vm.logo")
+    div.row.property(ng-repeat="rule in vm.rules")
       div.col-md-12
-        p.title {{ rule.name }}
-        p.description {{ rule.description }}
+        p.title {{ rule.text }}
+        p.description

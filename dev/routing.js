@@ -158,10 +158,15 @@ module.exports.init = function (server) {
   server.route({
     method: 'GET',
     path: '/api/parkingRules/{propertyId}',
-    handler: function (request, reply) {
-      DAL.parkingRules.getByPropId(request.params.propertyId, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
+    config: { 
+      pre: [
+        { method: 'checkTokin(raw.req.headers.token)', assign: "token" }
+      ],
+      handler: function (request, reply) {
+        DAL.parkingRules.getByPropId(request.params.propertyId, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 

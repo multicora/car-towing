@@ -3,10 +3,15 @@ function propertyCtrl(propertyService) {
   var vm = this;
   vm.property = null;
   vm.rules = null;
-  propertyService.get().then(function(res) {
-    vm.property = res;
-    vm.rules = res.rules;
+  vm.name = null;
+  propertyService.getproperty().then(function(res) {
+    vm.property = res.data;
+    vm.logo = vm.property.logo;
+    vm.name = vm.property.name;
+  });
+  propertyService.getRules().then(function(res) {
+    vm.rules = res.data;
   });
 }
 propertiesCtrl.$inject = ['propertyService'];
-app.controller('propertyCtrl', propertiesCtrl);
+app.controller('propertyCtrl', propertyCtrl);

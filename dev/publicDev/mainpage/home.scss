@@ -2,9 +2,6 @@
   .home-button {
     display: none;
   }
-
-  .content {
-  }
   
   .button {
     background: #0274ca;
@@ -51,8 +48,38 @@
   }
 
   @media (min-width: 970px) {
+    .content {
+      margin-top: 60px;
+    }
+
+    .borderLeft, .borderRight {
+      border-radius: 6px;
+      height: 500px;
+      width: 12px;
+    }
+
+    .buttons-container {
+      padding-top: 0px;
+    }
+
+    .button {
+      border-radius: 20px;
+      border: 6px solid #ffffff;
+      height: 130px;
+      margin-bottom: 75px;
+      padding: 30px 0 0 30px;
+    }
+
+    .title {
+      font-size: 22px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+    }
+
     .leftButton, .rightButton {
-      width: 45%;
+      width: 41%;
     }
 
     .leftButton {
@@ -60,6 +87,20 @@
     }
     .rightButton {
       float: right;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .button {
+      padding: 15px 0 0 55px;
+    }
+
+    .title {
+      font-size: 34px;
+    }
+
+    .subtitle {
+      font-size: 19px;
     }
   }
 }

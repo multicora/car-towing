@@ -1,15 +1,13 @@
 'use strict';
-function propertyCtrl(propertyService) {
+function propertyCtrl(propertyService, $routeParams) {
   var vm = this;
+  var propertyId = $routeParams.id;
   vm.property = null;
   vm.rules = null;
-  vm.name = null;
-  propertyService.getproperty().then(function(res) {
+  propertyService.getProperty(propertyId).then(function(res) {
     vm.property = res.data;
-    vm.logo = vm.property.logo;
-    vm.name = vm.property.name;
   });
-  propertyService.getRules().then(function(res) {
+  propertyService.getRules(propertyId).then(function(res) {
     vm.rules = res.data;
   });
 }

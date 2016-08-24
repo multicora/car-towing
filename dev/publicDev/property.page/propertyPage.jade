@@ -3,10 +3,10 @@ div.container
     div.row.name
       div.col-md-9
         div.title
-          p Hugo Boss
+          p {{ vm.property.name }}
           p Parking rules & Regulation
       div.col-md-3
-        img.logo(ng-src="vm.logo")
+        img.logo(ng-src="{{ vm.property.logo }}")
     div.row.property(ng-repeat="rule in vm.rules")
       div.col-md-12
         p.title {{ rule.text }}

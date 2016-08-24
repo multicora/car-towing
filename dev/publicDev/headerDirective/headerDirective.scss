@@ -1,66 +1,67 @@
 header {
-  height: 81px;
-  padding: 41px;
+  padding: 5px 15px;
   margin: 0 auto;
   overflow: hidden;
 
   .logo {
-    width: 186px;
-    height: 75px;
-    background-image: url(logo-280.png);
-    background-size: cover;
-    float: left;
+    margin-right: 30px;
+    vertical-align: top;
+    width: 93px;
   }
 
   .contacts {
     color: #f22930;
-    font-size: 20px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 26px;
-    float: left;
-    margin: 26px 0 0 66px;
-  }
+    margin-top: 15px;
+    white-space: nowrap;
 
-  .contacts img {
-    margin-right: 5px;
-    float: left;
-  }
+    .icon {
+      width: 15px;
+      margin-right: 5px;
+    }
 
-  .phone,
-  .location {
-    float: left;
-  }
-
-  .contacts p {
-    display: inline-block;
+    .text {
+      margin-left: 15px;
+      vertical-align: middle;
+    }
   }
 
   .phone {
-    margin-right: 20px;
+    margin: 0 20px 10px 0;
   }
 
   .navigation {
     float: right;
-    color: #3191d8;
-    font-size: 18px;
+    color: #5b90d5;
+    font-size: 13px;
     font-weight: 600;
-    margin-top: 30px;
+    margin-top: 15px;
+
+     a {
+      text-decoration: none;
+      margin-left: 20px;
+    }
   }
 
-  .navigation a {
-    text-decoration: none;
-    margin-left: 20px;
-  }
+  @media (min-width: 970px) {
+    .logo {
+      float: left;
+    }
 
-  .navigation a:active {
-    color: #298ed5;
-  }
+    .contacts {
+      margin-top: 10px;
+    }
 
-  .navigation a:visited {
-    color: #081c2a;
-  }
+    .phone, .location {
+      .icon {
+        display: none;
+      }
+    }
 
-  .navigation a:hover {
-    color: #7fbbe6;
+    .location {
+      float: right;
+    }
   }
 }

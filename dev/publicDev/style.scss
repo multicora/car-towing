@@ -1,17 +1,12 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: 'Arial', sans-serif;
-  background-image: url(background.png);
+  background-image: url(files/background.png);
   background-size: cover;
   background-position: center;
+  min-width: 318px;
 }
 
 .container {
-  width: 1106px;
   margin: 0 auto;
 }
 

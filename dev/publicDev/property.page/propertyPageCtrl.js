@@ -2,6 +2,7 @@
 function propertyCtrl(propertyService, $routeParams) {
   var vm = this;
   var propertyId = $routeParams.id;
+  
   vm.property = null;
   vm.rules = null;
   propertyService.getProperty(propertyId).then(function(res) {

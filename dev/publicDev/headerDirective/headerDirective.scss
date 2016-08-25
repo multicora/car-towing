@@ -1,65 +1,92 @@
 header {
-  padding: 41px;
+  padding: 5px 6px;
   margin: 0 auto;
   overflow: hidden;
 
   .logo {
-    width: 186px;
-    height: 75px;
-    background-image: url(logo-280.png);
-    background-size: cover;
-    float: left;
+    margin-right: 30px;
+    vertical-align: top;
+    width: 93px;
   }
 
   .contacts {
     color: #f22930;
-    font-size: 20px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 26px;
-    float: left;
-    margin: 26px 0 0 66px;
-  }
+    margin-top: 12px;
+    white-space: nowrap;
 
-  .contacts img {
-    margin-right: 5px;
-    float: left;
-  }
+    .icon {
+      width: 15px;
+      margin-right: 5px;
+    }
 
-  .phone,
-  .location {
-    float: left;
-  }
-
-  .contacts p {
-    display: inline-block;
+    .text {
+      margin-left: 15px;
+      vertical-align: middle;
+    }
   }
 
   .phone {
-    margin-right: 20px;
+    display: inline-block;
+    margin: 0 20px 10px 0;
   }
 
   .navigation {
     float: right;
-    color: #3191d8;
-    font-size: 18px;
+    color: #5b90d5;
+    font-size: 12px;
     font-weight: 600;
-    margin-top: 30px;
+    margin: 11px 3px;
+
+    a {
+      margin-left: 20px;
+    }
   }
 
-  .navigation a {
-    text-decoration: none;
-    margin-left: 20px;
+  @media (min-width: 970px) {
+    .logo {
+      float: left;
+      width: 187px;
+      margin-right: 28px;
+      margin-top: 34px;
+    }
+
+    .contacts {
+      margin-top: 60px;
+      font-size: 15px;
+
+      .icon {
+        width: 16px;
+      }
+
+      .text {
+        margin-left: 5px;
+      }
+    }
+
+    .location {
+      float: right;
+    }
+
+    .navigation {
+      font-size: 17px;
+      margin: 60px 0px 0 0;
+    }
   }
 
-  .navigation a:active {
-    color: #298ed5;
-  }
+  @media (min-width: 1200px) {
+    .contacts {
+      font-size: 19px;
 
-  .navigation a:visited {
-    color: #081c2a;
-  }
+      .icon {
+        width: 23px;
+      }
+    }
 
-  .navigation a:hover {
-    color: #7fbbe6;
+    .location {
+      margin-right: 97px;
+    }
   }
 }

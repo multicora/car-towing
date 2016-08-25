@@ -1,16 +1,16 @@
 'use strict';
-function propertyCtrl(propertyService, $routeParams) {
+function propertyCtrl(propertiesService, $routeParams) {
   var vm = this;
   var propertyId = $routeParams.id;
   
   vm.property = null;
   vm.rules = null;
-  propertyService.getProperty(propertyId).then(function(res) {
+  propertiesService.getProperty(propertyId).then(function(res) {
     vm.property = res.data;
   });
-  propertyService.getRules(propertyId).then(function(res) {
+  propertiesService.getRules(propertyId).then(function(res) {
     vm.rules = res.data;
   });
 }
-propertiesCtrl.$inject = ['propertyService'];
+propertiesCtrl.$inject = ['propertiesService'];
 app.controller('propertyCtrl', propertyCtrl);

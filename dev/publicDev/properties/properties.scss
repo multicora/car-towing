@@ -1,6 +1,12 @@
 .properties {
-  background-color: #ffffff;
-  min-height: 810px;
+  background-image: url(files/background.png);
+  background-size: cover;
+  background-position: center;
+
+  .container {
+    background-color: #ffffff;
+    min-height: 100%;
+  }
 
   .info {
     height: 70px;
@@ -9,16 +15,14 @@
 
     h1 {
       font-size: 22px;
-      line-height: 25px;
       font-weight: 600;
       margin: 10px 0 0 0;
     }
 
     h2 {
       font-size: 14px;
-      line-height: 22px;
-      font-weight: 400px;
-      margin: 0;
+      font-weight: 400;
+      margin: 5px 0 0 0;
     }
   }
 
@@ -28,15 +32,14 @@
     font-weight: 600;
     line-height: 22px;
     text-align: left;
+    margin: 20px 0;
   }
 
   .propertiesContent {
-    padding: 0 0 25px 0;
+    padding: 0 15px 25px 15px;
   }
 
   .letters {
-    text-align: left;
-
     button {
       text-decoration: none;
       background: none;
@@ -65,17 +68,12 @@
   }
 
   .propertiesList {
-    padding: 0;
-    min-height: 220px;
     color: #1c1c1c;
     font-size: 16px;
     font-weight: 400;
-    overflow-y: scroll;
     margin-top: 20px;
 
-    li {
-      list-style: none;
-      width: 100%;
+    .propertiesLine {
       display: inline-block;
       line-height: 22px;
 
@@ -117,5 +115,28 @@
 
   .adress {
     float: right;
+  }
+}
+
+@media (min-width: 970px) {
+  .properties {
+    .info {
+      height: 110px;
+      margin-top: 20px;
+      
+      h1 {
+        font-size: 26px;
+        margin-top: 26px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+    }
+
+    .propertiesContent {
+      border-top: 1px solid #eaeaea;
+      padding-top: 20px;
+    }
   }
 }

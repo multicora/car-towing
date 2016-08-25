@@ -1,0 +1,48 @@
+.property-page {
+  background: #ffffff;
+  
+  .row {
+    margin: 0;
+  }
+  .name {
+    padding: 16px 20px;
+    background: #f7f7f7;
+
+    .title {
+      color: #4f4f4f;
+      float: left;
+
+      p:first-child {
+        font-weight: 600;
+        font-size: 22px;
+      }
+
+      p:last-child {
+        font-weight: 400;
+        font-size: 11px;
+      }
+    }
+
+    .logo {
+      float: right;
+      margin-top: 12px;
+      width: 75px;
+      max-height: 66px;
+    }
+  }
+  .property {
+        padding: 21px 20px;
+        color: #212121;
+    .title {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .description {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}

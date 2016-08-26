@@ -21,11 +21,13 @@
     color: #ffffff;
     font-size: 18px;
     font-weight: 600;
-    display: inline-block;
 
     img {
-      float: left;
       margin-right: 5px;
+    }
+
+    span {
+      vertical-align: top;
     }
   }
 
@@ -34,11 +36,10 @@
   }
 
   .propertyEditor {
-    overflow: hidden;
-    margin-top: 20px;
+    padding-top: 20px;
+    text-align: center;
 
     h2 {
-      text-align: center;
       font-size: 26px;
       font-weight: 400;
       color: #4d4d4d;
@@ -46,7 +47,6 @@
     }
 
     button {
-      display: block;
       width: 240px;
       height: 52px;
       border-radius: 6px;
@@ -54,7 +54,6 @@
       color: #ffffff;
       font-size: 18px;
       border: 0;
-      margin: 0 auto;
     }
 
     button:focus {
@@ -67,18 +66,18 @@
 
     .propertyValue {
       width: 60%;
-      float: left;
+      display: inline-block;
+      vertical-align: top;
 
       input {
-        display: block;
-        width: 80%;
+        width: 620px;
         height: 46px;
         border: 1px solid #a9a9a9;
         font-size: 18px;
         font-weight: 400;
         padding-left: 10px;
         border-radius: 5px;
-        margin: 0 auto 10px auto;
+        margin-bottom: 10px;
       }
 
       input:focus {
@@ -92,13 +91,13 @@
 
     .propertyLogo {
       width: 40%;
-      float: right;
+      display: inline-block;
+      vertical-align: top;
 
       .logo {
-        display: block;
         max-width: 244px;
         height: 200px;
-        margin: 0 auto 60px auto;
+        margin-bottom:60px;
       }
     }
   }

@@ -6,10 +6,12 @@
       div.propertyEditor
         div.propertyValue
           h2 Add new property
-          input(type="text" placeholder="Property name")
-          input(type="text" placeholder="Login")
-          button.create() Create
+          input(type="text" placeholder="Property name" name="propertyName")
+          input(type="text" placeholder="Login" name="login")
+          button.create Create
         div.propertyLogo
           h2 Upload logo
-          img.logo(src="")
-          button() Upload logo
+          div
+            img.logo(src="")
+          div
+            button Upload logo

@@ -3,6 +3,103 @@
   min-height: 100%;
 
   .content {
-    background-color: #fff;
+    background-color: #ffffff;
+    min-height: 100%;
+  }
+
+  .addProperty {
+    text-decoration: none;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    background-color: #3191d8;
+    width: 279px;
+    height: 52px;
+    float: right;
+    margin: 50px 70px 0 0;
+    padding: 13px 0 0 68px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    display: inline-block;
+
+    img {
+      float: left;
+      margin-right: 5px;
+    }
+  }
+
+  .addProperty:hover {
+    background: #7fbbe6;
+  }
+
+  .propertyEditor {
+    overflow: hidden;
+    margin-top: 20px;
+
+    h2 {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 400;
+      color: #4d4d4d;
+      margin-bottom: 35px;
+    }
+
+    button {
+      display: block;
+      width: 240px;
+      height: 52px;
+      border-radius: 6px;
+      background-color: #3191d8;
+      color: #ffffff;
+      font-size: 18px;
+      border: 0;
+      margin: 0 auto;
+    }
+
+    button:focus {
+      outline: 0;
+    }
+
+    button:hover {
+      background: #7fbbe6;
+    }
+
+    .propertyValue {
+      width: 60%;
+      float: left;
+
+      input {
+        display: block;
+        width: 80%;
+        height: 46px;
+        border: 1px solid #a9a9a9;
+        font-size: 18px;
+        font-weight: 400;
+        padding-left: 10px;
+        border-radius: 5px;
+        margin: 0 auto 10px auto;
+      }
+
+      input:focus {
+        outline: 0;
+      }
+
+      .create {
+        margin-top: 20px;
+      }
+    }
+
+    .propertyLogo {
+      width: 40%;
+      float: right;
+
+      .logo {
+        display: block;
+        max-width: 244px;
+        height: 200px;
+        margin: 0 auto 60px auto;
+      }
+    }
   }
 }

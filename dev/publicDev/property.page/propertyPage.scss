@@ -1,6 +1,11 @@
 .property-page {
   background: #ffffff;
 
+  .container {
+    background-color: #ffffff;
+    min-height: 100%;
+  }
+
   .name {
     padding: 16px 20px;
     background: #f7f7f7;

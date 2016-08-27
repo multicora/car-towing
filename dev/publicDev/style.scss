@@ -86,7 +86,7 @@ header {
 }
 
 // reusable blocks______________________________________________________
-.container {
+.block {
 
   .row {
     // box-sizing: border-box;
@@ -116,39 +116,29 @@ header {
     position: relative;
   }
 
-  .col-1 {
-    width: 20%;
+  $col-width: 5%;
+  @for $i from 1 through 20 {
+    .col-#{$i} {
+      width: $col-width * $i;
+    }
   }
 
-  .col-2 {
-    width: 40%;
+    .bold-title {
+      font-weight: 600;
+    }
   }
-
-  .col-3 {
-    width: 60%;
-  }
-
-  .col-4 {
-    width: 80%;
-  }
-
-  .col-5 {
-    width: 100%;
-  }
-  .col-rest {
-    width:100%;
-  }
-
-  .bold-title {
-    font-weight: 600;
-  }
-}
 
 // .clearfix:after {
 //   content: "";
 //   display: table;
 //   clear: both;
 // }
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .min-indent-bottom {
   padding-bottom: 5px;
@@ -167,10 +157,10 @@ header {
 }
 
 .main-indent-left {
-  padding-left: 75px;
+  padding-left: 50px;
 }
 .main-indent-right {
-  padding-right: 75px;
+  padding-right: 50px;
 }
 
 .main-border-bottom {
@@ -239,5 +229,34 @@ html, body {
 }
 .btn-blue {
   background-color: #3191d8;
+}
+
+@media (max-width: 1010px) {
+  .btn-regular {
+    width: 150px;
+  }
+  .btn-short {
+    width: 90px;
+  }
+
+  .blocking-part {
+    .date-range {
+      input {
+        width: 190px;
+      }
+    }
+
+    .reason-block {
+      input {
+        width: 550px;
+      }
+    }
+  }
+
+  .parking-rules {
+    .new-rule-block input{
+      width: 440px;
+    }
+  }
 }
 

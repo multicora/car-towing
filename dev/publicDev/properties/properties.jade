@@ -37,7 +37,9 @@ div.properties
           button( ng-click="letter='Y'") Y
           button( ng-click="letter='Z'") Z
           button( ng-click="letter=''") ALL
-      div.row.propertiesList
-        div.propertiesLine.col-md-12(ng-repeat = "property in vm.properties | startWithLetter:letter")
-          p.name {{ property.name }}
-          p.adress {{ property.address }}
+      .row.propertiesList
+        a.propertiesLine.col-md-12(
+          href="#/property/{{property._id}}"
+          ng-repeat="property in vm.properties | startWithLetter:letter")
+          .adress {{ property.address }}
+          .name {{ property.name }}

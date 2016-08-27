@@ -74,8 +74,11 @@
     margin-top: 20px;
 
     .propertiesLine {
-      display: inline-block;
+      display: block;
       line-height: 22px;
+      text-decoration: none;
+      color: #212121;
+      outline: none;
 
       p {
         margin: 0;
@@ -83,6 +86,7 @@
     }
   }
 
+  // TODO: what for?
   .propertiesList::-webkit-scrollbar {
     width: 20px;
     background-color: #ffffff;
@@ -110,11 +114,16 @@
   }
 
   .name {
-    float: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 116px;
   }
 
   .adress {
     float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
   }
 }
 

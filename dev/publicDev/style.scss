@@ -1,5 +1,6 @@
 body {
   font-family: 'Arial', sans-serif;
+  background-image: url(files/background.png);
   min-width: 318px;
   color: #1c1b1b;
 }
@@ -10,7 +11,7 @@ body {
   background-position: center;
 }
 
-.container {
+.main-view {
   width: 1306px;
   margin: 0 auto;
 }
@@ -86,46 +87,8 @@ header {
 }
 
 // reusable blocks______________________________________________________
-.block {
-
-  .row {
-    // box-sizing: border-box;
-    max-width: 100%;
-    &.main-height {
-      height: 44px;
-      overflow:hidden;
-      white-space: nowrap;
-
-      [class*="col-"] {
-        height: 100%;
-        line-height: 44px;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-    }
-    &:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-  }
-
-  [class*="col-"] {
-    box-sizing: border-box;
-    display: inline-block;
-    position: relative;
-  }
-
-  $col-width: 5%;
-  @for $i from 1 through 20 {
-    .col-#{$i} {
-      width: $col-width * $i;
-    }
-  }
-
-  .bold-title {
-    font-weight: 600;
-  }
+.bold-title {
+  font-weight: 600;
 }
 
 // .clearfix:after {
@@ -196,67 +159,12 @@ html, body {
 }
 
 // controls__________________________________________________________________
-// block
 .btn {
-  font-size: 18px;
-  height: 44px;
-  text-align: center;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-// element
-.btn_text {
-  color: #FFFFFF;
-}
-.btn_icon {
-  color: #FFFFFF;
-}
-
-// modifier
-.btn-regular {
-  border-radius: 5px;
-  width: 220px;
-}
-.btn-short {
-  border-radius: 5px;
-  width: 160px;
-}
-.btn-round {
-  border-radius: 50%;
-  width: 44px;
-}
-.btn-blue {
-  background-color: #3191d8;
-}
-
-@media (max-width: 1010px) {
-  .btn-regular {
-    width: 150px;
-  }
-  .btn-short {
-    width: 90px;
-  }
-
-  .blocking-part {
-    .date-range {
-      input {
-        width: 190px;
-      }
-    }
-
-    .reason-block {
-      input {
-        width: 550px;
-      }
-    }
-  }
-
-  .parking-rules {
-    .new-rule-block input{
-      width: 440px;
-    }
+  &.btn-circle {
+    border-radius: 50%;
+    margin-right: 15px;
+    padding: 0;
+    width: 35px;
   }
 }
 

@@ -1,22 +1,21 @@
-.blocking-part.main-indent-left.main-indent-right.big-indent-bottom.main-border-bottom
-  .block
-    .row.main-height.main-indent-bottom
-      .col-15.float-left.font-regular
+.blocking-part.main-border-bottom
+  .container.big-indent-bottom.big-indent-top
+    .row
+      .col-sm-9.font-regular
         span(ng-bind="'Welcome, ' + vm.managerName +'!'")
-      .col-5
-        .btn.btn-regular.btn-blue.float-right
-          .btn_text Report Exec
-    .row.main-height.main-indent-bottom.font-small
-      .col-4.ellipsis
+      .col-sm-3
+        button.btn.btn-primary.btn-block(type="button") Report Exec
+    .row.form-group.font-small
+      .col-sm-3
         span Block towing from
-      .col-11.date-range.ellipsis
-        input.float-left(type="date" ng-model="vm.blockingData.dateFrom")
-        .connector.float-left to
-        input.float-left(type="date" ng-model="vm.blockingData.dateTo")
-      .col-5
-        .btn.btn-regular.btn-blue.float-right
-          .btn_text Block
-    .row.main-height.main-indent-bottom.font-small
-      .reason-block.col-16.float-left
+      .col-sm-6.date-range
+        input.form-control(type="date" ng-model="vm.blockingData.dateFrom")
+        span.connector to
+        input.form-control(type="date" ng-model="vm.blockingData.dateTo")
+      .col-sm-3
+        button.btn.btn-primary.btn-block(type="button") Block
+    .row.font-small
+      .col-sm-9.reason-block
         span Reason
         input(ng-model="vm.blockingData.reason")
+      .col-sm-3

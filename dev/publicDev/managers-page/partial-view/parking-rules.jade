@@ -1,29 +1,26 @@
-.parking-rules.main-indent-left.main-indent-right.main-border-bottom
-  .block.big-indent-bottom.big-indent-top
-    .row.rule.main-height.min-indent-bottom
-      .col-4.font-small
+.parking-rules.main-border-bottom
+  .container.big-indent-bottom.big-indent-top
+    .row.rule
+      .col-sm-3.font-small
         .bold-title Parking Rules
-      .col-11.font-small.ellipsis
+      .col-sm-6.font-small
         span 1. You cannot leave a car on the grass
-      .col-5
-        .btn.btn-short.btn-blue.float-right
-          .btn_text Edit
-        .btn.btn-round.btn-blue.float-right
-          .btn_text X
+      .col-sm-3.rule-controls
+        button.btn.btn-primary.btn-circle(type="button")
+          i.glyphicon.glyphicon-remove
+        button.btn.btn-primary.btn-block(type="button") Edit
     .row.rule.main-height.main-indent-bottom
-      .col-4.font-small
+      .col-sm-3.font-small
         span
-      .col-11.font-small.ellipsis
+      .col-sm-6.font-small.ellipsis
         span 2. You cannot leave a car near the entrance
-      .col-5
-        .btn.btn-short.btn-blue.float-right
-          .btn_text Edit
-        .btn.btn-round.btn-blue.float-right
-          .btn_text X
-    .row.new-rule-block.main-height.main-indent-bottom
-      .col-4
-      .col-11
-        input(ng-model="vm.newRule.name" placeholder="Write your rule")
-      .col-5
-        .btn.btn-regular.btn-blue.float-right
-          .btn_text Add Rule
+      .col-sm-3.rule-controls
+        button.btn.btn-primary.btn-circle(type="button")
+          i.glyphicon.glyphicon-remove
+        button.btn.btn-primary.btn-block(type="button") Edit
+    .row.form-group.new-rule-block.main-height
+      .col-sm-3
+      .col-sm-6.new-rule
+        input.form-control(ng-model="vm.newRule.name" type="text" placeholder="Write your rule")
+      .col-sm-3
+        button.btn.btn-primary.btn-block(type="button") Add Rule

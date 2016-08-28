@@ -1,6 +1,5 @@
 body {
   font-family: 'Arial', sans-serif;
-  background-image: url(files/background.png);
   min-width: 318px;
   color: #1c1b1b;
 }
@@ -9,81 +8,6 @@ body {
   background-image: url(files/background.png);
   background-size: cover;
   background-position: center;
-}
-
-.main-view {
-  width: 1306px;
-  margin: 0 auto;
-}
-
-footer {
-  width: 100%;
-  padding: 0 40px 60px 40px;
-  color: #ffffff;
-}
-
-header {
-  height: 81px;
-  margin: 0 auto;
-  background: #ffffff;
-  overflow: hidden;
-}
-
-.logo {
-  width: 186px;
-  height: 75px;
-  background-image: url(logo-280.png);
-  background-size: cover;
-  float: left;
-}
-
-.contacts {
-  color:  #f22930;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 26px;
-  float: left;
-  margin: 26px 0 0 66px;
-}
-
-.contacts img {
-  margin-right: 5px;
-  float: left;
-}
-
-.phone, .location {
-  float: left;
-}
-
-.contacts p {
-  display: inline-block;
-}
-
-.phone {
-  margin-right: 20px;
-}
-
-.navigation {
-  float: right;
-  color:  #3191d8;
-  font-size: 18px;
-  box-sizing: border-box;
-
-  p:first-child {
-    float: left;
-  }
-}
-
-.navigation a:active {
-  color: #298ED5;
-}
-
-.navigation a:visited {
-  color: #081C2A;
-}
-
-.navigation a:hover {
-  color: #7fbbe6;
 }
 
 // reusable blocks______________________________________________________

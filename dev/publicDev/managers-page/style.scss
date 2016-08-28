@@ -1,7 +1,14 @@
 .managers-page {
-  background: #FFFFFF;
+  background: #f7f7f7;
+  min-height: 100%;
+
   .row + .row {
     margin-top: 10px;
+  }
+
+  .container {
+    background: #FFFFFF;
+    min-height: 100%;
   }
 }
 

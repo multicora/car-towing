@@ -1,19 +1,22 @@
 div.main-page
-  header-directive
-  div.content
-    div.leftButton
-      p.borderLeft
-      a.button(href="#/properties" title="Need info?") 
-        p.title NEED INFO?
-        p.subTitle Parking rules & regulation
-      a.button(href="#/properties" title="Got towed?") 
-        p.title GOT TOWED?
-        p.subTitle Rates & Policies & Direction
-    div.rightButton
-      p.borderRight
-      a.button(href="#/properties" title="Parking problem?") 
-        p.title PARKING PROBLEM?
-        p.subTitle We can halp
-      a.button(href="#/properties" title="Complaint?") 
-        p.title COMPLAINT?
-        p.subTitle We care
+  .container
+    header-directive
+    .content
+      .borderLeft
+      .borderRight
+      .buttons-container
+        .leftButton
+          a.button(href="#/properties" title="Need info?") 
+            p.title NEED INFO?
+            p.subTitle Parking rules & regulation
+          a.button(href="#/" title="Got towed?") 
+            p.title GOT TOWED?
+            p.subTitle Rates & Policies & Direction
+        .rightButton
+          a.button(href="#/" title="Parking problem?") 
+            p.title PARKING PROBLEM?
+            p.subTitle We can help
+          a.button(href="#/" title="Complaint?") 
+            p.title COMPLAINT?
+            p.subTitle We care
+    footer-directive

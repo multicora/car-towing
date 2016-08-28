@@ -1,5 +1,15 @@
 "use strict";
 
-(function (NG) {
-  NG.module('app', ['ngRoute']);
-})(angular);
+(function () {
+  angular.module('app', ["ngRoute", "Autorisation"])
+  .config(config);
+		
+	config.$inject = ["$routeProvider"];
+
+  function config($routeProvider) {
+    $routeProvider
+      .when('/not-found', {
+        template: '404'
+      });
+	}
+})()

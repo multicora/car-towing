@@ -19,15 +19,15 @@ module.exports = {
   create: (cb) => {
     DAL.users.createUser('vadim@v.ua', 'ps121212', "token1234", cb);
   },
-  login: (login, password, cb) => {
-    DAL.users.getUserByEmail(login, (err, docs) => {
-      if (!!docs && docs.password == password) {
+  login: (user, cb) => {
+    DAL.users.getUserByEmail(user.login, (err, docs) => {
+      if (!!docs && docs.password == user.password) {
           let token = newToken();
-          DAL.users.updateToken(token, login, (err, docs) => {
-            !!docs ? cb({token: docs.token}) : cb(Boom.badImplementation('Server error'));          
+          DAL.users.updateToken(token, user.login, (err, docs) => {
+            !!docs ? cb({"X-CART-Token": docs.token}) : cb(Boom.badImplementation('Server error'));          
           });
       } else {
-        cb(Boom.unauthorized('Login or password are wrong'));
+        cb(Boom.unauthorized('The username or password is incorrect'));
       }
     }); 
   }

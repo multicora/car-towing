@@ -1,11 +1,11 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: 'Arial', sans-serif;
-  background-image: url(background.png);
+  min-width: 318px;
+  color: #1c1b1b;
+}
+
+.properties, .property-page {
+  background-image: url(files/background.png);
   background-size: cover;
   background-position: center;
 }
@@ -123,10 +123,10 @@ header {
     }
   }
 
-    .bold-title {
-      font-weight: 600;
-    }
+  .bold-title {
+    font-weight: 600;
   }
+}
 
 // .clearfix:after {
 //   content: "";

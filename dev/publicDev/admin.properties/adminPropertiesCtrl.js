@@ -11,9 +11,7 @@
     vm.login = ''; 
     vm.name = '';
 
-    vm.addProperty = addProperty;
-
-    function addProperty(form) {
+    vm.addProperty = function(form) {
       if (form.$valid) {
         propertyService.create(vm.name)
         .then((success) => {

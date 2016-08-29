@@ -13,18 +13,15 @@
 
     vm.addProperty = addProperty;
 
-    function addProperty() {
-      DataService.login(vm.login)
-      .then((success) => {
-        propertyService.postProperty(vm.name)
-          .then((success) => {
-            console.log(success);
-          }, (error) => {
-            console.log(error);
-          });
-      }, (error) => {
-        console.log(error);
-      });
+    function addProperty(form) {
+      if (form.$valid) {
+        propertyService.create(vm.name)
+        .then((success) => {
+          console.log(success);
+        }, (error) => {
+          console.log(error);
+        });
+      }
     }
   }
 })();

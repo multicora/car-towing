@@ -4,24 +4,28 @@
       header-directive
       admin-menu-directive
       .propertyEditor
-        form(name="propertyForm"
-             ng-submit="vm.addProperty(propertyForm)"
-             )
+        form(
+          name="propertyForm"
+          ng-submit="vm.addProperty(propertyForm)")
           .propertyValue
             h2 Add new property
-            input(type="text"
-                  placeholder="Property name"
-                  ng-model="vm.name"
-                  ng-class="{'l-error-input': vm.errorMes.length > 0}"
-                  required)
-            input(type="text"
-                  placeholder="Login"
-                  ng-model="vm.login"
-                  ng-class="{'l-error-input': vm.errorMes.length > 0}"
-                  required)
+            input(
+              type="text"
+              placeholder="Property name"
+              ng-model="vm.name"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
+            input(
+              type="text"
+              placeholder="Login"
+              ng-model="vm.login"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
+            p.errorMessage(ng-bind="vm.errorMes")
             div
-              button.create(type="submit"
-                            ng-class="{'disabled': propertyForm.$invalid}") Create
+              button.create(
+                type="submit"
+                ng-class="{'disabled': propertyForm.$invalid}") Create
           .propertyLogo
             h2 Upload logo
             div

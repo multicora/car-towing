@@ -4,20 +4,21 @@
   angular.module('app')
     .controller('adminPropertiesCtrl', ctrl);
 
-  ctrl.$inject = ['propertyService', 'DataService'];
+  ctrl.$inject = ['propertyService', '$location'];
 
-  function ctrl(propertyService, DataService) {
+  function ctrl(propertyService, $location) {
     var vm = this;
     vm.login = ''; 
     vm.name = '';
+    vm.errorMes = '';
 
     vm.addProperty = function(form) {
       if (form.$valid) {
         propertyService.create(vm.name)
         .then((success) => {
-          console.log(success);
+          $location.path('/admin/properties');
         }, (error) => {
-          console.log(error);
+          vm.errorMes = error.data.message;
         });
       }
     }

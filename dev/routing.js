@@ -102,13 +102,21 @@ module.exports.init = function (server) {
       pre: [
         { method: 'checkTokin(raw.req.headers.token)', assign: "token" }
       ],
+      validate: {
+        params: {
+          name: Joi.string().min(1).max(255).required(),
+          address: Joi.string(),
+          objId: Joi.string(),
+          logo: Joi.string(),
+          rules: Joi.array().includes(Joi.string())
+        }
+      },
       handler: function (request, reply) {
         DAL.properties.get(function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
         });
       }
     }
-    
   });
   server.route({
     method: 'GET',
@@ -117,6 +125,15 @@ module.exports.init = function (server) {
       pre: [
         { method: 'checkTokin(raw.req.headers.token)', assign: "token" }
       ],
+      validate: {
+        params: {
+          name: Joi.string().min(1).max(255).required(),
+          address: Joi.string(),
+          objId: Joi.string(),
+          logo: Joi.string(),
+          rules: Joi.array().includes(Joi.string())
+        }
+      },
       handler: function (request, reply) {
         DAL.properties.getById(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
@@ -127,10 +144,20 @@ module.exports.init = function (server) {
   server.route({
     method: 'POST',
     path: '/api/property',
-    handler: function (request, reply) {
-      DAL.properties.create(request.payload, function (err, docs) {
-        !err ? reply('Done') : reply(JSON.stringify(err));
-      });
+    config: {
+      validate: {
+        params: {
+          name: Joi.string().min(1).max(255).required(),
+          address: Joi.string(),
+          logo: Joi.string(),
+          rules: Joi.array().includes(Joi.string())
+        }
+      },
+      handler: function (request, reply) {
+        DAL.properties.create(request.payload, function (err, docs) {
+          !err ? reply('Done') : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 
@@ -138,20 +165,42 @@ module.exports.init = function (server) {
   server.route({
     method: 'PUT',
     path: '/api/property/{id}',
-    handler: function (request, reply) {
-      DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
+    config: {
+      validate: {
+        params: {
+          name: Joi.string().min(1).max(255).required(),
+          address: Joi.string(),
+          objId: Joi.string(),
+          logo: Joi.string(),
+          rules: Joi.array().includes(Joi.string())
+        }
+      },
+      handler: function (request, reply) {
+        DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 
   server.route({
     method: 'DELETE',
     path: '/api/property/{id}',
-    handler: function (request, reply) {
-      DAL.properties.remove(request.params.id, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
+    config: {
+      validate: {
+        params: {
+          name: Joi.string().min(1).max(255).required(),
+          address: Joi.string(),
+          objId: Joi.string(),
+          logo: Joi.string(),
+          rules: Joi.array().includes(Joi.string())
+        }
+      },
+      handler: function (request, reply) {
+        DAL.properties.remove(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 

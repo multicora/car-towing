@@ -6,6 +6,7 @@
 const fs = require('fs');
 const glob = require("glob");
 const uuid = require('node-uuid');
+const Promise = require('promise');
 
 module.exports = function (config) {
   config = config || {};
@@ -39,10 +40,36 @@ module.exports = function (config) {
       }
     },
     getFile: (id, cb) => {
-      const path = folder + '/' + id + separator;
+      return new Promise(function (resolve, reject) {
+        const path = folder + '/' + id + separator;
 
-      glob(path + '*', {nonull:true}, function (er, files) {
-        cb(err, files);
+        glob(path + '*', {nonull:true}, function (err, files) {
+          err ? reject(err) : resolve(files);
+          cb && cb(err, files);
+        });
+      });
+    },
+    removeFile: (id, cb) => {
+      return new Promise(function (resolve, reject) {
+        const path = folder + '/' + id + separator;
+
+        glob(path + '*', {nonull:true}, function (err, files) {
+          if (!err) {
+            const filesPromises = files.map(function (file) {
+              return new Promise(function (resolve, reject) {
+                fs.unlink(file, resolve);
+              });
+            });
+
+            Promise.all(filesPromises).then(function (res) {
+              resolve();
+              cb && cb(null);
+            });
+          } else {
+            reject(err);
+            cb && cb(err);
+          }
+        });
       });
     }
   }

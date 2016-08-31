@@ -27,4 +27,16 @@ model.on('index', function(error) {
   }
 });
 
-module.exports = model;
+module.exports = {
+  save: (fileId, ownerId, cb) => {
+    let inst = new model({
+      fileId: fileId,
+      ownerId: ownerId
+    });
+
+    inst.save(cb)
+  },
+  getByOwnerId: (id, cb) => {
+    Property.find({ownerId: id}, cb);
+  }
+};

@@ -117,5 +117,6 @@ DAL.users = {
   }
 };
 
+DAL.files = require('./files.js');
 
 module.exports = DAL;

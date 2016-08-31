@@ -1,5 +1,16 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url('files/open_sans/opensans-regular-webfont.eot');
+  src: url('files/open_sans/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('files/open_sans/opensans-regular-webfont.woff2') format('woff2'),
+  url('files/open_sans/opensans-regular-webfont.woff') format('woff'),
+  url('files/open_sans/opensans-regular-webfont.ttf') format('truetype'),
+  url('files/open_sans/opensans-regular-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
   min-width: 318px;
   color: #1c1b1b;
 }
@@ -68,7 +79,7 @@ input {
 
 // fonts__________________________________________________________________
 html, body {
-  font-family: OpenSans, Arial;
+  font-family: 'Open Sans', Arial, sans-serif;
   color: #4D4D4D;
 }
 

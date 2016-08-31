@@ -90,8 +90,8 @@ DAL.parkingRules = {
   },
   setByPropId: (propertyId, rules, cb) => {
     let rulesArr = [];
-    ParkingRules.find({propertyId: propertyId}, function(property) {
-      if (!!property) {
+    DAL.properties.getById(propertyId, function(err, property) {
+      if (property) {
         rules.forEach((item) => {
           rulesArr.push({propertyId: propertyId, text: item});
         });
@@ -99,7 +99,7 @@ DAL.parkingRules = {
           !err ? ParkingRules.create(rulesArr, cb) : cb(err, docs);
         });
       } else {
-        cb(new Error('Invalid property id'));
+        cb(new Error('This property id exist.'));
       }
     });
   }

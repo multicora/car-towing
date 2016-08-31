@@ -99,7 +99,7 @@ DAL.parkingRules = {
           !err ? ParkingRules.create(rulesArr, cb) : cb(err, docs);
         });
       } else {
-        cb(new Error('This property id exist.'));
+        cb(new Error('Property with this id is not exists.'));
       }
     });
   }

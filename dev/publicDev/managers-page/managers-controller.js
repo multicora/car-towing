@@ -5,13 +5,15 @@
   }
 
   var app = NG.module('app'),
-    injections = [];
+    injections = ['rulesDataService'];
 
 
-  function managersCtrl() {
+  function managersCtrl(rulesDataService) {
     var vm = this;
 
     vm.managerName = 'Hugo Boss';
+
+    rulesDataService.getAll();
   }
 
   managersCtrl.$inject = injections;

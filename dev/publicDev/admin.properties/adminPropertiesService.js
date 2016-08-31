@@ -1,6 +1,7 @@
 'use strict';
 (() => {
-	angular.module('app')
+	angular
+		.module('app')
 		.factory('adminPropertiesService', function($http) {
 			return {
 	    	getAdminProperties: function() {

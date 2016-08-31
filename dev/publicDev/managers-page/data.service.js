@@ -11,7 +11,8 @@
     function dataservice($http) {
       return {
         create: create,
-        getAll: getAll
+        getAll: getAll,
+        remove: remove
       };
 
       // TODO: for testing purpose
@@ -19,8 +20,17 @@
         return $http.get("/api/parkingRules");
       }
 
-      function create(rule) {
-        return $http.post("/api/parkingRules/", rule);
+      function create(propertyId, rule) {
+        return $http.post("/api/parkingRules/" + propertyId, rule);
+      }
+
+      // TODO: future update functionality
+      // function edit(id, rule) {
+      //   return $http.put("/api/parkingRules/" + id, rule);
+      // }
+
+      function remove(id) {
+        return $http.delete("/api/parkingRules/" + id);
       }
     }
 })();

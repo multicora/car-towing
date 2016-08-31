@@ -1,9 +1,19 @@
 'use strict';
 
 const path = require('path');
-const DAL = require('./dal/dal.js');
+const DAL = require('../dal/dal.js');
 
-module.exports.init = function (server) {
+module.exports = function (server) {
+  server.route({
+    method: 'GET',
+    path: '/api/parkingRules',
+    handler: function (request, reply) {
+      DAL.parkingRules.getAll(function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
   server.route({
     method: 'GET',
     path: '/api/parkingRules/{propertyId}',
@@ -23,18 +33,24 @@ module.exports.init = function (server) {
     method: 'POST',
     path: '/api/parkingRules/{propertyId}',
     handler: function (request, reply) {
-      DAL.parkingRules.setByPropId(request.params.propertyId, request.payload, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
+      if (Object.prototype.toString.call(request.payload) === '[object Array]') {
+        DAL.parkingRules.setByPropId(request.params.propertyId, request.payload, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      } else {
+        DAL.parkingRules.create(request.payload, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 
   server.route({
-    method: 'POST',
-    path: '/api/parkingRules/',
+    method: 'PUT',
+    path: '/api/parkingRules/{id}',
     handler: function (request, reply) {
-      DAL.parkingRules.setByPropId(request.payload, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
+      DAL.parkingRules.update(request.params.id, request.payload, function (err, docs) {
+        !err ? reply('Done') : reply(JSON.stringify(err));
       });
     }
   });

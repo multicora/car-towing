@@ -20,6 +20,9 @@ model.on('index', function(error) {
 });
 
 const parkingRules = {
+  getAll: (cb) => {
+    model.find({}, cb);
+  },
   getByPropId: (propertyId, cb) => {
     model.find({propertyId: propertyId}, cb);
   },
@@ -35,6 +38,9 @@ const parkingRules = {
     model.remove({propertyId: propertyId}, (err, docs) => {
       !err ? model.create(rulesArr, cb) : cb(err, docs);
     });
+  },
+  update: (id, cb) => {
+    return model.findOneAndUpdate({_id: id}, cb);
   },
   remove: (id, cb) => {
     return model.findOneAndRemove({_id: id}, cb);

@@ -1,14 +1,17 @@
 .admin-properties
-	.container
-		.content
-			header-directive
-			admin-menu-directive
-			div(ng-init="vm.getAdminProperties()", class="content-padding")
-				div(class="wrap-admin-properties")
-					div(ng-repeat="item in vm.adminProperties", class="pa-item")
-						div(class="pa-img-wrap")
-							// span(class="pa-img-bubbel") 45
-							div(class="pa-blocked" ng-if="item.blocked") Blocked
-							img(ng-src="{{item.logo}}", alt="")
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      div(ng-init="vm.getAdminProperties()", class="content-padding")
+        form(class="wrap-admin-property-search", ng-submit="vm.searchProperty()")
+          input(type="text", placeholder="Search property", ng-model="vm.searchPropertyValue")
+          button(type="submit") Search
+        div(class="wrap-admin-properties")
+          div(ng-repeat="item in vm.adminProperties | filter: vm.searchObj", class="pa-item")
+            div(class="pa-img-wrap")
+              // span(class="pa-img-bubbel") 45
+              div(class="pa-blocked" ng-if="item.blocked") Blocked
+              img(ng-src="{{item.logo}}", alt="")
 
-						h5(class="pa-item-title") {{item.name}}
+            h5(class="pa-item-title") {{item.name}}

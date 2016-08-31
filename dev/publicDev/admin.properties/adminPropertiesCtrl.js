@@ -5,11 +5,14 @@
     .module('app')
     .controller('adminPropertiesCtrl', adminPropertiesCtrl);
 
-  adminPropertiesCtrl.$inject = ['adminPropertiesService'];
+  adminPropertiesCtrl.$inject = ['adminPropertiesService', '$filter'];
 
-  function adminPropertiesCtrl(adminPropertiesService) {
+  function adminPropertiesCtrl(adminPropertiesService, $filter) {
     var vm = this;
     vm.adminProperties = [];
+    vm.searchPropertyValue = '';
+    vm.searchObj = {};
+
     vm.getAdminProperties = () => {
       adminPropertiesService.getAdminProperties()
         .then((success) => {
@@ -17,6 +20,10 @@
         }, (error) => {
           console.error(error);
         });
-    } 
+    };
+
+    vm.searchProperty = () => {
+      vm.searchObj = {name: vm.searchPropertyValue};
+    };
   }
 })();

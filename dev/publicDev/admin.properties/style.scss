@@ -5,6 +5,34 @@
   .content {
     background-color: #fff;
   }
+  .wrap-admin-property-search {
+    max-width: 592px;
+    width: 100%;
+    margin-bottom: 30px;
+    input {
+      height: 40px;
+      width: calc(100% - 144px);
+      padding: 0px 6px;
+      border: 1px solid #d4d4d4;
+      outline: none;
+      color: #a9a9a9;
+      border-right: none;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+    button {
+      width: 144px;
+      height: 40px;
+      background-color: #3191d8;
+      outline: none;
+      border: none;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+      color:  #ffffff;
+      font-size: 15px;
+      border: 1px solid transparent;
+    }
+  }
 }
 .content-padding {
   padding: 48px 98px;

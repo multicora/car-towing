@@ -90,13 +90,17 @@ DAL.parkingRules = {
   },
   setByPropId: (propertyId, rules, cb) => {
     let rulesArr = [];
-    ParkingRules.find({propertyId: propertyId}, function() {
-      rules.forEach((item) => {
-        rulesArr.push({propertyId: propertyId, text: item});
-      });
-      ParkingRules.remove({propertyId: propertyId}, (err, docs) => {
-        !err ? ParkingRules.create(rulesArr, cb) : cb(err, docs);
-      });
+    ParkingRules.find({propertyId: propertyId}, function(property) {
+      if (!!property) {
+        rules.forEach((item) => {
+          rulesArr.push({propertyId: propertyId, text: item});
+        });
+        ParkingRules.remove({propertyId: propertyId}, (err, docs) => {
+          !err ? ParkingRules.create(rulesArr, cb) : cb(err, docs);
+        });
+      } else {
+        cb(new Error('Invalid property id'));
+      }
     });
   }
 };

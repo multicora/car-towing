@@ -20,6 +20,7 @@
     "angular-route": "^1.5.8",
     "boom": "^3.2.2",
     "bower": "^1.7.9",
+    "glob": "^7.0.6",
     "good": "^7.0.1",
     "good-console": "^6.1.2",
     "good-squeeze": "^4.0.0",
@@ -28,6 +29,7 @@
     "inert": "^4.0.1",
     "lodash": "^4.14.1",
     "mongoose": "^4.5.4",
+    "node-uuid": "^1.4.7",
     "rand-token": "^0.2.1"
   },
   "devDependencies": {

@@ -4,6 +4,7 @@
 
 const path = require('path');
 const DAL = require('./dal/dal.js');
+const files = require('./routing/files.js');
 
 module.exports.init = function (server) {
   server.route({
@@ -202,6 +203,7 @@ module.exports.init = function (server) {
     }
   });
 
+  files(server);
 
   server.route({
     method: 'GET',

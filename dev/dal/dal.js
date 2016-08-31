@@ -82,28 +82,7 @@ DAL.customPages = {
 };
 
 // parking rules
-const ParkingRules = require('./parkingRules.js');
-
-DAL.parkingRules = {
-  getByPropId: (propertyId, cb) => {
-    ParkingRules.find({propertyId: propertyId}, cb);
-  },
-  setByPropId: (propertyId, rules, cb) => {
-    let rulesArr = [];
-    DAL.properties.getById(propertyId, function(err, property) {
-      if (property) {
-        rules.forEach((item) => {
-          rulesArr.push({propertyId: propertyId, text: item});
-        });
-        ParkingRules.remove({propertyId: propertyId}, (err, docs) => {
-          !err ? ParkingRules.create(rulesArr, cb) : cb(err, docs);
-        });
-      } else {
-        cb(new Error('Property with this id is not exists.'));
-      }
-    });
-  }
-};
+DAL.parkingRules = require('./parkingRules.js');
 
 // Users
 const Users = require('./users.js');
@@ -123,5 +102,7 @@ DAL.users = {
   }
 };
 
+// Blocking info
+DAL.blocking = require('./blocking.js').dal;
 
 module.exports = DAL;

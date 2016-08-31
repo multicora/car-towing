@@ -1,0 +1,26 @@
+.parking-rules.main-border-bottom
+  .big-indent-bottom.big-indent-top
+    .row.rule
+      .col-sm-3.font-small
+        .bold-title Parking Rules
+      .col-sm-6.font-small
+        span 1. You cannot leave a car on the grass
+      .col-sm-3.rule-controls
+        button.btn.btn-primary.btn-circle(type="button")
+          i.glyphicon.glyphicon-remove
+        button.btn.btn-primary.btn-block(type="button") Edit
+    .row.rule.main-height.main-indent-bottom
+      .col-sm-3.font-small
+        span
+      .col-sm-6.font-small.ellipsis
+        span 2. You cannot leave a car near the entrance
+      .col-sm-3.rule-controls
+        button.btn.btn-primary.btn-circle(type="button")
+          i.glyphicon.glyphicon-remove
+        button.btn.btn-primary.btn-block(type="button") Edit
+    .row.form-group.new-rule-block.main-height
+      .col-sm-3
+      .col-sm-6.new-rule
+        input.form-control(ng-model="vm.newRule.name" type="text" placeholder="Write your rule")
+      .col-sm-3
+        button.btn.btn-primary.btn-block(type="button") Add Rule

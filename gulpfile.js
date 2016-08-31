@@ -99,7 +99,7 @@ gulp.task('lib-css', function () {
 //  copy font files, image files, etc.
 gulp.task('assets', function () {
   return gulp.src(path.assets)
-    .pipe( gulp.dest(path.dest) );
+    .pipe( gulp.dest(path.dest + '/files') );
 });
 
 // Dev tasks
@@ -112,7 +112,7 @@ gulp.task('server', function() {
       return [
         modrewrite(
           [
-            '^/api/(.*)$ http://id.localhost:3000/api/$1 [P]'
+            '^/api/(.*)$ http://localhost:3000/api/$1 [P]'
           ]
         )
       ];

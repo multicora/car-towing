@@ -1,37 +1,45 @@
-div.properties(ng-controller="propertiesCtrl as vm")
-  div.info
-    h1 Need info?
-    h2 We can help
-  h2.title Chose the first letter of the property to see rules and regulation:
-  div.propertiesContent
-    div.letters
-      button( ng-click="letter='A'") A
-      button( ng-click="letter='B'") B
-      button( ng-click="letter='C'") C
-      button( ng-click="letter='D'") D
-      button( ng-click="letter='E'") E
-      button( ng-click="letter='F'") F
-      button( ng-click="letter='G'") G
-      button( ng-click="letter='H'") H
-      button( ng-click="letter='I'") I
-      button( ng-click="letter='G'") G
-      button( ng-click="letter='K'") K
-      button( ng-click="letter='L'") L
-      button( ng-click="letter='M'") M
-      button( ng-click="letter='N'") N
-      button( ng-click="letter='O'") O
-      button( ng-click="letter='P'") P
-      button( ng-click="letter='R'") R
-      button( ng-click="letter='S'") S
-      button( ng-click="letter='T'") T
-      button( ng-click="letter='U'") U
-      button( ng-click="letter='V'") V
-      button( ng-click="letter='W'") W
-      button( ng-click="letter='X'") X
-      button( ng-click="letter='Y'") Y
-      button( ng-click="letter='Z'") Z
-      button( ng-click="letter=''") ALL
-    ul.propertiesList
-      li(ng-repeat = "property in vm.properties | startWithLetter:letter")
-        p.name {{ property.name }}
-        p.adress {{ property.address }}
+div.properties
+  div.container
+    header-directive
+    div.row.info
+      div.col-md-12
+        h1 Need info?
+        h2 We can help
+    div.row
+      div.col-md-12
+        h2.title Chose the first letter of the property to see rules and regulation:
+    div.row.propertiesContent
+      div.row.letters
+        div.col-md-12
+          button( ng-click="letter='A'") A
+          button( ng-click="letter='B'") B
+          button( ng-click="letter='C'") C
+          button( ng-click="letter='D'") D
+          button( ng-click="letter='E'") E
+          button( ng-click="letter='F'") F
+          button( ng-click="letter='G'") G
+          button( ng-click="letter='H'") H
+          button( ng-click="letter='I'") I
+          button( ng-click="letter='G'") G
+          button( ng-click="letter='K'") K
+          button( ng-click="letter='L'") L
+          button( ng-click="letter='M'") M
+          button( ng-click="letter='N'") N
+          button( ng-click="letter='O'") O
+          button( ng-click="letter='P'") P
+          button( ng-click="letter='R'") R
+          button( ng-click="letter='S'") S
+          button( ng-click="letter='T'") T
+          button( ng-click="letter='U'") U
+          button( ng-click="letter='V'") V
+          button( ng-click="letter='W'") W
+          button( ng-click="letter='X'") X
+          button( ng-click="letter='Y'") Y
+          button( ng-click="letter='Z'") Z
+          button( ng-click="letter=''") ALL
+      .row.propertiesList
+        a.propertiesLine.col-md-12(
+          href="#/property/{{property._id}}"
+          ng-repeat="property in vm.properties | startWithLetter:letter")
+          .adress {{ property.address }}
+          .name {{ property.name }}

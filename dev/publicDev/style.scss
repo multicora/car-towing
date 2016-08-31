@@ -1,83 +1,94 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: 'Arial', sans-serif;
-  background-image: url(background.png);
+  min-width: 318px;
+  color: #1c1b1b;
+}
+
+.properties, .property-page {
+  background-image: url(files/background.png);
   background-size: cover;
   background-position: center;
 }
 
-.container {
-  width: 1016px;
-  margin: 0 auto;
+// reusable blocks______________________________________________________
+.bold-title {
+  font-weight: 600;
 }
 
-header {
-  height: 81px;
-  padding: 41px;
-  margin: 0 auto;
-  background: #ffffff;
+// .clearfix:after {
+//   content: "";
+//   display: table;
+//   clear: both;
+// }
+
+.ellipsis {
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.logo {
-  width: 186px;
-  height: 75px;
-  background-image: url(logo-280.png);
-  background-size: cover;
+.min-indent-bottom {
+  padding-bottom: 5px;
+}
+.main-indent-bottom {
+  padding-bottom: 15px;
+}
+.big-indent-bottom {
+  padding-bottom: 25px;
+}
+.main-indent-top {
+  padding-top: 15px;
+}
+.big-indent-top {
+  padding-top: 25px;
+}
+
+.main-indent-left {
+  padding-left: 50px;
+}
+.main-indent-right {
+  padding-right: 50px;
+}
+
+.main-border-bottom {
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.float-left {
   float: left;
 }
 
-.contacts {
-  color:  #f22930;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 26px;
-  float: left;
-  margin: 26px 0 0 66px;
-}
-
-.contacts img {
-  margin-right: 5px;
-  float: left;
-}
-
-.phone, .location {
-  float: left;
-}
-
-.contacts p {
-  display: inline-block;
-}
-
-.phone {
-  margin-right: 20px;
-}
-
-.navigation {
+.float-right {
   float: right;
-  color:  #3191d8;
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 30px;
 }
 
-.navigation a {
-  text-decoration: none;
-  margin-left: 20px;
+input {
+  outline: none;
 }
 
-.navigation a:active {
-  color: #298ED5;
+// fonts__________________________________________________________________
+html, body {
+  font-family: OpenSans, Arial;
+  color: #4D4D4D;
 }
 
-.navigation a:visited {
-  color: #081C2A;
+.font-regular {
+  font-size: 26px;
+}
+.font-small {
+  font-size: 20px;
+}
+.font-big {
+  font-size: 30px;
 }
 
-.navigation a:hover {
-  color: #7fbbe6;
+// controls__________________________________________________________________
+.btn {
+  &.btn-circle {
+    border-radius: 50%;
+    margin-right: 15px;
+    padding: 0;
+    width: 35px;
+  }
 }
+

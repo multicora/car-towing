@@ -1,57 +1,56 @@
 .properties {
-  background-color: #fff;
+  .container {
+    background-color: #ffffff;
+    min-height: 100%;
+  }
 
   .info {
-    height: 110px;
+    height: 70px;
     background: #f7f7f7;
-    padding: 0 41px;
     color: #4f4f4f;
 
     h1 {
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 600;
-      padding-top: 20px;
+      margin: 10px 0 0 0;
     }
 
     h2 {
-      font-size: 16px;
-      font-weight: 400px;
-      line-height: 30px;
+      font-size: 14px;
+      font-weight: 400;
+      margin: 5px 0 0 0;
     }
   }
 
   .title {
-    color:  #1c1b1b;
+    color: #1c1b1b;
     font-size: 16px;
     font-weight: 600;
-    padding: 38px 41px;
+    line-height: 22px;
+    text-align: left;
+    margin: 20px 0;
   }
 
   .propertiesContent {
-    padding: 0 41px 25px 41px;
-    border: 1px solid #eaeaea;
+    padding: 0 15px 25px 15px;
   }
 
   .letters {
-    padding: 20px 0;
-    height: 20px;
-
     button {
       text-decoration: none;
       background: none;
       border: none;
-      width: 20px;
-      color:  #3191d8;
-      font-size: 18px;
+      padding: 0 2px;
+      color: #3191d8;
+      font-size: 16px;
       font-weight: 600;
-      float: left;
-      text-align: center;
+      text-align: left;
+      height: 20px;
       outline: none;
     }
 
     button:last-child {
-      width: 40px;
-      margin-left: 40px;
+      margin-left: 20px;
     }
 
     button:hover {
@@ -60,31 +59,33 @@
 
     button:focus {
       color: #15466a;
-      // text-decoration: underline;
-      border-bottom: 2px solid #15466a;
+      border-bottom: 1px solid #15466a;
     }
-
   }
 
   .propertiesList {
-    height: 220px;
-    color:  #1c1c1c;
-    width: 100%;
+    color: #1c1c1c;
     font-size: 16px;
     font-weight: 400;
-    overflow-y: scroll;
-    
-    li {
-      list-style: none;
-      width: 100%;
-      display: inline-block;
-      height: 25px;
+    margin-top: 20px;
+
+    .propertiesLine {
+      display: block;
+      line-height: 22px;
+      text-decoration: none;
+      color: #212121;
+      outline: none;
+
+      p {
+        margin: 0;
+      }
     }
   }
 
+  // TODO: what for?
   .propertiesList::-webkit-scrollbar {
     width: 20px;
-    background-color: #fff;
+    background-color: #ffffff;
   }
 
   .propertiesLists::-webkit-scrollbar-button {
@@ -94,26 +95,53 @@
   }
 
   .propertiesList::-webkit-scrollbar-track {
-    background-color: #fff;
+    background-color: #ffffff;
   }
 
   .propertiesList::-webkit-scrollbar-thumb {
-    background-color:  #eaeaea;
+    background-color: #eaeaea;
     width: 18px;
     height: 188px;
     border-radius: 10px;
   }
 
   .propertiesList::-webkit-scrollbar-thumb:active {
-    background-color:  #bbbbbb;
+    background-color: #bbbbbb;
   }
 
   .name {
-    float: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 116px;
   }
 
   .adress {
     float: right;
-    margin-right: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+  }
+}
+
+@media (min-width: 970px) {
+  .properties {
+    .info {
+      height: 110px;
+      margin-top: 20px;
+      
+      h1 {
+        font-size: 26px;
+        margin-top: 26px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+    }
+
+    .propertiesContent {
+      border-top: 1px solid #eaeaea;
+      padding-top: 20px;
+    }
   }
 }

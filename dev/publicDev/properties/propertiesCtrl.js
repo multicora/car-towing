@@ -2,7 +2,7 @@
 function propertiesCtrl(propertiesService) {
   var vm = this;
   vm.properties = null;
-  propertiesService.get().then(function(res) {
+  propertiesService.getProperties().then(function(res) {
     vm.properties = res.data;
   });
 }

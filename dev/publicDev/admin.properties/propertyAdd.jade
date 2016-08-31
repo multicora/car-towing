@@ -12,7 +12,7 @@
             input(
               type="text"
               placeholder="Property name"
-              ng-model="vm.name"
+              ng-model="vm.newProperty.name"
               ng-class="{'l-error-input': vm.errorMes.length > 0}"
               required)
             input(
@@ -31,4 +31,5 @@
             div
               img.logo(src="")
             div
-              button Upload logo
+              button(ng-click="vm.selectFile()") Upload logo
+              input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")

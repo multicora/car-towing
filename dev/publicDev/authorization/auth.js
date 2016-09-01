@@ -13,6 +13,11 @@
           templateUrl: 'authorization/login.html',
           controller: 'LoginController',
           controllerAs: 'vm'
+        })
+        .when('/reset', {
+          templateUrl: 'authorization/resetPassword.html',
+          controller: 'LoginController',
+          controllerAs: 'vm'
         });
   	}
 })();

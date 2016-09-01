@@ -1,15 +1,30 @@
 footer {
-  width: 100%;
-  padding: 20px 40px 60px 40px;
+  width: 90%;
+  margin: 0 auto;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 14px;
   box-sizing: border-box;
 
+  p {
+    width: 50%;
+    display: inline-block;
+    padding-top: 20px;
+  }
+
   p:first-child {
-    float: left;
+    text-align: left;
   }
 
   p:last-child {
-    float: right;
+    text-align: right;
   }
 }
+
+@media (min-width: 970px) {
+  footer p {
+    font-size: 18px;
+    padding-top: 65px;
+  }
+}
+
+

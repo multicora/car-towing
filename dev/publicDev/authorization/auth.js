@@ -18,6 +18,11 @@
           templateUrl: 'authorization/resetPassword.html',
           controller: 'LoginController',
           controllerAs: 'vm'
+        })
+        .when('/new_password', {
+          templateUrl: 'authorization/newPassword.html',
+          controller: 'LoginController',
+          controllerAs: 'vm'
         });
   	}
 })();

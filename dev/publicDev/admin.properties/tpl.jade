@@ -3,6 +3,10 @@
     .content
       header-directive
       admin-menu-directive
+      div
+        a.addProperty(href="#/admin/properties/add")
+          img(src="files/add-property.png")
+          span Add property
       div(ng-init="vm.getAdminProperties()", class="content-padding")
         form(class="wrap-admin-property-search", ng-submit="vm.searchProperty()")
           input(type="text", placeholder="Search property", ng-model="vm.searchPropertyValue")

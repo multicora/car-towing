@@ -13,12 +13,13 @@
     box-sizing: border-box;
   }
 
-
   a:last-child {
     border: none;
   }
 
   a:hover {
+    text-decoration: none;
+    color: #ffffff;
     background: #189b81;
   }
 

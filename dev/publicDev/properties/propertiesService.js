@@ -6,10 +6,13 @@ app.factory('propertiesService', function($http) {
       return $http.get('api/properties');
     },
     getProperty: function(id) {
-      return $http.get('api/property/' + id)
+      return $http.get('api/property/' + id);
     },
     getRules: function(id) {
-      return $http.get('/api/parkingRules/' + id)
+      return $http.get('/api/parkingRules/' + id);
+    },
+    create: function(data) {
+      return $http.post('/api/property', data);
     }
   };
 });

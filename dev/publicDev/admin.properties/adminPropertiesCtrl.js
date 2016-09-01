@@ -1,14 +1,31 @@
 "use strict";
 
 (() => {
-  angular.module('app')
-    .controller('adminPropertiesCtrl', ctrl);
+  angular
+    .module('app')
+    .controller('adminPropertiesCtrl', adminPropertiesCtrl);
 
-  ctrl.$inject = ['propertyService', '$location', '$scope'];
+  adminPropertiesCtrl.$inject = ['$filter', 'propertiesService', '$location', '$scope'];
 
-  function ctrl(propertyService, $location, $scope) {
+  function adminPropertiesCtrl($filter, propertiesService, $location, $scope) {
     var vm = this;
-    vm.login = ''; 
+    vm.adminProperties = [];
+    vm.searchPropertyValue = '';
+    vm.searchObj = {};
+
+    vm.getAdminProperties = () => {
+      propertiesService.getProperties()
+        .then((success) => {
+          vm.adminProperties = success.data;
+        }, (error) => {
+          console.error(error);
+        });
+    };
+
+    vm.searchProperty = () => {
+      vm.searchObj = {name: vm.searchPropertyValue};
+    };
+
     vm.errorMes = '';
     vm.newProperty = {};
 
@@ -28,7 +45,7 @@
 
     vm.addProperty = function(form) {
       if (form.$valid) {
-        propertyService.create(vm.newProperty)
+        propertiesService.create(vm.newProperty)
         .then((success) => {
           $location.path('/admin/properties');
         }, (error) => {

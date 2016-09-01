@@ -1,9 +1,11 @@
 .property-page {
   background: #ffffff;
-  
-  .row {
-    margin: 0;
+
+  .container {
+    background-color: #ffffff;
+    min-height: 100%;
   }
+
   .name {
     padding: 16px 20px;
     background: #f7f7f7;

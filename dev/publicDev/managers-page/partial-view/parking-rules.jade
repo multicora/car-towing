@@ -1,0 +1,17 @@
+.parking-rules.main-border-bottom
+  .big-indent-bottom.big-indent-top
+    .row.rule(ng-repeat="rule in vm.rules")
+      .col-sm-3.font-small
+        .bold-title(ng-if="!$index") Parking Rules
+      .col-sm-6.font-small.ellipsis
+        span(ng-bind="rule.text")
+      .col-sm-3.rule-controls
+        button.btn.btn-primary.btn-circle(type="button"  ng-click="vm.remove(rule._id)")
+          i.glyphicon.glyphicon-remove
+        button.btn.btn-primary.btn-block(type="button") Edit
+    .row.form-group.new-rule-block.main-height
+      .col-sm-3
+      .col-sm-6.new-rule
+        input.form-control(ng-model="vm.newRule.text" type="text" placeholder="Write your rule")
+      .col-sm-3
+        button.btn.btn-primary.btn-block(type="button" ng-click="vm.add(vm.newRule)") Add Rule

@@ -4,6 +4,7 @@
 
 const path = require('path');
 const DAL = require('./dal/dal.js');
+const Joi = require('joi');
 
 module.exports.init = function (server) {
   server.route({
@@ -108,7 +109,7 @@ module.exports.init = function (server) {
           address: Joi.string(),
           objId: Joi.string(),
           logo: Joi.string(),
-          rules: Joi.array().includes(Joi.string())
+          rules: Joi.array().items(Joi.string())
         }
       },
       handler: function (request, reply) {
@@ -131,7 +132,7 @@ module.exports.init = function (server) {
           address: Joi.string(),
           objId: Joi.string(),
           logo: Joi.string(),
-          rules: Joi.array().includes(Joi.string())
+          rules: Joi.array().items(Joi.string())
         }
       },
       handler: function (request, reply) {
@@ -150,7 +151,7 @@ module.exports.init = function (server) {
           name: Joi.string().min(1).max(255).required(),
           address: Joi.string(),
           logo: Joi.string(),
-          rules: Joi.array().includes(Joi.string())
+          rules: Joi.array().items(Joi.string())
         }
       },
       handler: function (request, reply) {
@@ -172,7 +173,7 @@ module.exports.init = function (server) {
           address: Joi.string(),
           objId: Joi.string(),
           logo: Joi.string(),
-          rules: Joi.array().includes(Joi.string())
+          rules: Joi.array().items(Joi.string())
         }
       },
       handler: function (request, reply) {
@@ -193,7 +194,7 @@ module.exports.init = function (server) {
           address: Joi.string(),
           objId: Joi.string(),
           logo: Joi.string(),
-          rules: Joi.array().includes(Joi.string())
+          rules: Joi.array().items(Joi.string())
         }
       },
       handler: function (request, reply) {

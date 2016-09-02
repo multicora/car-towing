@@ -16,13 +16,11 @@
         })
         .when('/reset', {
           templateUrl: 'authorization/resetPassword.html',
-          controller: 'LoginController',
-          controllerAs: 'vm'
+          controller: 'LoginController as vm'
         })
-        .when('/new_password', {
+        .when('/new_password/:token', {
           templateUrl: 'authorization/newPassword.html',
-          controller: 'LoginController',
-          controllerAs: 'vm'
+          controller: 'LoginController as vm'
         });
   	}
 })();

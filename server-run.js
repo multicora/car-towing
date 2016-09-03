@@ -8,8 +8,6 @@ app.get('/deploy', function (req, res) {
   tasks.gitCheckout(
     'develop',
     function(data){
-      console.log('Result:');
-      console.log(data);
       res.send(data);
     }
   );

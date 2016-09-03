@@ -1,13 +1,14 @@
-const cmd = require('node-cmd');
-
+const runCmd = require('./run-cmd');
 
 module.exports = {
   gitCheckout: function (branchName, cb) {
-    const commands = [
-      'git pull'
-      // 'git pull',
-      // 'git checkout' + branchName
-    ];
-    cmd.get( commands.join('\n'), cb );
+    runCmd.run('git checkout ' + branchName).then(
+      function (res) {
+        cb(res);
+      },
+      function (res) {
+        cb(res);
+      }
+    );
   }
 }

@@ -8,7 +8,7 @@ module.exports = {
       console.log('----- Run task -----\n');
       console.log(command);
       exec(command, function(error, stdout, stderr) {
-        if (!stdout) {
+        if (error && !stdout) {
           console.log('-- Error --');
           console.log(error.message);
           reject(error.message);

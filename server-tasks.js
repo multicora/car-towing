@@ -4,9 +4,10 @@ const app = express();
 
 const port = 8081;
 
-app.get('/deploy', function (req, res) {
+app.get(/\/deploy\/(.*)/, function (req, res) {
+  console.log(req.params[0]);
   tasks.gitCheckout(
-    'develop',
+    req.params[0],
     function(data){
       res.send(data);
     }

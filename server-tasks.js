@@ -5,8 +5,20 @@ const app = express();
 const port = 8081;
 
 app.get(/\/deploy\/(.*)/, function (req, res) {
-  tasks.gitCheckout(
-    req.params[0]
+  tasks.gitPull().then(
+    function () {
+      return tasks.gitCheckout(req.params[0]);
+    },
+    function (res) {
+      res.send(res);
+    }
+  ).then(
+    function (res) {
+      return tasks.gitPull();
+    },
+    function (res) {
+      res.send(res);
+    }
   ).then(
     function (res) {
       return tasks.gulpBuild();

@@ -1,11 +1,11 @@
 'use strict';
 
 (function() {
-	angular
-		.module('Authorization', ['ngRoute'])
-		.config(config);
-		
-		config.$inject = ['$routeProvider'];
+  angular
+    .module('Authorization', ['ngRoute'])
+    .config(config);
+    
+    config.$inject = ['$routeProvider'];
 
     function config($routeProvider) {
       $routeProvider
@@ -14,5 +14,5 @@
           controller: 'LoginController',
           controllerAs: 'vm'
         });
-  	}
+    }
 })();

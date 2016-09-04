@@ -8,7 +8,7 @@
   LoginController.$inject = ['DataService', '$location', 'TokenService', '$http'];
 
   function LoginController(DataService, $location, TokenService, $http) {
-    let vm = this;
+    var vm = this;
     vm.user = {
       login: '',
       password: ''

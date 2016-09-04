@@ -4,7 +4,7 @@
   "description": "## How to run",
   "main": "dev/index.js",
   "scripts": {
-    "postinstall": "bower i"
+    "postinstall": "bower i --allow-root"
   },
   "repository": {
     "type": "git",

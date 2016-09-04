@@ -1,8 +1,8 @@
 'use strict';
 
-(() => {
+(function() {
 	angular
-		.module('Autorisation', ['ngRoute'])
+		.module('Authorization', ['ngRoute'])
 		.config(config);
 		
 		config.$inject = ['$routeProvider'];

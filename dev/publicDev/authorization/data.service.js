@@ -1,8 +1,8 @@
 'use strict';
 
-(() => {
+(function() {
 	angular
-		.module('Autorisation')
+		.module('Authorization')
     .factory("DataService", dataservice);
 
 

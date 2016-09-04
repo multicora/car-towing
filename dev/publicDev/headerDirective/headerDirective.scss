@@ -4,27 +4,34 @@ header {
   overflow: hidden;
 
   .logo {
-    margin-right: 30px;
+    float: left;
+    margin-right: 28px;
+    margin-top: 34px;
     vertical-align: top;
-    width: 93px;
+    width: 187px;
   }
 
   .contacts {
     color: #f22930;
-    font-size: 13px;
+    font-size: 19px;
     font-weight: 600;
     line-height: 26px;
-    margin-top: 12px;
+    margin-top: 60px;
     white-space: nowrap;
 
+
     .icon {
-      width: 15px;
+      width: 23px;
       margin-right: 5px;
     }
 
     .text {
-      margin-left: 15px;
+      margin-left: 5px;
       vertical-align: middle;
+    }
+
+    .location {
+      margin-right: 97px;
     }
   }
 
@@ -34,59 +41,88 @@ header {
   }
 
   .navigation {
-    float: right;
     color: #5b90d5;
-    font-size: 12px;
+    float: right;
+    font-size: 17px;
     font-weight: 600;
-    margin: 11px 3px;
+    margin: 60px 0px 0 0;
 
     a {
       margin-left: 20px;
     }
   }
-
-  @media (min-width: 992px) {
+  &.adaptive {
     .logo {
-      float: left;
-      width: 187px;
-      margin-right: 28px;
-      margin-top: 34px;
+      float: initial;
+      margin-right: 30px;
+      margin-top: initial;
+      width: 93px;
     }
-
     .contacts {
-      margin-top: 60px;
-      font-size: 15px;
+      font-size: 13px;
+      margin-top: 12px;
 
       .icon {
-        width: 16px;
+        width: 15px;
       }
-
       .text {
-        margin-left: 5px;
+        margin-left: 15px;
       }
     }
 
     .location {
-      float: right;
+      margin-right: initial;
     }
 
     .navigation {
-      font-size: 17px;
-      margin: 60px 0px 0 0;
+      color: #5b90d5;
+      font-size: 12px;
+      margin: 11px 3px;
     }
-  }
 
-  @media (min-width: 1200px) {
-    .contacts {
-      font-size: 19px;
+    @media (min-width: 992px) {
+      .logo {
+        float: left;
+        width: 187px;
+        margin-right: 28px;
+        margin-top: 34px;
+      }
 
-      .icon {
-        width: 23px;
+      .contacts {
+        margin-top: 60px;
+        font-size: 15px;
+
+        .icon {
+          width: 16px;
+        }
+
+        .text {
+          margin-left: 5px;
+        }
+      }
+
+      .location {
+        float: right;
+      }
+
+      .navigation {
+        font-size: 17px;
+        margin: 60px 0px 0 0;
       }
     }
 
-    .location {
-      margin-right: 97px;
+    @media (min-width: 1200px) {
+      .contacts {
+        font-size: 19px;
+
+        .icon {
+          width: 23px;
+        }
+      }
+
+      .location {
+        margin-right: 97px;
+      }
     }
   }
 }

@@ -5,6 +5,7 @@
   Node.js should be installed
   Mongodb should be installed and runned
   Gulp should be installed
+  pm2 should be installed
 
   * npm i
 

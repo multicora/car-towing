@@ -17,7 +17,7 @@
     vm.passwordData = {
       newPassword: '',
       confirmPassword: '',
-      resetToken: $routeParams.resetToken;
+      resetToken: $routeParams.resetToken
     }
     vm.errorMes = '';
     vm.errorPassword = ''

@@ -24,7 +24,7 @@ module.exports = {
       if (!!docs && docs.password == user.password) {
           let token = newToken();
           DAL.users.updateToken(token, user.login, (err, docs) => {
-            !!docs ? cb({"X-CART-Token": docs.token}) : cb(Boom.badImplementation('Server error'));          
+            !!docs ? cb({"X-CART-Token": docs.token}) : cb(Boom.badImplementation('Server error'));
           });
       } else {
         cb(Boom.unauthorized('The username or password is incorrect'));

@@ -1,0 +1,35 @@
+.admin-properties
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .propertyEditor
+        form(
+          name="propertyForm"
+          ng-submit="vm.addProperty(propertyForm)")
+          .propertyValue
+            h2 Add new property
+            input(
+              type="text"
+              placeholder="Property name"
+              ng-model="vm.newProperty.name"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
+            input(
+              type="text"
+              placeholder="Login"
+              ng-model="vm.login"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
+            p.errorMessage(ng-bind="vm.errorMes")
+            div
+              button.create(
+                type="submit"
+                ng-class="{'disabled': propertyForm.$invalid}") Create
+          .propertyLogo
+            h2 Upload logo
+            div
+              img.logo(src="")
+            div
+              button(ng-click="vm.selectFile()") Upload logo
+              input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")

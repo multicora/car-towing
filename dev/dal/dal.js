@@ -103,11 +103,11 @@ DAL.users = {
   getUserByResetToken: (resetToken, cb) => {
     Users.findOne({resetToken: resetToken}, cb);
   },
-  resetPassword: (model, cb) => {
-    if (model.newPassword === model.confirmPassword) {
-      Users.findOneAndUpdate({resetToken : model.resetToken}, {password: model.newPassword}, cb);
+  resetPassword: (resetToken, data, cb) => {
+    if (data.newPassword === data.confirmPassword) {
+      Users.findOneAndUpdate({resetToken : resetToken}, {password: data.newPassword}, cb});
     } else {
-      return new Error('Passwords do not match');
+      cb(new Error('Passwords do not match'));
     }
   }
 };

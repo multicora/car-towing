@@ -31,6 +31,7 @@ header {
     }
 
     .location {
+      float: right;
       margin-right: 97px;
     }
   }
@@ -53,9 +54,9 @@ header {
   }
   &.adaptive {
     .logo {
-      float: initial;
+      float: none;
       margin-right: 30px;
-      margin-top: initial;
+      margin-top: 0;
       width: 93px;
     }
     .contacts {
@@ -71,7 +72,7 @@ header {
     }
 
     .location {
-      margin-right: initial;
+      margin-right: 0;
     }
 
     .navigation {

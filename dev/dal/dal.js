@@ -3,27 +3,9 @@
 let DAL = {};
 
 // Properties
-const Property = require('./property.js');
-
-DAL.properties = {
-  get: (cb) => {
-    return Property.find({}, cb);
-  },
-  getById: (id, cb) => {
-    return Property.findOne({_id: id }, cb);
-  },
-  create: (model, cb) => {
-    const propertyIns = new Property(model);
-
-    propertyIns.save(cb);
-  },
-  edit: (id, model, cb) => {
-    return Property.findOneAndUpdate({_id: id}, model, cb);
-  },
-  remove: (id, cb) => {
-    return Property.findOneAndRemove({_id: id}, cb);
-  }
-};
+DAL.properties = require('./property.js');
+// Roles
+DAL.roles = require('./roles.js');
 
 // Blockers
 // Documents

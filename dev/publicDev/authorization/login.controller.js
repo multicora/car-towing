@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   angular
     .module('Authorization')
@@ -5,7 +7,7 @@
 
   LoginController.$inject = ['DataService', '$location', 'TokenService', '$http', '$routeParams'];
 
-  function LoginController(DataService, $location, TokenService, $http ,$routeParams) {
+  function LoginController(DataService, $location, TokenService, $http, $routeParams) {
     var vm = this;
     var resetToken = $routeParams.resetToken;
 
@@ -18,7 +20,7 @@
     vm.errorMes = '';
     vm.errorPassword = ''
     vm.signIn = signIn;
-    vm.newPasswordFunc = newPasswordFunc;
+    vm.setPassword = setPassword;
 
     function signIn() {
       DataService.login(vm.user)
@@ -31,17 +33,13 @@
           vm.errorMes = error.data.message;
         });
       }
-    function newPasswordFunc() {
-      if (vm.newPassword == vm.confirmPassword) {
-        DataService.newPassword(vm.newPassword, resetToken)
-          .then(function(success) {
-            $location.path('/home');
+    function setPassword() {
+      DataService.newPassword(resetToken, vm.newPassword, vm.confirmPassword)
+        .then(function(success) {
+          $location.path('#/home');
           }, function(error) {
             vm.errorPassword = error.data.massage;
           });
-        } else {
-          vm.errorPassword = 'Incorrect password.';
       }
-    }
   }
 })();

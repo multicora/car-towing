@@ -20,7 +20,7 @@
     vm.errorMes = '';
     vm.errorPassword = ''
     vm.signIn = signIn;
-    vm.setPassword = setPassword;
+    vm.setNewPassword = setNewPassword;
 
     function signIn() {
       DataService.login(vm.user)
@@ -33,12 +33,13 @@
           vm.errorMes = error.data.message;
         });
       }
-    function setPassword() {
+    function setNewPassword() {
       DataService.newPassword(vm.newPassword, vm.confirmPassword)
         .then(function(success) {
           $location.path('#/home');
-          }, function(error) {
-            vm.errorPassword = error.data.massage;
+          vm.errorPassword = '';
+        }, function(error) {
+          vm.errorPassword = error.data.massage;
         });
       }
   }

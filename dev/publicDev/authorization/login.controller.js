@@ -10,7 +10,7 @@
   function LoginController(DataService, $location, TokenService, $http, $routeParams) {
     var vm = this;
     var resetToken = $routeParams.resetToken;
-
+    
     vm.user = {
       login: '',
       password: ''
@@ -34,12 +34,12 @@
         });
       }
     function setPassword() {
-      DataService.newPassword(resetToken, vm.newPassword, vm.confirmPassword)
+      DataService.newPassword(vm.newPassword, vm.confirmPassword)
         .then(function(success) {
           $location.path('#/home');
           }, function(error) {
             vm.errorPassword = error.data.massage;
-          });
+        });
       }
   }
 })();

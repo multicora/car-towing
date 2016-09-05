@@ -19,7 +19,7 @@
       }
 
       function newPassword(data) {
-        return $http.post('api/new_password/', data);
+        return $http.post('api/new_password', data);
       }
     }
 })();

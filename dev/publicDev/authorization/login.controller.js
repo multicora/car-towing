@@ -20,7 +20,7 @@
       resetToken: $routeParams.resetToken
     }
     vm.errorMes = '';
-    vm.errorPassword = ''
+    vm.errorPassword = '';
     vm.signIn = signIn;
     vm.setNewPassword = setNewPassword;
 

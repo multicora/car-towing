@@ -9,7 +9,6 @@
 
   function LoginController(DataService, $location, TokenService, $http, $routeParams) {
     var vm = this;
-    var resetToken = $routeParams.resetToken;
     
     vm.user = {
       login: '',
@@ -17,7 +16,8 @@
     };
     vm.passwordData = {
       newPassword: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      resetToken: $routeParams.resetToken;
     }
     vm.errorMes = '';
     vm.errorPassword = ''
@@ -36,9 +36,9 @@
         });
       }
     function setNewPassword() {
-      DataService.newPassword(vm.passwordData, resetToken).then(
+      DataService.newPassword(vm.passwordData).then(
         function(success) {
-          $location.path('#/');
+          $location.path('/');
           vm.errorPassword = '';
         }, 
         function(error) {

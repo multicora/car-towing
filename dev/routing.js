@@ -200,6 +200,7 @@ module.exports.init = function (server) {
   // Blocking
   require('./routing/blocking.js')(server);
   require('./routing/parkingRules.js')(server);
+  require('./routing/auth.js')(server);
 
   server.route({
     method: 'GET',
@@ -208,16 +209,6 @@ module.exports.init = function (server) {
       directory: {
         path: path.resolve(__dirname, './public')
       }
-    }
-  });
-
-  server.route({
-    method: 'POST',
-    path: '/api/new_password/{resetToken}',
-    handler: function (request, reply) {
-      DAL.users.resetPassword(request.params.resetToken, request.payload, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
     }
   });
 };

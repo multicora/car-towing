@@ -18,8 +18,8 @@
         return $http.post("/api/login", user);
       }
 
-      function newPassword(data, resetToken) {
-        return $http.post('api/new_password/' + resetToken, data);
+      function newPassword(data) {
+        return $http.post('api/new_password/', data);
       }
     }
 })();

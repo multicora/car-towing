@@ -8,15 +8,20 @@
     LoginController.$inject = ['DataService', '$location', '$routeParams'];
 
     function LoginController(DataService, $location, $routeParams) {
-      let vm = this;
-      let passwordToken = $routeParams.token;
+      var vm = this;
+      var resetToken = $routeParams.resetToken;
 
       vm.user = {
         login: '',
         password: ''
       };
+
+      vm.newPassword = '';
+      vm.confirmPassword = '';
       vm.errorMes = '';
+      vm.errorPassword = ''
       vm.signIn = signIn;
+      vm.newPasswordFunc = newPasswordFunc;
 
       function signIn() {
         DataService.login(vm.user)
@@ -30,6 +35,19 @@
             vm.errorMes = error.data.message;
             //console.error(vm.errorMes);
           });
+      }
+
+      function newPasswordFunc() {
+        if (vm.newPassword == vm.confirmPassword) {
+          DataService.newPassword(vm.newPassword, resetToken)
+            .then((success) => {
+              $location.path('/home');
+            }, (error) => {
+              vm.errorPassword = error.data.massage;
+            });
+          } else {
+            vm.errorPassword = 'Incorrect password.';
+        }
       }
     }
 })();

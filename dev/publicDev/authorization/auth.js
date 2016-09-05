@@ -18,7 +18,7 @@
           templateUrl: 'authorization/resetPassword.html',
           controller: 'LoginController as vm'
         })
-        .when('/new_password/:token', {
+        .when('/new_password/:resetToken', {
           templateUrl: 'authorization/newPassword.html',
           controller: 'LoginController as vm'
         });

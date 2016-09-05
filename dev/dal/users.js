@@ -8,6 +8,7 @@ const schema = new Schema({
   email: { type: String, required: true, unique: true, max: 255 },
   password: { type: String, max: 255 },
   token: { type: String, required: true, max: 255 },
+  resetToken: {type: String, max: 255 },
   rules: [ Schema.Types.ObjectId ]
 });
 

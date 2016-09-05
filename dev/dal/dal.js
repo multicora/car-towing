@@ -99,6 +99,12 @@ DAL.users = {
   },
   createUser: (email, password, token, cb) => {
     Users.create({email: email, password: password, token: token}, cb);
+  },
+  getUserByResetToken: (resetToken, cb) => {
+    Users.findOne({resetToken: resetToken}, cb);
+  },
+  resetPassword: (resetToken, password, cb) => {
+    Users.findOneAndUpdate({resetToken : resetToken}, {password: password}, cb);
   }
 };
 

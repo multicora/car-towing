@@ -36,13 +36,15 @@
         });
       }
     function setNewPassword() {
-      DataService.newPassword(vm.passwordData, resetToken)
-        .then(function(success) {
-          // $location.path('#/home');
+      DataService.newPassword(vm.passwordData, resetToken).then(
+        function(success) {
+          $location.path('#/');
           vm.errorPassword = '';
-        }, function(error) {
+        }, 
+        function(error) {
           vm.errorPassword = error.data.massage;
-        });
-      }
+        }
+      );
+    }
   }
 })();

@@ -105,7 +105,7 @@ DAL.users = {
   },
   resetPassword: (resetToken, data, cb) => {
     if (data.newPassword === data.confirmPassword) {
-      Users.findOneAndUpdate({resetToken : resetToken}, {password: data.newPassword}, cb});
+      Users.findOneAndUpdate({resetToken : resetToken}, {password: data.newPassword}, cb);
     } else {
       cb(new Error('Passwords do not match'));
     }

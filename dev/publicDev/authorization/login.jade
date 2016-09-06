@@ -1,31 +1,28 @@
-div(class="login-page")
-	form(name="loginForm",
-			ng-submit="vm.signIn()",
-			novalidate)
-		h5(class="login-title") Please enter your username details
-
-		input(type="text",
-				name="username",
-				placeholder="Username", 
-				ng-model="vm.user.login",
-				min="3",
-				max="100",
-				required,
-				ng-class="{'l-error-input': vm.errorMes.length > 0}")
-
-		input(type="password",
-				name="password",
-				placeholder="Password", 
-				ng-model="vm.user.password",
-				min="3",
-				max="100",
-				required,
-				ng-class="{'l-error-input': vm.errorMes.length > 0}")
-
-		p(ng-bind="vm.errorMes" class="l-erroe")
-
-		button(type="submit",
-				ng-disabled="loginForm.$invalid",
-				ng-class="{'disabled': loginForm.$invalid}") Log in
-
-		a(href="#/reset", class="f-ps") Forgot password?
+.login-page
+  .container
+    header-directive
+    .login-page-container
+      form.login-form(name="loginForm",
+        ng-submit="vm.signIn()",
+        novalidate)
+        h5.login-title Please enter your username details
+        input(type="text",
+          name="username",
+          placeholder="Username", 
+          ng-model="vm.user.login",
+          min="3",
+          max="100",
+          required,
+          ng-class="{'incorrect-input': vm.errorMes.length > 0}")
+        input(type="password",
+          name="password",
+          placeholder="Password", 
+          ng-model="vm.user.password",
+          min="3",
+          max="100",
+          required,
+          ng-class="{'incorrect-input': vm.errorMes.length > 0}")
+        p.error-message(ng-bind="vm.errorMes")
+        button.btn.btn-submit(type="submit",
+          ng-disabled="loginForm.$invalid") Log in
+        a.forgot-password(href="#") Forgot password?

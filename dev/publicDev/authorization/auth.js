@@ -4,7 +4,7 @@
   angular
     .module('Authorization', ['ngRoute'])
     .config(config);
-    
+
     config.$inject = ['$routeProvider'];
 
     function config($routeProvider) {
@@ -14,8 +14,5 @@
           controller: 'LoginController',
           controllerAs: 'vm'
         })
-        .when('/logout', {
-          controller: 'LoginController as vm'
-        });
     }
 })();

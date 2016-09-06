@@ -1,13 +1,21 @@
 'use strict'
 
-var app = angular.module('app');
+var app = angular
+  .module('app')
+  .controller('HeaderController', HeaderController)
+  .directive('headerDirective', function() {
+    return {
+      templateUrl: 'headerDirective/headerDirective.html'
+    }
+  });
 
-app.directive('headerDirective', ['TokenService', function(TokenService) {
-  return {
-    templateUrl: 'headerDirective/headerDirective.html',
-    logout: function() {
+  HeaderController.$inject = ['TokenService', '$location'];
+
+  function HeaderController(TokenService, $location) {
+    var vm = this;
+
+    vm.logout = function() {
       TokenService.removeToken();
       $location.path('/');
     }
   }
-}])

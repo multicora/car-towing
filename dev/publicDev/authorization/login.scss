@@ -31,7 +31,7 @@
         border-color: #76A8FB;
       }
     }
-    .l-error-input {
+    .incorrect-input {
       border-color: #f22a31;
       color: #f22a31 !important;
     }
@@ -51,14 +51,14 @@
       text-transform: uppercase;
     }
   }
-  .f-ps {
+  .forgot-password {
     display: inline-block;
     color:  #3191d8;
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
   }
-  .l-erroe {
+  .error-message {
     margin-top: 28px;
     color: #f22a31;
     font-size: 18px;

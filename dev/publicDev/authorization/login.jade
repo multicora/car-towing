@@ -13,16 +13,16 @@
           min="3",
           max="100",
           required,
-          ng-class="{'l-error-input': vm.errorMes.length > 0}")
+          ng-class="{'incorrect-input': vm.errorMes.length > 0}")
         input(type="password",
           name="password",
           placeholder="Password", 
           ng-model="vm.user.password",
           min="3",
           max="100",
-           required,
-          ng-class="{'l-error-input': vm.errorMes.length > 0}")
-        p.l-erroe(ng-bind="vm.errorMes")
+          required,
+          ng-class="{'incorrect-input': vm.errorMes.length > 0}")
+        p.error-message(ng-bind="vm.errorMes")
         button.btn.btn-submit(type="submit",
           ng-disabled="loginForm.$invalid") Log in
-        a.f-ps(href="#") Forgot password?
+        a.forgot-password(href="#") Forgot password?

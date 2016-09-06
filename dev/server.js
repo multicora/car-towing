@@ -48,7 +48,7 @@ function registerLoging(server, cb) {
 
 function startServer() {
   const server = new Hapi.Server();
-  server.connection({ port: 3000 });
+  server.connection({ port: 80 });
 
   const cbBinded = _.bind(
     function (server, err) {

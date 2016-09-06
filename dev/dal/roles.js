@@ -10,4 +10,15 @@ const schema = new Schema({
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
 
-module.exports = model;
+const roles = {
+  get: (cb) => {
+    return model.find({}, cb);
+  },
+  create: (role, cb) => {
+    const roleInstance = new model(role);
+
+    roleInstance.save(cb);
+  }
+};
+
+module.exports = roles;

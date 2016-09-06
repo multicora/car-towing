@@ -15,7 +15,7 @@ body {
   color: #1c1b1b;
 }
 
-.properties, .property-page, .login-page {
+.properties, .property-page, .reset-password, .new-password, .login-page {
   background-image: url(files/background.png);
   background-size: cover;
   background-position: center;
@@ -101,5 +101,16 @@ html, body {
     padding: 0;
     width: 35px;
   }
-}
 
+  &.btn-submit {
+    border-radius: 6px;
+    border-width: 0px; 
+    background-color:  #3191d8;
+    color:  #ffffff;
+    font-size: 18px;
+  }
+  &.btn-submit:focus {
+    outline: none;
+    background-color: #2774ac;
+  }
+}

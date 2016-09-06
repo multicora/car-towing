@@ -110,7 +110,7 @@ module.exports.init = function (server) {
   server.route({
     method: 'GET',
     path: '/api/property/{id}',
-    config: { 
+    config: {
       pre: [
         { method: 'checkTokin(raw.req.headers.token)', assign: "token" }
       ],
@@ -200,6 +200,7 @@ module.exports.init = function (server) {
   // Blocking
   require('./routing/blocking.js')(server);
   require('./routing/parkingRules.js')(server);
+  require('./routing/auth.js')(server);
 
   server.route({
     method: 'GET',

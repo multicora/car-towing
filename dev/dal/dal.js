@@ -81,6 +81,18 @@ DAL.users = {
   },
   createUser: (email, password, token, cb) => {
     Users.create({email: email, password: password, token: token}, cb);
+  },
+  getUserByResetToken: (resetToken, cb) => {
+    Users.findOne({resetToken: resetToken}, cb);
+  },
+  resetPassword: (data, cb) => {
+    if (data.newPassword === data.confirmPassword) {
+      Users.findOneAndUpdate({resetToken : data.resetToken}, {password: data.newPassword}, function(err, docs) {
+        (docs === null) ? cb(new Error('Incorrect reset token.')) : reply(docs);
+      });
+    } else {
+      cb(new Error('Passwords do not match'));
+    }
   }
 };
 

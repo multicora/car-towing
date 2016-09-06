@@ -10,11 +10,16 @@
 
     function dataservice($http) {
       return {
-        login: login
+        login: login,
+        newPassword: newPassword
       };
 
       function login(user) {
         return $http.post("/api/login", user);
+      }
+
+      function newPassword(data) {
+        return $http.post('api/new_password', data);
       }
     }
 })();

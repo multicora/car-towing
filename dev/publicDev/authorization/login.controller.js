@@ -16,6 +16,7 @@
     vm.errorMes = '';
 
     vm.signIn = signIn;
+    vm.logout = logout;
 
     function signIn() {
       DataService.login(vm.user)
@@ -27,6 +28,10 @@
         }, function(error) {
           vm.errorMes = error.data.message;
         });
+    }
+    function logout() {
+      TokenService.removeToken();
+      $location.path('/');
     }
   }
 })();

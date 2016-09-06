@@ -13,6 +13,9 @@
           templateUrl: 'authorization/login.html',
           controller: 'LoginController',
           controllerAs: 'vm'
+        })
+        .when('/logout', {
+          controller: 'LoginController as vm'
         });
     }
 })();

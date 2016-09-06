@@ -10,7 +10,8 @@
 
     function dataservice($http) {
       return {
-        login: login
+        login: login,
+        log
       };
 
       function login(user) {

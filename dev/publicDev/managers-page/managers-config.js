@@ -16,7 +16,7 @@
   });
 
   function managersConfig($routeProvider, managersRoute) {
-    $routeProvider.when(managersRoute.path, managersRoute.route);
+    // $routeProvider.when(managersRoute.path, managersRoute.route);
   }
   managersConfig.$inject = configInjections;
   app.config(managersConfig);

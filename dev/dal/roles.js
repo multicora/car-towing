@@ -14,6 +14,9 @@ const roles = {
   get: (cb) => {
     return model.find({}, cb);
   },
+  getByName: (name, cb) => {
+    return model.findOne({name: name }, cb);
+  },
   create: (role, cb) => {
     const roleInstance = new model(role);
 

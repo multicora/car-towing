@@ -1,4 +1,14 @@
 'use strict'
+var HeaderController = function(TokenService, $location) {
+  var vm = this;
+
+  vm.logout = function() {
+    TokenService.removeToken();
+    $location.path('/');
+  };
+};
+
+HeaderController.$inject = ['TokenService', '$location'];
 
 var app = angular
   .module('app')
@@ -8,17 +18,5 @@ var app = angular
       controller: HeaderController,
       controllerAs: 'vm'
     }
-  }]);
+}]);
 
-var HeaderController = function(TokenService, $location) {
-  var vm = this;
-
-  vm.logout = function() {
-    console.log(1111);
-    TokenService.removeToken();
-    $location.path('/');
-    console.log('2222');
-  };
-};
-
-HeaderController.$inject = ['TokenService', '$location'];

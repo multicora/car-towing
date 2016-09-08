@@ -1,0 +1,27 @@
+.admin-got-towed
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .got-towed-info
+        form(
+          name="gotTowedForm"
+          )
+          .got-towed-value
+            h2 Enter got towed information
+            input(
+              type="text"
+              placeholder="Address")
+            div
+              h3 Enter taxi information
+              input.taxi(
+                type="text"
+                placeholder="Taxi name")
+              input.taxi(
+                type="tel"
+                placeholder="Taxi phone")
+            div
+
+            editor-directive
+            button.create(
+              type="submit") Send

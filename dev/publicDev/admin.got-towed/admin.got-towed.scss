@@ -1,0 +1,64 @@
+.admin-got-towed {
+  background-color: #f7f7f7;
+  min-height: 100%;
+
+  .content {
+    background-color: #ffffff;
+    min-height: 100%;
+  }
+
+  .got-towed-info {
+    padding-top: 20px;
+    text-align: center;
+
+    h2 {
+      font-size: 26px;
+      font-weight: 400;
+      color: #4d4d4d;
+      margin-bottom: 35px;
+    }
+
+    button {
+      width: 240px;
+      height: 52px;
+      border-radius: 6px;
+      background-color: #3191d8;
+      color: #ffffff;
+      font-size: 18px;
+      border: 0;
+    }
+
+    button:focus {
+      outline: 0;
+    }
+
+    button:hover {
+      background: #7fbbe6;
+    }
+  }
+
+  .got-towed-value {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 35px;
+
+    h3 {
+      font-size: 18px;
+    }
+
+    input {
+      width: 100%;
+      height: 46px;
+      border: 1px solid #a9a9a9;
+      font-size: 18px;
+      font-weight: 400;
+      padding-left: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    input:focus {
+      outline: 0;
+    }
+  }
+}

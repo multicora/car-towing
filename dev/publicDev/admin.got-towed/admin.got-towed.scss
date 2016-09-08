@@ -5,6 +5,7 @@
   .content {
     background-color: #ffffff;
     min-height: 100%;
+    padding-bottom: 20px;
   }
 
   .got-towed-info {
@@ -39,6 +40,7 @@
 
   .got-towed-value {
     display: inline-block;
+    width: 100%;
     vertical-align: top;
     padding: 0 35px;
 
@@ -60,5 +62,21 @@
     input:focus {
       outline: 0;
     }
+
+    .ql-container {
+      height: 600px;
+    }
+  }
+}
+
+@media (min-width: 550px) {
+  .admin-got-towed .got-towed-value {
+    width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  .admin-got-towed .got-towed-value {
+    width: 800px;
   }
 }

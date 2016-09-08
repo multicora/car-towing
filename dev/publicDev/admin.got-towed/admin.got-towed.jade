@@ -21,7 +21,14 @@
                 type="tel"
                 placeholder="Taxi phone")
             div
-
-            editor-directive
+            ng-quill-editor(
+              ng-model="message"
+              toolbar="true"
+              link-tooltip="true"
+              image-tooltip="true"
+              toolbar-entries="size bold list bullet italic underline strike align color background link"
+              editor-required="true"
+              theme="snow"
+              error-class="input-error")
             button.create(
               type="submit") Send

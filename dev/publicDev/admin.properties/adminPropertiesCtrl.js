@@ -29,7 +29,8 @@
     vm.errorMes = '';
     vm.newProperty = {};
 
-    vm.selectFile = function() {
+    vm.selectFile = function(e) {
+      e.preventDefault();
       document.getElementById('file').click();
     };
 
@@ -39,6 +40,7 @@
       r.onloadend = function(e){
         // TODO: converted to base64 image
         vm.newProperty.logo = e.target.result;
+        $scope.$digest();
       }
       r.readAsDataURL(f);
     }
@@ -57,7 +59,6 @@
         propertiesService.create(vm.newProperty)
         .then((success) => {
           // TODO: replace with appropriate solution
-          console.log($location);
           vm.setPassLink = [getUrl(), success.data].join('');
           // $location.path('/admin/properties');
         }, (error) => {

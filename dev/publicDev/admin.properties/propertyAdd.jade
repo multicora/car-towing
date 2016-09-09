@@ -31,7 +31,7 @@
           .propertyLogo
             h2 Upload logo
             div
-              img.logo(src="")
+              .logo( ng-style="{backgroundImage: 'url('+ vm.newProperty.logo + ')' }")
             div
-              button(ng-click="vm.selectFile()") Upload logo
+              button(ng-click="vm.selectFile($event)") Upload logo
               input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")

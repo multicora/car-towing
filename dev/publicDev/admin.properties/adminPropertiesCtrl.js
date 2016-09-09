@@ -43,12 +43,25 @@
       r.readAsDataURL(f);
     }
 
+    function getUrl() {
+      return [
+        $location.protocol(),
+        "://", $location.host(),
+        ':', $location.port(),
+        !$location.$$html5 ? '/#/' : '/'
+      ].join('');
+    }
+
     vm.addProperty = function(form) {
       if (form.$valid) {
         propertiesService.create(vm.newProperty)
         .then((success) => {
-          $location.path('/admin/properties');
+          // TODO: replace with appropriate solution
+          console.log($location);
+          vm.errorMes = [getUrl(), success.data].join('');
+          // $location.path('/admin/properties');
         }, (error) => {
+          // add appropriate logging
           vm.errorMes = error.data.message;
         });
       }

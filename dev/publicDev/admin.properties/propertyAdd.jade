@@ -22,7 +22,8 @@
               ng-class="{'l-error-input': vm.errorMes.length > 0}"
               required)
             p
-              a.errorMessage(ng-href="{{vm.errorMes}}"  ng-bind="vm.errorMes")
+              .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
+              a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
             div
               button.create(
                 type="submit"

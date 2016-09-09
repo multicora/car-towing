@@ -58,7 +58,7 @@
         .then((success) => {
           // TODO: replace with appropriate solution
           console.log($location);
-          vm.errorMes = [getUrl(), success.data].join('');
+          vm.setPassLink = [getUrl(), success.data].join('');
           // $location.path('/admin/properties');
         }, (error) => {
           // add appropriate logging

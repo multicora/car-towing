@@ -126,11 +126,12 @@ module.exports.init = function (server) {
     path: '/api/property',
     config: {
       validate: {
-        params: {
+        payload: {
           name: Joi.string().min(1).max(255).required(),
           address: Joi.string(),
           logo: Joi.string(),
-          rules: Joi.array().items(Joi.string())
+          location: Joi.string(),
+          blocked: Joi.boolean()
         }
       },
       handler: function (request, reply) {

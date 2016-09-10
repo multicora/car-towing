@@ -8,8 +8,6 @@ const schema = new Schema({
   name: { type: String, required: true, max: 255 },
   address: String,
   logo: String,
-  objId: String,
-  rules: [String],
   location: Schema.Types.ObjectId,
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/

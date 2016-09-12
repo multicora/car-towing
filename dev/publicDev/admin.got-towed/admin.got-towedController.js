@@ -12,12 +12,7 @@
 
     vm.data = {
       content: '',
-      editableContent: '',
-      customJson: {
-        address: '',
-        taxiName: '',
-        taxiPhone: ''
-      }
+      editableContent: ''
     };
 
     vm.editor = '';
@@ -25,10 +20,11 @@
 
     function addGotTowed(form) {
 
-      // console.log(data);
-      console.log(vm.message);
+      console.log(vm.data);
+      console.log(vm.editor);
 
       vm.data.editableContent = JSON.stringify(vm.editor.getContents());
+      vm.data.content = vm.editor.getHTML();
 
       AdminGotTowedService.send(data)
         .then(function(success) {

@@ -26,7 +26,6 @@
                 ng-model="vm.data.customJson.taxiPhone")
             div
             ng-quill-editor(
-              id="editor"
               ng-model="vm.editor"
               toolbar="true"
               link-tooltip="true"
@@ -34,6 +33,7 @@
               toolbar-entries="size bold list bullet italic underline strike align color background link"
               editor-required="true"
               theme="snow"
-              error-class="input-error")
+              error-class="input-error"
+              callback="vm.initCallback(editor, name)")
             button.create(
               type="submit") Create

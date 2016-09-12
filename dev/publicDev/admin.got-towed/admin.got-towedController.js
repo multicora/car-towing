@@ -9,28 +9,27 @@
 
   function AdminGotTowedController(AdminGotTowedService, $http) {
     var vm = this;
+    var editorInstance = null;
 
     vm.data = {
       content: '',
       editableContent: ''
     };
 
-    vm.editor = '';
+    vm.initCallback =initCallback;
     vm.addGotTowed = addGotTowed;
 
+    function initCallback(editor, name) {
+      editorInstance = editor;
+    }
+
     function addGotTowed(form) {
+      vm.data.editableContent = JSON.stringify(editorInstance.getContents());
+      vm.data.content = editorInstance.getHTML();
 
-      console.log(vm.data);
-      console.log(vm.editor);
-
-      vm.data.editableContent = JSON.stringify(vm.editor.getContents());
-      vm.data.content = vm.editor.getHTML();
-
-      AdminGotTowedService.send(data)
+      AdminGotTowedService.send(vm.data)
         .then(function(success) {
-          console.log('success');
         }, function(error) {
-          console.log('error');
         });
     };
   }

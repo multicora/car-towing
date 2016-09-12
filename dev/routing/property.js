@@ -48,7 +48,11 @@ module.exports = function (server) {
       //     rules: Joi.array().items(Joi.string())
       //   }
       // },
-      handler: function (request, reply) {
+      handler: function handler(request, reply) {
+        let generateSetPasswordLink = (token) => {
+          let route = Utils.getSetPassRoute();
+          return [route, token].join('');
+        }
         let runTransaction = (roleId) => {
           let transaction = new Transaction();
           let newUser = {
@@ -62,8 +66,9 @@ module.exports = function (server) {
           transaction.insert('users', newUser);
 
           // TODO: add error log? replace transaction library?
-          transaction.run(function(err, docs){
-            docs ? reply(docs) : reply(JSON.stringify("something goes wrong"));
+          transaction.run(function transactionCb(err, docs){
+            let resetToken = docs[1].resetToken;
+            docs ? reply(generateSetPasswordLink(resetToken)) : reply(JSON.stringify("something goes wrong"));
           });
         };
 

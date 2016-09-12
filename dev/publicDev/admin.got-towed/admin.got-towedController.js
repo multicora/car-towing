@@ -11,18 +11,25 @@
     var vm = this;
 
     vm.data = {
-      editableContent: ''
-    }
+      content: '',
+      editableContent: '',
+      customJson: {
+        address: '',
+        taxiName: '',
+        taxiPhone: ''
+      }
+    };
 
-    vm.message = '';
-
+    vm.editor = '';
     vm.addGotTowed = addGotTowed;
 
     function addGotTowed(form) {
 
-      console.log(data);
+      // console.log(data);
       console.log(vm.message);
-      // vm.data.editableContent = JSON.stringify(editor.getContents());
+
+      vm.data.editableContent = JSON.stringify(vm.editor.getContents());
+
       AdminGotTowedService.send(data)
         .then(function(success) {
           console.log('success');

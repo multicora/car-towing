@@ -43,6 +43,10 @@ header {
     a {
       margin-left: 20px;
     }
+
+    .logout-button {
+      cursor: pointer;
+    }
   }
 
   @media (min-width: 992px) {

@@ -13,20 +13,21 @@
             input(
               type="text"
               placeholder="Address"
-              ng-model="vm.data.adress")
+              ng-model="vm.data.custonJson.address")
             div
               h3 Enter taxi information
               input.taxi(
                 type="text"
                 placeholder="Taxi name"
-                ng-model="vm.data.taxiName")
+                ng-model="vm.data.custonJson.taxiName")
               input.taxi(
                 type="text"
                 placeholder="Taxi phone"
-                ng-model="vm.data.taxiPhone")
+                ng-model="vm.data.customJson.taxiPhone")
             div
             ng-quill-editor(
-              ng-model="message"
+              id="editor"
+              ng-model="editor"
               toolbar="true"
               link-tooltip="true"
               image-tooltip="true"

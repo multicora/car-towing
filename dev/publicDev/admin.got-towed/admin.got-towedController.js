@@ -13,14 +13,16 @@
     vm.data = {
       editableContent: ''
     }
+
+    vm.message = '';
+
     vm.addGotTowed = addGotTowed;
 
     function addGotTowed(form) {
 
       console.log(data);
-
-      vm.data.editableContent = JSON.stringify(editor.getContents());
-
+      console.log(vm.message);
+      // vm.data.editableContent = JSON.stringify(editor.getContents());
       AdminGotTowedService.send(data)
         .then(function(success) {
           console.log('success');

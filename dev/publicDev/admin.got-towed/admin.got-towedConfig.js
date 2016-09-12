@@ -8,6 +8,7 @@ config(['$routeProvider', function($routeProvider) {
     '/admin/got_towed',
     {
       templateUrl: 'admin.got-towed/admin.got-towed.html',
+      controller: 'AdminGotTowedController as vm'
     }
   );
 }]);

@@ -6,20 +6,24 @@
       .got-towed-info
         form(
           name="gotTowedForm"
+          ng-submit="vm.addGotTowed(gotTowedForm)"
           )
           .got-towed-value
             h2 Enter got towed information
             input(
               type="text"
-              placeholder="Address")
+              placeholder="Address"
+              ng-model="vm.data.adress")
             div
               h3 Enter taxi information
               input.taxi(
                 type="text"
-                placeholder="Taxi name")
+                placeholder="Taxi name"
+                ng-model="vm.data.taxiName")
               input.taxi(
-                type="tel"
-                placeholder="Taxi phone")
+                type="text"
+                placeholder="Taxi phone"
+                ng-model="vm.data.taxiPhone")
             div
             ng-quill-editor(
               ng-model="message"
@@ -31,4 +35,4 @@
               theme="snow"
               error-class="input-error")
             button.create(
-              type="submit") Send
+              type="submit") Create

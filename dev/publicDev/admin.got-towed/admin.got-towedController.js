@@ -29,6 +29,7 @@
 
       AdminGotTowedService.send(vm.data)
         .then(function(success) {
+          vm.data = {};
         }, function(error) {
         });
     };

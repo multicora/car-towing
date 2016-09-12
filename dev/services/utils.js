@@ -9,5 +9,8 @@ module.exports = {
   newToken: function() {
     return RandToken.generate(16);
   },
-  rolesNames: Roles
+  rolesNames: Roles,
+  getSetPassRoute: () => {
+    return 'new_password/';
+  }
 }

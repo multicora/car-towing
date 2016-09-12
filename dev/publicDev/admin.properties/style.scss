@@ -101,9 +101,14 @@
       vertical-align: top;
 
       .logo {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: inline-block;
         max-width: 244px;
         height: 200px;
         margin-bottom:60px;
+        width: 200px;
       }
     }
   }
@@ -182,5 +187,12 @@
     text-overflow: ellipsis;
     color:  #4d4d4d;
     font-size: 18px;
+  }
+
+  .logo {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
   }
 }

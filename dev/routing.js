@@ -86,7 +86,7 @@ module.exports.init = function (server) {
   require('./routing/auth.js')(server);
   require('./routing/property.js')(server);
   require('./routing/users.js')(server);
-  require('./routing/gotTowed.js')(server);
+  require('./routing/customPage.js')(server);
 
   server.route({
     method: 'GET',

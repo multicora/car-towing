@@ -4,6 +4,7 @@
 const files = require('../services/files.js')();
 const DAL = require('../dal/dal.js');
 const Boom = require('boom');
+const _ = require('lodash');
 
 module.exports = function (server) {
   server.route({
@@ -36,7 +37,10 @@ module.exports = function (server) {
     method: 'POST',
     path: '/api/gotTowed',
     handler: function (request, reply) {
-      DAL.customPages.update(request.payload, function (err, doc) {
+      var sendingObject = _.clone(request.payload);
+      console.log(sendingObject);
+      sendingObject.customJson = JSON.stringify(request.payload.customJson);
+      DAL.customPages.update(sendingObject, function (err, doc) {
         if (!err && doc) {
           reply(doc);
         } else {

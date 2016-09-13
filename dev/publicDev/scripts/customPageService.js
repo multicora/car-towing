@@ -3,12 +3,12 @@
 (function() {
   angular
     .module('app')
-    .factory("AdminGotTowedService", AdminGotTowedService);
+    .factory("customPageService", customPageService);
 
 
-    AdminGotTowedService.$inject = ['$http'];
+    customPageService.$inject = ['$http'];
 
-    function AdminGotTowedService($http) {
+    function customPageService($http) {
       return {
         save: save,
         get: get

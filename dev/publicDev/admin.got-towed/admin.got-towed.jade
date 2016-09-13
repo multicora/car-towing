@@ -8,8 +8,8 @@
           name="gotTowedForm"
           ng-submit="vm.addGotTowed(gotTowedForm)"
           )
-          .got-towed-value
-            h2.title Enter got towed information
+          .content
+            h2.title "Got towed?" page
             input.address(
               type="text"
               placeholder="Address"
@@ -20,18 +20,18 @@
                 input.taxi(
                   type="text"
                   placeholder="Taxi name"
-                  ng-model="vm.data.customJson.taxis[$index].taxi.name")
+                  ng-model="vm.data.customJson.taxis[$index].name")
                 input.taxi(
                   type="text"
                   placeholder="Taxi phone"
-                  ng-model="vm.data.customJson.taxis[$index].taxi.phone")
+                  ng-model="vm.data.customJson.taxis[$index].phone")
                 button.btn.btn-primary.btn-circle(
                   type="button"
                   ng-click="vm.removeTaxi($index)")
                   i.glyphicon.glyphicon-remove
               button.btn.btn-primary.btn-block(
                  type="button"
-                 ng-click="vm.addTaxi()") One more Taxi
+                 ng-click="vm.addTaxi()") Add
             div
             ng-quill-editor(
               ng-model="vm.editor"

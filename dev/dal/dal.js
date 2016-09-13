@@ -3,27 +3,9 @@
 let DAL = {};
 
 // Properties
-const Property = require('./property.js');
-
-DAL.properties = {
-  get: (cb) => {
-    return Property.find({}, cb);
-  },
-  getById: (id, cb) => {
-    return Property.findOne({_id: id }, cb);
-  },
-  create: (model, cb) => {
-    const propertyIns = new Property(model);
-
-    propertyIns.save(cb);
-  },
-  edit: (id, model, cb) => {
-    return Property.findOneAndUpdate({_id: id}, model, cb);
-  },
-  remove: (id, cb) => {
-    return Property.findOneAndRemove({_id: id}, cb);
-  }
-};
+DAL.properties = require('./property.js');
+// Roles
+DAL.roles = require('./roles.js');
 
 // Blockers
 // Documents
@@ -81,29 +63,13 @@ DAL.customPages = {
   }
 };
 
-// parking rules
+
 DAL.parkingRules = require('./parkingRules.js');
 
-// Users
-const Users = require('./users.js');
-
-DAL.users = {
-  checkToken: (token, cb) => {
-    Users.findOne({token: token}, cb);
-  },
-  updateToken: (token, email, cb) => {
-    Users.findOneAndUpdate({email: email}, {token: token}, cb);
-  },
-  getUserByEmail: (email, cb) => {
-    Users.findOne({email: email}, cb);
-  },
-  createUser: (email, password, token, cb) => {
-    Users.create({email: email, password: password, token: token}, cb);
-  }
-};
+DAL.users = require('./users.js');
 
 DAL.files = require('./files.js');
-// Blocking info
+
 DAL.blocking = require('./blocking.js').dal;
 
 module.exports = DAL;

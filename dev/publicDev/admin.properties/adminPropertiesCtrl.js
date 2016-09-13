@@ -29,7 +29,8 @@
     vm.errorMes = '';
     vm.newProperty = {};
 
-    vm.selectFile = function() {
+    vm.selectFile = function(e) {
+      e.preventDefault();
       document.getElementById('file').click();
     };
 
@@ -39,16 +40,29 @@
       r.onloadend = function(e){
         // TODO: converted to base64 image
         vm.newProperty.logo = e.target.result;
+        $scope.$digest();
       }
       r.readAsDataURL(f);
+    }
+
+    function getUrl() {
+      return [
+        $location.protocol(),
+        "://", $location.host(),
+        ':', $location.port(),
+        !$location.$$html5 ? '/#/' : '/'
+      ].join('');
     }
 
     vm.addProperty = function(form) {
       if (form.$valid) {
         propertiesService.create(vm.newProperty)
         .then((success) => {
-          $location.path('/admin/properties');
+          // TODO: replace with appropriate solution
+          vm.setPassLink = [getUrl(), success.data].join('');
+          // $location.path('/admin/properties');
         }, (error) => {
+          // add appropriate logging
           vm.errorMes = error.data.message;
         });
       }

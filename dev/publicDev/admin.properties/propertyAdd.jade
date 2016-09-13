@@ -18,10 +18,12 @@
             input(
               type="text"
               placeholder="Login"
-              ng-model="vm.login"
+              ng-model="vm.newProperty.login"
               ng-class="{'l-error-input': vm.errorMes.length > 0}"
               required)
-            p.errorMessage(ng-bind="vm.errorMes")
+            p
+              .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
+              a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
             div
               button.create(
                 type="submit"
@@ -29,7 +31,7 @@
           .propertyLogo
             h2 Upload logo
             div
-              img.logo(src="")
+              .logo( ng-style="{backgroundImage: 'url('+ vm.newProperty.logo + ')' }")
             div
-              button(ng-click="vm.selectFile()") Upload logo
+              button(ng-click="vm.selectFile($event)") Upload logo
               input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")

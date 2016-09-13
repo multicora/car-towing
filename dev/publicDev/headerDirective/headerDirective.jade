@@ -1,7 +1,8 @@
 header(class="{{className}}")
   div.navigation
-    a.home-button(href="#/" titke="Home") Home
-    a.login-button(href="#/login" titke="Login") Login
+    a.home-button(href="#/" title="Home") Home
+    a.login-button(href="#/login" title="Login") Login
+    a.logout-button(ng-click="vm.logout()" title="Logout") Logout
   a(href="#/")
     img.logo(src="files/logo-280.png")
   div.contacts

@@ -10,7 +10,8 @@ module.exports = function (cb) {
     setDbVersion: setDbVersion,
     getDbVersion: getDbVersion,
     migrations: [
-      require('./scripts/v001.js')
+      require('./scripts/v001.js'),
+      require('./scripts/v002.js')
     ],
     done: cb
   };

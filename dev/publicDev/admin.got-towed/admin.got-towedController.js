@@ -13,24 +13,39 @@
 
     vm.data = {
       content: '',
-      editableContent: ''
+      editableContent: '',
+      customJson: {
+        address: '',
+        taxis: []
+      }
     };
 
-    vm.initCallback =initCallback;
-    vm.addGotTowed = addGotTowed;
+    vm.addTaxi = function() {
+      vm.data.customJson.taxis.push({});
+    }
 
-    function initCallback(editor, name) {
+    vm.removeTaxi = function(index) {
+      vm.data.customJson.taxis.splice(index, 1);
+    }
+
+    vm.initCallback = function(editor, name) {
       editorInstance = editor;
     }
 
-    function addGotTowed(form) {
+    vm.addGotTowed = function(form) {
       vm.data.editableContent = JSON.stringify(editorInstance.getContents());
       vm.data.content = editorInstance.getHTML();
 
-      AdminGotTowedService.send(vm.data)
+      AdminGotTowedService.save(vm.data)
         .then(function(success) {
-          vm.data = {};
+          AdminGotTowedService.get()
+          .then(function(res) {
+            vm.data = res.data;
+            vm.data.customJson = JSON.parse(res.data.customJson);
+            vm.data.editableContent = JSON.parse(res.data.editableContent) || {ops:[]};
+          })
         }, function(error) {
+          console.log('error');
         });
     };
   }

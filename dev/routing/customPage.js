@@ -38,7 +38,6 @@ module.exports = function (server) {
     path: '/api/gotTowed',
     handler: function (request, reply) {
       var sendingObject = _.clone(request.payload);
-      console.log(sendingObject);
       sendingObject.customJson = JSON.stringify(request.payload.customJson);
       DAL.customPages.update(sendingObject, function (err, doc) {
         if (!err && doc) {

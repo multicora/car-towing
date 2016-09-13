@@ -10,11 +10,16 @@
 
     function AdminGotTowedService($http) {
       return {
-        send: send
+        save: save,
+        get: get
       }
 
-      function send(data) {
+      function save(data) {
         return $http.post('api/gotTowed', data);
+      }
+
+      function get() {
+        return $http.get('api/gotTowed');
       }
     }
 })();

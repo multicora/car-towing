@@ -8,37 +8,26 @@
     padding-bottom: 20px;
   }
 
-  .got-towed-info {
+  .info {
     padding-top: 20px;
     text-align: center;
 
-    h2 {
+    .title {
       font-size: 26px;
       font-weight: 400;
       color: #4d4d4d;
       margin-bottom: 35px;
     }
 
-    button {
-      width: 240px;
-      height: 52px;
-      border-radius: 6px;
-      background-color: #3191d8;
-      color: #ffffff;
-      font-size: 18px;
-      border: 0;
-    }
-
-    button:focus {
-      outline: 0;
-    }
-
-    button:hover {
-      background: #7fbbe6;
+    .btn.btn-primary.btn-block {
+      width: 229px;
+      height: 46px;
+      display: inline-block;
+      vertical-align: top;
     }
   }
 
-  .got-towed-value {
+  .content {
     display: inline-block;
     width: 100%;
     vertical-align: top;
@@ -48,8 +37,24 @@
       font-size: 18px;
     }
 
-    input {
+    .taxi-value {
+      display: inline-block;
       width: 100%;
+
+      .btn.btn-primary.btn-circle {
+        height: 46px;
+        width: 46px;
+        vertical-align: top;
+        margin-right: 0;
+      }
+
+      .btn.btn-primary.btn-circle:focus {
+        outline: 0;
+      }
+    }
+
+    .address,
+    .taxi {
       height: 46px;
       border: 1px solid #a9a9a9;
       font-size: 18px;
@@ -59,24 +64,26 @@
       margin-bottom: 10px;
     }
 
-    input:focus {
+    .address {
+      width: 100%;
+    }
+
+    .taxi {
+      width: 485px;
+      margin-right: 20px;
+    }
+
+    .address:focus,
+    .taxi:focus {
       outline: 0;
     }
 
     .ql-container {
       height: 600px;
     }
-  }
-}
 
-@media (min-width: 550px) {
-  .admin-got-towed .got-towed-value {
-    width: 500px;
-  }
-}
-
-@media (min-width: 992px) {
-  .admin-got-towed .got-towed-value {
-    width: 800px;
+    .ql-editor {
+      border: 1px solid #a9a9a9;
+    }
   }
 }

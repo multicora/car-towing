@@ -14,7 +14,9 @@ var app = angular
   .module('app')
   .directive('headerDirective', ['TokenService', '$location', function() {
     return {
-      scope: {},
+      scope: {
+        className: '='
+      },
       templateUrl: 'headerDirective/headerDirective.html',
       controller: HeaderController,
       controllerAs: 'vm'

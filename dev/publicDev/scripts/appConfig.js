@@ -1,13 +1,15 @@
 'use strict';
 
-var app = angular.module('app');
+(function() {
+  angular
+    .module('app')
+    .config(config);
 
-function config($httpProvider, $routeProvider) {
-  $routeProvider.otherwise({ redirectTo: '/' });
+    config.$inject = ['$httpProvider', '$routeProvider', 'TokenServiceProvider'];
 
-  $httpProvider.defaults.headers.common['token'] = '1234';
-}
-
-config.$inject = ['$httpProvider', '$routeProvider'];
-
-app.config(config);
+    function config($httpProvider, $routeProvider, TokenServiceProvider) {
+      var TokenService = TokenServiceProvider.$get();
+      $routeProvider.otherwise({ redirectTo: '/' });
+      $httpProvider.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
+    }
+})();

@@ -1,34 +1,50 @@
-"use strict";
+'use strict';
 
-(() => {
-	angular
-		.module('Autorisation')
+(function() {
+  angular
+    .module('Authorization')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['DataService', '$location'];
+  LoginController.$inject = ['DataService', '$location', 'TokenService', '$http', '$routeParams'];
 
-    function LoginController(DataService, $location) {
-    	let vm = this;
-    	vm.user = {
-    		login: '',
-    		password: ''
-    	};
-      vm.errorMes = '';
-
-    	vm.signIn = signIn;
-
-    	function signIn() {
-    		DataService.login(vm.user)
-    			.then((success) => {
-            console.log(success);
-            /*TODO: save token in local storage*/ 
-            //$location.path('/home');
-            //console.log('success');
-            vm.errorMes = '';       
-    			}, (error) => {
-            vm.errorMes = error.data.message;
-            //console.error(vm.errorMes);
-    			});
-    	}
+  function LoginController(DataService, $location, TokenService, $http, $routeParams) {
+    var vm = this;
+    
+    vm.user = {
+      login: '',
+      password: ''
+    };
+    vm.passwordData = {
+      newPassword: '',
+      confirmPassword: '',
+      resetToken: $routeParams.resetToken
     }
+    vm.errorMes = '';
+    vm.errorPassword = '';
+    vm.signIn = signIn;
+    vm.setNewPassword = setNewPassword;
+
+    function signIn() {
+      DataService.login(vm.user)
+        .then(function(success) {
+          TokenService.setToken(success.data['X-CART-Token']);
+          $http.defaults.headers.common['X-CART-Token'] = TokenService.getToken('X-CART-Token');
+          $location.path('/');
+          vm.errorMes = '';
+        }, function(error) {
+          vm.errorMes = error.data.message;
+        });
+      }
+    function setNewPassword() {
+      DataService.newPassword(vm.passwordData).then(
+        function(success) {
+          $location.path('/');
+          vm.errorPassword = '';
+        }, 
+        function(error) {
+          vm.errorPassword = error.data.massage;
+        }
+      );
+    }
+  }
 })();

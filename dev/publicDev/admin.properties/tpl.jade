@@ -1,7 +1,7 @@
 .admin-properties
   .container
     .content
-      header-directive
+      header-directive(class-name="'adaptive'")
       admin-menu-directive
       div
         a.addProperty(href="#/admin/properties/add")
@@ -16,6 +16,5 @@
             div(class="pa-img-wrap")
               // span(class="pa-img-bubbel") 45
               div(class="pa-blocked" ng-if="item.blocked") Blocked
-              img(ng-src="{{item.logo}}", alt="")
-
+              .logo(ng-style="{backgroundImage: 'url('+ item.logo + ')' }")
             h5(class="pa-item-title") {{item.name}}

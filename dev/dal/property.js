@@ -24,4 +24,24 @@ model.on('index', function(error) {
   }
 });
 
-module.exports = model;
+const properties = {
+  get: (cb) => {
+    return model.find({}, cb);
+  },
+  getById: (id, cb) => {
+    return model.findOne({_id: id }, cb);
+  },
+  create: (property, cb) => {
+    const propertyIns = new model(property);
+
+    propertyIns.save(cb);
+  },
+  edit: (id, model, cb) => {
+    return model.findOneAndUpdate({_id: id}, model, cb);
+  },
+  remove: (id, cb) => {
+    return model.findOneAndRemove({_id: id}, cb);
+  }
+};
+
+module.exports = properties;

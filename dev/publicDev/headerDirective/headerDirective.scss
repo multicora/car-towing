@@ -51,6 +51,10 @@ header {
     a {
       margin-left: 20px;
     }
+
+    .logout-button {
+      cursor: pointer;
+    }
   }
   &.adaptive {
     .logo {
@@ -71,7 +75,13 @@ header {
       }
     }
 
+    .phone {
+      float: left;
+    }
+
     .location {
+      clear: both;
+      float: left;
       margin-right: 0;
     }
 
@@ -103,6 +113,7 @@ header {
       }
 
       .location {
+        clear: none;
         float: right;
       }
 

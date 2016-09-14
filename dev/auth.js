@@ -3,6 +3,7 @@
 'use strict';
 
 const DAL = require('./dal/dal.js');
+const Utils = require('./services/utils.js');
 const Boom = require('boom');
 
 module.exports = {
@@ -22,18 +23,13 @@ module.exports = {
   login: (user, cb) => {
     DAL.users.getUserByEmail(user.login, (err, docs) => {
       if (!!docs && docs.password == user.password) {
-          let token = newToken();
+          let token = Utils.newToken();
           DAL.users.updateToken(token, user.login, (err, docs) => {
-            !!docs ? cb({"X-CART-Token": docs.token}) : cb(Boom.badImplementation('Server error'));          
+            !!docs ? cb({"X-CART-Token": docs.token}) : cb(Boom.badImplementation('Server error'));
           });
       } else {
         cb(Boom.unauthorized('The username or password is incorrect'));
       }
-    }); 
+    });
   }
 };
-
-function newToken() {
-  const RandToken = require('rand-token');
-  return RandToken.generate(16);
-}

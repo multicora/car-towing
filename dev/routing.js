@@ -106,7 +106,9 @@ module.exports.init = function (server) {
   // Blocking
   require('./routing/blocking.js')(server);
   require('./routing/parkingRules.js')(server);
-  require('./routing/properties.js')(server);
+  require('./routing/auth.js')(server);
+  require('./routing/property.js')(server);
+  require('./routing/users.js')(server);
 
   server.route({
     method: 'GET',

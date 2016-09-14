@@ -41,6 +41,7 @@
 
     // TODO: future update functionality
     vm.save = function(index, id, rule) {
+      console.log(vm.rules);
       vm.rules[index].editmode = false;
       rulesDataService.update(id, rule).then(function() {
         getAllRules();

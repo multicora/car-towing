@@ -9,7 +9,7 @@ const schema = new Schema({
   password: { type: String, max: 255 },
   token: { type: String, max: 255 },
   resetToken: {type: String, max: 255 },
-  roles: [ {type: Schema.Types.ObjectId, ref: 'Roles'} ]
+  roles: [ {type: Schema.Types.ObjectId, ref: 'roles'} ]
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
@@ -22,11 +22,11 @@ model.on('index', function(error) {
 });
 
 const users = {
-  checkToken: (token, cb) => {
+  getUserByToken: (token, cb) => {
     model.findOne({token: token}, cb);
   },
   updateToken: (token, email, cb) => {
-    model.findOneAndUpdate({email: email}, {token: token}, cb);
+    model.findOneAndUpdate({email: email}, {token: token}).populate('roles').exec(cb);
   },
   getUserByEmail: (email, cb) => {
     model.findOne({email: email}, cb);

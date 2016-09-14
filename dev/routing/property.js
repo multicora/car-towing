@@ -24,9 +24,6 @@ module.exports = function (server) {
     method: 'GET',
     path: '/api/property/{id}',
     config: {
-      pre: [
-        { method: 'checkTokin(raw.req.headers.token)', assign: "token" }
-      ],
       handler: function (request, reply) {
         DAL.properties.getById(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));

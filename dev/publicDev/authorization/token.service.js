@@ -15,15 +15,15 @@
       };
 
       function getToken() {
-        return localStorage.getItem('X-CART-Token');
+        return localStorage.getItem('cart.X-CART-Token');
       }
 
       function setToken(token) {
-        localStorage.setItem('X-CART-Token', token);
+        localStorage.setItem('cart.X-CART-Token', token);
       }
 
       function removeToken() {
-        return localStorage.removeItem('X-CART-Token');
+        return localStorage.removeItem('cart.X-CART-Token');
       }
     }
 })();

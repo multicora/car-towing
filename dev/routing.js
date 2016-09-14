@@ -79,28 +79,6 @@ module.exports.init = function (server) {
     }
   });
 
-  server.route({
-    method: 'POST',
-    path: '/api/login',
-    handler: function (request, reply) {
-      const Auth = require('./auth.js');
-      Auth.login(request.payload, (response) => {
-        reply(response);
-      });
-    }
-  });
-
-  server.route({
-    method: 'POST',
-    path: '/api/create',
-    handler: function (request, reply) {
-      const Auth = require('./auth.js');
-      Auth.create((err, docs) => {
-        reply(docs);
-      });
-    }
-  });
-
   files(server);
 
   // Blocking
@@ -109,6 +87,9 @@ module.exports.init = function (server) {
   require('./routing/auth.js')(server);
   require('./routing/property.js')(server);
   require('./routing/users.js')(server);
+
+  // For debugging
+  //require('./routing/roles.js')(server);
 
   server.route({
     method: 'GET',

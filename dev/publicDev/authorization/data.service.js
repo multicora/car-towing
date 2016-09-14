@@ -1,25 +1,36 @@
 'use strict';
 
 (function() {
-  angular
-    .module('Authorization')
-    .factory("DataService", dataservice);
+  var app = angular.module('Authorization');
 
+  app.factory('authService', dataservice);
 
-    dataservice.$inject = ['$http'];
+  dataservice.$inject = ['$http'];
 
-    function dataservice($http) {
-      return {
-        login: login,
-        newPassword: newPassword
-      };
+  function dataservice($http) {
+    var user = null;
 
-      function login(user) {
-        return $http.post("/api/login", user);
-      }
+    return {
+      login: login,
+      newPassword: newPassword,
+      setUser: setUser,
+      getUser: getUser,
+    };
 
-      function newPassword(data) {
-        return $http.post('api/new_password', data);
-      }
+    function login(user) {
+      return $http.post("/api/login", user);
     }
+
+    function newPassword(data) {
+      return $http.post('api/new_password', data);
+    }
+
+    function setUser(newUser) {
+      user = newUser;
+    }
+
+    function getUser(newUser) {
+      return user;
+    }
+  }
 })();

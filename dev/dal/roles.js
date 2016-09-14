@@ -10,6 +10,13 @@ const schema = new Schema({
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
 
+model.on('index', function(error) {
+  if (error) {
+    console.log('-| Error creating index');
+    console.log(error);
+  }
+});
+
 const roles = {
   get: (cb) => {
     return model.find({}, cb);

@@ -19,9 +19,6 @@ module.exports = function (server) {
     method: 'GET',
     path: '/api/property/{id}',
     config: { 
-      pre: [
-        { method: 'checkTokin(raw.req.headers.token)', assign: "token" }
-      ],
       handler: function (request, reply) {
         DAL.properties.getById(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
@@ -33,15 +30,21 @@ module.exports = function (server) {
     method: 'POST',
     path: '/api/property',
     config: {
-      validate: {
-        payload: {
-          name: Joi.string().min(1).max(255).required(),
-          address: Joi.string(),
-          logo: Joi.string(),
-          location: Joi.string(),
-          blocked: Joi.boolean()
-        }
-      },
+      // auth: 'simple',
+      // plugins: {
+      //   hapiRouteAcl: {
+      //     permissions: ['properties:read']
+      //   }
+      // }
+      // validate: {
+      //   payload: {
+      //     name: Joi.string().min(1).max(255).required(),
+      //     address: Joi.string(),
+      //     logo: Joi.string(),
+      //     location: Joi.string(),
+      //     blocked: Joi.boolean()
+      //   }
+      // },
       handler: function (request, reply) {
         DAL.properties.create(request.payload, function (err, docs) {
           !err ? reply('Done') : reply(JSON.stringify(err));

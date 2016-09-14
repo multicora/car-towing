@@ -9,8 +9,6 @@ const files = require('./routing/files.js');
 const Boom = require('boom');
 const Utils = require('./services/utils.js');
 
-let count = 0;
-
 module.exports.init = function (server) {
   server.route({
     method: 'GET',

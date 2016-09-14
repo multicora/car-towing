@@ -4,7 +4,7 @@
 
   function dataService($http) {
     this.getVisitorsCount = function() {
-      return $http.get('api/settings/visitorsCounter');
+      return $http.get('api/visitorsCounter');
     }
   }
 

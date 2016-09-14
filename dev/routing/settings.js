@@ -6,18 +6,18 @@ const DAL = require('../dal/dal.js');
 module.exports = function (server) {
   server.route({
     method: 'GET',
-    path: '/api/settings',
+    path: '/api/settings/{name}',
     handler: function (request, reply) {
-      DAL.settings.get(function (err, docs) {
+      DAL.settings.getByName(request.params.name, function (err, docs) {
         !err ? reply(docs) : reply(JSON.stringify(err));
       });
     }
   });
   server.route({
     method: 'GET',
-    path: '/api/settings/{name}',
+    path: '/api/visitorsCounter',
     handler: function (request, reply) {
-      DAL.settings.getByName(request.params.name, function (err, docs) {
+      DAL.settings.getByName('visitorsCounter', function (err, docs) {
         !err ? reply(docs) : reply(JSON.stringify(err));
       });
     }

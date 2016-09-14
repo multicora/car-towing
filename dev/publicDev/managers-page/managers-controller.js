@@ -40,9 +40,9 @@
     }
 
     // TODO: future update functionality
-    vm.save = function(index, id) {
+    vm.save = function(index, id, rule) {
       vm.rules[index].editmode = false;
-      rulesDataService.update(id).then(function() {
+      rulesDataService.update(id, rule).then(function() {
         getAllRules();
       });
     }

@@ -26,8 +26,8 @@
       }
 
       // TODO: future update functionality
-      function update(id) {
-        return $http.put("/api/parkingRules/" + id);
+      function update(id, rule) {
+        return $http.put("/api/parkingRules/" + id, rule);
       }
 
       function remove(id) {

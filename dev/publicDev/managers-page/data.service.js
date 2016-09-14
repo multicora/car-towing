@@ -12,7 +12,8 @@
       return {
         create: create,
         getAll: getAll,
-        remove: remove
+        remove: remove,
+        update: update
       };
 
       // TODO: for testing purpose
@@ -25,9 +26,9 @@
       }
 
       // TODO: future update functionality
-      // function edit(id, rule) {
-      //   return $http.put("/api/parkingRules/" + id, rule);
-      // }
+      function update(id) {
+        return $http.put("/api/parkingRules/" + id);
+      }
 
       function remove(id) {
         return $http.delete("/api/parkingRules/" + id);

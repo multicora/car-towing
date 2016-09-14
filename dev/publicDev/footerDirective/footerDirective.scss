@@ -2,11 +2,11 @@ footer {
   width: 90%;
   margin: 0 auto;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 10px;
   box-sizing: border-box;
 
   p {
-    width: 50%;
+    width: 28%;
     display: inline-block;
     padding-top: 20px;
   }
@@ -16,13 +16,14 @@ footer {
   }
 
   p:last-child {
+    float: right;
     text-align: right;
   }
 }
 
 @media (min-width: 970px) {
   footer p {
-    font-size: 18px;
+    font-size: 14px;
     padding-top: 65px;
   }
 }

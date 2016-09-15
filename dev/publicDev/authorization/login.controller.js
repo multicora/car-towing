@@ -40,7 +40,7 @@
     }
 
     function setNewPassword() {
-      DataService.newPassword(vm.passwordData).then(
+      authService.newPassword(vm.passwordData).then(
         function(success) {
           $location.path('/');
           vm.errorPassword = '';

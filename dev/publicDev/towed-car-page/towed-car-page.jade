@@ -9,10 +9,11 @@
       .col-md-12
         h2.title Been Towed? Do not worry! Here we are:
     .row.towed-car-content
-      .col-md-7.map
+      .col-md-7.map#map
       .col-md-5.taxis-container
         .uber
-          img(src="files/uber.png", alt="uber")
+          a.uber-link(href="https://www.uber.com/" target="blank")
+            img(src="files/uber.png", alt="uber")
           .taxi-contact
             h4.title Use Uber
             p.sub-title to get to use
@@ -20,10 +21,8 @@
           img(src="files/taxi.png", alt="taxi")
           .taxi-contact
             h4.title Or call a taxi:
-            p
-              span.phone +38093 609 14 61
-              span.name - Fast Taxi
-            p
-              span.phone +38093 609 14 61
-              span.name - Fast Taxi
-      .col-md-12.discription
+            p(ng-repeat="taxi in vm.data.customJson.taxis track by $index")
+              span.phone(ng-bind="vm.data.customJson.taxis[$index].phone")
+              span.name(ng-bind="vm.data.customJson.taxis[$index].name")
+      .col-md-12.discription#content
+

@@ -30,7 +30,6 @@
   .towed-car-content {
     .map {
       height: 200px;
-      background: #444;
     }
     .taxis-container {
       padding: 30px 0 0 0;
@@ -58,6 +57,9 @@
       .uber {
         .title {
           margin-top: 8px;
+        }
+        .uber-link:hover {
+          opacity: 0.8;
         }
       }
       .taxis {

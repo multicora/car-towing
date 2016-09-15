@@ -53,7 +53,8 @@
 
     function redirectByRole(roles) {
       var map = {
-        'admin': '/admin'
+        'admin': '/admin',
+        'property-manager': '/managers-page'
       };
       var pathArray = roles.map(function (role) {
         return role.name;

@@ -47,32 +47,36 @@ module.exports = function (server) {
       //   }
       // },
       handler: function handler(request, reply) {
+        const createOrGetUser = (newUser, cb) => {
+          DAL.users.getUserByEmail(newUser.email, function (err, user) {
+            if (!user) {
+              DAL.users.createUser(newUser, cb);
+            } else {
+              cb(null, user);
+            }
+          });
+        };
         let generateSetPasswordLink = (token) => {
           let route = Utils.getSetPassRoute();
           return [route, token].join('');
         }
-        let runTransaction = (roleId) => {
-          let transaction = new Transaction();
+
+        DAL.roles.getByName(Utils.rolesNames.propertyManager, function(err, role) {
           let newUser = {
             email: request.payload.login,
             resetToken: Utils.newToken(),
-            roles: [roleId]
+            roles: [role._id]
           };
 
-          transaction.insert(path.basename(module.filename, '.js'), request.payload);
-          // TODO: rewrite for getting users model name
-          transaction.insert('users', newUser);
-
-          // TODO: add error log? replace transaction library?
-          transaction.run(function transactionCb(err, docs){
-            let resetToken = docs[1].resetToken;
-            docs ? reply(generateSetPasswordLink(resetToken)) : reply(JSON.stringify("something goes wrong"));
+          createOrGetUser(newUser, function (err, user) {
+            DAL.properties.create(request.payload, function (err, property) {
+              console.log(property);
+              !err ? reply( generateSetPasswordLink(user.resetToken) ) : reply( Boom.badRequest(err) );
+            });
           });
-        };
-
-        DAL.roles.getByName(Utils.rolesNames.propertyManager, function(err, docs) {
-          !err ? runTransaction(docs._id): reply(JSON.stringify(err));
         });
+
+
       }
     }
   });

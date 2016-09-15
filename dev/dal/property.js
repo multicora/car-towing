@@ -12,7 +12,8 @@ const schema = new Schema({
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/
   blocked: { type: Boolean, default: false },
-  updated: { type: Date, default: Date.now }
+  updated: { type: Date, default: Date.now },
+  manager: {type: Schema.Types.ObjectId, ref: 'users'}
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

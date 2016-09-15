@@ -8,7 +8,7 @@ module.exports = function (server) {
     method: 'GET',
     path: '/api/parkingRules',
     handler: function (request, reply) {
-      DAL.parkingRules.getAll(function (err, docs) {
+      DAL.parkingRules.getByPropId(request.propertyId, function (err, docs) {
         !err ? reply(docs) : reply(JSON.stringify(err));
       });
     }

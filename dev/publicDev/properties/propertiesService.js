@@ -1,6 +1,7 @@
 'use strict';
 
-app.factory('propertiesService', function($http) {
+service.$inject = ['$http', 'TokenService'];
+function service ($http, TokenService) {
   return {
     getProperties: function() {
       return $http.get('api/properties');
@@ -12,7 +13,9 @@ app.factory('propertiesService', function($http) {
       return $http.get('/api/parkingRules/' + id);
     },
     create: function(data) {
-      return $http.post('/api/property', data);
+      return $http.post('/api/property?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
     }
   };
-});
+}
+
+app.factory('propertiesService', service);

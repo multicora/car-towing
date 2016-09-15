@@ -150,7 +150,7 @@ function registerAuth(server) {
             // from `this` within validateFunc.
             var request = this;
 
-            DAL.users.getUserByToken(token, function (user) {
+            DAL.users.getUserByToken(token, function (err, user) {
               console.log(' -= user');
               console.log(user);
               if (user) {

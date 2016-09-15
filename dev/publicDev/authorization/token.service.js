@@ -11,7 +11,10 @@
       return {
         getToken: getToken,
         setToken: setToken,
-        removeToken: removeToken 
+        removeToken: removeToken,
+        getTokenName: function () {
+          return 'X-CART-Token';
+        }
       };
 
       function getToken() {

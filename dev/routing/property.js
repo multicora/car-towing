@@ -36,6 +36,7 @@ module.exports = function (server) {
     method: 'POST',
     path: '/api/property',
     config: {
+      auth: 'simple',
       // TODO: uncomment validations
       // validate: {
       //   payload: {

@@ -19,17 +19,12 @@
         vm.data.customJson.address = vm.data.customJson.address || '';
         vm.data.editableContent = res.data.editableContent || null;
         vm.data.editableContent = JSON.parse(vm.data.editableContent) || {ops:[]};
+        console.log(vm.data);
         var content = document.getElementById('content');
         content.innerHTML = vm.data.content;
+        // var mapSrc = document.getElementById('map').getAttribute('src');
+        // mapSrc = "https://embed.waze.com/iframe?zoom=16&q=" + vm.data.customJson.address;
+        console.log(mapSrc);
       });
-      
-    function initMap() {
-      var mapDiv = document.getElementById('map');
-      console.log(mapDiv);
-      var map = new google.maps.Map(mapDiv, {
-        center: {lat: 44.540, lng: -78.546},
-        zoom: 8
-      });
-    };
   };
 })();

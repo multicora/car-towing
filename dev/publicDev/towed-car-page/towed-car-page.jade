@@ -9,7 +9,7 @@
       .col-md-12
         h2.title Been Towed? Do not worry! Here we are:
     .row.towed-car-content
-      .col-md-7.map#map
+      iframe.col-md-7.map#map(src="https://embed.waze.com/iframe?zoom=16&q=San%20Jose%20California" width="100%" height="300px")
       .col-md-5.taxis-container
         .uber
           a.uber-link(href="https://www.uber.com/" target="blank")
@@ -24,5 +24,5 @@
             p(ng-repeat="taxi in vm.data.customJson.taxis track by $index")
               span.phone(ng-bind="vm.data.customJson.taxis[$index].phone")
               span.name(ng-bind="vm.data.customJson.taxis[$index].name")
-      .col-md-12.discription#content
+      .col-md-12#content
 

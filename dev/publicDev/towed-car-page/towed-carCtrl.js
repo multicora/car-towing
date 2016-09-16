@@ -19,12 +19,9 @@
         vm.data.customJson.address = vm.data.customJson.address || '';
         vm.data.editableContent = res.data.editableContent || null;
         vm.data.editableContent = JSON.parse(vm.data.editableContent) || {ops:[]};
-        console.log(vm.data);
         var content = document.getElementById('content');
         content.innerHTML = vm.data.content;
-        // var mapSrc = document.getElementById('map').getAttribute('src');
-        // mapSrc = "https://embed.waze.com/iframe?zoom=16&q=" + vm.data.customJson.address;
-        console.log(mapSrc);
+        vm.mapSrc = "https://embed.waze.com/iframe?zoom=16&" + vm.data.customJson.address +"&pin=1";
       });
   };
 })();

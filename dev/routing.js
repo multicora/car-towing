@@ -37,43 +37,17 @@ module.exports.init = function (server) {
       reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
     }
   });
-  server.route({
-    method: 'GET',
-    path: '/test',
-    handler: function (request, reply) {
-      DAL.properties.get(function (err, docs) {
-        reply('Docs: ' + JSON.stringify(docs));
-      });
-    }
-  });
-  server.route({
-    method: 'GET',
-    path: '/testcreate',
-    handler: function (request, reply) {
-      DAL.properties.create({name: 'testName'}, function (err, docs) {
-        !err ? reply('Done') : reply('Error:');
-      });
-    }
-  });
 
   server.route({
     method: 'POST',
-    path: '/api/login',
+    path: '/api/gotTowed',
     handler: function (request, reply) {
-      const Auth = require('./auth.js');
-      Auth.login(request.payload, (response) => {
-        reply(response);
-      });
-    }
-  });
-
-  server.route({
-    method: 'POST',
-    path: '/api/create',
-    handler: function (request, reply) {
-      const Auth = require('./auth.js');
-      Auth.create((err, docs) => {
-        reply(docs);
+      DAL.customPages.update(request.payload, function (err, doc) {
+        if (!err && doc) {
+          reply(doc);
+        } else {
+          reply(JSON.stringify(err));
+        }
       });
     }
   });
@@ -87,6 +61,9 @@ module.exports.init = function (server) {
   require('./routing/property.js')(server);
   require('./routing/users.js')(server);
   require('./routing/customPage.js')(server);
+
+  // For debugging
+  //require('./routing/roles.js')(server);
 
   server.route({
     method: 'GET',

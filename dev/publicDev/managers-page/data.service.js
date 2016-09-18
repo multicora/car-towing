@@ -11,13 +11,12 @@
     function dataservice($http) {
       return {
         create: create,
-        getAll: getAll,
+        get: get,
         remove: remove
       };
 
-      // TODO: for testing purpose
-      function getAll() {
-        return $http.get("/api/parkingRules");
+      function get(propertyId) {
+        return $http.get("/api/parkingRules/" + propertyId);
       }
 
       function create(propertyId, rule) {

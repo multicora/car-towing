@@ -38,33 +38,6 @@ module.exports.init = function (server) {
     }
   });
 
-  // Custom pages
-  server.route({
-    method: 'GET',
-    path: '/gotTowedEdit',
-    handler: function (request, reply) {
-      reply.file( path.resolve(__dirname, './public/gotTowed/markupEdit.html') );
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/gotTowed',
-    handler: function (request, reply) {
-      reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/api/gotTowed',
-    handler: function (request, reply) {
-      DAL.customPages.getByKey('got-towed', function (err, docs) {
-        !err ? reply(docs) : reply('Error: ' + err);
-      });
-    }
-  });
-
   server.route({
     method: 'POST',
     path: '/api/gotTowed',
@@ -87,6 +60,7 @@ module.exports.init = function (server) {
   require('./routing/auth.js')(server);
   require('./routing/property.js')(server);
   require('./routing/users.js')(server);
+  require('./routing/customPage.js')(server);
 
   // For debugging
   //require('./routing/roles.js')(server);

@@ -42,6 +42,9 @@ const properties = {
   },
   remove: (id, cb) => {
     return model.findOneAndRemove({_id: id}, cb);
+  },
+  getByUserId: (id, cb) => {
+    return model.findOne({manager: id}, cb);
   }
 };
 

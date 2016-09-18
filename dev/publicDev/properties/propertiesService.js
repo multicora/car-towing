@@ -14,6 +14,9 @@ function service ($http, TokenService) {
     },
     create: function(data) {
       return $http.post('/api/property?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
+    },
+    getUsersProperty: function(userId) {
+      return $http.get('/api/user-property/' + userId);
     }
   };
 }

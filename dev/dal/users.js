@@ -22,6 +22,9 @@ model.on('index', function(error) {
 });
 
 const users = {
+  get: (cb) => {
+    model.find({}, cb);
+  },
   getUserByToken: (token, cb) => {
     model.findOne({token: token}, cb);
   },

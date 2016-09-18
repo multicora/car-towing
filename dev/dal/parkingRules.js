@@ -6,8 +6,12 @@ const path = require('path');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-	text: { type: String, required: true },
-	propertyId: { type: Schema.Types.ObjectId, ref: 'Property' }
+  text: { type: String, required: true },
+  propertyId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Property',
+    required: true
+  }
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

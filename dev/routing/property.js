@@ -22,6 +22,17 @@ module.exports = function (server) {
 
   server.route({
     method: 'GET',
+    path: '/api/user-property/{userId}',
+    handler: function (request, reply) {
+      DAL.properties.getByUserId(request.params.userId, function (err, docs) {
+        console.log(docs);
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  server.route({
+    method: 'GET',
     path: '/api/property/{id}',
     config: {
       handler: function (request, reply) {
@@ -69,7 +80,10 @@ module.exports = function (server) {
           };
 
           createOrGetUser(newUser, function (err, user) {
-            DAL.properties.create(request.payload, function (err, property) {
+            let newProperty = request.payload;
+
+            newProperty.manager = user._id;
+            DAL.properties.create(newProperty, function (err, property) {
               console.log(property);
               !err ? reply( generateSetPasswordLink(user.resetToken) ) : reply( Boom.badRequest(err) );
             });

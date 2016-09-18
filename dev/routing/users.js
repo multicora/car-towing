@@ -16,4 +16,15 @@ module.exports = function (server) {
       });
     }
   });
+
+  // TODO: Add ACL
+  server.route({
+    method: 'GET',
+    path: '/api/users',
+    handler: function (request, reply) {
+      DAL.users.get(function (err, docs) {
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
 };

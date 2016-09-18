@@ -19,20 +19,28 @@ module.exports = function (server) {
   server.route({
     method: 'POST',
     path: '/api/parkingRules/{propertyId}',
-    handler: function (request, reply) {
-      const data = request.payload;
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['parkingRules:create']
+        }
+      },
+      handler: function (request, reply) {
+        const data = request.payload;
 
-      data.propertyId = request.params.propertyId;
+        data.propertyId = request.params.propertyId;
 
-      // TODO: move checking to utils
-      if (Object.prototype.toString.call(request.payload) === '[object Array]') {
-        DAL.parkingRules.setByPropId(request.params.propertyId, request.payload, function (err, docs) {
-          !err ? reply(docs) : reply(Boom.badRequest(err));
-        });
-      } else {
-        DAL.parkingRules.create(data, function (err, docs) {
-          !err ? reply(docs) : reply(Boom.badRequest(err));
-        });
+        // TODO: move checking to utils
+        if (Object.prototype.toString.call(request.payload) === '[object Array]') {
+          DAL.parkingRules.setByPropId(request.params.propertyId, request.payload, function (err, docs) {
+            !err ? reply(docs) : reply(Boom.badRequest(err));
+          });
+        } else {
+          DAL.parkingRules.create(data, function (err, docs) {
+            !err ? reply(docs) : reply(Boom.badRequest(err));
+          });
+        }
       }
     }
   });
@@ -40,20 +48,35 @@ module.exports = function (server) {
   server.route({
     method: 'PUT',
     path: '/api/parkingRules/{id}',
-    handler: function (request, reply) {
-      DAL.parkingRules.update(request.params.id, request.payload, function (err, docs) {
-        !err ? reply('Done') : reply(JSON.stringify(err));
-      });
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['parkingRules:edit']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.parkingRules.update(request.params.id, request.payload, function (err, docs) {
+          !err ? reply('Done') : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 
   server.route({
     method: 'DELETE',
-    path: '/api/parkingRules/{id}',
-    handler: function (request, reply) {
-      DAL.parkingRules.remove(request.params.id, function (err, docs) {
-        !err ? reply('Done') : reply(JSON.stringify(err));
-      });
+    path: '/api/parkingRules/{id}',config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['parkingRules:delete']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.parkingRules.remove(request.params.id, function (err, docs) {
+          !err ? reply('Done') : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 };

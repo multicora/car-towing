@@ -7,21 +7,21 @@ const Boom = require('boom');
 const _ = require('lodash');
 
 module.exports = function (server) {
-  server.route({
-    method: 'GET',
-    path: '/gotTowedEdit',
-    handler: function (request, reply) {
-      reply.file( path.resolve(__dirname, './public/gotTowed/markupEdit.html') );
-    }
-  });
+  // server.route({
+  //   method: 'GET',
+  //   path: '/gotTowedEdit',
+  //   handler: function (request, reply) {
+  //     reply.file( path.resolve(__dirname, './public/gotTowed/markupEdit.html') );
+  //   }
+  // });
 
-  server.route({
-    method: 'GET',
-    path: '/gotTowed',
-    handler: function (request, reply) {
-      reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );
-    }
-  });
+  // server.route({
+  //   method: 'GET',
+  //   path: '/gotTowed',
+  //   handler: function (request, reply) {
+  //     reply.file( path.resolve(__dirname, './public/gotTowed/markup.html') );
+  //   }
+  // });
 
   server.route({
     method: 'GET',
@@ -36,16 +36,24 @@ module.exports = function (server) {
   server.route({
     method: 'POST',
     path: '/api/gotTowed',
-    handler: function (request, reply) {
-      var sendingObject = _.clone(request.payload);
-      sendingObject.customJson = JSON.stringify(request.payload.customJson);
-      DAL.customPages.update(sendingObject, function (err, doc) {
-        if (!err && doc) {
-          reply(doc);
-        } else {
-          reply(JSON.stringify(err));
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['customPages:edit']
         }
-      });
+      },
+      handler: function (request, reply) {
+        var sendingObject = _.clone(request.payload);
+        sendingObject.customJson = JSON.stringify(request.payload.customJson);
+        DAL.customPages.update(sendingObject, function (err, doc) {
+          if (!err && doc) {
+            reply(doc);
+          } else {
+            reply(JSON.stringify(err));
+          }
+        });
+      }
     }
   });
 };

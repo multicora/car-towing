@@ -92,35 +92,7 @@ function startServer() {
 
 function registerACL(server) {
   return new Promise(function (resolve, reject) {
-    var permissionsFunc = function(credentials, callback) {
-      // use credentials here to retrieve permissions for user 
-      // in this example we just return some permissions 
-      console.log(credentials);
-
-      var userPermissions = {
-        properties: {
-          read: true,
-          create: false,
-          edit: true,
-          delete: true
-        },
-        drivers: {
-          read: true,
-          create: false,
-          edit: false,
-          delete: false
-        }
-      };
-
-      callback(null, userPermissions);
-    };
-
-    server.register({
-      register: require('hapi-route-acl'),
-      options: {
-        permissionsFunc: permissionsFunc
-      }
-    }, function(err) {
+    require('./acl.js')(server, function(err) {
       if (err) {
         console.log(err);
         reject();
@@ -139,20 +111,15 @@ function registerAuth(server) {
       if (err) {
         reject();
       } else {
-        console.log(' -= server.auth.strategy');
         server.auth.strategy('simple', 'bearer-access-token', {
           accessTokenName: 'X-CART-Token',    // optional, 'access_token' by default
           validateFunc: function (token, callback) {
-            console.log(' -= token');
-            console.log(token);
 
             // For convenience, the request object can be accessed
             // from `this` within validateFunc.
             var request = this;
 
             DAL.users.getUserByToken(token, function (err, user) {
-              console.log(' -= user');
-              console.log(user);
               if (user) {
                 callback(null, true, user);
               } else {

@@ -26,7 +26,7 @@ const users = {
     model.find({}, cb);
   },
   getUserByToken: (token, cb) => {
-    model.findOne({token: token}, cb);
+    model.findOne({token: token}).populate('roles').exec(cb);
   },
   updateToken: (token, email, cb) => {
     model.findOneAndUpdate({email: email}, {token: token}, {new: true}).populate('roles').exec(cb);

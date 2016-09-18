@@ -48,6 +48,11 @@ module.exports = function (server) {
     path: '/api/property',
     config: {
       auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:create']
+        }
+      },
       // TODO: uncomment validations
       // validate: {
       //   payload: {
@@ -89,8 +94,6 @@ module.exports = function (server) {
             });
           });
         });
-
-
       }
     }
   });
@@ -100,6 +103,12 @@ module.exports = function (server) {
     method: 'PUT',
     path: '/api/property/{id}',
     config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:edit']
+        }
+      },
       validate: {
         params: {
           name: Joi.string().min(1).max(255).required(),
@@ -120,10 +129,18 @@ module.exports = function (server) {
   server.route({
     method: 'DELETE',
     path: '/api/property/{id}',
-    handler: function (request, reply) {
-      DAL.properties.remove(request.params.id, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:delete']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.properties.remove(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 };

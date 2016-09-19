@@ -4,13 +4,14 @@ const path = require('path');
 const DAL = require('../dal/dal.js');
 
 module.exports = function (server) {
-  server.route({
-    method: 'GET',
-    path: '/api/roles',
-    handler: function (request, reply) {
-      DAL.roles.get(function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
-    }
-  });
+  // TODO: for debugging
+  // server.route({
+  //   method: 'GET',
+  //   path: '/api/roles',
+  //   handler: function (request, reply) {
+  //     DAL.roles.get(function (err, docs) {
+  //       !err ? reply(docs) : reply(JSON.stringify(err));
+  //     });
+  //   }
+  // });
 };

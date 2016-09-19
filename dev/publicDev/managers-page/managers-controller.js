@@ -4,24 +4,33 @@
     alert('Problem with app initialization!');
   }
 
-  var app = NG.module('app'),
-    injections = ['rulesDataService', '$routeParams'];
+  var app = NG.module('app');
+  var injections = ['rulesDataService', '$routeParams', 'propertiesService', 'authService'];
 
 
-  function managersCtrl(rulesDataService, $routeParams) {
+  function managersCtrl(rulesDataService, $routeParams, propertiesService, authService) {
     // TODO: figureout better propId solution
-    var vm = this,
-      propertyId = $routeParams.propertyId;
+    var vm = this;
+    var property = null;
+    var user = authService.getUser();
 
-    vm.managerName = 'Hugo Boss';
+    vm.managerName = null;
 
-    // rulesDataService.create(propertyId, {text: 1, propertyId: propertyId})
-    getAllRules();
+    propertiesService.getUsersProperty(user._id).then(function (res) {
+      property = res.data;
+      vm.managerName = property.name;
 
-    function getAllRules() {
-      rulesDataService.getAll().then(function(response) {
+      return property;
+    }).then(function (property) {
+      getAllRules(property._id);
+    });
+
+
+    function getAllRules(propertyId) {
+      rulesDataService.get(propertyId).then(function(response) {
         vm.rules = response.data;
       });
+      console.log(vm.rules);
     }
 
     function clearNewRule() {
@@ -33,24 +42,28 @@
     }
 
     vm.add = function(rule) {
-      rulesDataService.create(propertyId, rule).then(function() {
+      rulesDataService.create(property._id, rule).then(function() {
         clearNewRule();
-        getAllRules();
+        getAllRules(property._id);
       });
     }
 
-    // TODO: future update functionality
     vm.save = function(ruleIndex, id, rule) {
-      console.log(vm.rules);
       vm.rules[ruleIndex].editmode = false;
       rulesDataService.update(id, rule).then(function() {
         getAllRules();
       });
     }
 
+    vm.edit = function(rule) {
+      rulesDataService.update(rule._id, rule).then(function() {
+        getAllRules(property._id);
+      });
+    }
+
     vm.remove = function(id) {
       rulesDataService.remove(id).then(function() {
-        getAllRules();
+        getAllRules(property._id);
       });
     }
   }

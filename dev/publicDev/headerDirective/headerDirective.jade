@@ -1,8 +1,14 @@
-header()
+header(class="{{className}}")
   div.navigation
     a.home-button(href="#/" title="Home") Home
-    a.login-button(href="#/login" title="Login") Login
-    a.logout-button(ng-click="vm.logout()" title="Logout") Logout
+    a.login-button(
+      title="Login"
+      href="#/login"
+      ng-if="!vm.user") Login
+    a.logout-button(
+      title="Logout"
+      ng-click="vm.logout()"
+      ng-if="vm.user") Logout
   a(href="#/")
     img.logo(src="files/logo-280.png")
   div.contacts

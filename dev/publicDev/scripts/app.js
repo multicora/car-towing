@@ -1,5 +1,5 @@
 "use strict";
 
-(() => {
-  angular.module('app', ["ngRoute", "Authorization"]);
+(function() {
+  angular.module('app', ["ngRoute", "Authorization", "ngQuill"]);
 })();

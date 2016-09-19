@@ -8,13 +8,12 @@ const schema = new Schema({
   name: { type: String, required: true, max: 255 },
   address: String,
   logo: String,
-  objId: String,
-  rules: [String],
   location: Schema.Types.ObjectId,
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/
   blocked: { type: Boolean, default: false },
-  updated: { type: Date, default: Date.now }
+  updated: { type: Date, default: Date.now },
+  manager: {type: Schema.Types.ObjectId, ref: 'users'}
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
@@ -43,6 +42,9 @@ const properties = {
   },
   remove: (id, cb) => {
     return model.findOneAndRemove({_id: id}, cb);
+  },
+  getByUserId: (id, cb) => {
+    return model.findOne({manager: id}, cb);
   }
 };
 

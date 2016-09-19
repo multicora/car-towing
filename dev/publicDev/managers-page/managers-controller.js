@@ -30,7 +30,6 @@
       rulesDataService.get(propertyId).then(function(response) {
         vm.rules = response.data;
       });
-      console.log(vm.rules);
     }
 
     function clearNewRule() {

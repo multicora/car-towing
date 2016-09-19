@@ -42,4 +42,22 @@ module.exports = function (server) {
       }
     }
   });
+
+  server.route({
+    method: 'GET',
+    path: '/api/users/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['users:read']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.users.getUsersById(function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
+    }
+  });
 };

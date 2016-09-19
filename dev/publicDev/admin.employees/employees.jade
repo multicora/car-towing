@@ -1,0 +1,22 @@
+.admin-page.admin-employees
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .employees-header
+        .title-container
+          h2.title List of users
+        .addDriver-container
+          a.btn.btn-submit.addDriver(href="#/admin/employees/edit")
+            img(src="files/add-property.png")
+            span Add user
+      .employees-content
+        .title
+          p.name Name
+          p.email Email
+        .user(ng-repeat="user in vm.usersData")
+          p.name(ng-bind="user.name") Name
+          p.email(ng-bind="user.email") Email
+          .buttons
+            a.btn.btn-submit.edit(type="button" href="#/admin/employees/edit/{{user._id}}") Edit
+            button.btn.btn-submit.block(type="button" ng-click="") Block

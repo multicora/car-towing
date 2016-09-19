@@ -5,6 +5,7 @@ const path = require('path');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
+  name: { type: String, max: 255 },
   email: { type: String, required: true, unique: true, max: 255 },
   password: { type: String, max: 255 },
   token: { type: String, max: 255 },
@@ -28,11 +29,17 @@ const users = {
   getUserByToken: (token, cb) => {
     model.findOne({token: token}).populate('roles').exec(cb);
   },
+  getUserById: (id, cb) => {
+    model.findOne({_id: id}), (cb);
+  },
   updateToken: (token, email, cb) => {
     model.findOneAndUpdate({email: email}, {token: token}, {new: true}).populate('roles').exec(cb);
   },
   getUserByEmail: (email, cb) => {
     model.findOne({email: email}, cb);
+  },
+  getUserById: (id, cb) => {
+    model.findOne({_id: id }, cb);
   },
   createUser: (user, cb) => {
   // createUser: (email, password, token, cb) => {

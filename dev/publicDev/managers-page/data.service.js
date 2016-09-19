@@ -25,7 +25,6 @@
         return $http.post("/api/parkingRules/" + propertyId, rule);
       }
 
-      // TODO: future update functionality
       function update(id, rule) {
         return $http.put("/api/parkingRules/" + id, rule, {
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}

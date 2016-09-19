@@ -28,8 +28,8 @@
       vm.newRule = {}
     }
 
-    vm.edit = function(index) {
-      vm.rules[index].editmode = true;
+    vm.edit = function(ruleIndex) {
+      vm.rules[ruleIndex].editmode = true;
     }
 
     vm.add = function(rule) {
@@ -40,9 +40,9 @@
     }
 
     // TODO: future update functionality
-    vm.save = function(index, id, rule) {
+    vm.save = function(ruleIndex, id, rule) {
       console.log(vm.rules);
-      vm.rules[index].editmode = false;
+      vm.rules[ruleIndex].editmode = false;
       rulesDataService.update(id, rule).then(function() {
         getAllRules();
       });

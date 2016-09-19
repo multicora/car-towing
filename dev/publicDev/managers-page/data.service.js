@@ -5,7 +5,6 @@
     .module('app')
     .factory("rulesDataService", dataservice);
 
-
     dataservice.$inject = ['$http'];
 
     function dataservice($http) {

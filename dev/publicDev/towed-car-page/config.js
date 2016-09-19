@@ -8,7 +8,8 @@ config(['$routeProvider', function($routeProvider) {
     '/towed_car',
     {
       templateUrl: 'towed-car-page/towed-car-page.html',
-      controller: 'towedСarCtrl as vm'
+      controller: 'towedСarCtrl',
+      controllerAs: 'vm'
     }
   );
 }]);

@@ -5,10 +5,15 @@
     .module('app')
     .controller('towedСarCtrl', towedСarCtrl);
 
-  towedСarCtrl.$inject = ['customPageService', '$http'];
+  towedСarCtrl.$inject = ['customPageService', '$http', '$sce'];
 
-  function towedСarCtrl(customPageService, $http) {
+  function towedСarCtrl(customPageService, $http, $sce) {
     var vm = this;
+
+    vm.trustSrc = function(src) {
+      return $sce.trustAsResourceUrl(src);
+    }
+  
 
     customPageService.get()
       .then(function(res) {

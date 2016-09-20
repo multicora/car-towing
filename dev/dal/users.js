@@ -29,9 +29,6 @@ const users = {
   getUserByToken: (token, cb) => {
     model.findOne({token: token}).populate('roles').exec(cb);
   },
-  getUserById: (id, cb) => {
-    model.findOne({_id: id}), (cb);
-  },
   updateToken: (token, email, cb) => {
     model.findOneAndUpdate({email: email}, {token: token}, {new: true}).populate('roles').exec(cb);
   },
@@ -50,6 +47,9 @@ const users = {
   },
   getUserByResetToken: (resetToken, cb) => {
     model.findOne({resetToken: resetToken}, cb);
+  },
+  updateUser: (id, cb) => {
+    return model.findOneAndUpdate({_id: id}, cb);
   },
   resetPassword: (data, cb) => {
     if (data.newPassword === data.confirmPassword) {

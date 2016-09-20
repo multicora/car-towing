@@ -16,13 +16,19 @@
       AdminEmployeesService.getUserById(userId)
         .then(function(res) {
           vm.user = res.data;
-          console.log(vm.user);
+          console.log(res.data);
         });
+      vm.save = function() {
+        AdminEmployeesService.editUser(userId, vm.user);
+        $location.path('/admin/employees');
+      };
+     } else {
+       vm.save = function() {
+         AdminEmployeesService.add(vm.user);
+         $location.path('/admin/employees');
+       };
      }
 
-    vm.save = function() {
-      AdminEmployeesService.add(vm.user);
-      $location.path('/admin/employees');
-    };
+
   }
 })();

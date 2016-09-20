@@ -2,21 +2,21 @@
   "use strict";
   var app = angular.module('app');
 
-  function dataService($http) {
+  function mainCtrlDataProvider($http) {
     this.getVisitorsCount = function() {
       return $http.get('api/visitorsCounter');
     }
   }
 
-  function ctrl($http, dataService) {
+  function ctrl($http, mainCtrlDataProvider) {
     var vm = this;
-    dataService.getVisitorsCount().then(function(response){
+    mainCtrlDataProvider.getVisitorsCount().then(function(response){
       vm.visitorsCount = response.data;
     });
   }
-  ctrl.$inject = ['$http', 'dataService'];
+  ctrl.$inject = ['$http', 'mainCtrlDataProvider'];
 
   app
   .controller('mainCtrl', ctrl)
-  .service('dataService', dataService);
+  .service('mainCtrlDataProvider', mainCtrlDataProvider);
 })()

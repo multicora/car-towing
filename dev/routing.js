@@ -14,7 +14,7 @@ module.exports.init = function (server) {
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply.file( path.resolve(__dirname, './public/index.html') );
+      reply.file( path.resolve(__dirname, './public/index.html') );
     },
   });
   server.route({

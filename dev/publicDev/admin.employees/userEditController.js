@@ -15,7 +15,6 @@
       AdminEmployeesService.getUserById(userId)
         .then(function(res) {
           vm.user = res.data;
-          console.log(vm.user);
         });
       vm.save = function() {
         AdminEmployeesService.editUser(userId, vm.user)

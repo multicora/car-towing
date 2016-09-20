@@ -14,7 +14,6 @@
       AdminEmployeesService.getUsers()
         .then(function(res) {
           vm.usersData = res.data;
-          console.log(vm.usersData);
         });
     };
 

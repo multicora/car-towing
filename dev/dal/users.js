@@ -39,10 +39,10 @@ const users = {
   getUserById: (id, cb) => {
     model.findOne({_id: id }, cb);
   },
-  blockUser: (id, blocked, cb) => {
+  blockUser: (id, cb) => {
     model.findOneAndUpdate({_id: id}, {blocked : true}, cb);
   },
-  unBlockUser: (id, blocked, cb) => {
+  unBlockUser: (id, cb) => {
     model.findOneAndUpdate({_id: id}, {blocked : false}, cb);
   },
   createUser: (user, cb) => {

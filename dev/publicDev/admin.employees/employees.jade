@@ -19,4 +19,5 @@
           p.email(ng-bind="user.email") Email
           .buttons
             a.btn.btn-submit.edit(type="button" href="#/admin/employees/edit/{{user._id}}") Edit
-            button.btn.btn-submit.block(type="button" ng-click="vm.blockUser(user._id)") Block
+            button.btn.btn-submit.block(type="button" ng-if="!user.blocked" ng-click="vm.blockUser(user._id)") Block
+            button.btn.btn-submit.block.un-block(type="button" ng-if="user.blocked" ng-click="vm.unBlockUser(user._id)") Unblock

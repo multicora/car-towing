@@ -80,8 +80,8 @@ module.exports = function (server) {
   });
 
   server.route({
-    method: 'GET',
-    path: '/api/users',
+    method: 'post',
+    path: '/api/user-block/{id}',
     config: {
       auth: 'simple',
       plugins: {
@@ -90,7 +90,25 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        DAL.users.blockUser(request.payload function (err, docs) {
+        DAL.users.blockUser(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
+    }
+  });
+
+  server.route({
+    method: 'post',
+    path: '/api/user-unblock/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['users:read']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.users.unBlockUser(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
         });
       }

@@ -76,10 +76,15 @@
         width: 110px;
         height: 52px;
       }
-
       .edit {
         margin-right: 10px;
         padding-top: 13px;
+      }
+      .un-block {
+        background-color: #f22930;
+      }
+      .un-block:hover {
+        background-color: #f45359;
       }
     }
   }

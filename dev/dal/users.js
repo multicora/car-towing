@@ -10,7 +10,7 @@ const schema = new Schema({
   password: { type: String, max: 255 },
   token: { type: String, max: 255 },
   resetToken: {type: String, max: 255 },
-  blocked: {type: Boolean},
+  blocked: Boolean,
   roles: [ {type: Schema.Types.ObjectId, ref: 'roles'} ]
 });
 
@@ -39,8 +39,11 @@ const users = {
   getUserById: (id, cb) => {
     model.findOne({_id: id }, cb);
   },
-  blockUser: (id, data, cb) => {
-    model.findOneAndUpdate({_id: id}, data, cb);
+  blockUser: (id, blocked, cb) => {
+    model.findOneAndUpdate({_id: id}, {blocked : true}, cb);
+  },
+  unBlockUser: (id, blocked, cb) => {
+    model.findOneAndUpdate({_id: id}, {blocked : false}, cb);
   },
   createUser: (user, cb) => {
   // createUser: (email, password, token, cb) => {

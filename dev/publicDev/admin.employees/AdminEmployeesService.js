@@ -14,32 +14,32 @@
         getUsers: getUsers,
         getUserById: getUserById,
         editUser: editUser,
-        blockUser: blockUser
+        blockUser: blockUser,
+        unBlockUser: unBlockUser
       }
 
       function add(data) {
-        // return $http.post('api/users?' + TokenService.getTokenName() + '=' + 'heeGZWmTN8qtkEUt', data);
         return $http.post('api/users?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
       }
 
       function getUsers() {
-        // return $http.get('/api/users?' + TokenService.getTokenName() + '=' + 'heeGZWmTN8qtkEUt');
         return $http.get('/api/users?' + TokenService.getTokenName() + '=' + TokenService.getToken());
       }
 
       function getUserById(id) {
-        // return $http.get('/api/users/' + id + '?' + TokenService.getTokenName() + '=' + 'heeGZWmTN8qtkEUt');
         return $http.get('/api/users/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
       }
 
       function editUser(id, user) {
-        // return $http.put('/api/users/' + id + '?' + TokenService.getTokenName() + '=' + 'heeGZWmTN8qtkEUt', user);
         return $http.put('/api/users/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), user);
       }
 
-      function blockUser(id, blocked) {
-        // return $http.get('/api/users/' + id + '?' + TokenService.getTokenName() + '=' + 'heeGZWmTN8qtkEUt');
-        return $http.get('/api/users?' + TokenService.getTokenName() + '=' + TokenService.getToken(), id, blocked);
+      function blockUser(id) {
+        return $http.post('/api/user-block/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
+      }
+
+      function unBlockUser(id) {
+        return $http.post('/api/user-unblock/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
       }
     }
 })();

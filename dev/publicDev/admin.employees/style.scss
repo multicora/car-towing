@@ -48,13 +48,15 @@
     margin-top: 40px;
     width: 100%;
     padding: 0 70px;
-    .name {
+    .name, .email {
       display: inline-block;
       width: 35%;
-    }
-    .email {
-      display: inline-block;
-      width: 35%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      vertical-align: middle;
+      height: 52px;
+      padding: 16px 10px 0 0;
     }
     .title {
       font-size: 18px;

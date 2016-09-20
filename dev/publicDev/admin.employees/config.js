@@ -14,12 +14,12 @@
       })
       .when('/admin/employees/edit', {
         templateUrl: 'admin.employees/employeesAdd.html',
-        controller: 'userDataBinding',
+        controller: 'userEditController',
         controllerAs: 'vm'
       })
       .when('/admin/employees/edit/:id', {
         templateUrl: 'admin.employees/employeesAdd.html',
-        controller: 'userDataBinding',
+        controller: 'userEditController',
         controllerAs: 'vm'
       });
     }

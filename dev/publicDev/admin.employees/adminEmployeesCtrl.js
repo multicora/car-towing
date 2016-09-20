@@ -14,5 +14,12 @@
       .then(function(res) {
         vm.usersData = res.data;
       });
+
+    vm.blockUser = function(userId) {
+      AdminEmployeesService.blockUser(userId)
+      .then(function() {
+        console.log(vm.user);
+      });
+    }
   }
 })();

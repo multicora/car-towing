@@ -65,14 +65,32 @@ module.exports = function (server) {
     method: 'PUT',
     path: '/api/users/{id}',
     config: {
-      // auth: 'simple',
-      // plugins: {
-      //   hapiRouteAcl: {
-      //     permissions: ['users:read']
-      //   }
-      // },
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['users:read']
+        }
+      },
       handler: function (request, reply) {
         DAL.users.updateUser(request.params.id, request.payload, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/users',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['users:read']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.users.blockUser(request.payload function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
         });
       }

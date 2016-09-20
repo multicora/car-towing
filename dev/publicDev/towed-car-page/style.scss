@@ -1,0 +1,187 @@
+.towed-car-page {
+  .container {
+    background-color: #ffffff;
+    min-height: 100%;
+  }
+
+  .info {
+    height: 70px;
+    background: #f7f7f7;
+    color: #4f4f4f;
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 10px 0 0 0;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: 400;
+      margin: 5px 0 0 0;
+    }
+  }
+
+  .title {
+    color: #1c1b1b;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+    margin: 20px 0;
+  }
+
+  .towed-car-content {
+    .map {
+      height: 200px;
+      border: none;
+    }
+
+    .taxis-container {
+      padding: 30px 0 0 0;
+
+      .title {
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+
+      img {
+        vertical-align: top;
+        margin-right: 20px;
+        width: 50px;
+        height: 50px;
+      }
+
+      .sub-title,
+      .taxi-contact {
+        font-size: 13px;
+        font-weight: 400;
+      }
+
+      .uber, 
+      .taxis {
+        padding: 0 20px;
+
+        .taxi-contact {
+          display: inline-block;
+          margin-bottom: 0px;
+          p {
+            width: 210px; 
+          }
+        }
+      }
+
+      .uber {
+        .title {
+          margin-top: 0px;
+        }
+
+        .uber-link:hover {
+          opacity: 0.8;
+        }
+      }
+
+      .taxis {
+        margin-top: 30px;
+
+        .title {
+          margin-top: 0px
+        }
+
+        .taxi-contact {
+          p {
+            margin-bottom: 0;
+          }
+
+          .phone {
+            color: #75b5d3;
+            text-decoration: underline;
+          }
+
+          .name {
+            margin-left: 5px;
+            text-transform: capitalize;
+          }
+
+          .name:before {
+            content: "- ";
+          }
+        }
+      }
+    }
+
+    #content {
+      padding: 40px 20px;
+    }
+  }
+}
+
+@media (min-width: 970px) {
+  .towed-car-page {
+
+    .info {
+      height: 110px;
+      margin-top: 20px;
+      h1 {
+        font-size: 26px;
+        margin-top: 26px;
+      }
+      h2 {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .towed-car-page {
+    .towed-car-content {
+      padding: 0 40px;
+
+      .map {
+        height: 300px;
+      }
+
+      .taxis-container {
+        padding: 0 0 0 30px;
+
+        img {
+          width: 70px;
+          height: 70px;
+        }
+
+        .title,
+        .sub-title,
+        .taxi-contact {
+          font-size: 18px;
+        }
+
+        .uber,
+        .taxis {
+
+          .taxi-contact {
+            p {
+              width: 330px;
+            }
+          }
+        }
+
+        .uber {
+          padding: 0;
+
+          .title {
+            margin-top: 4px;
+          }
+        }
+
+        .taxis {
+          padding: 0;
+
+          .title {
+            margin-bottom: 4px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -15,10 +15,16 @@ body {
   color: #1c1b1b;
 }
 
-.properties, .property-page, .reset-password, .new-password, .login-page {
+.properties,
+.property-page,
+.reset-password,
+.new-password,
+.login-page,
+.towed-car-page {
   background-image: url(files/background.png);
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 }
 
 // reusable blocks______________________________________________________

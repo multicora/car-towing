@@ -5,15 +5,15 @@ const path = require('path');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
-  name: { type: String, required: true, max: 255 },
-  address: String,
-  logo: String,
-  location: Schema.Types.ObjectId,
+  name    :  { type: String, required: true, max: 255 },
+  addres  :  String,
+  logo    :  String,
+  location:  { type: Schema.Types.ObjectId, ref: 'locations' },
+  blocked :  { type: Boolean, default: false },
+  updated :  { type: Date, default: Date.now },
+  manager :  { type: Schema.Types.ObjectId, ref: 'users' }
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/
-  blocked: { type: Boolean, default: false },
-  updated: { type: Date, default: Date.now },
-  manager: {type: Schema.Types.ObjectId, ref: 'users'}
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

@@ -56,4 +56,28 @@ module.exports = function (server) {
       }
     }
   });
+
+  server.route({
+    method: 'POST',
+    path: '/api/parkingProblem',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['customPages:edit']
+        }
+      },
+      handler: function (request, reply) {
+        var sendingObject = _.clone(request.payload);
+        sendingObject.customJson = JSON.stringify(request.payload.customJson);
+        DAL.customPages.update(sendingObject, function (err, doc) {
+          if (!err && doc) {
+            reply(doc);
+          } else {
+            reply(JSON.stringify(err));
+          }
+        });
+      }
+    }
+  });
 };

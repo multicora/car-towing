@@ -1,0 +1,19 @@
+.admin-parking-problem
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .content
+        ng-quill-editor(
+          ng-model="vm.editor"
+          toolbar="true"
+          link-tooltip="true"
+          image-tooltip="true"
+          toolbar-entries="size bold list bullet italic underline strike align color background link"
+          editor-required="true"
+          theme="snow"
+          error-class="input-error"
+          callback="vm.initCallback(editor, name)")
+        p.message(ng-bind="vm.message") message
+        button.btn.btn-primary.btn-block.submit(
+                type="button" ng-click="vm.addParkingProblem()") SAVE

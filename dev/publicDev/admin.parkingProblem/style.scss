@@ -1,0 +1,37 @@
+.admin-parking-problem {
+  background-color: #f7f7f7;
+  min-height: 100%;
+
+  .content {
+    background-color: #ffffff;
+    min-height: 100%;
+    padding-bottom: 20px;
+  }
+
+  .content {
+    width: 100%;
+    text-align: center;
+
+    .advanced-wrapper {
+      padding: 30px 25px 0 25px;
+    }
+
+    .ql-container {
+      height: 600px;
+      border: 1px solid #a9a9a9;
+      text-align: left;
+    }
+
+    .message {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .submit {
+      margin: 20px auto 0 auto;
+      width: 229px;
+      height: 46px;
+    }
+  }
+}

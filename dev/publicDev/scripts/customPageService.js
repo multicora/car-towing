@@ -18,6 +18,10 @@
         return $http.post('api/gotTowed', data);
       }
 
+      function saveParkingProblem(data) {
+        return $http.post('api/parkingProblem', data);
+      }
+
       function get() {
         return $http.get('api/gotTowed');
       }

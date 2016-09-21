@@ -19,7 +19,11 @@ const schema = new Schema({
   // Content for WYSIWYG editor
   editableContent: String,
   // Custom data, need to be sanitized
-  customJson: String
+  customJson: String,
+  parkingProblem: {
+    editableContent: String,
+    content: String
+  }
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

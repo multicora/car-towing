@@ -15,8 +15,8 @@
           p.name Name
           p.email Email
         .user(ng-repeat="user in vm.usersData")
-          p.name(ng-bind="user.name") Name
-          p.email(ng-bind="user.email") Email
+          p.ellipsis.name(ng-bind="user.name") Name
+          p.ellipsis.email(ng-bind="user.email") Email
           .buttons
             a.btn.btn-submit.edit(type="button" href="#/admin/employees/edit/{{user._id}}") Edit
             button.btn.btn-submit.block(type="button" ng-if="!user.blocked" ng-click="vm.blockUser(user._id)") Block

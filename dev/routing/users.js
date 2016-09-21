@@ -68,7 +68,7 @@ module.exports = function (server) {
       auth: 'simple',
       plugins: {
         hapiRouteAcl: {
-          permissions: ['users:read']
+          permissions: ['users:write']
         }
       },
       handler: function (request, reply) {
@@ -86,7 +86,7 @@ module.exports = function (server) {
       auth: 'simple',
       plugins: {
         hapiRouteAcl: {
-          permissions: ['users:read']
+          permissions: ['users:write']
         }
       },
       handler: function (request, reply) {
@@ -104,7 +104,7 @@ module.exports = function (server) {
       auth: 'simple',
       plugins: {
         hapiRouteAcl: {
-          permissions: ['users:read']
+          permissions: ['users:write']
         }
       },
       handler: function (request, reply) {

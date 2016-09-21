@@ -51,9 +51,6 @@
     .name, .email {
       display: inline-block;
       width: 35%;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
       vertical-align: middle;
       height: 52px;
       padding: 16px 10px 0 0;

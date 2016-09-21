@@ -14,6 +14,9 @@
       },
       create: function(data) {
         return $http.post('/api/locations?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
+      },
+      remove: function(id) {
+        return $http.delete('/api/locations/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
       }
     };
   }

@@ -1,0 +1,20 @@
+.locations-page
+  .container
+    header-directive(class-name="'adaptive'")
+    .locations.main-border-bottom
+      .big-indent-bottom.big-indent-top
+        .row.location(ng-repeat="location in vm.locations")
+          .col-sm-3.font-small
+            .bold-title(ng-if="!$index") Locations
+          .col-sm-6.font-small.ellipsis
+            span(ng-bind="location.name")
+          .col-sm-3.location-controls
+            button.btn.btn-primary.btn-circle(type="button"  ng-click="vm.remove(location._id)")
+              i.glyphicon.glyphicon-remove
+            button.btn.btn-primary.btn-block(type="button") Edit
+        .row.form-group.new-location-block.main-height
+          .col-sm-3
+          .col-sm-6.new-location
+            input.form-control(ng-model="vm.newLocation.name" type="text" placeholder="Locations name")
+          .col-sm-3
+            button.btn.btn-primary.btn-block(type="button" ng-click="vm.add(vm.newLocation)") Add Location

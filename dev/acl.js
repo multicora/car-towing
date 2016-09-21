@@ -40,7 +40,8 @@ const permissionsFunc = function(credentials, callback) {
     },
     locations: {
       read: hasRole('driver') || hasRole('admin') || hasRole('property-manager'),
-      create: hasRole('admin')
+      create: hasRole('admin'),
+      delete: hasRole('admin')
     }
   };
 

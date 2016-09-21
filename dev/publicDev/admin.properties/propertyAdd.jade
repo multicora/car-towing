@@ -20,7 +20,7 @@
               label.radio-inline(ng-repeat="location in vm.locations")
                 input(
                   type="radio"
-                  ng-model="vm.newProperty.locationId"
+                  ng-model="vm.newProperty.location"
                   ng-value="location._id"
                   name="location"
                   id="location_{{location.name}}"

@@ -34,6 +34,9 @@ const locations = {
     } else {
       return locationInstance.save();
     }
+  },
+  remove: (id, cb) => {
+    return model.findOneAndRemove({_id: id}, cb);
   }
 };
 

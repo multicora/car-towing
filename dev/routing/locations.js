@@ -60,4 +60,23 @@ module.exports = (server) => {
       }
     }
   });
+
+  server.route({
+    method: 'DELETE',
+    path: '/api/locations/{locationId}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['locations:delete']
+        }
+      },
+      handler: function (request, reply) {
+        console.log(request.params.locationId);
+        DAL.locations.remove(request.params.locationId, function (err, docs) {
+          !err ? reply('Done') : reply(JSON.stringify(err));
+        });
+      }
+    }
+  });
 };

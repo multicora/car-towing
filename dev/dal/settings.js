@@ -21,4 +21,26 @@ model.on('index', function(error) {
     console.log(error);
   }
 });
-module.exports = model;
+
+const settings = {
+  get: (cb) => {
+    return model.find({}, cb);
+  },
+  getByName: function (name, cb) {
+    return model.findOne({name: name}, cb);
+  },
+  update: function (setting, cb) {
+    model.findOneAndUpdate(
+      {
+        name: setting.name
+      },
+      setting,
+      {
+        upsert:true
+      },
+      cb
+    );
+  }
+};
+
+module.exports = settings;

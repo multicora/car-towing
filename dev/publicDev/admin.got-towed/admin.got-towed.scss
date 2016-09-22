@@ -25,9 +25,13 @@
       display: inline-block;
       vertical-align: top;
     }
+
+    .btn.btn-primary.btn-block.submit {
+      margin-top: 20px;
+    }
   }
 
-  .content {
+  .page-content {
     display: inline-block;
     width: 100%;
     vertical-align: top;

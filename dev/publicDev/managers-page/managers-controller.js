@@ -36,6 +36,10 @@
       vm.newRule = {}
     }
 
+    vm.edit = function(ruleIndex) {
+      vm.rules[ruleIndex].editmode = true;
+    }
+
     vm.add = function(rule) {
       rulesDataService.create(property._id, rule).then(function() {
         clearNewRule();
@@ -43,7 +47,13 @@
       });
     }
 
-    // TODO: future update functionality
+    vm.save = function(ruleIndex, id, rule) {
+      vm.rules[ruleIndex].editmode = false;
+      rulesDataService.update(id, rule).then(function() {
+        getAllRules();
+      });
+    }
+
     vm.edit = function(rule) {
       rulesDataService.update(rule._id, rule).then(function() {
         getAllRules(property._id);

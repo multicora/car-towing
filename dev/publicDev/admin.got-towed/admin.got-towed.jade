@@ -8,7 +8,7 @@
           name="gotTowedForm"
           ng-submit="vm.addGotTowed(gotTowedForm)"
           )
-          .content
+          .page-content
             h2.title "Got towed?" page
             input.address(
               type="text"
@@ -43,5 +43,5 @@
               theme="snow"
               error-class="input-error"
               callback="vm.initCallback(editor, name)")
-            button.btn.btn-primary.btn-block(
+            button.btn.btn-primary.btn-block.submit(
               type="submit") SAVE

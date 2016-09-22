@@ -20,7 +20,6 @@
         vm.data.customJson.address = vm.data.customJson.address || '';
         vm.data.editableContent = res.data.editableContent || null;
         vm.data.editableContent = JSON.parse(vm.data.editableContent) || {ops:[]};
-        console.log(vm.data);
       });
 
     vm.addTaxi = function() {
@@ -40,7 +39,7 @@
       vm.data.editableContent = JSON.stringify(editorInstance.getContents());
       vm.data.content = editorInstance.getHTML();
 
-      customPageService.save(vm.data)
+      customPageService.saveGotTowed(vm.data)
         .then(function(success) {
         }, function(error) {
           console.log('error');

@@ -13,7 +13,6 @@
 
     customPageService.get()
       .then(function(res) {
-        console.log(res.data);
         vm.data = res.data;
         vm.data.parkingProblem = JSON.parse(res.data.parkingProblem || null);
         vm.data.parkingProblem = vm.data.parkingProblem || {};
@@ -29,9 +28,9 @@
       vm.data.parkingProblem.editableContent = JSON.stringify(editorInstance.getContents());
       vm.data.parkingProblem.content = editorInstance.getHTML();
 
-      customPageService.save(vm.data)
+      customPageService.saveParkingProblem(vm.data)
         .then(function(success) {
-          vm.message = 'Success!';
+          vm.message = 'Information successfully saved!';
         }, function(error) {
           vm.message = 'Error!';
         });

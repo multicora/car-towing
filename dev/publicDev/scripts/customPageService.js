@@ -6,20 +6,21 @@
     .factory("customPageService", customPageService);
 
 
-    customPageService.$inject = ['$http'];
+    customPageService.$inject = ['$http', 'TokenService'];
 
-    function customPageService($http) {
+    function customPageService($http, TokenService) {
       return {
-        save: save,
-        get: get
+        get: get,
+        saveGotTowed: saveGotTowed,
+        saveParkingProblem: saveParkingProblem
       }
 
-      function save(data) {
-        return $http.post('api/gotTowed', data);
+      function saveGotTowed(data) {
+        return $http.post('api/gotTowed?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
       }
 
       function saveParkingProblem(data) {
-        return $http.post('api/parkingProblem', data);
+        return $http.post('api/parkingProblem?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
       }
 
       function get() {

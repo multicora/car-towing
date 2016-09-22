@@ -5,14 +5,15 @@
 
   app.factory('authService', dataservice);
 
-  dataservice.$inject = ['$http'];
+  dataservice.$inject = ['$http', 'TokenService'];
 
-  function dataservice($http) {
+  function dataservice($http, TokenService) {
     var user = null;
 
     return {
       login: login,
       newPassword: newPassword,
+      getCurrentUser: getCurrentUser,
       setUser: setUser,
       getUser: getUser,
     };
@@ -23,6 +24,10 @@
 
     function newPassword(data) {
       return $http.post('api/new_password', data);
+    }
+
+    function getCurrentUser() {
+      return $http.get('api/currentUser?' + TokenService.getTokenName() + '=' + TokenService.getToken());
     }
 
     function setUser(newUser) {

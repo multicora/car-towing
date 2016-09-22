@@ -5,7 +5,7 @@
   }
 
   var app = NG.module('app'),
-    configInjections = ['$routeProvider', 'locationsRoute'];
+    configInjections = ['$routeProvider', 'locationsRoute', 'resolverProvider'];
 
   app.constant('locationsRoute', {
     path: '/locations',
@@ -15,7 +15,13 @@
     }
   });
 
-  function locaiotnsConfig($routeProvider, locationsRoute) {
+  function locaiotnsConfig($routeProvider, locationsRoute, resolverProvider) {
+    var resolver = resolverProvider.$get();
+
+    locationsRoute.route.resolve = {
+      resolver: resolver.get
+    };
+
     $routeProvider.when(locationsRoute.path, locationsRoute.route);
   }
   locaiotnsConfig.$inject = configInjections;

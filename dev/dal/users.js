@@ -11,7 +11,7 @@ const schema = new Schema({
   token: { type: String, max: 255 },
   resetToken: {type: String, max: 255 },
   blocked: Boolean,
-  roles: [ {type: Schema.Types.ObjectId, ref: 'Roles'} ]
+  roles: [ {type: Schema.Types.ObjectId, ref: 'roles'} ]
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
@@ -25,16 +25,33 @@ model.on('index', function(error) {
 
 const users = {
   get: (cb) => {
-    model.find({}, cb);
+    model.find({}, 'email roles', cb);
   },
   getUserByToken: (token, cb) => {
-    model.findOne({token: token}).populate('roles').exec(cb);
+    model.findOne({token: token}, 'email roles').populate('roles').exec(cb);
   },
   updateToken: (token, email, cb) => {
-    model.findOneAndUpdate({email: email}, {token: token}, {new: true}).populate('roles').exec(cb);
+    model.findOneAndUpdate(
+      {email: email},
+      {token: token},
+      {
+        new: true,
+        fields: 'email roles'
+      }
+    ).populate('roles').exec(cb);
   },
   getUserByEmail: (email, cb) => {
-    model.findOne({email: email}, cb);
+    model.findOne({email: email}, 'email roles', cb);
+  },
+  getUserByEmailAndPass: (email, pass, cb) => {
+    model.findOne(
+      {
+        email: email,
+        password: pass
+      },
+      'email roles',
+      cb
+    );
   },
   getUserById: (id, cb) => {
     model.findOne({_id: id }, cb);
@@ -53,14 +70,21 @@ const users = {
     propertyIns.save(cb);
   },
   getUserByResetToken: (resetToken, cb) => {
-    model.findOne({resetToken: resetToken}, cb);
+    model.findOne({resetToken: resetToken}, 'email roles', cb);
   },
   updateUser: (id, data, cb) => {
     model.findOneAndUpdate({_id: id}, data, cb);
   },
   resetPassword: (data, cb) => {
     if (data.newPassword === data.confirmPassword) {
-      model.findOneAndUpdate({resetToken : data.resetToken}, {password: data.newPassword}, cb);
+      model.findOneAndUpdate(
+        {resetToken : data.resetToken},
+        {password: data.newPassword},
+        {
+          new: true,
+          fields: 'email roles'
+        },
+        cb);
     } else {
       cb(new Error('Passwords do not match'));
     }

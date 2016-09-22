@@ -12,5 +12,6 @@
       $httpProvider.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
       $httpProvider.defaults.withCredentials = true;
       $routeProvider.otherwise({ redirectTo: '/' });
+      // $httpProvider.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
     }
 })();

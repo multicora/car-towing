@@ -39,10 +39,9 @@
       vm.data.editableContent = JSON.stringify(editorInstance.getContents());
       vm.data.content = editorInstance.getHTML();
 
-      customPageService.saveGotTowed(vm.data)
+      customPageService.save(vm.data)
         .then(function(success) {
         }, function(error) {
-          console.log('error');
         });
     };
   }

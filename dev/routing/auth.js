@@ -29,16 +29,32 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         const user = request.payload;
-        DAL.users.getUserByEmail(user.login, (err, docs) => {
-          if (!!docs && docs.password == user.password) {
+        DAL.users.getUserByEmailAndPass(user.login, user.password, (err, doc) => {
+          if (!!doc) {
               let token = Utils.newToken();
               DAL.users.updateToken(token, user.login, (err, user) => {
-                !!user ? reply(user) : reply(Boom.badImplementation('Server error'));
+                if (user) {
+                  user.token = token;
+                  reply(user);
+                } else {
+                  reply( Boom.badImplementation('Server error') )
+                }
               });
           } else {
             reply(Boom.unauthorized('The username or password is incorrect'));
           }
         });
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/currentUser',
+    config: {
+      auth: 'simple',
+      handler: function (request, reply) {
+        reply(request.auth.credentials);
       }
     }
   });

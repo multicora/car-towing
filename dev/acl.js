@@ -1,6 +1,4 @@
 const permissionsFunc = function(credentials, callback) {
-  console.log(credentials);
-
   // let userPermissions = {};
 
   const roles = credentials.roles.map( (role) => {
@@ -44,8 +42,6 @@ const permissionsFunc = function(credentials, callback) {
       delete: hasRole('admin')
     }
   };
-
-  console.log(userPermissions);
 
   callback(null, userPermissions);
 };

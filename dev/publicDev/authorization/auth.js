@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: fix identation
+
 (function() {
   angular
     .module('Authorization', ['ngRoute'])

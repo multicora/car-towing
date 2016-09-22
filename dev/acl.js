@@ -37,6 +37,11 @@ const permissionsFunc = function(credentials, callback) {
     users: {
       create: hasRole('admin'),
       read: hasRole('admin'),
+    },
+    locations: {
+      read: hasRole('driver') || hasRole('admin') || hasRole('property-manager'),
+      create: hasRole('admin'),
+      delete: hasRole('admin')
     }
   };
 

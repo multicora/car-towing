@@ -49,6 +49,8 @@ DAL.users = require('./users.js');
 
 DAL.files = require('./files.js');
 
+DAL.locations = require('./locations.js');
+
 DAL.blocking = require('./blocking.js').dal;
 
 module.exports = DAL;

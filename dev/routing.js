@@ -17,6 +17,7 @@ module.exports.init = function (server) {
   require('./routing/property.js')(server);
   require('./routing/users.js')(server);
   require('./routing/customPage.js')(server);
+  require('./routing/locations.js')(server);
   require('./routing/settings.js')(server);
 
   // For debugging
@@ -50,5 +51,4 @@ module.exports.init = function (server) {
       }
     }
   });
-
 };

@@ -1,0 +1,23 @@
+.admin-page.admin-employees
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .employeesEditor
+        form(
+          name="userForm"
+          ng-submit="vm.save()")
+          .driverContent
+            h2 Add new user
+            input(
+              type="text"
+              placeholder="Name"
+              ng-model="vm.user.name"
+              required)
+            input(
+              type="email"
+              placeholder="Email"
+              ng-model="vm.user.email"
+              required)
+            div
+              button.btn.btn-submit.add(type="submit") Save

@@ -5,10 +5,12 @@ const path = require('path');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
+  name: { type: String, max: 255 },
   email: { type: String, required: true, unique: true, max: 255 },
   password: { type: String, max: 255 },
   token: { type: String, max: 255 },
   resetToken: {type: String, max: 255 },
+  blocked: Boolean,
   roles: [ {type: Schema.Types.ObjectId, ref: 'Roles'} ]
 });
 
@@ -34,6 +36,15 @@ const users = {
   getUserByEmail: (email, cb) => {
     model.findOne({email: email}, cb);
   },
+  getUserById: (id, cb) => {
+    model.findOne({_id: id }, cb);
+  },
+  blockUser: (id, cb) => {
+    model.findOneAndUpdate({_id: id}, {blocked : true}, cb);
+  },
+  unBlockUser: (id, cb) => {
+    model.findOneAndUpdate({_id: id}, {blocked : false}, cb);
+  },
   createUser: (user, cb) => {
   // createUser: (email, password, token, cb) => {
   //   model.create({email: email, password: password, token: token}, cb);
@@ -43,6 +54,9 @@ const users = {
   },
   getUserByResetToken: (resetToken, cb) => {
     model.findOne({resetToken: resetToken}, cb);
+  },
+  updateUser: (id, data, cb) => {
+    model.findOneAndUpdate({_id: id}, data, cb);
   },
   resetPassword: (data, cb) => {
     if (data.newPassword === data.confirmPassword) {

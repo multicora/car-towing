@@ -9,7 +9,7 @@ const schema = new Schema({
   password: { type: String, max: 255 },
   token: { type: String, max: 255 },
   resetToken: {type: String, max: 255 },
-  roles: [ {type: Schema.Types.ObjectId, ref: 'roles'} ]
+  roles: [ {type: Schema.Types.ObjectId, ref: 'Roles'} ]
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

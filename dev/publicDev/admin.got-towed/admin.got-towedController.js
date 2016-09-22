@@ -41,9 +41,9 @@
 
       customPageService.save(vm.data)
         .then(function(success) {
-          vm.successMessage = 'Information successfully saved!';
+          vm.message = 'Information successfully saved!';
         }, function(error) {
-          vm.successMessage = 'Error!';
+          vm.message = 'Error!';
         });
     };
   }

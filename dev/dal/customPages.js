@@ -20,10 +20,7 @@ const schema = new Schema({
   editableContent: String,
   // Custom data, need to be sanitized
   customJson: String,
-  parkingProblem: {
-    editableContent: String,
-    content: String
-  }
+  parkingProblem: String
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

@@ -28,7 +28,7 @@
       vm.data.parkingProblem.editableContent = JSON.stringify(editorInstance.getContents());
       vm.data.parkingProblem.content = editorInstance.getHTML();
 
-      customPageService.saveParkingProblem(vm.data)
+      customPageService.saveParkingProblem(vm.data.parkingProblem)
         .then(function(success) {
           vm.message = 'Information successfully saved!';
         }, function(error) {

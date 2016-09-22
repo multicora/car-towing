@@ -22,11 +22,19 @@ module.exports = function (server) {
 
   server.route({
     method: 'GET',
+    path: '/api/user-property/{userId}',
+    handler: function (request, reply) {
+      DAL.properties.getByUserId(request.params.userId, function (err, docs) {
+        console.log(docs);
+        !err ? reply(docs) : reply(JSON.stringify(err));
+      });
+    }
+  });
+
+  server.route({
+    method: 'GET',
     path: '/api/property/{id}',
     config: {
-      pre: [
-        { method: 'checkTokin(raw.req.headers.token)', assign: "token" }
-      ],
       handler: function (request, reply) {
         DAL.properties.getById(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
@@ -39,6 +47,12 @@ module.exports = function (server) {
     method: 'POST',
     path: '/api/property',
     config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:create']
+        }
+      },
       // TODO: uncomment validations
       // validate: {
       //   payload: {
@@ -49,31 +63,36 @@ module.exports = function (server) {
       //   }
       // },
       handler: function handler(request, reply) {
+        const createOrGetUser = (newUser, cb) => {
+          DAL.users.getUserByEmail(newUser.email, function (err, user) {
+            if (!user) {
+              DAL.users.createUser(newUser, cb);
+            } else {
+              cb(null, user);
+            }
+          });
+        };
         let generateSetPasswordLink = (token) => {
           let route = Utils.getSetPassRoute();
           return [route, token].join('');
         }
-        let runTransaction = (roleId) => {
-          let transaction = new Transaction();
+
+        DAL.roles.getByName(Utils.rolesNames.propertyManager, function(err, role) {
           let newUser = {
             email: request.payload.login,
             resetToken: Utils.newToken(),
-            roles: [roleId]
+            roles: [role._id]
           };
 
-          transaction.insert(path.basename(module.filename, '.js'), request.payload);
-          // TODO: rewrite for getting users model name
-          transaction.insert('users', newUser);
+          createOrGetUser(newUser, function (err, user) {
+            let newProperty = request.payload;
 
-          // TODO: add error log? replace transaction library?
-          transaction.run(function transactionCb(err, docs){
-            let resetToken = docs[1].resetToken;
-            docs ? reply(generateSetPasswordLink(resetToken)) : reply(JSON.stringify("something goes wrong"));
+            newProperty.manager = user._id;
+            DAL.properties.create(newProperty, function (err, property) {
+              console.log(property);
+              !err ? reply( generateSetPasswordLink(user.resetToken) ) : reply( Boom.badRequest(err) );
+            });
           });
-        };
-
-        DAL.roles.getByName(Utils.rolesNames.propertyManager, function(err, docs) {
-          !err ? runTransaction(docs._id): reply(JSON.stringify(err));
         });
       }
     }
@@ -84,6 +103,12 @@ module.exports = function (server) {
     method: 'PUT',
     path: '/api/property/{id}',
     config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:edit']
+        }
+      },
       validate: {
         params: {
           name: Joi.string().min(1).max(255).required(),
@@ -104,10 +129,18 @@ module.exports = function (server) {
   server.route({
     method: 'DELETE',
     path: '/api/property/{id}',
-    handler: function (request, reply) {
-      DAL.properties.remove(request.params.id, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
-      });
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:delete']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.properties.remove(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
     }
   });
 };

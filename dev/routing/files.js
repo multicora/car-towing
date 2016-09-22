@@ -19,6 +19,13 @@ module.exports = function (server) {
         allow: 'multipart/form-data'
       },
 
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['files:create']
+        }
+      },
+
       handler: function (request, reply) {
         files.setFile(request, function (err, fileId) {
           if (!err) {
@@ -44,6 +51,12 @@ module.exports = function (server) {
     method: 'GET',
     path: '/api/files/{ownerId}',
     config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['files:read']
+        }
+      },
       handler: function (request, reply) {
         DAL.files.getByOwnerId(request.params.ownerId, function (err, res) {
           const filesPromises = res.map(function (fileData) {

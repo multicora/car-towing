@@ -4,6 +4,8 @@
 const Hapi = require('hapi');
 const mongoose = require('mongoose');
 const _ = require('lodash');
+const Promise = require('promise');
+const DAL = require('./dal/dal.js');
 
 mongoose.connect('mongodb://localhost/carTowing', function(err) {
   if (err)  {
@@ -25,25 +27,29 @@ function registerStaticFilesServer(server, cb) {
   server.register(plugin, cb);
 }
 
-function registerLoging(server, cb) {
-  const Good = require('good');
-  server.register({
-    register: Good,
-    options: {
-      reporters: {
-        console: [{
-          module: 'good-squeeze',
-          name: 'Squeeze',
-          args: [{
-            response: '*',
-            log: '*'
-          }]
-        }, {
-          module: 'good-console'
-        }, 'stdout']
+function registerLoging(server) {
+  return new Promise(function (resolve, reject) {
+    const Good = require('good');
+    server.register({
+      register: Good,
+      options: {
+        reporters: {
+          console: [{
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{
+              response: '*',
+              log: '*'
+            }]
+          }, {
+            module: 'good-console'
+          }, 'stdout']
+        }
       }
-    }
-  }, cb);
+    }, function (err) {
+      err ? reject() : resolve();
+    });
+  });
 }
 
 // Configure cookies for Hapi server
@@ -67,19 +73,18 @@ function startServer() {
   const cbBinded = _.bind(
     function (server, err) {
       if (err) throw err
-      const auth = require('./auth.js');
       const routing = require('./routing');
-      auth.init(server);
       routing.init(server);
     },
     null,
     server
   );
-  registerStaticFilesServer(server, cbBinded);
 
-  const registerLogCb = _.bind(
+  const registerDone = _.bind(
     (server, err) => {
       if (err) throw err; // something bad happened loading the plugin
+
+      registerStaticFilesServer(server, cbBinded);
 
       server.start((err) => {
         if (err) throw err;
@@ -90,5 +95,57 @@ function startServer() {
     null,
     server
   );
-  registerLoging(server, registerLogCb);
+
+  registerACL(server).then(function () {
+    return registerLoging(server);
+  }).then(function () {
+    return registerAuth(server);
+  }).then(function () {
+    return registerDone();
+  });
+}
+
+function registerACL(server) {
+  return new Promise(function (resolve, reject) {
+    require('./acl.js')(server, function(err) {
+      if (err) {
+        console.log(err);
+        reject();
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
+function registerAuth(server) {
+  return new Promise(function (resolve, reject) {
+    const AuthBearer = require('hapi-auth-bearer-token');
+
+    server.register(AuthBearer, (err) => {
+      if (err) {
+        reject();
+      } else {
+        server.auth.strategy('simple', 'bearer-access-token', {
+          accessTokenName: 'X-CART-Token',    // optional, 'access_token' by default
+          validateFunc: function (token, callback) {
+
+            // For convenience, the request object can be accessed
+            // from `this` within validateFunc.
+            var request = this;
+
+            DAL.users.getUserByToken(token, function (err, user) {
+              if (user) {
+                callback(null, true, user);
+              } else {
+                callback(null, false, null);
+              }
+            });
+          }
+        });
+
+        resolve();
+      }
+    });
+  });
 }

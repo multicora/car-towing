@@ -11,7 +11,10 @@ module.exports = function (cb) {
     getDbVersion: getDbVersion,
     migrations: [
       require('./scripts/v001.js'),
-      require('./scripts/v002.js')
+      require('./scripts/v002.js'),
+      require('./scripts/v003.js'),
+      require('./scripts/v004.js'),
+      require('./scripts/v005.js')
     ],
     done: cb
   };

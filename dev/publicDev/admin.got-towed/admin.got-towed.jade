@@ -1,0 +1,47 @@
+.admin-got-towed
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .info
+        form(
+          name="gotTowedForm"
+          ng-submit="vm.addGotTowed(gotTowedForm)"
+          )
+          .content
+            h2.title "Got towed?" page
+            input.address(
+              type="text"
+              placeholder="Address"
+              ng-model="vm.data.customJson.address")
+            div
+              h3 Enter taxi information
+              div.taxi-value(ng-repeat="input in vm.data.customJson.taxis track by $index")
+                input.taxi(
+                  type="text"
+                  placeholder="Taxi name"
+                  ng-model="vm.data.customJson.taxis[$index].name")
+                input.taxi(
+                  type="text"
+                  placeholder="Taxi phone"
+                  ng-model="vm.data.customJson.taxis[$index].phone")
+                button.btn.btn-primary.btn-circle(
+                  type="button"
+                  ng-click="vm.removeTaxi($index)")
+                  i.glyphicon.glyphicon-remove
+              button.btn.btn-primary.btn-block(
+                 type="button"
+                 ng-click="vm.addTaxi()") Add
+            div
+            ng-quill-editor(
+              ng-model="vm.editor"
+              toolbar="true"
+              link-tooltip="true"
+              image-tooltip="true"
+              toolbar-entries="size bold list bullet italic underline strike align color background link"
+              editor-required="true"
+              theme="snow"
+              error-class="input-error"
+              callback="vm.initCallback(editor, name)")
+            button.btn.btn-primary.btn-block.submit(
+              type="submit") SAVE

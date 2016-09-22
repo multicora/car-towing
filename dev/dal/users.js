@@ -22,11 +22,14 @@ model.on('index', function(error) {
 });
 
 const users = {
-  checkToken: (token, cb) => {
-    model.findOne({token: token}, cb);
+  get: (cb) => {
+    model.find({}, cb);
+  },
+  getUserByToken: (token, cb) => {
+    model.findOne({token: token}).populate('roles').exec(cb);
   },
   updateToken: (token, email, cb) => {
-    model.findOneAndUpdate({email: email}, {token: token}, cb);
+    model.findOneAndUpdate({email: email}, {token: token}, {new: true}).populate('roles').exec(cb);
   },
   getUserByEmail: (email, cb) => {
     model.findOne({email: email}, cb);
@@ -43,9 +46,7 @@ const users = {
   },
   resetPassword: (data, cb) => {
     if (data.newPassword === data.confirmPassword) {
-      model.findOneAndUpdate({resetToken : data.resetToken}, {password: data.newPassword}, function(err, docs) {
-        (docs === null) ? cb(new Error('Incorrect reset token.')) : reply(docs);
-      });
+      model.findOneAndUpdate({resetToken : data.resetToken}, {password: data.newPassword}, cb);
     } else {
       cb(new Error('Passwords do not match'));
     }

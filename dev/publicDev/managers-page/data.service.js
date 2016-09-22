@@ -5,29 +5,29 @@
     .module('app')
     .factory("rulesDataService", dataservice);
 
-
     dataservice.$inject = ['$http'];
 
     function dataservice($http) {
       return {
         create: create,
-        getAll: getAll,
-        remove: remove
+        remove: remove,
+        update: update,
+        get: get
       };
 
-      // TODO: for testing purpose
-      function getAll() {
-        return $http.get("/api/parkingRules");
+      function get(propertyId) {
+        return $http.get("/api/parkingRules/" + propertyId);
       }
 
       function create(propertyId, rule) {
         return $http.post("/api/parkingRules/" + propertyId, rule);
       }
 
-      // TODO: future update functionality
-      // function edit(id, rule) {
-      //   return $http.put("/api/parkingRules/" + id, rule);
-      // }
+      function update(id, rule) {
+        return $http.put("/api/parkingRules/" + id, rule, {
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+      }
 
       function remove(id) {
         return $http.delete("/api/parkingRules/" + id);

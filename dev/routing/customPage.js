@@ -48,10 +48,10 @@ module.exports = function (server) {
         var sendingObject = _.clone(request.payload);
         sendingObject.customJson = JSON.stringify(request.payload.customJson);
         sendingObject.content = sanitizeHtml(sendingObject.content, {
-          allowedTags: sanitizeHtml.defaults.allowedTags.concat(['span', 'img']),
+          allowedTags: sanitizeHtml.defaults.allowedTags.concat(['span', 'a']),
           allowedAttributes: {
           '*': ['style'],
-          'img': ['src']
+          'a': ['href']
           }
         });
         DAL.customPages.update(sendingObject, function (err, doc) {

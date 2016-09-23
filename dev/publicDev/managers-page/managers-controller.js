@@ -19,7 +19,7 @@
     propertiesService.getUsersProperty(user._id)
       .then(function (res) {
         if (!res.data) {
-          vm.message = 'Any property!';
+          vm.message = 'Unfortunately we couldn\'t find your property.';
         }
         property = res.data;
         vm.managerName = property.name;

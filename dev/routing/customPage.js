@@ -56,4 +56,36 @@ module.exports = function (server) {
       }
     }
   });
+
+  server.route({
+    method: 'GET',
+    path: '/api/parkingProblem',
+    handler: function (request, reply) {
+      DAL.customPages.getByKey('parking-problem', function (err, docs) {
+        !err ? reply(docs) : reply('Error: ' + err);
+      });
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/api/parkingProblem',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['customPages:edit']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.customPages.update(request.payload, function (err, doc) {
+          if (!err && doc) {
+            reply(doc);
+          } else {
+            reply(JSON.stringify(err));
+          }
+        });
+      }
+    }
+  });
 };

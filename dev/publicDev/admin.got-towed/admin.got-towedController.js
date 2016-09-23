@@ -11,7 +11,7 @@
     var vm = this;
     var editorInstance = null;
 
-    customPageService.get()
+    customPageService.getGotTowed()
       .then(function(res) {
         vm.data = res.data;
         vm.data.customJson = JSON.parse(res.data.customJson || null);
@@ -39,7 +39,7 @@
       vm.data.editableContent = JSON.stringify(editorInstance.getContents());
       vm.data.content = editorInstance.getHTML();
 
-      customPageService.save(vm.data)
+      customPageService.saveGotTowed(vm.data)
         .then(function(success) {
           vm.message = 'Information successfully saved!';
         }, function(error) {

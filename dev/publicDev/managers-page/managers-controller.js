@@ -16,20 +16,25 @@
 
     vm.managerName = null;
 
-    propertiesService.getUsersProperty(user._id).then(function (res) {
-      property = res.data;
-      vm.managerName = property.name;
+    propertiesService.getUsersProperty(user._id)
+      .then(function (res) {
+        if (!res.data) {
+          vm.message = 'Any property!';
+        }
+        property = res.data;
+        vm.managerName = property.name;
 
-      return property;
+        return property;
     }).then(function (property) {
       getAllRules(property._id);
     });
 
 
     function getAllRules(propertyId) {
-      rulesDataService.get(propertyId).then(function(response) {
-        vm.rules = response.data;
-      });
+      rulesDataService.get(propertyId)
+        .then(function(response) {
+          vm.rules = response.data;
+        });
     }
 
     function clearNewRule() {
@@ -41,29 +46,26 @@
     }
 
     vm.add = function(rule) {
-      rulesDataService.create(property._id, rule).then(function() {
-        clearNewRule();
-        getAllRules(property._id);
-      });
+      rulesDataService.create(property._id, rule)
+        .then(function() {
+          clearNewRule();
+          getAllRules(property._id);
+        });
     }
 
     vm.save = function(ruleIndex, id, rule) {
       vm.rules[ruleIndex].editmode = false;
-      rulesDataService.update(id, rule).then(function() {
-        getAllRules();
-      });
-    }
-
-    vm.edit = function(rule) {
-      rulesDataService.update(rule._id, rule).then(function() {
-        getAllRules(property._id);
-      });
+      rulesDataService.update(id, rule)
+        .then(function() {
+          getAllRules();
+        });
     }
 
     vm.remove = function(id) {
-      rulesDataService.remove(id).then(function() {
-        getAllRules(property._id);
-      });
+      rulesDataService.remove(id)
+        .then(function() {
+          getAllRules(property._id);
+        });
     }
   }
 

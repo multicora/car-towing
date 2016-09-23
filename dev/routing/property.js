@@ -25,7 +25,7 @@ module.exports = function (server) {
     path: '/api/user-property/{userId}',
     handler: function (request, reply) {
       DAL.properties.getByUserId(request.params.userId, function (err, docs) {
-        console.log(docs);
+        console.log(docs, 11111111111);
         !err ? reply(docs) : reply(JSON.stringify(err));
       });
     }

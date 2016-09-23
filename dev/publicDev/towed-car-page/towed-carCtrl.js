@@ -15,7 +15,7 @@
     }
   
 
-    customPageService.get()
+    customPageService.getGotTowed()
       .then(function(res) {
         vm.data = res.data;
         vm.data.customJson = JSON.parse(res.data.customJson || null);

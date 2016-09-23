@@ -41,7 +41,6 @@
 
       customPageService.saveGotTowed(vm.data)
         .then(function(success) {
-          console.log(vm.data);
           vm.message = 'Information successfully saved!';
         }, function(error) {
           vm.message = 'Error!';

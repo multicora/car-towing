@@ -5,13 +5,17 @@
     .module('app')
     .controller('adminPropertiesCtrl', adminPropertiesCtrl);
 
-  adminPropertiesCtrl.$inject = ['$filter', 'propertiesService', '$location', '$scope'];
+  adminPropertiesCtrl.$inject = ['$filter', 'propertiesService', 'locationsService', '$location', '$scope'];
 
-  function adminPropertiesCtrl($filter, propertiesService, $location, $scope) {
+  function adminPropertiesCtrl($filter, propertiesService, locationsService, $location, $scope) {
     var vm = this;
     vm.adminProperties = [];
     vm.searchPropertyValue = '';
     vm.searchObj = {};
+
+    locationsService.getLocations().then(function(response){
+      vm.locations = response.data;
+    });
 
     vm.getAdminProperties = () => {
       propertiesService.getProperties()

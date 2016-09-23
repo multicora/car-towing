@@ -1,0 +1,38 @@
+.locations-page {
+  background: #f7f7f7;
+  min-height: 100%;
+
+  .row + .row {
+    margin-top: 10px;
+  }
+
+  .container {
+    background: #FFFFFF;
+    min-height: 100%;
+  }
+
+  .locations {
+    .new-location-block input{
+      border-radius: 5px;
+      border-color: #d4d4d4;
+      box-sizing: border-box;
+      font-size: 18px;
+      flex-grow: 1;
+      padding-left: 20px;
+    }
+
+    .new-location {
+      display: flex;
+    }
+
+    .location {
+      .location-controls {
+        display: flex;
+
+        .btn-circle {
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+}

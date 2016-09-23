@@ -3,6 +3,15 @@
 var app = angular.module('app');
 
 app.
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/', {templateUrl: 'mainpage/home.html'});
+config(['$routeProvider', 'resolverProvider', function($routeProvider, resolverProvider) {
+  var resolver = resolverProvider.$get();
+
+  $routeProvider.when('/',
+    {
+      templateUrl: 'mainpage/home.html',
+      resolve: {
+        resolver: resolver.get
+      }
+    }
+  );
 }]);

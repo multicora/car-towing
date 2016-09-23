@@ -52,9 +52,23 @@ function registerLoging(server) {
   });
 }
 
+// Configure cookies for Hapi server
+let configureServer = (server) => {
+  // TODO: review all params
+  server.state('session', {
+    path: '/',
+    ttl: 253402300000000,
+    isSecure: false,
+    isHttpOnly: false,
+    encoding: 'base64json',
+    clearInvalid: false, // remove invalid cookies
+    strictHeader: false // don't allow violations of RFC 6265
+  });
+}
+
 function startServer() {
   const server = new Hapi.Server();
-  server.connection({ port: 3000 });
+  server.connection( {port: 3000, routes: {cors: {origin: ['*'],credentials : true}}} );
 
   const cbBinded = _.bind(
     function (server, err) {
@@ -74,6 +88,7 @@ function startServer() {
 
       server.start((err) => {
         if (err) throw err;
+        configureServer(server);
         server.log('info', 'Server running at: ' + server.info.uri);
       });
     },

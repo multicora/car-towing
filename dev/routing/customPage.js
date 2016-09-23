@@ -58,6 +58,16 @@ module.exports = function (server) {
   });
 
   server.route({
+    method: 'GET',
+    path: '/api/parkingProblem',
+    handler: function (request, reply) {
+      DAL.customPages.getByKey('parking-problem', function (err, docs) {
+        !err ? reply(docs) : reply('Error: ' + err);
+      });
+    }
+  });
+
+  server.route({
     method: 'POST',
     path: '/api/parkingProblem',
     config: {
@@ -68,9 +78,7 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        var sendingObject = _.clone(request.payload);
-        sendingObject.parkingProblem = JSON.stringify(request.payload.parkingProblem);
-        DAL.customPages.update(sendingObject, function (err, doc) {
+        DAL.customPages.update(request.payload, function (err, doc) {
           if (!err && doc) {
             reply(doc);
           } else {

@@ -14,28 +14,7 @@ DAL.roles = require('./roles.js');
 // Roles
 // Licenses
 // Settings
-const Settings = require('./settings.js');
-
-DAL.settings = {
-  get: (cb) => {
-    return Settings.find({}, cb);
-  },
-  getByName: function (name, cb) {
-    return Settings.findOne({name: name}, cb);
-  },
-  update: function (model, cb) {
-    Settings.findOneAndUpdate(
-      {
-        name: model.name
-      },
-      model,
-      {
-        upsert:true
-      },
-      cb
-    );
-  }
-};
+DAL.settings = require('./settings.js');
 
 // Custom pages
 const CustomPages = require('./customPages.js');
@@ -69,6 +48,8 @@ DAL.parkingRules = require('./parkingRules.js');
 DAL.users = require('./users.js');
 
 DAL.files = require('./files.js');
+
+DAL.locations = require('./locations.js');
 
 DAL.blocking = require('./blocking.js').dal;
 

@@ -10,7 +10,8 @@
 
     function customPageService($http, TokenService) {
       return {
-        get: get,
+        getGotTowed: getGotTowed,
+        getParkingProblem: getParkingProblem,
         saveGotTowed: saveGotTowed,
         saveParkingProblem: saveParkingProblem
       }
@@ -23,8 +24,12 @@
         return $http.post('api/parkingProblem?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
       }
 
-      function get() {
+      function getGotTowed() {
         return $http.get('api/gotTowed');
+      }
+
+      function getParkingProblem() {
+        return $http.get('api/parkingProblem');
       }
     }
 })();

@@ -14,6 +14,18 @@
             ng-model="vm.newProperty.name"
             ng-class="{'l-error-input': vm.errorMes.length > 0}"
             required)
+          .location-block
+            .title Location
+            .radio
+              label.radio-inline(ng-repeat="location in vm.locations")
+                input(
+                  type="radio"
+                  ng-model="vm.newProperty.location"
+                  ng-value="location._id"
+                  name="location"
+                  id="location_{{location.name}}"
+                  required)
+                span.text {{location.name}}
           input(
             type="text"
             placeholder="Login"

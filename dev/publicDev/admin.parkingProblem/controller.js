@@ -11,24 +11,22 @@
     var vm = this;
     var editorInstance = null;
 
-    customPageService.get()
+    customPageService.getParkingProblem()
       .then(function(res) {
-        vm.data = res.data;
-        vm.data.parkingProblem = JSON.parse(res.data.parkingProblem || null);
-        vm.data.parkingProblem = vm.data.parkingProblem || {};
-        vm.data.parkingProblem.editableContent = JSON.parse(vm.data.parkingProblem.editableContent || null) || {ops:[]};
+        vm.data = res.data || {};
+        vm.data.editableContent = JSON.parse(res.data.editableContent || null) || {ops:[]};
       });
 
     vm.initCallback = function(editor, name) {
       editorInstance = editor;
-      editorInstance.setContents(vm.data.parkingProblem.editableContent);
+      editorInstance.setContents(vm.data.editableContent);
     }
 
     vm.addParkingProblem = function() {
-      vm.data.parkingProblem.editableContent = JSON.stringify(editorInstance.getContents());
-      vm.data.parkingProblem.content = editorInstance.getHTML();
+      vm.data.editableContent = JSON.stringify(editorInstance.getContents());
+      vm.data.content = editorInstance.getHTML();
 
-      customPageService.saveParkingProblem(vm.data.parkingProblem)
+      customPageService.saveParkingProblem(vm.data)
         .then(function(success) {
           vm.message = 'Information successfully saved!';
         }, function(error) {

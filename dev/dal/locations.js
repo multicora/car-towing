@@ -8,9 +8,7 @@ const schema = new Schema({
   name: {
     type: String,
     unique: true,
-    required: true
-  },
-  value: String
+    required: true}
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
@@ -22,25 +20,24 @@ model.on('index', function(error) {
   }
 });
 
-const settings = {
+const locations = {
   get: (cb) => {
     return model.find({}, cb);
   },
-  getByName: function (name, cb) {
-    return model.findOne({name: name}, cb);
+  getById: (id, cb) => {
+    return model.findOne({_id: id }, cb);
   },
-  update: function (setting, cb) {
-    model.findOneAndUpdate(
-      {
-        name: setting.name
-      },
-      setting,
-      {
-        upsert:true
-      },
-      cb
-    );
+  create: (location, cb) => {
+    const locationInstance = new model(location);
+    if (typeof cb === 'function') {
+      locationInstance.save(cb);
+    } else {
+      return locationInstance.save();
+    }
+  },
+  remove: (id, cb) => {
+    return model.findOneAndRemove({_id: id}, cb);
   }
 };
 
-module.exports = settings;
+module.exports = locations;

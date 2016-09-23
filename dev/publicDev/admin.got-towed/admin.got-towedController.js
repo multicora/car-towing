@@ -11,7 +11,7 @@
     var vm = this;
     var editorInstance = null;
 
-    customPageService.get()
+    customPageService.getGotTowed()
       .then(function(res) {
         vm.data = res.data;
         vm.data.customJson = JSON.parse(res.data.customJson || null);
@@ -41,7 +41,10 @@
 
       customPageService.saveGotTowed(vm.data)
         .then(function(success) {
+          console.log(vm.data);
+          vm.message = 'Information successfully saved!';
         }, function(error) {
+          vm.message = 'Error!';
         });
     };
   }

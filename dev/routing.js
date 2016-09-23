@@ -44,9 +44,9 @@ module.exports.init = function (server) {
             }
           });
           let session = { Token: Utils.newToken() };
-          reply.file( path.resolve(__dirname, './public/' + request.params.param ) ).state('session', session);
+          reply.file( path.resolve(__dirname, './public/' + (request.params.param || 'index.html') ) ).state('session', session);
         } else {
-          reply.file( path.resolve(__dirname, './public/' + request.params.param ) );
+          reply.file( path.resolve(__dirname, './public/' + (request.params.param || 'index.html') ) );
         }
       }
     }

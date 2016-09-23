@@ -37,7 +37,8 @@
     "node-cmd": "^1.1.1",
     "node-uuid": "^1.4.7",
     "promise": "^7.1.1",
-    "rand-token": "^0.2.1"
+    "rand-token": "^0.2.1",
+    "sanitize-html": "^1.13.0"
   },
   "devDependencies": {
     "connect-modrewrite": "^0.9.0",

@@ -27,6 +27,12 @@ body {
   background-attachment: fixed;
 }
 
+.admin-page, .managers-page {
+  .content {
+    width: 1366px;
+  }
+}
+
 // reusable blocks______________________________________________________
 .bold-title {
   font-weight: 600;

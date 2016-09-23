@@ -2,6 +2,7 @@
 
 const path = require('path');
 const DAL = require('../dal/dal.js');
+const Boom = require('boom');
 
 module.exports = function (server) {
   server.route({
@@ -10,7 +11,7 @@ module.exports = function (server) {
     config: {
       handler: function (request, reply) {
         DAL.parkingRules.getByPropId(request.params.propertyId, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badRequest(err));
         });
       }
     }

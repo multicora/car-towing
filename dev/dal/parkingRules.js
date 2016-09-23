@@ -49,8 +49,13 @@ const parkingRules = {
       }
     });
   },
-  update: (id, cb) => {
-    return model.findOneAndUpdate({_id: id}, cb);
+  update: (id, data, cb) => {
+    return model.findOneAndUpdate(
+      {_id: id},
+      data,
+      {new: true},
+      cb
+    );
   },
   remove: (id, cb) => {
     return model.findOneAndRemove({_id: id}, cb);

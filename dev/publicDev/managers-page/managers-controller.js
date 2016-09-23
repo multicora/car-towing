@@ -57,7 +57,7 @@
       vm.rules[ruleIndex].editmode = false;
       rulesDataService.update(id, rule)
         .then(function() {
-          getAllRules();
+          getAllRules(property._id);
         });
     }
 

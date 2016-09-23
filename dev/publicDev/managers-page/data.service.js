@@ -24,9 +24,7 @@
       }
 
       function update(id, rule) {
-        return $http.put('/api/parkingRules/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), rule, {
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        });
+        return $http.put('/api/parkingRules/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), rule);
       }
 
       function remove(id) {

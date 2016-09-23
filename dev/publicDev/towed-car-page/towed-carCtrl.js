@@ -18,7 +18,6 @@
     customPageService.getGotTowed()
       .then(function(res) {
         vm.data = res.data;
-        console.log(vm.data);
         vm.data.customJson = JSON.parse(res.data.customJson || null);
         vm.data.customJson = vm.data.customJson || {};
         vm.data.customJson.taxis = vm.data.customJson.taxis || [];

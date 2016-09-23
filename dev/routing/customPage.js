@@ -5,6 +5,7 @@ const files = require('../services/files.js')();
 const DAL = require('../dal/dal.js');
 const Boom = require('boom');
 const _ = require('lodash');
+const sanitizeHtml = require('sanitize-html');
 
 module.exports = function (server) {
   // server.route({
@@ -46,6 +47,13 @@ module.exports = function (server) {
       handler: function (request, reply) {
         var sendingObject = _.clone(request.payload);
         sendingObject.customJson = JSON.stringify(request.payload.customJson);
+        sendingObject.content = sanitizeHtml(sendingObject.content, {
+          allowedTags: sanitizeHtml.defaults.allowedTags.concat(['span', 'img']),
+          allowedAttributes: {
+          '*': ['style'],
+          'img': ['src']
+          }
+        });
         DAL.customPages.update(sendingObject, function (err, doc) {
           if (!err && doc) {
             reply(doc);

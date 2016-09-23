@@ -5,9 +5,9 @@
     .module('app')
     .factory("rulesDataService", dataservice);
 
-    dataservice.$inject = ['$http'];
+    dataservice.$inject = ['$http', 'TokenService'];
 
-    function dataservice($http) {
+    function dataservice($http, TokenService) {
       return {
         create: create,
         remove: remove,
@@ -16,21 +16,21 @@
       };
 
       function get(propertyId) {
-        return $http.get("/api/parkingRules/" + propertyId);
+        return $http.get('/api/parkingRules/' + propertyId);
       }
 
       function create(propertyId, rule) {
-        return $http.post("/api/parkingRules/" + propertyId, rule);
+        return $http.post('/api/parkingRules/' + propertyId + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), rule);
       }
 
       function update(id, rule) {
-        return $http.put("/api/parkingRules/" + id, rule, {
+        return $http.put('/api/parkingRules/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), rule, {
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         });
       }
 
       function remove(id) {
-        return $http.delete("/api/parkingRules/" + id);
+        return $http.delete('/api/parkingRules/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
       }
     }
 })();

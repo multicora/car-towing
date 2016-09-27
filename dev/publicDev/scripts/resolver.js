@@ -3,20 +3,29 @@
 (function() {
   var app = angular.module('app');
 
-  app.service('resolver', customPageService);
+  app.service('resolver', service);
 
-  customPageService.$inject = ['$q', 'authService', 'UserCheckingService'];
+  service.$inject = ['$q', 'authService', 'UserCheckingService', '$location'];
 
-  function customPageService($q, authService, UserCheckingService) {
+  function service($q, authService, UserCheckingService, $location) {
+    this.get2 = function (action) {
+      return _.bind(this.get, this, action);
+    };
     this.get = function () {
       return  $q(function (resolve) {
         Promise.all([authService.getCurrentUser(), authService.getRoles()]).then(
             function (res) {
-              var user = res[0].data.roles[0].name;
-              var action = res[0].data.roles[0].actions;
-              var actions = res[1].data;
+              console.log(res[0].data);
+
+              var user = res[0].data;
+              var action = this;
+              var roles = res[1].data;
               authService.setUser(res[0].data);
-              UserCheckingService.checkUser(user, action, actions);
+
+              if (!UserCheckingService.checkUser(user, roles, action)) {
+                $location.path('/');
+              }
+
               resolve();
             },
             function (errRes) {

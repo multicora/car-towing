@@ -6,7 +6,7 @@ const path = require('path');
 const Schema = mongoose.Schema;
 const schema = new Schema({
   name: {type: String, required: true},
-  actions: [String]
+  actions: [ {type: Schema.Types.ObjectId, ref: 'actions'} ]
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
@@ -20,7 +20,7 @@ model.on('index', function(error) {
 
 const roles = {
   get: (cb) => {
-    return model.find({}, cb);
+    return model.find({}).populate('actions').exec(cb);
   },
   getByName: (name, cb) => {
     return model.findOne({name: name }, cb);

@@ -13,16 +13,13 @@
         checkUser: checkUser
       }
 
-      function checkUser(user, action) {
-        var map = {
-          admin: ['see-admin-page'],
-          manager: ['see-manager-page']
-        };
-        for (var key in map) {
-          if (key === user.role) {
-            var answer = map[key].indexOf(action) >= 0;
+      function checkUser(user, action, actions) {
+        for (var i = 0; i < actions.length; i++) {
+          if (actions[i].name === user) {
+            var answer = actions[i].actions.indexOf(action) >= 0; 
           }
         }
+        console.log(answer);
         return answer;
       }
     }

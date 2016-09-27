@@ -14,8 +14,7 @@
         controller: 'AdminEmployeesController',
         controllerAs: 'vm',
         resolve: {
-          // resolver: resolver.get
-          resolver: resolver.get2('action')
+          resolver: resolver.get2('see-admin-page')
         }
       })
       .when('/admin/employees/edit', {

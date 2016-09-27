@@ -15,8 +15,6 @@
       return  $q(function (resolve) {
         Promise.all([authService.getCurrentUser(), authService.getRoles()]).then(
             function (res) {
-              console.log(res[0].data);
-
               var user = res[0].data;
               var action = this;
               var roles = res[1].data;

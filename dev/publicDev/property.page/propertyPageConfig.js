@@ -10,7 +10,7 @@ config(['$routeProvider', 'resolverProvider', function($routeProvider, resolverP
     templateUrl: 'property.page/propertyPage.html',
     controller: 'propertyCtrl as vm',
     resolve: {
-      resolver: resolver.get2()
+      resolver: resolver.get()
     }
   });
 }]);

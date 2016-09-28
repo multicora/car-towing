@@ -8,14 +8,9 @@
   service.$inject = ['$q', 'authService', 'UserCheckingService', '$location'];
 
   function service($q, authService, UserCheckingService, $location) {
-    this.get2 = function (action) {
+    this.get = function (action) {
       return _.bind(function () {
         return resolve(action);
-      }, this);
-    };
-    this.get = function () {
-      return _.bind(function () {
-        return resolve();
       }, this);
     };
     function resolve (action) {

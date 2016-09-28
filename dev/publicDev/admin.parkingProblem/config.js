@@ -12,7 +12,7 @@ config(['$routeProvider','resolverProvider' , function($routeProvider, resolverP
       controller: 'AdminParkingProblemController',
       controllerAs: 'vm',
       resolve: {
-        resolver: resolver.get2('see-admin-page')
+        resolver: resolver.get('see-admin-page')
       }
     }
   );

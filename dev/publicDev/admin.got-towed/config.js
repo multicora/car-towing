@@ -12,7 +12,7 @@ config(['$routeProvider', 'resolverProvider', function($routeProvider, resolverP
       templateUrl: 'admin.got-towed/admin.got-towed.html',
       controller: 'AdminGotTowedController as vm',
       resolve: {
-        resolver: resolver.get2('see-admin-page')
+        resolver: resolver.get('see-admin-page')
       }
     }
   );

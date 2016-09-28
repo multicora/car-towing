@@ -1,6 +1,6 @@
 'use strict';
 
-(() => {
+(function() {
   angular
     .module('app')
     .factory("rulesDataService", dataservice);

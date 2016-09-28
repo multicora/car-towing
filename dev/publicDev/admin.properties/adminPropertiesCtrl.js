@@ -1,6 +1,6 @@
 "use strict";
 
-(() => {
+(function() {
   angular
     .module('app')
     .controller('adminPropertiesCtrl', adminPropertiesCtrl);
@@ -17,16 +17,16 @@
       vm.locations = response.data;
     });
 
-    vm.getAdminProperties = () => {
+    vm.getAdminProperties = function() {
       propertiesService.getProperties()
-        .then((success) => {
+        .then(function(success) {
           vm.adminProperties = success.data;
-        }, (error) => {
+        }, function(error) {
           console.error(error);
         });
     };
 
-    vm.searchProperty = () => {
+    vm.searchProperty = function() {
       vm.searchObj = {name: vm.searchPropertyValue};
     };
 
@@ -61,11 +61,11 @@
     vm.addProperty = function(form) {
       if (form.$valid) {
         propertiesService.create(vm.newProperty)
-        .then((success) => {
+        .then(function(success) {
           // TODO: replace with appropriate solution
           vm.setPassLink = [getUrl(), success.data].join('');
           // $location.path('/admin/properties');
-        }, (error) => {
+        }, function(error) {
           // add appropriate logging
           vm.errorMes = error.data.message;
         });

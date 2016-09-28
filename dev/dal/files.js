@@ -15,6 +15,10 @@ const schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users',
     required: true
+  },
+  property: {
+    type: Schema.Types.ObjectId,
+    ref: 'property'
   }
 });
 
@@ -28,10 +32,11 @@ model.on('index', function(error) {
 });
 
 module.exports = {
-  save: (fileId, ownerId, cb) => {
+  save: (fileId, ownerId, propertyId, cb) => {
     let inst = new model({
       fileId: fileId,
-      ownerId: ownerId
+      ownerId: ownerId,
+      property: propertyId
     });
 
     inst.save(cb)

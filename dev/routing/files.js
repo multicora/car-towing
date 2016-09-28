@@ -29,8 +29,7 @@ module.exports = function (server) {
       handler: function (request, reply) {
         files.setFile(request, function (err, fileId) {
           if (!err) {
-            // TODO: should be 'ownerId'
-            DAL.files.save(fileId, '', function (err, res) {
+            DAL.files.save(fileId, request.auth.credentials._id, request.payload.propertyId, function (err, res) {
               if (err) {
                 files.removeFile(fileId, function () {
                   reply( Boom.badImplementation('Error while saving file', err) )

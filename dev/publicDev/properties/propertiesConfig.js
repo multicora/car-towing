@@ -12,7 +12,7 @@ config(['$routeProvider', 'resolverProvider', function($routeProvider, resolverP
       templateUrl: 'properties/properties.html',
       controller: 'propertiesCtrl as vm',
       resolve: {
-        resolver: resolver.get
+        resolver: resolver.get2()
       }
     }
   );

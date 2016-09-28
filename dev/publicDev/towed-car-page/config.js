@@ -14,7 +14,7 @@ config(['$routeProvider', 'resolverProvider', function($routeProvider, resolverP
       controller: 'towedСarCtrl',
       controllerAs: 'vm',
       resolve: {
-        resolver: resolver.get
+        resolver: resolver.get2()
       }
     }
   );

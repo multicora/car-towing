@@ -14,7 +14,7 @@
         controller: 'adminPropertiesCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get2('see-admin-page')
         }
       })
       .when('/admin/properties/add', {
@@ -22,7 +22,7 @@
         controller: 'adminPropertiesCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get2('see-admin-page')
         }
       });
     }

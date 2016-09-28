@@ -3,13 +3,17 @@
 var app = angular.module('app');
 
 app.
-config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider','resolverProvider' , function($routeProvider, resolverProvider) {
+  var resolver = resolverProvider.$get();
   $routeProvider.when(
     '/admin/parking_problem',
     {
       templateUrl: 'admin.parkingProblem/admin.parkingProblem.html',
       controller: 'AdminParkingProblemController',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
+      resolve: {
+        resolver: resolver.get2('see-admin-page')
+      }
     }
   );
 }]);

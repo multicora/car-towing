@@ -22,7 +22,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get2('see-admin-page')
         }
       })
       .when('/admin/employees/edit/:id', {
@@ -30,7 +30,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get2('see-admin-page')
         }
       });
     }

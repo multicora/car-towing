@@ -14,12 +14,15 @@
       }
 
       function checkUser(user, roles, action) {
-        for (var i = 0; i < roles.length; i++) {
-          if (roles[i].name === user.name) {
-            var answer = roles[i].actions.indexOf(action) >= 0; 
-          }
-        }
-        console.log(answer);
+        var rolesMap = {};
+        var usersActions = [];
+        roles.forEach(function (roles) {
+          rolesMap[roles.name] = roles;
+        });
+        user.roles.forEach(function (roles) {
+          usersActions = usersActions.concat(rolesMap[roles.name].actions[0].name);
+        });
+        var answer = usersActions.indexOf(action) >= 0;
         return answer;
       }
     }

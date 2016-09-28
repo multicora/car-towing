@@ -52,15 +52,16 @@ module.exports = function (server) {
           permissions: ['properties:create']
         }
       },
-      // TODO: uncomment validations
-      // validate: {
-      //   payload: {
-      //     name: Joi.string().min(1).max(255).required(),
-      //     address: Joi.string(),
-      //     logo: Joi.string(),
-      //     rules: Joi.array().items(Joi.string())
-      //   }
-      // },
+      validate: {
+        payload: {
+          name: Joi.string().min(1).max(255).required(),
+          address: Joi.string(),
+          logo: Joi.string(),
+          location: Joi.string(),
+          rules: Joi.array().items(Joi.string()),
+          login: Joi.string().email()
+        }
+      },
       handler: function handler(request, reply) {
         const createOrGetUser = (newUser, cb) => {
           DAL.users.getUserByEmail(newUser.email, function (err, user) {

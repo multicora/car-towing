@@ -6,6 +6,7 @@
 const files = require('../services/files.js')();
 const DAL = require('../dal/dal.js');
 const Boom = require('boom');
+const path = require('path');
 
 module.exports = function (server) {
   server.route({
@@ -48,7 +49,7 @@ module.exports = function (server) {
 
   server.route({
     method: 'GET',
-    path: '/api/files/{ownerId}',
+    path: '/api/files/{propId}',
     config: {
       auth: 'simple',
       plugins: {
@@ -57,12 +58,12 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        DAL.files.getByOwnerId(request.params.ownerId, function (err, res) {
+        DAL.files.getByPropertyId(request.params.propId, function (err, res) {
           const filesPromises = res.map(function (fileData) {
             return files.getFile(fileData.fileId);
           });
 
-          Promise.all().then(
+          Promise.all(filesPromises).then(
             (res) => {
               reply(res);
             },
@@ -71,6 +72,22 @@ module.exports = function (server) {
             }
           );
         });
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/uploads/{fileName}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['files:read']
+        }
+      },
+      handler: function (request, reply) {
+        reply.file(path.resolve(__dirname, './../../uploads/' + request.params.fileName));
       }
     }
   });

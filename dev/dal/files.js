@@ -42,6 +42,9 @@ module.exports = {
     inst.save(cb)
   },
   getByOwnerId: (id, cb) => {
-    Property.find({ownerId: id}, cb);
+    model.find({ownerId: id}, cb);
+  },
+  getByPropertyId: (id, cb) => {
+    model.find({property: id}, cb);
   }
 };

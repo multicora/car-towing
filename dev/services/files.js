@@ -44,7 +44,7 @@ module.exports = function (config) {
         const path = folder + '/' + id + separator;
 
         glob(path + '*', {nonull:true}, function (err, files) {
-          err ? reject(err) : resolve(files);
+          err ? reject(err) : resolve(files[0]);
           cb && cb(err, files);
         });
       });

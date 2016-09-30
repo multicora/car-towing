@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function(angular) {
   var app = angular.module('app');
 
   app.service('resolver', service);
@@ -34,4 +34,4 @@
       })
     };
   }
-})();
+})(angular);

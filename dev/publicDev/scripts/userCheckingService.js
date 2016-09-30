@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function(angular) {
   angular
     .module('app')
     .factory("UserCheckingService", UserCheckingService);
@@ -28,4 +28,4 @@
       return answer;
     }
   }
-})();
+})(angular);

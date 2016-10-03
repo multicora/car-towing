@@ -4,18 +4,17 @@
   angular.module('app')
     .config(config);
 
-    config.$inject = ['$routeProvider', 'resolverProvider'];
+    config.$inject = ['$routeProvider', 'resolverProvider', 'userAction'];
 
-    function config($routeProvider, resolverProvider) {
+    function config($routeProvider, resolverProvider, userAction) {
       var resolver = resolverProvider.$get();
-      var action = 'see-admin-page';
 
       $routeProvider.when('/admin/employees', {
         templateUrl: 'admin.employees/employees.html',
         controller: 'AdminEmployeesController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(action)
+          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
         }
       })
       .when('/admin/employees/edit', {
@@ -23,7 +22,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(action)
+          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
         }
       })
       .when('/admin/employees/edit/:id', {
@@ -31,7 +30,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(action)
+          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
         }
       });
     }

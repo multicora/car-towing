@@ -4,9 +4,9 @@
   angular.module('app')
     .config(config);
 
-    config.$inject = ['$routeProvider', 'resolverProvider', 'userAction'];
+    config.$inject = ['$routeProvider', 'resolverProvider', 'userActions'];
 
-    function config($routeProvider, resolverProvider, userAction) {
+    function config($routeProvider, resolverProvider, userActions) {
       var resolver = resolverProvider.$get();
 
       $routeProvider.when('/admin/employees', {
@@ -14,7 +14,7 @@
         controller: 'AdminEmployeesController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       })
       .when('/admin/employees/edit', {
@@ -22,7 +22,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       })
       .when('/admin/employees/edit/:id', {
@@ -30,7 +30,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       });
     }

@@ -3,7 +3,7 @@
   var app = angular.module('app');
 
   app.
-    config(['$routeProvider','resolverProvider', 'userAction' , function($routeProvider, resolverProvider,userAction) {
+    config(['$routeProvider','resolverProvider', 'userActions' , function($routeProvider, resolverProvider, userActions) {
     var resolver = resolverProvider.$get();
     $routeProvider.when(
       '/admin/parking_problem',
@@ -12,7 +12,7 @@
         controller: 'AdminParkingProblemController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       }
     );

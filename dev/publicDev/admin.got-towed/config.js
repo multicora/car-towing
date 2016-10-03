@@ -3,7 +3,7 @@
 var app = angular.module('app');
 
   app.
-    config(['$routeProvider', 'resolverProvider', 'userAction', function($routeProvider, resolverProvider, userAction) {
+    config(['$routeProvider', 'resolverProvider', 'userActions', function($routeProvider, resolverProvider, userActions) {
     var resolver = resolverProvider.$get();
 
     $routeProvider.when(
@@ -12,7 +12,7 @@ var app = angular.module('app');
         templateUrl: 'admin.got-towed/admin.got-towed.html',
         controller: 'AdminGotTowedController as vm',
         resolve: {
-          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       }
     );

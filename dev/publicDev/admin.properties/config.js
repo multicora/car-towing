@@ -4,9 +4,9 @@
   angular.module('app')
     .config(config);
 
-    config.$inject = ['$routeProvider', 'resolverProvider', 'userAction'];
+    config.$inject = ['$routeProvider', 'resolverProvider', 'userActions'];
 
-    function config($routeProvider, resolverProvider, userAction) {
+    function config($routeProvider, resolverProvider, userActions) {
       var resolver = resolverProvider.$get();
 
       $routeProvider.when('/admin/properties', {
@@ -14,7 +14,7 @@
         controller: 'adminPropertiesCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       })
       .when('/admin/properties/add', {
@@ -22,7 +22,7 @@
         controller: 'adminPropertiesCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userAction.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       });
     }

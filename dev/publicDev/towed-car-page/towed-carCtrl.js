@@ -13,7 +13,16 @@
     vm.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
     }
-  
+
+    function openMap(id, address) {
+      element = document.getElementById(id);
+      if (navigator.platform.indexOf('iPhone') != -1 ||
+          navigator.platform.indexOf('Android')) {
+        element.addEventListener('click', function() {
+          window.open('https://www.waze.com/ru/livemap?zoom=4&=undefined&pin=1&' + adress);
+        });
+      }
+    }
 
     customPageService.getGotTowed()
       .then(function(res) {
@@ -27,6 +36,7 @@
         var content = document.getElementById('content');
         content.innerHTML = vm.data.content;
         vm.mapSrc = "https://embed.waze.com/iframe?zoom=16&" + vm.data.customJson.address +"&pin=1";
+        openMap(map, vm.data.customJson.address);
       });
   };
 })();

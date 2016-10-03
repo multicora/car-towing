@@ -15,13 +15,10 @@
     }
 
     function openMap(id, address) {
-      element = document.getElementById(id);
-      if (navigator.platform.indexOf('iPhone') != -1 ||
-          navigator.platform.indexOf('Android')) {
-        element.addEventListener('click', function() {
-          window.open('https://www.waze.com/ru/livemap?zoom=4&=undefined&pin=1&' + adress);
-        });
-      }
+      var element = document.getElementById(id);
+      document.addEventListener('click', function() {
+        window.open('https://www.google.com.ua/maps/@' + address + ',16z');
+      });
     }
 
     customPageService.getGotTowed()
@@ -31,12 +28,14 @@
         vm.data.customJson = vm.data.customJson || {};
         vm.data.customJson.taxis = vm.data.customJson.taxis || [];
         vm.data.customJson.address = vm.data.customJson.address || '';
+        vm.data.customJson.addressArray = vm.data.customJson.address.split(',');
         vm.data.editableContent = res.data.editableContent || null;
         vm.data.editableContent = JSON.parse(vm.data.editableContent) || {ops:[]};
         var content = document.getElementById('content');
         content.innerHTML = vm.data.content;
-        vm.mapSrc = "https://embed.waze.com/iframe?zoom=16&" + vm.data.customJson.address +"&pin=1";
-        openMap(map, vm.data.customJson.address);
+        vm.mapSrc = 'https://embed.waze.com/iframe?zoom=16&lat=' + vm.data.customJson.addressArray[0] +
+            '&lon=' + vm.data.customJson.addressArray[1] +'&pin=1';
+        openMap('map-container', vm.data.customJson.address);
       });
   };
 })();

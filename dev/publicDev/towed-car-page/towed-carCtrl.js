@@ -14,13 +14,6 @@
       return $sce.trustAsResourceUrl(src);
     }
 
-    function openMap(id, address) {
-      var element = document.getElementById(id);
-      document.addEventListener('click', function() {
-        window.open('https://www.google.com.ua/maps/@' + address + ',16z');
-      });
-    }
-
     customPageService.getGotTowed()
       .then(function(res) {
         vm.data = res.data;
@@ -35,7 +28,6 @@
         content.innerHTML = vm.data.content;
         vm.mapSrc = 'https://embed.waze.com/iframe?zoom=16&lat=' + vm.data.customJson.addressArray[0] +
             '&lon=' + vm.data.customJson.addressArray[1] +'&pin=1';
-        openMap('map-container', vm.data.customJson.address);
       });
   };
 })();

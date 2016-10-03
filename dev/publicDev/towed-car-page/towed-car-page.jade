@@ -9,8 +9,10 @@
       .col-md-12
         h2.title Been Towed? Do not worry! Here we are:
     .row.towed-car-content
-      #map-container
-      iframe.col-md-7.map#map(ng-src="{{vm.trustSrc(vm.mapSrc)}}" width="100%" height="300px")
+      .map-container.col-md-7
+        iframe.map#map(ng-src="{{vm.trustSrc(vm.mapSrc)}}" width="100%" height="300px")
+        .map-button-container
+          a.btn.btn-submit(ng-href="https://www.google.com/maps/place/{{ vm.data.customJson.address }}/@{{ vm.data.customJson.address }},15z" target="blank") Open in Google Maps
       .col-md-5.taxis-container
         .uber
           a.uber-link(href="https://www.uber.com/" target="blank")

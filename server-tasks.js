@@ -44,5 +44,5 @@ app.get(/\/deploy\/(.*)/, function (req, res) {
 });
 
 app.listen(port, function () {
-  console.log('CART task runer app listening on port ' + port + '!');
+  console.log('CART task runer app listening on port: ' + port + '!');
 });

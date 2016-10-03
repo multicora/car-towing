@@ -10,7 +10,7 @@ config(['$routeProvider', 'resolverProvider', function($routeProvider, resolverP
     {
       templateUrl: 'mainpage/home.html',
       resolve: {
-        resolver: resolver.get
+        resolver: resolver.get()
       }
     }
   );

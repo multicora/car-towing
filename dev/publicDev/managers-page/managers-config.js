@@ -5,7 +5,7 @@
   }
 
   var app = NG.module('app'),
-    configInjections = ['$routeProvider', 'managersRoute', 'resolverProvider'];
+    configInjections = ['$routeProvider', 'managersRoute', 'resolverProvider', 'userActions'];
 
   app.constant('managersRoute', {
     path: '/managers-page',
@@ -15,11 +15,11 @@
     }
   });
 
-  function managersConfig($routeProvider, managersRoute, resolverProvider) {
+  function managersConfig($routeProvider, managersRoute, resolverProvider, userActions) {
     var resolver = resolverProvider.$get();
 
     managersRoute.route.resolve = {
-      resolver: resolver.get
+      resolver: resolver.get(userActions.SEE_MANAGER_PAGE)
     };
     $routeProvider.when(managersRoute.path, managersRoute.route);
   }

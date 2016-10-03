@@ -16,6 +16,7 @@
       getCurrentUser: getCurrentUser,
       setUser: setUser,
       getUser: getUser,
+      getRoles: getRoles
     };
 
     function login(user) {
@@ -36,6 +37,10 @@
 
     function getUser(newUser) {
       return user;
+    }
+
+    function getRoles() {
+      return $http.get('api/roles');
     }
   }
 })();

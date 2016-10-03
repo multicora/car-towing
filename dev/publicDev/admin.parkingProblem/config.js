@@ -1,15 +1,20 @@
 'use strict';
+(function(angula) {
+  var app = angular.module('app');
 
-var app = angular.module('app');
-
-app.
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when(
-    '/admin/parking_problem',
-    {
-      templateUrl: 'admin.parkingProblem/admin.parkingProblem.html',
-      controller: 'AdminParkingProblemController',
-      controllerAs: 'vm'
-    }
-  );
-}]);
+  app.
+    config(['$routeProvider','resolverProvider', 'userActions' , function($routeProvider, resolverProvider, userActions) {
+    var resolver = resolverProvider.$get();
+    $routeProvider.when(
+      '/admin/parking_problem',
+      {
+        templateUrl: 'admin.parkingProblem/admin.parkingProblem.html',
+        controller: 'AdminParkingProblemController',
+        controllerAs: 'vm',
+        resolve: {
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+        }
+      }
+    );
+  }]);
+})(angular);

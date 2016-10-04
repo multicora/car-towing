@@ -23,6 +23,9 @@ function service ($http, TokenService) {
     },
     getPhotoPath: function(photoPath) {
       return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
+    },
+    remove: function(id) {
+      return $http.delete('/api/property/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
     }
   };
 }

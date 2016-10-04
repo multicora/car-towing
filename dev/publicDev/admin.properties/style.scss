@@ -233,6 +233,9 @@
     position: absolute;
     top: 0px;
     left: 125px;
-    background-color: red;
+  }
+
+  .delete:focus {
+    outline: none;
   }
 }

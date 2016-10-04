@@ -131,14 +131,8 @@
     button {
       width: 144px;
       height: 40px;
-      background-color: #3191d8;
-      outline: none;
-      border: none;
-      border-top-right-radius: 6px;
-      border-bottom-right-radius: 6px;
-      color:  #ffffff;
-      font-size: 15px;
-      border: 1px solid transparent;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
   .location-block {
@@ -191,6 +185,7 @@
   display: inline-block;
   vertical-align: top;
   text-align: center;
+  position: relative;
   // TODO: fix name
   .pa-img-wrap {
     position: relative;
@@ -231,5 +226,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
+  }
+
+  .delete {
+    height: 35px;
+    position: absolute;
+    top: 0px;
+    left: 125px;
+    background-color: red;
   }
 }

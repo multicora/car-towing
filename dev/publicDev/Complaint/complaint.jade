@@ -11,17 +11,17 @@
           form.complaint-form(name="complaintForm",
             ng-submit="vm.save(complaintForm)")
             p.title Leave your complaint
-            input.name(type="text",
+            input.name.complaint-input(type="text",
               name="name",
               placeholder="Name",
               ng-model="vm.data.name",
               required)
-            input.email(type="email",
+            input.email.complaint-input(type="email",
               name="email",
               placeholder="Email",
               ng-model="vm.data.email",
               required)
-            input.phone(type="text",
+            input.phone.complaint-input(type="text",
               name="phone",
               placeholder="Tel No",
               ng-model="vm.data.phone")
@@ -35,15 +35,15 @@
                   name="radio",
                   ng-model="vm.data.type")
                 span Towed
-            input.data(type="text",
+            input.data.complaint-input(type="text",
               name="data",
               placeholder="When towed (data, time)",
               ng-model="vm.data.data")
-            input.location(type="text",
+            input.location.complaint-input(type="text",
               name="location",
               placeholder="Location",
               ng-model="vm.data.location")
-            input.invoice-number(type="text",
+            input.invoice-number.complaint-input(type="text",
               name="invoice-number",
               placeholder="Invoice number",
               ng-model="vm.data.invoiceNumber")

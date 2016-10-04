@@ -29,12 +29,7 @@
       .complaint-form {
         padding-top: 20px;
 
-        .name,
-        .email,
-        .phone,
-        .data,
-        .location,
-        .invoice-number {
+      .complaint-input {
           width: 100%;
           height: 46px;
           border: 1px solid #a9a9a9;

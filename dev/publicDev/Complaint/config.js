@@ -13,9 +13,9 @@
         templateUrl: 'complaint/complaint.html',
         controller: 'complaintCtrl as vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get()
         }
       }
     );
   }]);
-}(angular);
+})(angular)

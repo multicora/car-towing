@@ -77,17 +77,18 @@
           margin-bottom: 10px;
         }
 
-      .complaint-text:focus {
-        outline: 0;
-      }
+        .complaint-text:focus {
+          outline: 0;
+        }
 
-      .save {
-        display: inline-block;
-        text-align: center;
-        width: 100%;
+        .save {
+          display: inline-block;
+          text-align: center;
+          width: 100%;
 
-        button {
-          width: 279px;
+          button {
+            width: 279px;
+          }
         }
       }
     }
@@ -95,10 +96,10 @@
 }
 
 @media (min-width: 767px) {
-  .popup {
-    background-color:  rgba(0, 0, 0, 0.2);
+  .complaint {
+    .popup {
+      background-color:  rgba(0, 0, 0, 0.2);
 
-    .complaint {
       .container {
         background: none;
       }
@@ -124,6 +125,7 @@
         -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
         box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
         margin-bottom: 20px;
+        margin-top: 40px;
       }
     }
   }

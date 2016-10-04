@@ -14,4 +14,4 @@
       return $http.post('api/complaint', data);
     }
   }
-})(angular);
+})(angular)

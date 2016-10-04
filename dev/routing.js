@@ -20,6 +20,7 @@ module.exports.init = function (server) {
   require('./routing/locations.js')(server);
   require('./routing/settings.js')(server);
   require('./routing/complaint.js')(server);
+  require('./routing/roles.js')(server);
 
   // For debugging
   //require('./routing/roles.js')(server);

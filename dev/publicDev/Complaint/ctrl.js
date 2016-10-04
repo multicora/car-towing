@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-(() => {
+(function(angular) {
   angular
     .module('app')
     .controller('complaintCtrl', complaintCtrl);
@@ -14,10 +14,9 @@
       if (form.$valid) {
         complaintService.send(vm.data)
           .then(function(res) {
-            console.log(res.data);
             $location.path('/');
           });
       }
     }
   }
-})();
+})(angular);

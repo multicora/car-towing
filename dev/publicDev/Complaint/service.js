@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function(angular) {
   angular.module('app').factory("complaintService", complaintService);
 
   complaintService.$inject = ['$http'];
@@ -14,4 +14,4 @@
       return $http.post('api/complaint', data);
     }
   }
-})();
+})(angular);

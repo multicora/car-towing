@@ -3,17 +3,18 @@
 (function(angular) {
   angular
     .module('app')
-    .factory('LoadingService', LoadingService);
+    .factory('Interseptor', Interseptor);
 
-    LoadingService.$inject = ['usSpinnerService'];
+    Interseptor.$inject = ['LoadingService'];
 
-    function LoadingService(usSpinnerService) {
+    function Interseptor(LoadingService) {
       var loadingMessage = {
           request: function(request) {
+            LoadingService.showSpinner();
             return request;
           },
           response: function(response) {
-            usSpinnerService.stop('loading-spinner');
+            LoadingService.hideSpinner();
             return response;
           }
       };

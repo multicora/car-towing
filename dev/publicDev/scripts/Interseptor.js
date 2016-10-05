@@ -9,11 +9,13 @@
 
     function LoadingService() {
       var loadingMessage = {
-          request: function() {
+          request: function(request) {
             console.log('request');
+            return request;
           },
-          response: function() {
+          response: function(response) {
             console.log('response');
+            return response;
           }
       };
       return loadingMessage;

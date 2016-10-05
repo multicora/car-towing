@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function(angular) {
   angular
     .module('app')
     .config(config);
@@ -15,4 +15,4 @@
       $routeProvider.otherwise({ redirectTo: '/' });
       // $httpProvider.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
     }
-})();
+})(angular);

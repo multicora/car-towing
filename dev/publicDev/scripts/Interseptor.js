@@ -5,15 +5,16 @@
     .module('app')
     .factory('LoadingService', LoadingService);
 
-    LoadingService.$inject = [];
+    LoadingService.$inject = ['usSpinnerService'];
 
-    function LoadingService() {
+    function LoadingService(usSpinnerService) {
       var loadingMessage = {
-          request: function() {
-            console.log('request');
+          request: function(request) {
+            return request;
           },
-          response: function() {
-            console.log('response');
+          response: function(response) {
+            usSpinnerService.stop('loading-spinner');
+            return response;
           }
       };
       return loadingMessage;

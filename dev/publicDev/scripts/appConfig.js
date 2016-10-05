@@ -9,7 +9,6 @@
 
     function config($httpProvider, $routeProvider, TokenServiceProvider) {
       $httpProvider.interceptors.push('LoadingService');
-      console.log($httpProvider.interceptors);
       var TokenService = TokenServiceProvider.$get();
       $httpProvider.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
       $httpProvider.defaults.withCredentials = true;

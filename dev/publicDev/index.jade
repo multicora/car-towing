@@ -7,6 +7,7 @@ html(lang='en-US', ng-app='app')
     link(href="http://cdn.quilljs.com/0.20.1/quill.snow.css" rel="stylesheet")
     link(rel='stylesheet', href='app.css')
   body(ng-controller="mainCtrl as vm")
+    span(us-spinner="{lines: 8, radius:35, width:20, length: 0, opacity: 0}" spinner-key="loading-spinner" spinner-start-active="true")
     .main-view(ng-view)
       footer
         p @ 2016 All rights reserved

@@ -17,6 +17,12 @@ function service ($http, TokenService) {
     },
     getUsersProperty: function(userId) {
       return $http.get('/api/user-property/' + userId);
+    },
+    getPhotos: function(propId) {
+      return $http.get('/api/files/' + propId + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
+    },
+    getPhotoPath: function(photoPath) {
+      return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
     }
   };
 }

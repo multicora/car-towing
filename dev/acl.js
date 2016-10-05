@@ -4,7 +4,6 @@ const permissionsFunc = function(credentials, callback) {
   const roles = credentials.roles.map( (role) => {
     return role.name;
   } );
-  
 
   const hasRole = (name) => {
     return roles.indexOf(name) >= 0;

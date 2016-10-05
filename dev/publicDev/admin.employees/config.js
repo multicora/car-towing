@@ -1,12 +1,12 @@
 'use strict';
 
-(function() {
+(function(angular) {
   angular.module('app')
     .config(config);
 
-    config.$inject = ['$routeProvider', 'resolverProvider'];
+    config.$inject = ['$routeProvider', 'resolverProvider', 'userActions'];
 
-    function config($routeProvider, resolverProvider) {
+    function config($routeProvider, resolverProvider, userActions) {
       var resolver = resolverProvider.$get();
 
       $routeProvider.when('/admin/employees', {
@@ -14,7 +14,7 @@
         controller: 'AdminEmployeesController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       })
       .when('/admin/employees/edit', {
@@ -22,7 +22,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       })
       .when('/admin/employees/edit/:id', {
@@ -30,8 +30,8 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       });
     }
-})();
+})(angular);

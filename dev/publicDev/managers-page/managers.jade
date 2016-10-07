@@ -2,6 +2,20 @@
   .container
     .content
       header-directive(class-name="'adaptive'")
+      include partial-view/decal-part.jade
       include partial-view/blocking-part.jade
       include partial-view/photos-part.jade
       include partial-view/parking-rules.jade
+  .decal-popup(ng-show="vm.decalPopupEditmod")
+    .decal-popup-container
+      .popup-header
+        h2.title List of Decals
+        a.close-popup(ng-click="vm.hideDecalPopup()")
+          i.glyphicon.glyphicon-remove
+      .decal-popup-content
+        .decal-row(ng-repeat="decal in vm.decals")
+          .number(ng-bind="decal.phoneNumber")
+          .name(ng-bind="decal.fullName")
+          .buttons
+            a.delete(ng-click="vm.removeDecal(decal._id)") Delete
+            a.edit(ng-click="vm.getToEditForm(decal._id)") Edit

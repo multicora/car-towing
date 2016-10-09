@@ -93,48 +93,10 @@
         });
     }
 
-    vm.addDecal = function(form) {
-      decalService.add(vm.decal)
-        .then(function(success) {
-          $location.path('/managers-page');
-        }, function(error) {
-          console.log(error);
-        });
-    }
-
-    vm.getDecalById = function(id) {
-      AdminEmployeesService.getDecalById(id)
-      .then(function() {
-      });
-    }
-
     vm.removeDecal = function(id) {
       decalService.removeDecal(id)
       .then(function() {
         getAllDecals();
-      });
-    }
-
-    vm.getToEditForm = function(id) {
-      // console.log(id);
-      decalService.getDecalById(id)
-        .then(function(res) {
-          vm.decalEditEditmod = true;
-          vm.decal = res.data;
-          // console.log(vm.decalEditEditmod);
-          $location.path('/managers-page/add_decal');
-        }, function(error) {
-          console.log(error);
-      });
-    }
-
-    vm.editDecal = function(id, data) {
-      decalService.editDecal(id, data)
-      .then(function(success) {
-        vm.decalEditEditmod = false;
-        $location.path('/managers-page');
-      }, function(error) {
-        console.log(error);
       });
     }
   }

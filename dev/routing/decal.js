@@ -31,12 +31,12 @@ module.exports = function (server) {
     method: 'POST',
     path: '/api/decal',
     config: {
-      // auth: 'simple',
-      // plugins: {
-      //   hapiRouteAcl: {
-      //     permissions: ['decal:create']
-      //   }
-      // },
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['decal:create']
+        }
+      },
       handler: function (request, reply) {
         DAL.decal.create(request.payload, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
@@ -49,12 +49,12 @@ module.exports = function (server) {
     method: 'PUT',
     path: '/api/decal/{id}',
     config: {
-      // auth: 'simple',
-      // plugins: {
-      //   hapiRouteAcl: {
-      //     permissions: ['decal:edit']
-      //   }
-      // },
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['decal:edit']
+        }
+      },
       handler: function (request, reply) {
         DAL.decal.edit(request.params.id, request.payload, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
@@ -67,12 +67,12 @@ module.exports = function (server) {
     method: 'DELETE',
     path: '/api/decal/{id}',
     config: {
-      // auth: 'simple',
-      // plugins: {
-      //   hapiRouteAcl: {
-      //     permissions: ['decal:remove']
-      //   }
-      // },
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['decal:remove']
+        }
+      },
       handler: function (request, reply) {
         DAL.decal.remove(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));

@@ -66,10 +66,10 @@
 
       .decal-popup-content {
         max-height: 550px;
-        overflow-y: scroll;
+        overflow-y: auto;
         margin-top: 30px;
 
-        .decal-row {
+        .decal-content-row {
           font-size: 18px;
           padding: 0 50px;
           width: 100%;
@@ -87,7 +87,7 @@
             width: 40%;
           }
 
-          .buttons {
+          .buttons-container {
             display: inline-block;
             width: 30%;
             text-align: right;

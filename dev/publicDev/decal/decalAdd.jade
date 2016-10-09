@@ -4,7 +4,8 @@
       header-directive
       h1.title Add Decal Number
       form.decal-form(name="decalForm"
-        ng-submit="vm.addDecal(decalForm)")
+        ng-submit="vm.addDecal(decalForm)",
+        novalidate)
           div.radio
             span.radio-title Color of decal
             input(type="radio",
@@ -24,6 +25,7 @@
             span.color Green
           input.decal-input(type="text",
             name="serial-number",
+            maxlength="7",
             placeholder="Serial number",
             ng-model="vm.decal.serialNumber")
           input.decal-input(type="text",

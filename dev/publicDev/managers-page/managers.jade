@@ -13,9 +13,9 @@
         a.close-popup(ng-click="vm.hideDecalPopup()")
           i.glyphicon.glyphicon-remove
       .decal-popup-content
-        .decal-row(ng-repeat="decal in vm.decals")
-          .number(ng-bind="decal.phoneNumber")
+        .decal-content-row(ng-repeat="decal in vm.decals")
+          .number(ng-bind="decal.serialNumber")
           .name(ng-bind="decal.fullName")
-          .buttons
+          .buttons-container
             a.delete(ng-click="vm.removeDecal(decal._id)") Delete
-            a.edit(ng-click="vm.getToEditForm(decal._id)") Edit
+            a.edit(href="#/managers-page/add_decal/{{decal._id}}") Edit

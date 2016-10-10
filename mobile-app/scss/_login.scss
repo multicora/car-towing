@@ -1,0 +1,53 @@
+.l-logo {
+  display: block;
+  width: 140px;
+  margin: 51px auto 32px auto;
+  img {
+    width: 100%;
+  }
+}
+.l-input {
+  height: 44px;
+  margin-bottom: 11px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid #a8a8a8;
+  font-size: 26px;
+  font-weight: 600;
+  input[name="login"] {
+    color: #4d4d4d;
+  }
+  input[name="password"] {
+    color: #5b90d5;
+  }
+  input {
+    font-family: 'OpenSans', sans-serif;
+    font-size: 15px;
+    padding-top: 0px;
+    font-weight: 600;
+    &::-webkit-input-placeholder {color:#a8a8a8;font-size: 15px;}
+    &::-moz-placeholder          {color:#a8a8a8;font-size: 15px;}/* Firefox 19+ */
+    &:-moz-placeholder           {color:#a8a8a8;font-size: 15px;}/* Firefox 18- */
+    &:-ms-input-placeholder      {color:#a8a8a8;font-size: 15px;}
+  }
+}
+.l-btn {
+  height: 44px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-family: 'OpenSans', sans-serif;
+}
+
+.incorrect-input {
+  border: 1px solid red !important;
+}
+.error-message {
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  padding: 8px 15px;
+  border-radius: 8px;
+}

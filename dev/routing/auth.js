@@ -5,6 +5,7 @@ const Boom = require('boom');
 const DAL = require('../dal/dal.js');
 const Utils = require('../services/utils.js');
 const Joi = require('joi');
+const passwordHash = require('password-hash');
 
 module.exports = function (server) {
   server.route({
@@ -29,8 +30,8 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         const user = request.payload;
-        DAL.users.getUserByEmailAndPass(user.login, user.password, (err, doc) => {
-          if (!!doc) {
+        DAL.users.getUserForLogin(user.login, (err, doc) => {
+          if (!!doc && passwordHash.verify(user.password, doc.password)) {
               let token = Utils.newToken();
               DAL.users.updateToken(token, user.login, (err, user) => {
                 if (user) {

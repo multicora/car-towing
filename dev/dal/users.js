@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const path = require('path');
+const passwordHash = require('password-hash');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
@@ -45,6 +46,9 @@ const users = {
   getUserByEmail: (email, cb) => {
     model.findOne({email: email}, filter, cb);
   },
+  getUserForLogin: (email, cb) => {
+    model.findOne({email: email}, cb);
+  },
   getUserByEmailAndPass: (email, pass, cb) => {
     model.findOne(
       {
@@ -81,7 +85,7 @@ const users = {
     if (data.newPassword === data.confirmPassword) {
       model.findOneAndUpdate(
         {resetToken : data.resetToken},
-        {password: data.newPassword},
+        {password: passwordHash.generate(data.newPassword)},
         {
           new: true,
           fields: filter

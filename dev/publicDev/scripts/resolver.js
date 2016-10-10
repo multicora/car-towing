@@ -5,9 +5,9 @@
 
   app.service('resolver', service);
 
-  service.$inject = ['$q', 'authService', 'UserCheckingService', '$location'];
+  service.$inject = ['$q', 'authService', 'UserCheckingService', '$location', 'TokenService'];
 
-  function service($q, authService, UserCheckingService, $location) {
+  function service($q, authService, UserCheckingService, $location, TokenService) {
     this.get = function (action) {
       return _.bind(function () {
         return resolve(action);
@@ -15,22 +15,23 @@
     };
     function resolve (action) {
       return  $q(function (resolve) {
-        Promise.all([authService.getCurrentUser(), authService.getRoles()]).then(
-            function (res) {
-              var user = res[0].data;
-              var roles = res[1].data;
-              authService.setUser(res[0].data);
+        if (TokenService.getToken()) {
+          Promise.all([authService.getCurrentUser(), authService.getRoles()]).then(
+              function (res) {
+                var user = res[0].data;
+                var roles = res[1].data;
+                authService.setUser(res[0].data);
 
-              if (action && !UserCheckingService.checkUser(user, roles, action)) {
-                $location.path('/');
+                if (action && !UserCheckingService.checkUser(user, roles, action)) {
+                  $location.path('/');
+                }
+                resolve();
+              },
+              function (errRes) {
+                resolve();
               }
-
-              resolve();
-            },
-            function (errRes) {
-              resolve();
-            }
-        );
+          );
+        }
       })
     };
   }

@@ -1,12 +1,13 @@
 (function() {
   'use strict';
 
-  angular.module('carTowingApp')
+  angular
+    .module('carTowingApp')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = [];
+  LoginController.$inject = ['AuthService','$state'];
 
-  function LoginController() {
+  function LoginController(AuthService, $state) {
     var vm = this;
 
     vm.user = {
@@ -17,7 +18,14 @@
 
     vm.signIn = function() {
       console.log(vm.user);
-      vm.errorMes = "User not found";
+      AuthService.login(vm.user)
+        .then(function(success) {
+          TokenService.setToken(success.data.token);
+          $state.go('filter');
+        }, function(error) {
+          vm.errorMes = error.data.message;
+        });
+
     }
   }
 

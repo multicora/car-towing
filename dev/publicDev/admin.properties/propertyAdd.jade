@@ -31,6 +31,7 @@
               type="text"
               placeholder="Login"
               ng-model="vm.newProperty.login"
+              ng-hide="vm.editMod"
               ng-class="{'l-error-input': vm.errorMes.length > 0}"
               required)
             p
@@ -39,7 +40,11 @@
             div
               button.create(
                 type="submit"
+                ng-hide="vm.editMod"
                 ng-class="{'disabled': propertyForm.$invalid}") Create
+              button.create(
+                ng-click="vm.editProperty(vm.newProperty._id)"
+                ng-show="vm.editMod") Edit
           .propertyLogo
             h2 Upload logo
             div

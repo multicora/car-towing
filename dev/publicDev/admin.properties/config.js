@@ -25,7 +25,7 @@
           resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       })
-      .when('/admin/properties/add/:id', {
+      .when('/admin/properties/edit/:id', {
         templateUrl: 'admin.properties/propertyAdd.html',
         controller: 'adminPropertiesEditCtrl',
         controllerAs: 'vm',

@@ -16,7 +16,9 @@
       })
       .state('filter', {
         url: '/filter',
-        templateUrl: 'modules/filter/filter.tmpl.html'
+        templateUrl: 'modules/filter/filter.tmpl.html',
+        controller: 'FilterController',
+        controllerAs: 'vm'
       })
       .state('properties', {
         url: '/properties/:title',

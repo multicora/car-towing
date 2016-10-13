@@ -20,9 +20,9 @@
       });
 
       $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-        /*if(!TokenService.getToken()) {
+        if(!TokenService.getToken()) {
           $state.go('login');
-        }*/
+        }
       });
     });
 })();

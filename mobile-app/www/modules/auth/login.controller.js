@@ -5,9 +5,9 @@
     .module('carTowingApp')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['AuthService','$state'];
+  LoginController.$inject = ['AuthService','$state', 'TokenService'];
 
-  function LoginController(AuthService, $state) {
+  function LoginController(AuthService, $state, TokenService) {
     var vm = this;
 
     vm.user = {

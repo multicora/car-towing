@@ -37,8 +37,8 @@ const properties = {
 
     propertyIns.save(cb);
   },
-  edit: (id, model, cb) => {
-    return model.findOneAndUpdate({_id: id}, model, cb);
+  edit: (id, data, cb) => {
+    return model.findOneAndUpdate({_id: id}, data, cb);
   },
   remove: (id, cb) => {
     return model.findOneAndRemove({_id: id}, cb);

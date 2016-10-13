@@ -61,11 +61,11 @@
     vm.addProperty = function(form) {
       if (form.$valid) {
         propertiesService.create(vm.newProperty)
-        .then((success) => {
+        .then(function(success) {
           // TODO: replace with appropriate solution
           vm.setPassLink = [getUrl(), success.data].join('');
           // $location.path('/admin/properties');
-        }, (error) => {
+        }, function(error) {
           // add appropriate logging
           vm.errorMes = error.data.message;
         });

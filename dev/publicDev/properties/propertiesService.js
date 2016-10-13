@@ -23,6 +23,9 @@ function service ($http, TokenService) {
     },
     getPhotoPath: function(photoPath) {
       return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
+    },
+    update: function(id, property) {
+      return $http.put('api/propety/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
     }
   };
 }

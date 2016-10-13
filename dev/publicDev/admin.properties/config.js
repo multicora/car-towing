@@ -24,6 +24,14 @@
         resolve: {
           resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
+      })
+      .when('/admin/properties/add/:id', {
+        templateUrl: 'admin.properties/propertyAdd.html',
+        controller: 'adminPropertiesEditCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+        }
       });
     }
 })(angular);

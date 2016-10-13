@@ -7,14 +7,18 @@
         a.addProperty(href="#/admin/properties/add")
           img(src="files/add-property.png")
           span Add property
-      div(ng-init="vm.getAdminProperties()", class="content-padding")
-        form(class="wrap-admin-property-search", ng-submit="vm.searchProperty()")
-          input(type="text", placeholder="Search property", ng-model="vm.searchPropertyValue")
-          button(type="submit") Search
-        div(class="wrap-admin-properties")
-          div(ng-repeat="item in vm.adminProperties | filter: vm.searchObj", class="pa-item")
-            div(class="pa-img-wrap")
+      .content-padding(ng-init="vm.getAdminProperties()")
+        form.wrap-admin-property-search(ng-submit="vm.searchProperty()")
+          input(type="text",
+            placeholder="Search property",
+            ng-model="vm.searchPropertyValue",
+            ng-hide="vm.editMod")
+          button.btn.btn-submit(type="submit") Search
+        .wrap-admin-properties
+          .pa-item(ng-repeat="item in vm.adminProperties | filter: vm.searchObj")
+            .pa-img-wrap
               // span(class="pa-img-bubbel") 45
-              div(class="pa-blocked" ng-if="item.blocked") Blocked
+              .pa-blocked(ng-if="item.blocked") Blocked
               .logo(ng-style="{backgroundImage: 'url('+ item.logo + ')' }")
-            h5(class="pa-item-title") {{item.name}}
+            h5.pa-item-title {{item.name}}
+            a.btn.btn-primary.btn-circle.edit(href="#/admin/properties/{{item._id}}")

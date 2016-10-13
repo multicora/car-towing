@@ -8,21 +8,24 @@
         novalidate)
           div.radio
             span.radio-title Color of decal
-            input(type="radio",
-              name="color",
-              value="white",
-              ng-model="vm.decal.decalColor")
-            span.color White
-            input(type="radio",
-              name="color",
-              value="red",
-              ng-model="vm.decal.decalColor")
-            span.color Red
-            input(type="radio",
-              name="color",
-              value="green",
-              ng-model="vm.decal.decalColor")
-            span.color Green
+            label
+              input(type="radio",
+                name="color",
+                value="white",
+                ng-model="vm.decal.decalColor")
+              span.color White
+            label
+              input(type="radio",
+                name="color",
+                value="red",
+                ng-model="vm.decal.decalColor")
+              span.color Red
+            label
+              input(type="radio",
+                name="color",
+                value="green",
+                ng-model="vm.decal.decalColor")
+              span.color Green
           input.decal-input(type="text",
             name="serial-number",
             maxlength="7",

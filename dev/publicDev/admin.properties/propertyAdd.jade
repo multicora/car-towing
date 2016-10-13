@@ -1,48 +1,49 @@
 .admin-page.admin-properties
-  .content
-    header-directive
-    admin-menu-directive
-    .propertyEditor
-      form(
-        name="propertyForm"
-        ng-submit="vm.addProperty(propertyForm)")
-        .propertyValue
-          h2 Add new property
-          input(
-            type="text"
-            placeholder="Property name"
-            ng-model="vm.newProperty.name"
-            ng-class="{'l-error-input': vm.errorMes.length > 0}"
-            required)
-          .location-block
-            .title Location
-            .radio
-              label.radio-inline(ng-repeat="location in vm.locations")
-                input(
-                  type="radio"
-                  ng-model="vm.newProperty.location"
-                  ng-value="location._id"
-                  name="location"
-                  id="location_{{location.name}}"
-                  required)
-                span.text {{location.name}}
-          input(
-            type="email"
-            placeholder="Login"
-            ng-model="vm.newProperty.login"
-            ng-class="{'l-error-input': vm.errorMes.length > 0}"
-            required)
-          p
-            .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
-            a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
-          div
-            button.create(
-              type="submit"
-              ng-class="{'disabled': propertyForm.$invalid}") Create
-        .propertyLogo
-          h2 Upload logo
-          div
-            .logo( ng-style="{backgroundImage: 'url('+ vm.newProperty.logo + ')' }")
-          div
-            button(ng-click="vm.selectFile($event)") Upload logo
-            input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .propertyEditor
+        form(
+          name="propertyForm"
+          ng-submit="vm.addProperty(propertyForm)")
+          .propertyValue
+            h2 Add new property
+            input(
+              type="text"
+              placeholder="Property name"
+              ng-model="vm.newProperty.name"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
+            .location-block
+              .title Location
+              .radio
+                label.radio-inline(ng-repeat="location in vm.locations")
+                  input(
+                    type="radio"
+                    ng-model="vm.newProperty.location"
+                    ng-value="location._id"
+                    name="location"
+                    id="location_{{location.name}}"
+                    required)
+                  span.text {{location.name}}
+            input(
+              type="text"
+              placeholder="Login"
+              ng-model="vm.newProperty.login"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
+            p
+              .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
+              a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
+            div
+              button.create(
+                type="submit"
+                ng-class="{'disabled': propertyForm.$invalid}") Create
+          .propertyLogo
+            h2 Upload logo
+            div
+              .logo( ng-style="{backgroundImage: 'url('+ vm.newProperty.logo + ')' }")
+            div
+              button(ng-click="vm.selectFile($event)") Upload logo
+                  input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")

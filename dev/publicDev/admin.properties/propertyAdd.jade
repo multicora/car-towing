@@ -13,8 +13,7 @@
               type="text"
               placeholder="Property name"
               ng-model="vm.newProperty.name"
-              ng-class="{'l-error-input': vm.errorMes.length > 0}"
-              required)
+              ng-class="{'l-error-input': vm.errorMes.length > 0}")
             .location-block
               .title Location
               .radio
@@ -32,8 +31,7 @@
               placeholder="Login"
               ng-model="vm.newProperty.login"
               ng-hide="vm.editMod"
-              ng-class="{'l-error-input': vm.errorMes.length > 0}"
-              required)
+              ng-class="{'l-error-input': vm.errorMes.length > 0}")
             p
               .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
               a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")

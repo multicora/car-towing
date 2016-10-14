@@ -32,9 +32,22 @@
   }
 
   .towed-car-content {
+
+    .map-container {
+      height: 250px;
+    }
+
     .map {
       height: 200px;
+      width: 100%;
       border: none;
+    }
+
+    .map-button-container {
+      display: inline-block;
+      margin-top: 10px;
+      text-align: center;
+      width: 100%;
     }
 
     .taxis-container {
@@ -137,6 +150,10 @@
   .towed-car-page {
     .towed-car-content {
       padding: 0 40px;
+
+      .map-container {
+        height: 350px;
+      }
 
       .map {
         height: 300px;

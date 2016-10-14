@@ -26,7 +26,7 @@ var config = {
     cascade: false
   },
   scssOrder: ['**/app.scss'],
-  jsOrder: ['**/app.js']
+  jsOrder: ['**/app.js', '**/appConfig.js']
 };
 
 var path = {};

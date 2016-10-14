@@ -13,7 +13,6 @@
     vm.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
     }
-  
 
     customPageService.getGotTowed()
       .then(function(res) {
@@ -22,11 +21,13 @@
         vm.data.customJson = vm.data.customJson || {};
         vm.data.customJson.taxis = vm.data.customJson.taxis || [];
         vm.data.customJson.address = vm.data.customJson.address || '';
+        vm.data.customJson.addressArray = vm.data.customJson.address.split(',');
         vm.data.editableContent = res.data.editableContent || null;
         vm.data.editableContent = JSON.parse(vm.data.editableContent) || {ops:[]};
         var content = document.getElementById('content');
         content.innerHTML = vm.data.content;
-        vm.mapSrc = "https://embed.waze.com/iframe?zoom=16&" + vm.data.customJson.address +"&pin=1";
+        vm.mapSrc = 'https://embed.waze.com/iframe?zoom=16&lat=' + vm.data.customJson.addressArray[0] +
+            '&lon=' + vm.data.customJson.addressArray[1] +'&pin=1';
       });
   };
 })();

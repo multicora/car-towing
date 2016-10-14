@@ -11,6 +11,15 @@
     var vm = this;
     var propId = $routeParams.id;
 
+    vm.editProperty = function(id) {
+      propertiesService.update(id, vm.newProperty)
+        .then(function(success) {
+          $location.path('/admin/properties');
+        }, function(error) {
+          vm.errorMes = error.data.message;
+        }
+      )};
+
     if (propId) {
       vm.editMod = true;
     
@@ -25,15 +34,6 @@
         }, function(error) {
           console.error(error);
         });
-
-      vm.editProperty = function(id) {
-        propertiesService.update(id, vm.newProperty)
-          .then(function(success) {
-            $location.path('/admin/properties');
-          }, function(error) {
-            vm.errorMes = error.data.message;
-          }
-        )};
     }
   }
 })(angular);

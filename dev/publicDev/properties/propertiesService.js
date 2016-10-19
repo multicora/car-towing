@@ -25,7 +25,7 @@ function service ($http, TokenService) {
       return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
     },
     update: function(id, property) {
-      return $http.put('api/property/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
+      return $http.put('api/property/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), property);
     },
     remove: function(id) {
       return $http.delete('/api/property/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());

@@ -31,6 +31,8 @@
                 resolve();
               }
           );
+        } else {
+          resolve();
         }
       })
     };

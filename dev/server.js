@@ -119,22 +119,22 @@ function registerACL(server) {
 
 function registerAuth(server) {
   return new Promise(function (resolve, reject) {
-    const AuthBearer = require('hapi-auth-bearer-token');
-    const AuthHeader = require('hapi-auth-header');
+     const AuthHeader = require('hapi-auth-header');
 
     server.register(AuthHeader, (err) => {
       if (err) {
         reject();
       } else {
-        server.auth.strategy('header', 'auth-header', {
+         server.auth.strategy('header', 'auth-header', {
           accessTokenName: 'X-CART-Token',    // optional, 'access_token' by default
           validateFunc: function (tokens, callback) {
+             console.log(tokens);
 
             // For convenience, the request object can be accessed
             // from `this` within validateFunc.
             var request = this;
 
-            DAL.users.getUserByToken(tokens.Bearer, function (err, user) {
+             DAL.users.getUserByToken(tokens.Bearer, function (err, user) {
               if (user) {
                 callback(null, true, user);
               } else {

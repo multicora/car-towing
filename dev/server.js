@@ -125,10 +125,10 @@ function registerAuth(server) {
       if (err) {
         reject();
       } else {
-         server.auth.strategy('header', 'auth-header', {
+         server.auth.strategy('simple', 'auth-header', {
           accessTokenName: 'X-CART-Token',    // optional, 'access_token' by default
           validateFunc: function (tokens, callback) {
-             console.log(tokens);
+            console.log(111111111111111111111111111111111);
 
             // For convenience, the request object can be accessed
             // from `this` within validateFunc.

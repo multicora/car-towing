@@ -30,6 +30,9 @@ const users = {
   get: (cb) => {
     model.find({}, filter, cb);
   },
+  getAllUsersWithPassword: (cb) => {
+    model.find({}, cb);
+  },
   getUserByToken: (token, cb) => {
     model.findOne({token: token}, filter).populate('roles').exec(cb);
   },

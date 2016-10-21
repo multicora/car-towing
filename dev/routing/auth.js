@@ -31,7 +31,6 @@ module.exports = function (server) {
       handler: function (request, reply) {
         const user = request.payload;
         DAL.users.getUserForLogin(user.login, (err, doc) => {
-          console.log(user.password, doc.password, '--------------11111111111111111');
           if (!!doc && passwordHash.verify(user.password, doc.password)) {
               let token = Utils.newToken();
               DAL.users.updateToken(token, user.login, (err, user) => {

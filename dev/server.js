@@ -133,7 +133,7 @@ function registerAuth(server) {
             var request = this;
             var headerName = 'X-CART-Token';
 
-             DAL.users.getUserByToken(tokens.headerName, function (err, user) {
+             DAL.users.getUserByToken(tokens[headerName], function (err, user) {
               if (user) {
                 callback(null, true, user);
               } else {

@@ -131,9 +131,9 @@ function registerAuth(server) {
             // For convenience, the request object can be accessed
             // from `this` within validateFunc.
             var request = this;
-            var headerName = tokens['X-CART-Token'];
+            var headerName = 'X-CART-Token';
 
-             DAL.users.getUserByToken(headerName, function (err, user) {
+             DAL.users.getUserByToken(tokens.headerName, function (err, user) {
               if (user) {
                 callback(null, true, user);
               } else {

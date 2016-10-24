@@ -28,7 +28,10 @@
     }
 
     function getCurrentUser() {
-      return $http.get('api/currentUser?' + TokenService.getTokenName() + '=' + TokenService.getToken());
+      return $http.get('api/currentUser', {
+        headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        }
+      );
     }
 
     function setUser(newUser) {

@@ -20,15 +20,24 @@
       }
 
       function create(propertyId, rule) {
-        return $http.post('/api/parkingRules/' + propertyId + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), rule);
+        return $http.post('/api/parkingRules/' + propertyId, rule, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
       }
 
       function update(id, rule) {
-        return $http.put('/api/parkingRules/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), rule);
+        return $http.put('/api/parkingRules/' + id, rule, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
       }
 
       function remove(id) {
-        return $http.delete('/api/parkingRules/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
+        return $http.delete('/api/parkingRules/' + id, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
       }
     }
 })();

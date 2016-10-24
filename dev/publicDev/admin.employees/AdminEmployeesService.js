@@ -16,9 +16,10 @@
     }
 
     function add(data) {
-      return $http.post('api/users', {
+      return $http.post('api/users', data, {
         headers: {Authorization: TokenService.getTokenName(), Bearer: TokenService.getToken()}
-      }, data);
+        }
+      );
     }
 
     function getUsers() {

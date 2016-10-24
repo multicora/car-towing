@@ -18,6 +18,7 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
+        console.log(1111112222222);
         DAL.users.createUser(request.payload, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
         });

@@ -83,7 +83,6 @@ function startServer() {
   const registerDone = _.bind(
     (server, err) => {
       if (err) throw err; // something bad happened loading the plugin
-
       registerStaticFilesServer(server, cbBinded);
 
       server.start((err) => {
@@ -120,21 +119,21 @@ function registerACL(server) {
 
 function registerAuth(server) {
   return new Promise(function (resolve, reject) {
-    const AuthBearer = require('hapi-auth-bearer-token');
+     const AuthHeader = require('hapi-auth-header');
 
-    server.register(AuthBearer, (err) => {
+    server.register(AuthHeader, (err) => {
       if (err) {
         reject();
       } else {
-        server.auth.strategy('simple', 'bearer-access-token', {
+         server.auth.strategy('simple', 'auth-header', {
           accessTokenName: 'X-CART-Token',    // optional, 'access_token' by default
-          validateFunc: function (token, callback) {
-
+          validateFunc: function (tokens, callback) {
             // For convenience, the request object can be accessed
             // from `this` within validateFunc.
             var request = this;
+            var headerName = 'X-CART-Token';
 
-            DAL.users.getUserByToken(token, function (err, user) {
+             DAL.users.getUserByToken(tokens[headerName], function (err, user) {
               if (user) {
                 callback(null, true, user);
               } else {

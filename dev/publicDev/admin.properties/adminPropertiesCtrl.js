@@ -73,7 +73,7 @@
     }
 
     vm.removeProperty = function (propId) {
-      propertiesService.remove(propId)
+      propertiesService.delete(propId)
       .then(function(success) {
         vm.getAdminProperties();
       }, function(error) {

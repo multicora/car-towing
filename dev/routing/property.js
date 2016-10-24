@@ -127,7 +127,7 @@ module.exports = function (server) {
   });
 
   server.route({
-    method: 'DELETE',
+    method: 'POST',
     path: '/api/property/{id}',
     config: {
       auth: 'simple',
@@ -137,7 +137,7 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        DAL.properties.remove(request.params.id, function (err, docs) {
+        DAL.properties.delete(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
         });
       }

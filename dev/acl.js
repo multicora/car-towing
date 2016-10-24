@@ -17,6 +17,11 @@ const permissionsFunc = function(credentials, callback) {
     customPages: {
       edit: hasRole('admin')
     },
+    decal: {
+      edit: hasRole('admin') || hasRole('property-manager'),
+      create: hasRole('admin') || hasRole('property-manager'),
+      remove: hasRole('admin') || hasRole('property-manager')
+    },
     files: {
       read: hasRole('driver') || hasRole('admin') || hasRole('property-manager'),
       create: hasRole('driver') || hasRole('admin') || hasRole('property-manager')

@@ -55,4 +55,6 @@ DAL.blocking = require('./blocking.js').dal;
 
 DAL.actions = require('./actions.js');
 
+DAL.decal = require('./decal.js');
+
 module.exports = DAL;

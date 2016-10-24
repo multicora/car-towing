@@ -1,0 +1,81 @@
+.decal.managers-page
+  .container
+    .content
+      header-directive
+      h1.title Add Decal Number
+      form.decal-form(name="decalForm"
+        ng-submit="vm.addDecal(decalForm)",
+        novalidate)
+          div.radio
+            span.radio-title Color of decal
+            label
+              input(type="radio",
+                name="color",
+                value="white",
+                ng-model="vm.decal.decalColor")
+              span.color White
+            label
+              input(type="radio",
+                name="color",
+                value="red",
+                ng-model="vm.decal.decalColor")
+              span.color Red
+            label
+              input(type="radio",
+                name="color",
+                value="green",
+                ng-model="vm.decal.decalColor")
+              span.color Green
+          input.decal-input(type="text",
+            name="serial-number",
+            maxlength="7",
+            placeholder="Serial number",
+            ng-model="vm.decal.serialNumber")
+          input.decal-input(type="text",
+            name="parking-space-number",
+            placeholder="Assigned parking space number",
+            ng-model="vm.decal.assignedParkingSpace")
+          input.decal-input(type="text",
+            name="license-plate-number",
+            placeholder="License plate number",
+            ng-model="vm.decal.licensePlateNumber")
+          input.decal-input(type="text",
+            name="mark",
+            placeholder="Mark",
+            ng-model="vm.decal.mark")
+          input.decal-input(type="text",
+            name="model",
+            placeholder="Model",
+            ng-model="vm.decal.model")
+          input.decal-input(type="text",
+            name="color",
+            placeholder="Color",
+            ng-model="vm.decal.color")
+          input.decal-input(type="text",
+            name="year",
+            placeholder="Year",
+            ng-model="vm.decal.year")
+          input.decal-input(type="text",
+            name="name",
+            placeholder="First & last name",
+            ng-model="vm.decal.fullName")
+          input.decal-input(type="text",
+            name="apartment",
+            placeholder="Apartment #",
+            ng-model="vm.decal.apartmentNumber")
+          input.decal-input(type="text",
+            name="phone",
+            placeholder="Phone number",
+            ng-model="vm.decal.phoneNumber")
+          input.decal-input(type="email",
+            name="email",
+            placeholder="Email address",
+            ng-model="vm.decal.emailAddress")
+          div.save
+            button.btn.btn-submit.save(
+              type="submit"
+              ng-hide="vm.decalEditEditmod") Add
+            button.btn.btn-submit.edit(
+              type="button"
+              ng-show="vm.decalEditEditmod"
+              ng-click="vm.editDecal(vm.decal._id, vm.decal)") Edit

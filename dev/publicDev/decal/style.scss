@@ -1,0 +1,71 @@
+.decal {
+  .container {
+      background-color: #ffffff;
+      min-height: 100%;
+
+      .title {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        font-size: 32px;
+        font-weight: 400;
+      }
+
+      .decal-form {
+        padding-top: 20px;
+        text-align: center;
+
+        .decal-input {
+          width: 60%;
+          height: 46px;
+          border: 1px solid #a9a9a9;
+          font-size: 18px;
+          font-weight: 600;
+          padding-left: 10px;
+          border-radius: 8px;
+          margin-bottom: 10px;
+        }
+
+        input:focus {
+          outline: 0;
+        }
+
+        .radio {
+          display: inline-block;
+          width: 60%;
+          text-align: left;
+
+          input {
+            height: 22px;
+            width: 22px;
+            margin: 2px 0 0 10px;
+          }
+
+          span {
+            font-size: 18px;
+            font-weight: 600;
+            color: #a8a8a8;
+          }
+
+          .radio-title {
+            margin-right: 30px;
+          }
+
+          .color {
+            margin: 0 70px 0 45px;
+          }
+        }
+
+        .save {
+          display: inline-block;
+          text-align: center;
+          width: 100%;
+
+          button {
+            width: 279px;
+            height: 52px;
+          }
+        }
+      }
+  }
+}

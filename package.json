@@ -27,7 +27,6 @@
     "good-squeeze": "^4.0.0",
     "gulp": "^3.9.1",
     "hapi": "^13.5.0",
-    "hapi-auth-bearer-token": "^4.2.1",
     "hapi-auth-header": "^2.2.0",
     "hapi-route-acl": "^1.0.3",
     "inert": "^4.0.1",

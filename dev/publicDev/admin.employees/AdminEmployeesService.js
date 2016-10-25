@@ -44,14 +44,14 @@
     }
 
     function blockUser(id) {
-      return $http.post('/api/user-block/' + id, {
+      return $http.get('/api/user-block/' + id, {
         headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );
     }
 
     function unBlockUser(id) {
-      return $http.post('/api/user-unblock/' + id, {
+      return $http.get('/api/user-unblock/' + id, {
         headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );

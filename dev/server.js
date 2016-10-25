@@ -132,7 +132,6 @@ function registerAuth(server) {
             // from `this` within validateFunc.
             var request = this;
             var headerName = 'X-CART-Token';
-            console.log(tokens, '----------------tokens');
              DAL.users.getUserByToken(tokens[headerName], function (err, user) {
               if (user) {
                 callback(null, true, user);

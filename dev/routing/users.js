@@ -80,7 +80,7 @@ module.exports = function (server) {
   });
 
   server.route({
-    method: 'post',
+    method: 'get',
     path: '/api/user-block/{id}',
     config: {
       auth: 'simple',
@@ -98,7 +98,7 @@ module.exports = function (server) {
   });
 
   server.route({
-    method: 'post',
+    method: 'get',
     path: '/api/user-unblock/{id}',
     config: {
       auth: 'simple',

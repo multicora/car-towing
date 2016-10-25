@@ -21,7 +21,6 @@
       propertiesService.getProperties()
         .then(function(success) {
           vm.adminProperties = success.data;
-          console.log(vm.adminProperties);
         }, function(error) {
           console.error(error);
         });

@@ -68,7 +68,7 @@ let configureServer = (server) => {
 
 function startServer() {
   const server = new Hapi.Server();
-  server.connection( {port: 8080, routes: {cors: {origin: ['*'],credentials : true}}} );
+  server.connection( {port: 80, routes: {cors: {origin: ['*'],credentials : true}}} );
 
   const cbBinded = _.bind(
     function (server, err) {
@@ -132,10 +132,8 @@ function registerAuth(server) {
             // from `this` within validateFunc.
             var request = this;
             var headerName = 'X-CART-Token';
-            console.log(tokens, 'tokens--------------------------------');
              DAL.users.getUserByToken(tokens[headerName], function (err, user) {
               if (user) {
-                console.log(user, '==========================');
                 callback(null, true, user);
               } else {
                 callback(null, false, null);

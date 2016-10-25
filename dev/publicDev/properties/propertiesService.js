@@ -13,19 +13,28 @@ function service ($http, TokenService) {
       return $http.get('/api/parkingRules/' + id);
     },
     create: function(data) {
-      return $http.post('/api/property?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
+      return $http.post('/api/property', data, {
+          headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        }
+      );
     },
     getUsersProperty: function(userId) {
       return $http.get('/api/user-property/' + userId);
     },
     getPhotos: function(propId) {
-      return $http.get('/api/files/' + propId + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
+      return $http.get('/api/files/' + propId, {
+          headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        }
+      );
     },
     getPhotoPath: function(photoPath) {
       return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
     },
     delete: function(id) {
-      return $http.delete('/api/property/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
+      return $http.post('/api/property/' + id, {
+          headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        }
+      );
     }
   };
 }

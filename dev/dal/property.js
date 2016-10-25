@@ -12,7 +12,7 @@ const schema = new Schema({
   blocked :  { type: Boolean, default: false },
   updated :  { type: Date, default: Date.now },
   manager :  { type: Schema.Types.ObjectId, ref: 'users' },
-  deleted :  Boolean
+  deleted :  { type: Boolean, default: false }
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/
 });

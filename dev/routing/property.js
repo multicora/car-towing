@@ -137,6 +137,7 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
+        console.log(request.params, '-----------------')
         DAL.properties.delete(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
         });

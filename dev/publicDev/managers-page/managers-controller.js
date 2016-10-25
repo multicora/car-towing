@@ -5,10 +5,10 @@
   }
 
   var app = NG.module('app');
-  var injections = ['rulesDataService', '$routeParams', 'propertiesService', 'authService'];
+  var injections = ['rulesDataService', '$routeParams', 'propertiesService', 'authService', 'decalService', '$location'];
 
 
-  function managersCtrl(rulesDataService, $routeParams, propertiesService, authService) {
+  function managersCtrl(rulesDataService, $routeParams, propertiesService, authService, decalService, $location) {
     // TODO: figureout better propId solution
     var vm = this;
     var property = null;
@@ -16,32 +16,33 @@
 
     vm.managerName = null;
 
-    propertiesService.getUsersProperty(user._id)
-      .then(function (res) {
-        if (!res.data) {
-          vm.message = 'Unfortunately we couldn\'t find your property.';
-        }
-        property = res.data;
-        vm.managerName = property.name;
+    // propertiesService.getUsersProperty(user._id)
+    //   .then(function (res) {
+    //     if (!res.data) {
+    //       vm.message = 'Unfortunately we couldn\'t find your property.';
+    //     }
+    //     property = res.data;
+    //     vm.managerName = property.name;
 
-        return property;
-    }).then(function (property) {
-      return getAllRules(property._id);
-    }).then(function () {
-      return propertiesService.getPhotos(property._id);
-    }).then(function (res) {
-      vm.photos = res.data.map(function (photo) {
-        return propertiesService.getPhotoPath(photo);
-      });
-    });
+    //     return property;
+    // }).then(function (property) {
+    //   return getAllRules(property._id);
+    // }).then(function () {
+    //   return propertiesService.getPhotos(property._id);
+    // }).then(function (res) {
+    //   vm.photos = res.data.map(function (photo) {
+    //     return propertiesService.getPhotoPath(photo);
+    //   });
+    // });
 
 
-    function getAllRules(propertyId) {
-      return rulesDataService.get(propertyId)
-        .then(function(response) {
-          vm.rules = response.data;
-        });
-    }
+    // function getAllRules(propertyId) {
+    //   return rulesDataService.get(propertyId)
+    //     .then(function(response) {
+    //       vm.rules = response.data;
+    //     });
+    // }
+    getAllDecals();
 
     function clearNewRule() {
       vm.newRule = {}
@@ -72,6 +73,31 @@
         .then(function() {
           getAllRules(property._id);
         });
+    }
+
+    // ****** DECAL ******
+
+    vm.showDecalPopup = function() {
+      vm.decalPopupEditmod = true;
+    }
+
+    vm.hideDecalPopup = function() {
+      vm.decalPopupEditmod = false;
+    }
+
+    function getAllDecals() {
+      decalService.getDecals()
+        .then(function(res) {
+          // console.log(res.data);
+          vm.decals = res.data;
+        });
+    }
+
+    vm.removeDecal = function(id) {
+      decalService.removeDecal(id)
+      .then(function() {
+        getAllDecals();
+      });
     }
   }
 

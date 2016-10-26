@@ -137,6 +137,7 @@ html, body {
 // TODO: visitors counter temporary styles
 .visitors {
   bottom: 0;
+  left: 10px;
   color: black;
   font-size: 8px;
   padding: 4px;
@@ -144,6 +145,9 @@ html, body {
   border: 3px solid #fff;
   background: #858c96;
   color: #fff;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(133,140,150,1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(133,140,150,1);
+  box-shadow: 0px 0px 5px 0px rgba(133,140,150,1);
 
   p {
     margin: 0;

@@ -4,7 +4,7 @@
   position: relative;
 
   .container {
-    width: 1366px;
+    min-width: 1366px;
     padding: 0;
   }
 
@@ -15,6 +15,19 @@
   .content {
     background: #FFFFFF;
     min-height: 100%;
+    padding: 0 15px;
+  }
+
+  .left-block,
+  .right-block {
+    width: 340px;
+    display: inline-block;
+    padding: 0 15px;
+  }
+
+  .center-block {
+    width: 680px;
+    display: inline-block;
     padding: 0 15px;
   }
 
@@ -145,7 +158,6 @@
 }
 
 .parking-rules {
-
   .edit-rule{
     border-radius: 5px;
     border-color: #d4d4d4;
@@ -161,10 +173,18 @@
 
   .rule {
     .rule-controls {
-      display: flex;
-
       .btn-circle {
         flex-shrink: 0;
+      }
+      
+      .delete {
+        height: 35px;
+        display: inline-block;
+      }
+
+      .edit {
+        width: 260px;
+        display: inline-block;
       }
     }
   }

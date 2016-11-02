@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const path = require('path');
+const passwordHash = require('password-hash');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
@@ -23,12 +24,14 @@ model.on('index', function(error) {
   }
 });
 
+let filter = 'email name roles';
+
 const users = {
   get: (cb) => {
-    model.find({}, 'email roles', cb);
+    model.find({}, filter, cb);
   },
   getUserByToken: (token, cb) => {
-    model.findOne({token: token}, 'email roles').populate('roles').exec(cb);
+    model.findOne({token: token}, filter).populate('roles').exec(cb);
   },
   updateToken: (token, email, cb) => {
     model.findOneAndUpdate(
@@ -36,12 +39,15 @@ const users = {
       {token: token},
       {
         new: true,
-        fields: 'email roles'
+        fields: filter
       }
     ).populate('roles').exec(cb);
   },
   getUserByEmail: (email, cb) => {
-    model.findOne({email: email}, 'email roles', cb);
+    model.findOne({email: email}, filter, cb);
+  },
+  getUserForLogin: (email, cb) => {
+    model.findOne({email: email}, cb);
   },
   getUserByEmailAndPass: (email, pass, cb) => {
     model.findOne(
@@ -49,12 +55,12 @@ const users = {
         email: email,
         password: pass
       },
-      'email roles',
+      filter,
       cb
     );
   },
   getUserById: (id, cb) => {
-    model.findOne({_id: id }, cb);
+    model.findOne({_id: id }, filter, cb);
   },
   blockUser: (id, cb) => {
     model.findOneAndUpdate({_id: id}, {blocked : true}, cb);
@@ -70,7 +76,7 @@ const users = {
     propertyIns.save(cb);
   },
   getUserByResetToken: (resetToken, cb) => {
-    model.findOne({resetToken: resetToken}, 'email roles', cb);
+    model.findOne({resetToken: resetToken}, filter, cb);
   },
   updateUser: (id, data, cb) => {
     model.findOneAndUpdate({_id: id}, data, cb);
@@ -79,10 +85,10 @@ const users = {
     if (data.newPassword === data.confirmPassword) {
       model.findOneAndUpdate(
         {resetToken : data.resetToken},
-        {password: data.newPassword},
+        {password: passwordHash.generate(data.newPassword)},
         {
           new: true,
-          fields: 'email roles'
+          fields: filter
         },
         cb);
     } else {

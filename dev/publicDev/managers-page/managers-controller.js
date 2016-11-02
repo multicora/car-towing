@@ -26,12 +26,18 @@
 
         return property;
     }).then(function (property) {
-      getAllRules(property._id);
+      return getAllRules(property._id);
+    }).then(function () {
+      return propertiesService.getPhotos(property._id);
+    }).then(function (res) {
+      vm.photos = res.data.map(function (photo) {
+        return propertiesService.getPhotoPath(photo);
+      });
     });
 
 
     function getAllRules(propertyId) {
-      rulesDataService.get(propertyId)
+      return rulesDataService.get(propertyId)
         .then(function(response) {
           vm.rules = response.data;
         });

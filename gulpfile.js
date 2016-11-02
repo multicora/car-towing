@@ -112,7 +112,8 @@ gulp.task('server', function() {
       return [
         modrewrite(
           [
-            '^/api/(.*)$ http://localhost:80/api/$1 [P]'
+            '^/api/(.*)$ http://localhost:80/api/$1 [P]',
+            '^/uploads/(.*)$ http://localhost:80/uploads/$1 [P]'
           ]
         )
       ];

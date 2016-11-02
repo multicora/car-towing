@@ -1,12 +1,12 @@
 'use strict';
 
-(function() {
+(function(angular) {
   angular.module('app')
     .config(config);
 
-    config.$inject = ['$routeProvider', 'resolverProvider'];
+    config.$inject = ['$routeProvider', 'resolverProvider', 'userActions'];
 
-    function config($routeProvider, resolverProvider) {
+    function config($routeProvider, resolverProvider, userActions) {
       var resolver = resolverProvider.$get();
 
       $routeProvider.when('/admin/properties', {
@@ -14,7 +14,7 @@
         controller: 'adminPropertiesCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       })
       .when('/admin/properties/add', {
@@ -22,8 +22,8 @@
         controller: 'adminPropertiesCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
         }
       });
     }
-})();
+})(angular);

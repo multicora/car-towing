@@ -109,15 +109,6 @@ module.exports = function (server) {
           permissions: ['properties:edit']
         }
       },
-      validate: {
-        params: {
-          name: Joi.string().min(1).max(255).required(),
-          address: Joi.string(),
-          objId: Joi.string(),
-          logo: Joi.string(),
-          rules: Joi.array().items(Joi.string())
-        }
-      },
       handler: function (request, reply) {
         DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));

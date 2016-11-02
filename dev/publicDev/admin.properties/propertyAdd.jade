@@ -4,7 +4,7 @@
       header-directive
       admin-menu-directive
       .propertyEditor
-        form(
+        form.propertyForm(
           name="propertyForm"
           ng-submit="vm.addProperty(propertyForm)")
           .propertyValue
@@ -13,8 +13,7 @@
               type="text"
               placeholder="Property name"
               ng-model="vm.newProperty.name"
-              ng-class="{'l-error-input': vm.errorMes.length > 0}"
-              required)
+              ng-class="{'l-error-input': vm.errorMes.length > 0}")
             .location-block
               .title Location
               .radio
@@ -31,15 +30,19 @@
               type="text"
               placeholder="Login"
               ng-model="vm.newProperty.login"
-              ng-class="{'l-error-input': vm.errorMes.length > 0}"
-              required)
+              ng-hide="vm.editMod"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}")
             p
               .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
               a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
             div
               button.create(
                 type="submit"
+                ng-hide="vm.editMod"
                 ng-class="{'disabled': propertyForm.$invalid}") Create
+              button.create(
+                ng-click="vm.editProperty(vm.newProperty._id)"
+                ng-show="vm.editMod") Edit
           .propertyLogo
             h2 Upload logo
             div

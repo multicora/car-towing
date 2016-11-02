@@ -35,6 +35,12 @@ function service ($http, TokenService) {
           headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );
+    },
+    update: function(id, property) {
+      return $http.put('api/property/' + id, {
+          headers: {Authorization :TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        }
+      );
     }
   };
 }

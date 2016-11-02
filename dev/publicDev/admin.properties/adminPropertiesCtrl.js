@@ -1,6 +1,6 @@
 "use strict";
 
-(function() {
+(function(angular) {
   angular
     .module('app')
     .controller('adminPropertiesCtrl', adminPropertiesCtrl);
@@ -72,4 +72,4 @@
       }
     }
   }
-})();
+})(angular);

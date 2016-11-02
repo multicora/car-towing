@@ -30,6 +30,9 @@ function service ($http, TokenService) {
     getPhotoPath: function(photoPath) {
       return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
     },
+    update: function(id, property) {
+      return $http.put('api/property/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), property);
+    },
     remove: function(id) {
       return $http.delete('/api/property/' + id, {
           headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}

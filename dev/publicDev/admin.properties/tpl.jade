@@ -14,11 +14,9 @@
         div(class="wrap-admin-properties")
           div(ng-repeat="item in vm.adminProperties | filter: vm.searchObj", class="pa-item")
             div(class="pa-img-wrap")
-              // span(class="pa-img-bubbel") 45
-              div(class="pa-blocked" ng-if="item.blocked") Blocked
-              .logo(ng-style="{backgroundImage: 'url('+ item.logo + ')' }")
+            h5.pa-item-title {{item.name}}
+            a.btn.btn-primary.btn-submit.edit(href="#/admin/properties/edit/{{item._id}}") edit
             button.btn.btn-primary.btn-circle.delete(
               type="button"
               ng-click="vm.removeProperty(item._id)")
               i.glyphicon.glyphicon-remove
-            h5(class="pa-item-title") {{item.name}}

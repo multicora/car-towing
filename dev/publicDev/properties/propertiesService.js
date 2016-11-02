@@ -31,7 +31,7 @@ function service ($http, TokenService) {
       return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
     },
     delete: function(id) {
-      return $http.get('/api/property-delete/' + id, {
+      return $http.delete('/api/property-delete/' + id, {
           headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );

@@ -53,4 +53,6 @@ DAL.locations = require('./locations.js');
 
 DAL.blocking = require('./blocking.js').dal;
 
+DAL.actions = require('./actions.js');
+
 module.exports = DAL;

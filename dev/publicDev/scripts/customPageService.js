@@ -17,11 +17,17 @@
       }
 
       function saveGotTowed(data) {
-        return $http.post('api/gotTowed?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
+        return $http.post('api/gotTowed', data, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
       }
 
       function saveParkingProblem(data) {
-        return $http.post('api/parkingProblem?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
+        return $http.post('api/parkingProblem', data, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
       }
 
       function getGotTowed() {

@@ -16,32 +16,32 @@
 
     vm.managerName = null;
 
-    // propertiesService.getUsersProperty(user._id)
-    //   .then(function (res) {
-    //     if (!res.data) {
-    //       vm.message = 'Unfortunately we couldn\'t find your property.';
-    //     }
-    //     property = res.data;
-    //     vm.managerName = property.name;
+    propertiesService.getUsersProperty(user._id)
+      .then(function (res) {
+        if (!res.data) {
+          vm.message = 'Unfortunately we couldn\'t find your property.';
+        }
+        property = res.data;
+        vm.managerName = property.name;
 
-    //     return property;
-    // }).then(function (property) {
-    //   return getAllRules(property._id);
-    // }).then(function () {
-    //   return propertiesService.getPhotos(property._id);
-    // }).then(function (res) {
-    //   vm.photos = res.data.map(function (photo) {
-    //     return propertiesService.getPhotoPath(photo);
-    //   });
-    // });
+        return property;
+    }).then(function (property) {
+      return getAllRules(property._id);
+    }).then(function () {
+      return propertiesService.getPhotos(property._id);
+    }).then(function (res) {
+      vm.photos = res.data.map(function (photo) {
+        return propertiesService.getPhotoPath(photo);
+      });
+    });
 
 
-    // function getAllRules(propertyId) {
-    //   return rulesDataService.get(propertyId)
-    //     .then(function(response) {
-    //       vm.rules = response.data;
-    //     });
-    // }
+    function getAllRules(propertyId) {
+      return rulesDataService.get(propertyId)
+        .then(function(response) {
+          vm.rules = response.data;
+        });
+    }
     getAllDecals();
 
     function clearNewRule() {
@@ -99,6 +99,20 @@
         getAllDecals();
       });
     }
+
+    // ****** END DECAL ******
+
+    // ****** TOWING MATRIX ******
+
+    vm.saveTowingMatrix = function(form) {
+      console.log(vm.towingMatrix);
+      decalService.sendTowingMatrix(property._id, JSON.stringify(vm.towingMatrix))
+        .then(function(res) {
+          // console.log('Success');
+        });
+    }
+
+    // ****** END TOWING MATRIX ******
   }
 
   managersCtrl.$inject = injections;

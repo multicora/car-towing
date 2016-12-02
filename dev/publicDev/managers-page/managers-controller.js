@@ -16,32 +16,36 @@
 
     vm.managerName = null;
 
-    // propertiesService.getUsersProperty(user._id)
-    //   .then(function (res) {
-    //     if (!res.data) {
-    //       vm.message = 'Unfortunately we couldn\'t find your property.';
-    //     }
-    //     property = res.data;
-    //     vm.managerName = property.name;
+    propertiesService.getUsersProperty(user._id)
+      .then(function (res) {
+        if (!res.data) {
+          vm.message = 'Unfortunately we couldn\'t find your property.';
+        }
+        property = res.data;
+        vm.managerName = property.name;
+        if (property.towingMatrix) {
+          vm.towingMatrix = JSON.parse(property.towingMatrix);
+          vm.towingMatrix.date = new Date(vm.towingMatrix.date);
+        }
 
-    //     return property;
-    // }).then(function (property) {
-    //   return getAllRules(property._id);
-    // }).then(function () {
-    //   return propertiesService.getPhotos(property._id);
-    // }).then(function (res) {
-    //   vm.photos = res.data.map(function (photo) {
-    //     return propertiesService.getPhotoPath(photo);
-    //   });
-    // });
+        return property;
+    }).then(function (property) {
+      return getAllRules(property._id);
+    }).then(function () {
+      return propertiesService.getPhotos(property._id);
+    }).then(function (res) {
+      vm.photos = res.data.map(function (photo) {
+        return propertiesService.getPhotoPath(photo);
+      });
+    });
 
 
-    // function getAllRules(propertyId) {
-    //   return rulesDataService.get(propertyId)
-    //     .then(function(response) {
-    //       vm.rules = response.data;
-    //     });
-    // }
+    function getAllRules(propertyId) {
+      return rulesDataService.get(propertyId)
+        .then(function(response) {
+          vm.rules = response.data;
+        });
+    }
     getAllDecals();
 
     function clearNewRule() {
@@ -99,6 +103,19 @@
         getAllDecals();
       });
     }
+
+    // ****** END DECAL ******
+
+    // ****** TOWING MATRIX ******
+
+    vm.saveTowingMatrix = function(form) {
+      property.towingMatrix = JSON.stringify(vm.towingMatrix);
+      propertiesService.updateTowingMatrix(property._id, property)
+        .then(function(res) {
+        });
+    }
+
+    // ****** END TOWING MATRIX ******
   }
 
   managersCtrl.$inject = injections;

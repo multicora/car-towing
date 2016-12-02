@@ -1,0 +1,164 @@
+.towing-matrix-part.main-border-bottom
+  .big-indent-bottom.big-indent-top
+    .row
+      .col-sm-3.font-small
+        .bold-title Property Towing Matrix
+      .col-sm-6.font-small
+        form.towing-matrix-form(name="property-matrix-form"
+          ng-submit="vm.saveTowingMatrix(property-matrix-form)")
+          input.form-control(type="text"
+            placeholder="Property name"
+            ng-model="vm.towingMatrix.propertyName")
+          .expiration-data-container
+            span Expiration data
+            input.form-control.date(type="date"
+              ng-model="vm.towingMatrix.date")
+          .place
+            label
+              input(type="radio"
+                name="place"
+                value="City"
+                ng-model="vm.towingMatrix.place")
+              span.city City
+            label
+              input(type="radio"
+                name="place"
+                value="Country"
+                ng-model="vm.towingMatrix.place")
+              span Country
+          input.form-control(type="text"
+            placeholder="Hook-Up $"
+            ng-model="vm.towingMatrix.HookUp")
+          input.form-control(type="text"
+            placeholder="Property address"
+            ng-model="vm.towingMatrix.propertyAddress")
+          input.form-control(type="text"
+            placeholder="ZIP code"
+            ng-model="vm.towingMatrix.ZIPcode")
+          .roam-container
+            span.roam-title Roam
+            label
+              input(type="radio"
+                name="roam"
+                value="No"
+                ng-model="vm.towingMatrix.roam")
+              span.roam-text No
+            label
+              input(type="radio"
+                name="roam"
+                value="Yes"
+                ng-model="vm.towingMatrix.roam")
+              span.roam-text Yes
+          input.form-control(type="text"
+            name="MCLPN"
+            placeholder="MCLPN (office use only)"
+            ng-model="vm.towingMatrix.MCLPN")
+          .day
+            span 24/7
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.monday")
+              span Mon
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.tuesday")
+              span Tue
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.wednesday")
+              span Wed
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.thurday")
+              span Thu
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.friday")
+              span Fri
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.saturday")
+              span Sat
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.sunday")
+              span Sun
+          p Roam reasons:
+          input.form-control(type="text"
+            placeholder="No or Exp.Decal/Type"
+            ng-model="vm.towingMatrix.ExpDecalType")
+          input.form-control(type="text"
+            placeholder="Grace Days"
+            ng-model="vm.towingMatrix.graceDays")
+          input.form-control(type="text"
+            placeholder="No or Exp Visitor Pass/ Grace Minutes"
+            ng-model="vm.towingMatrix.passGraceMinutes")
+          input.form-control(type="text"
+            placeholder="Visitor Pass Type"
+            ng-model="vm.towingMatrix.visitorPassType")
+          input.form-control(type="text"
+            placeholder="Hand-Written Notes"
+            ng-model="vm.towingMatrix.handWrittenNotes")
+          input.form-control(type="text"
+            placeholder="No or Exp Tag / Grace Days"
+            ng-model="vm.towingMatrix.tagGraceDays")
+          input.form-control(type="text"
+            placeholder="Flat Tire / Grace Days"
+            ng-model="vm.towingMatrix.tireGraceDays")
+          .reasons-container
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.onGtass")
+              span On-Grass
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.fireLane")
+              span Fire Lane
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.noParkZone")
+              span No Park Zone
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.handicap")
+              span Handicap
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.failureToPay")
+              span Failure to Pay
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.jacks")
+              span Jacks
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.backedIn")
+              span Backed-In
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.scooter")
+              span Scooter
+            label
+              input(type="checkbox"
+                value="true"
+                ng-model="vm.towingMatrix.futureResidental")
+              span Future Residental Parking After Hours
+          textarea.form-control.notes(placeholder="Notes / Special Circumstances"
+            ng-model="vm.towingMatrix.notes")
+          .button-container
+            button.btn.btn-submit(type="submit") Save changes

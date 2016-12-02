@@ -38,6 +38,7 @@ const permissionsFunc = function(credentials, callback) {
     },
     users: {
       create: hasRole('admin'),
+      write: hasRole('admin'),
       read: hasRole('admin'),
     },
     locations: {

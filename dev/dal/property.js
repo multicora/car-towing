@@ -12,7 +12,8 @@ const schema = new Schema({
   blocked :  { type: Boolean, default: false },
   updated :  { type: Date, default: Date.now },
   manager :  { type: Schema.Types.ObjectId, ref: 'users' },
-  towingMatrix: String
+  towingMatrix: String,
+  deleted :  { type: Boolean, default: false }
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/
 });
@@ -49,6 +50,9 @@ const properties = {
   },
   updateTowingMatrix: (id, data, cb) => {
     return model.findOneAndUpdate({_id: id}, data, cb);
+  },
+  delete: (id, cb) => {
+    model.findOneAndUpdate({_id: id}, {deleted : true}, cb);
   }
 };
 

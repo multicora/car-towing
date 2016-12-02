@@ -147,7 +147,7 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badRequest(err));
         });
       }
     }

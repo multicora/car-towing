@@ -25,6 +25,7 @@
         vm.managerName = property.name;
         if (property.towingMatrix) {
           vm.towingMatrix = JSON.parse(property.towingMatrix);
+          vm.towingMatrix.date = new Date(vm.towingMatrix.date);
         }
 
         return property;

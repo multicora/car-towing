@@ -38,6 +38,11 @@ function service ($http, TokenService) {
           headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );
+    },
+    updateTowingMatrix: function(id, data) {
+      return $http.put('/api/towingMatrix/' + id, data, {
+          headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        });
     }
   };
 }

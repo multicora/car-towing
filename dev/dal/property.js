@@ -11,7 +11,8 @@ const schema = new Schema({
   location:  { type: Schema.Types.ObjectId, ref: 'locations' },
   blocked :  { type: Boolean, default: false },
   updated :  { type: Date, default: Date.now },
-  manager :  { type: Schema.Types.ObjectId, ref: 'users' }
+  manager :  { type: Schema.Types.ObjectId, ref: 'users' },
+  towingMatrix: String
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/
 });
@@ -45,6 +46,9 @@ const properties = {
   },
   getByUserId: (id, cb) => {
     return model.findOne({manager: id}, cb);
+  },
+  updateTowingMatrix: (id, data, cb) => {
+    return model.findOneAndUpdate({_id: id}, data, cb);
   }
 };
 

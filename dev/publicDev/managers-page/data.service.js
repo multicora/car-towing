@@ -12,8 +12,7 @@
         create: create,
         remove: remove,
         update: update,
-        get: get,
-        sendTowingMatrix: sendTowingMatrix
+        get: get
       };
 
       function get(propertyId) {
@@ -39,10 +38,6 @@
             headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
           }
         );
-      }
-
-      function sendTowingMatrix(argument) {
-        // body...
       }
     }
 })();

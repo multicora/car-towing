@@ -23,6 +23,9 @@
         }
         property = res.data;
         vm.managerName = property.name;
+        if (property.towingMatrix) {
+          vm.towingMatrix = JSON.parse(property.towingMatrix);
+        }
 
         return property;
     }).then(function (property) {
@@ -105,10 +108,9 @@
     // ****** TOWING MATRIX ******
 
     vm.saveTowingMatrix = function(form) {
-      console.log(vm.towingMatrix);
-      decalService.sendTowingMatrix(property._id, JSON.stringify(vm.towingMatrix))
+      property.towingMatrix = JSON.stringify(vm.towingMatrix);
+      propertiesService.updateTowingMatrix(property._id, property)
         .then(function(res) {
-          // console.log('Success');
         });
     }
 

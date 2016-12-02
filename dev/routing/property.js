@@ -134,4 +134,22 @@ module.exports = function (server) {
       }
     }
   });
+
+  server.route({
+    method: 'PUT',
+    path: '/api/towingMatrix/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:edit']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
+    }
+  });
 };

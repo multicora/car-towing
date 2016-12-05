@@ -1,21 +1,21 @@
 .blocking-part.main-border-bottom
   .big-indent-bottom.big-indent-top
     .row
-      .col-sm-9.font-regular
+      .long-block.font-regular
         span(ng-bind="'Welcome, ' + vm.managerName +'!'")
-      .col-sm-3
+      .right-block
         button.btn.btn-primary.btn-block(type="button") Report Exec
     .row.form-group.font-small
-      .col-sm-3
+      .left-block
         span Block towing from
-      .col-sm-6.date-range
+      .center-block.date-range
         input.form-control(type="date" ng-model="vm.blockingData.dateFrom")
         span.connector to
         input.form-control(type="date" ng-model="vm.blockingData.dateTo")
-      .col-sm-3
+      .right-block
         button.btn.btn-primary.btn-block(type="button") Block
     .row.font-small
-      .col-sm-9.reason-block
+      .long-block.reason-block
         span Reason
         input(ng-model="vm.blockingData.reason")
       .col-sm-3

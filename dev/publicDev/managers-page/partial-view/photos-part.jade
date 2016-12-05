@@ -1,5 +1,5 @@
 .photos-part.main-border-bottom(ng-if="vm.photos.length > 0")
   .big-indent-bottom.big-indent-top
-    .row
+    .row.photos-container
       .photo(ng-repeat="photo in vm.photos")
         img(ng-src="{{photo}}")

@@ -23,6 +23,10 @@
         }
         property = res.data;
         vm.managerName = property.name;
+        if (property.towingMatrix) {
+          vm.towingMatrix = JSON.parse(property.towingMatrix);
+          vm.towingMatrix.date = new Date(vm.towingMatrix.date);
+        }
 
         return property;
     }).then(function (property) {
@@ -99,6 +103,19 @@
         getAllDecals();
       });
     }
+
+    // ****** END DECAL ******
+
+    // ****** TOWING MATRIX ******
+
+    vm.saveTowingMatrix = function(form) {
+      property.towingMatrix = JSON.stringify(vm.towingMatrix);
+      propertiesService.updateTowingMatrix(property._id, property)
+        .then(function(res) {
+        });
+    }
+
+    // ****** END TOWING MATRIX ******
   }
 
   managersCtrl.$inject = injections;

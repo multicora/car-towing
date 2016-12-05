@@ -1,11 +1,10 @@
 .managers-page {
-  background: #f7f7f7;
-  min-height: 100%;
   position: relative;
+  min-height: 100%;
+  background: #f7f7f7;
 
   .container {
     min-width: 1366px;
-    padding: 0;
   }
 
   .row + .row {
@@ -13,9 +12,9 @@
   }
 
   .content {
-    background: #FFFFFF;
-    min-height: 100%;
     padding: 0 15px;
+    min-height: 100%;
+    background: #FFFFFF;
   }
 
   .left-block,
@@ -33,18 +32,18 @@
 
   .decal-popup {
     position: absolute;
-    width: 100%;
-    min-height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
     top: 0;
+    min-height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
 
     .decal-popup-container {
+      margin: 300px auto 0 auto;
       width: 900px;
       height: 700px;
-      background-color: #fff;
-      margin: 300px auto 0 auto;
-      box-shadow: 2px 4px 20px 0px rgba(0, 0, 0, 0.75);
       border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 2px 4px 20px 0px rgba(0, 0, 0, 0.75);
 
       .popup-header {
         display: inline-block;
@@ -52,23 +51,23 @@
 
         .title {
           display: inline-block;
-          text-align: center;
           padding-top: 20px;
-          font-size: 32px;
-          font-weight: 400;
-          width: 80%;
           padding-left: 200px;
+          width: 80%;
+          text-align: center;
+          font-weight: 400;
+          font-size: 32px;
         }
 
         .close-popup {
           display: inline-block;
-          width: 20%;
-          text-align: right;
-          font-size: 30px;
-          font-weight: 600;
           padding-right: 20px;
-          cursor: pointer;
+          width: 20%;
           color: #4d4d4d;
+          text-align: right;
+          font-weight: 600;
+          font-size: 30px;
+          cursor: pointer;
         }
 
         .close-popup:hover {
@@ -78,21 +77,21 @@
       }
 
       .decal-popup-content {
-        max-height: 550px;
         overflow-y: auto;
         margin-top: 30px;
+        max-height: 550px;
 
         .decal-content-row {
-          font-size: 18px;
+          margin-top: 10px;
           padding: 0 50px;
           width: 100%;
           text-align: left;
-          margin-top: 10px;
+          font-size: 18px;
 
           .number {
             display: inline-block;
-            font-weight: 600;
             width: 30%;
+            font-weight: 600;
           }
 
           .name {
@@ -130,15 +129,15 @@
     display: flex;
 
     input {
+      flex-grow: 1;
       border-color: #d4d4d4;
       border-radius: 5px;
       font-size: 16px;
-      flex-grow: 1;
     }
 
     .connector {
-      flex-basis: 10%;
       flex-grow: 1;
+      flex-basis: 10%;
       text-align: center;
     }
   }
@@ -147,24 +146,24 @@
     display: flex;
 
     input {
+      flex-grow: 1;
+      box-sizing: border-box;
+      padding-left: 10px;
       border: none;
       border-bottom: 1px solid #d4d4d4;
-      box-sizing: border-box;
       font-size: 20px;
-      padding-left: 10px;
-      flex-grow: 1;
     }
   }
 }
 
 .parking-rules {
   .edit-rule{
-    border-radius: 5px;
-    border-color: #d4d4d4;
-    box-sizing: border-box;
-    font-size: 18px;
     flex-grow: 1;
+    box-sizing: border-box;
     padding-left: 20px;
+    border-color: #d4d4d4;
+    border-radius: 5px;
+    font-size: 18px;
   }
 
   .btn-block.btn-block {
@@ -190,9 +189,9 @@
   }
 
   .message {
-    font-size: 18px;
-    font-weight: 600;
     text-align: center;
+    font-weight: 600;
+    font-size: 18px;
   }
 }
 
@@ -213,8 +212,91 @@
 
   .add-decal {
     span {
-      vertical-align: bottom;
       margin-left: 10px;
+      vertical-align: bottom;
     }
+  }
+}
+
+.towing-matrix-part {
+  .towing-matrix-form {
+    color: #4d4d4d;
+    font-weight: 400;
+    font-size: 20px;
+
+    .form-control {
+      margin-bottom: 12px;
+      height: 44px;
+      font-size: 18px;
+    }
+
+    label {
+      font-weight: 400;
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-right: 5px;
+        width: 24px;
+        height: 24px;
+        background-color: #ffffff;
+        vertical-align: middle;
+      }
+
+      span {
+        vertical-align: middle;
+      }
+    }
+
+    .date {
+      display: inline-block;
+      margin-left: 10px;
+      width: 220px;
+    }
+
+    .place {
+      margin-bottom: 12px;
+
+      .city {
+        margin-right: 150px;
+      }
+    }
+
+    .roam-container {
+      margin-bottom: 12px;
+
+      .roam-title {
+        margin-right: 20px;
+      }
+
+      .roam-text {
+        margin-right: 150px;
+      }
+    }
+
+    .day {
+      margin-bottom: 12px;
+
+      span {
+        margin-right: 10px;
+      }
+    }
+
+    .reasons-container {
+      span {
+        margin-right: 10px;
+      }
+    }
+
+    .notes {
+      margin-top: 30px;
+      min-height: 144px;
+      resize:none;
+    }
+
+    .button-container {
+      width: 100%;
+      text-align: center
+    }
+
   }
 }

@@ -16,7 +16,6 @@
     width: 279px;
     height: 52px;
     float: right;
-    margin: 50px 70px 0 0;
     padding: 13px 0 0 68px;
     color: #ffffff;
     font-size: 18px;
@@ -62,6 +61,10 @@
 
     button:hover {
       background: #7fbbe6;
+    }
+
+    .propertyForm {
+      margin-bottom: 0;
     }
 
     .propertyValue {
@@ -233,6 +236,13 @@
     position: absolute;
     top: 0px;
     left: 125px;
+  }
+
+  .edit {
+    height: 35px;
+    position: absolute;
+    top: 105px;
+    left: 120px;
   }
 
   .delete:focus {

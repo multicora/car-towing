@@ -30,9 +30,20 @@ function service ($http, TokenService) {
     getPhotoPath: function(photoPath) {
       return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
     },
-    remove: function(id) {
-      return $http.delete('/api/property/' + id, {
+    delete: function(id) {
+      return $http.delete('/api/property-delete/' + id, {
           headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        }
+      );
+    },
+    updateTowingMatrix: function(id, data) {
+      return $http.put('/api/towingMatrix/' + id, data, {
+          headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        });
+    },
+    update: function(id, property) {
+      return $http.put('api/property/' + id, {
+          headers: {Authorization :TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );
     }

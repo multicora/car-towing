@@ -11,7 +11,9 @@ const schema = new Schema({
   location:  { type: Schema.Types.ObjectId, ref: 'locations' },
   blocked :  { type: Boolean, default: false },
   updated :  { type: Date, default: Date.now },
-  manager :  { type: Schema.Types.ObjectId, ref: 'users' }
+  manager :  { type: Schema.Types.ObjectId, ref: 'users' },
+  towingMatrix: String,
+  deleted :  { type: Boolean, default: false }
   /*manager: Schema.Types.ObjectId,
   license: Schema.Types.ObjectId,*/
 });
@@ -37,14 +39,20 @@ const properties = {
 
     propertyIns.save(cb);
   },
-  edit: (id, model, cb) => {
-    return model.findOneAndUpdate({_id: id}, model, cb);
+  edit: (id, data, cb) => {
+    return model.findOneAndUpdate({_id: id}, data, cb);
   },
   remove: (id, cb) => {
     return model.findOneAndRemove({_id: id}, cb);
   },
   getByUserId: (id, cb) => {
     return model.findOne({manager: id}, cb);
+  },
+  updateTowingMatrix: (id, data, cb) => {
+    return model.findOneAndUpdate({_id: id}, data, cb);
+  },
+  delete: (id, cb) => {
+    model.findOneAndUpdate({_id: id}, {deleted : true}, cb);
   }
 };
 

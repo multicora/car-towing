@@ -4,8 +4,7 @@
   background: #f7f7f7;
 
   .container {
-    padding: 0;
-    width: 1366px;
+    min-width: 1366px;
   }
 
   .row + .row {
@@ -16,6 +15,26 @@
     padding: 0 15px;
     min-height: 100%;
     background: #FFFFFF;
+  }
+
+  .left-block,
+  .right-block {
+    width: 325px;
+    display: inline-block;
+    padding: 0 15px;
+    vertical-align: top;
+  }
+
+  .center-block {
+    width: 680px;
+    display: inline-block;
+    padding: 0 15px;
+  }
+
+  .long-block {
+    width: 1005px;
+    display: inline-block;
+    padding: 0 15px;
   }
 
   .decal-popup {
@@ -106,35 +125,35 @@
           }
         }
       }
-
-
     }
   }
 }
 
 .blocking-part {
   .date-range {
-    display: flex;
+    display: inline-block;
 
     input {
-      flex-grow: 1;
+      display: inline-block;
+      width: 300px;
       border-color: #d4d4d4;
       border-radius: 5px;
       font-size: 16px;
     }
 
     .connector {
-      flex-grow: 1;
-      flex-basis: 10%;
+      display: inline-block;
       text-align: center;
+      padding: 0 15px;
     }
   }
 
   .reason-block {
-    display: flex;
+    display: inline-block;
 
     input {
-      flex-grow: 1;
+      display: inline-block;
+      width: 300px;
       box-sizing: border-box;
       padding-left: 10px;
       border: none;
@@ -146,7 +165,6 @@
 
 .parking-rules {
   .edit-rule{
-    flex-grow: 1;
     box-sizing: border-box;
     padding-left: 20px;
     border-color: #d4d4d4;
@@ -160,10 +178,18 @@
 
   .rule {
     .rule-controls {
-      display: flex;
-
       .btn-circle {
         flex-shrink: 0;
+      }
+      
+      .delete {
+        height: 35px;
+        display: inline-block;
+      }
+
+      .edit {
+        width: 245px;
+        display: inline-block;
       }
     }
   }
@@ -176,6 +202,10 @@
 }
 
 .photos-part {
+  .photos-container {
+    width: 100%;
+  }
+
   .photo img {
     width: 200px;
   }
@@ -199,6 +229,19 @@
 }
 
 .towing-matrix-part {
+
+  .title {
+    display: inline-block;
+    vertical-align: top;
+    width: 325px;
+    padding: 0 15px;
+  }
+
+  .form-container {
+    width: 680px;
+    display: inline-block;
+    padding: 0 15px;
+  }
   .towing-matrix-form {
     color: #4d4d4d;
     font-weight: 400;

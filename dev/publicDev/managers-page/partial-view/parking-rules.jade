@@ -1,18 +1,18 @@
 .parking-rules.main-border-bottom
   .big-indent-bottom.big-indent-top
     .row.rule(ng-repeat="rule in vm.rules")
-      .col-sm-3.font-small
+      .left-block.font-small
         .bold-title(ng-if="!$index") Parking Rules
-      .col-sm-6.font-small.ellipsis#ruleTextContainer
+      .center-block.font-small.ellipsis#ruleTextContainer
         edit-rule-directive(name="rule" ng-show="rule.editmode")
         rule-text-directive(name="rule" ng-hide="rule.editmode")
-      .col-sm-3.rule-controls
-        button.btn.btn-primary.btn-circle(
+      .right-block.rule-controls
+        button.btn.btn-primary.btn-circle.delete(
           type="button"
           ng-hide="rule.editmode"
           ng-click="vm.remove(rule._id)")
           i.glyphicon.glyphicon-remove
-        button.btn.btn-primary.btn-block(
+        button.btn.btn-primary.btn-block.edit(
           type="button"
           ng-hide="rule.editmode"
           ng-click="vm.edit($index)") Edit
@@ -21,9 +21,9 @@
           ng-show="rule.editmode"
           ng-click="vm.save($index, rule._id, rule)") Save
     .row.form-group.new-rule-block.main-height
-      .col-sm-3
-      .col-sm-6.new-rule
+      .left-block
+      .center-block.new-rule
         edit-rule-directive(name="vm.newRule")
-      .col-sm-3
+      .right-block
         button.btn.btn-primary.btn-block(type="button" ng-click="vm.add(vm.newRule)") Add Rule
     p.message(ng-bind="vm.message")

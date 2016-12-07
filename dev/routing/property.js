@@ -15,7 +15,7 @@ module.exports = function (server) {
     path: '/api/properties',
     handler: function (request, reply) {
       DAL.properties.getExisting(function (err, docs) {
-        !err ? reply(docs) : reply(Boom.badRequest(err));
+        !err ? reply(docs) : reply(Boom.badImplementation(err));
       });
     }
   });
@@ -37,6 +37,18 @@ module.exports = function (server) {
       handler: function (request, reply) {
         DAL.properties.getById(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/property-by-location/{id}',
+    config: {
+      handler: function (request, reply) {
+        DAL.properties.getByLocation(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
         });
       }
     }

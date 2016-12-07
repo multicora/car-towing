@@ -34,6 +34,9 @@ const properties = {
   getById: (id, cb) => {
     return model.findOne({_id: id }, cb);
   },
+  getByLocation: (locationId, cb) => {
+    return model.findOne({location: locationId}, cb);
+  },
   getExisting: (cb) => {
     return model.find({deleted: false}, cb);
   },

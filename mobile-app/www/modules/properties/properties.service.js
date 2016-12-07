@@ -17,10 +17,9 @@
       getPropertyById: getPropertyById
     };
 
-    function getProperties() {
-      $http.get(config.url + "/api/properties")
+    function getProperties(locationId) {
+      $http.get(config.url + "/api/properties-by-location/" + locationId)
         .then(function (response) {
-          console.log(response)
           properties.list = [].concat(response.data);
           console.log(properties);
         }, function (error) {

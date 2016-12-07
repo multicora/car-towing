@@ -15,7 +15,7 @@
 
     vm.properties = PropertiesService.properties;
     vm.getProperties = function () {
-      PropertiesService.getProperties();
+      PropertiesService.getProperties($stateParams.locationId);
     };
 
     vm.showConfirm = function (property) {

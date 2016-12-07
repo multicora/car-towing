@@ -4,22 +4,30 @@
   angular.module('carTowingApp')
     .controller('DecalController', DecalController);
 
-  DecalController.$inject = ['$stateParams', 'DecalService', 'PropertiesService'];
+  DecalController.$inject = ['$stateParams', 'DecalService', 'PropertiesService', '$cordovaCamera'];
 
-  function DecalController($stateParams, DecalService, PropertiesService) {
+  function DecalController($stateParams, DecalService, PropertiesService, $cordovaCamera) {
     var vm = this;
     vm.decalId = '';
+    vm.decal = undefined;
     vm.property = PropertiesService.getPropertyById($stateParams.propertyId);
-    console.log(vm.property);
     vm.title = vm.property.name || 'NO TITLE';
+    vm.notFoundDecalError = '';
 
-    vm.getDecalById = function () {
-      console.log('ckick');
-      DecalService.getDecalById(vm.decalId)
+    vm.getDecalBySerialNumber = function () {
+      DecalService.getDecalBySerialNumber(vm.serialNumber)
         .then(function (response) {
-          console.log(response);
+          if(response.status == 404) {
+            vm.notFoundDecalError = response.data.message;
+            vm.decal = undefined;
+          } else {
+            vm.notFoundDecalError = '';
+            vm.decal = response.data;
+            console.log(response);
+          }
         }, function (error) {
-          console.log(error);
+          vm.decal = undefined;
+          console.error(error);
         });
     };
 
@@ -41,7 +49,8 @@
         };
 
 
-        $cordovaCamera.getPicture(options).then(function (imageData) {
+        $cordovaCamera.getPicture(options)
+          .then(function (imageData) {
           alert(imageData);
         }, function (err) {
           alert(error);

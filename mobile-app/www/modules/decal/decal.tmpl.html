@@ -15,17 +15,23 @@
 
     <div class="item-input-inset search">
       <label class="item-input-wrapper">
-        <input type="search" placeholder="Decal serial #" ng-model="vm.decalId">
+        <input type="search" placeholder="Decal serial #" ng-model="vm.serialNumber">
       </label>
-      <button class="button button-positive btn-search" ng-click="vm.getDecalById()">
+      <button class="button button-positive btn-search" ng-click="vm.getDecalBySerialNumber()">
         GO
       </button>
     </div>
 
-    <p class="p-text text-left">Check information about Decal:</p>
+    <div class="empty-data" ng-if="vm.notFoundDecalError.length">{{vm.notFoundDecalError}}</div>
 
-    <div class="decal-wrap">
-      <p class="decal-item">Color of decal: <span>white</span></p>
+
+    <div class="decal-wrap" ng-if="vm.decal">
+      <p class="p-text text-left">Check information about Decal:</p>
+      <p class="decal-item">Color of decal: <span ng-bind="vm.decal.decalColor"></span></p>
+      <p class="decal-item">Parking space #: <span ng-bind="vm.decal.assignedParkingSpace"></span></p>
+      <p class="decal-item">Mark: <span ng-bind="vm.decal.mark"></span></p>
+      <p class="decal-item">Color: <span ng-bind="vm.decal.color"></span></p>
+      <p class="decal-item">Year: <span ng-bind="vm.decal.year"></span></p>
     </div>
 
   </ion-content>

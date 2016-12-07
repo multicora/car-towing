@@ -8,11 +8,11 @@
 
   function DecalService(config, $http) {
     return {
-      getDecalById: getDecalById
+      getDecalBySerialNumber: getDecalBySerialNumber
     };
 
-    function getDecalById(decalId) {
-      return $http.get(config.url + "/api/decal/" + decalId);
+    function getDecalBySerialNumber(serialNumber) {
+      return $http.get(config.url + "/api/decal-by-serial/" + serialNumber);
     }
   }
 })();

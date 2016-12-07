@@ -23,14 +23,14 @@
 
     <div class="item-input-inset search">
       <label class="item-input-wrapper">
-        <input type="search" placeholder="Search properties" ng-model="query">
+        <input type="search" placeholder="Search properties" ng-model="query.name">
       </label>
       <button class="button button-icon icon ion-search btn-search-local"></button>
     </div>
 
     <div class="empty-data" ng-switch-when="0">No locations</div>
     <div class="p-list" ng-switch-default>
-      <div class="p-item" ng-repeat="property in vm.properties.list | PropertiesFilter:query:vm.location._id"
+      <div class="p-item" ng-repeat="property in vm.properties.list | filter:query"
            ng-click="vm.showConfirm(property)">
         <div class="p-img-wrap blocked">
           <div class="blocked-content" ng-if="property.blocked">Blocked</div>

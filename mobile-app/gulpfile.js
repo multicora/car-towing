@@ -30,8 +30,8 @@ gulp.task('sass', function (done) {
 
 gulp.task('modules', function () {
   return gulp.src('./www/modules/**/*.js')
-    .pipe(concat('modules.js'))
     .pipe(sourcemaps.init())
+    .pipe(concat('modules.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./www/js/'));
 });

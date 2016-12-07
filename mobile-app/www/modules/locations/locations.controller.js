@@ -4,9 +4,9 @@
   angular.module('carTowingApp')
     .controller('LocationsController', LocationsController);
 
-  LocationsController.$inject = ['LocationsService', '$stateParams', '$cordovaCamera', 'AuthService'];
+  LocationsController.$inject = ['LocationsService', '$stateParams', 'AuthService'];
 
-  function LocationsController(LocationsService, $stateParams, $cordovaCamera, AuthService) {
+  function LocationsController(LocationsService, $stateParams, AuthService) {
     var vm = this;
 
     vm.locations = LocationsService.locations;

@@ -1,18 +1,18 @@
-(function() {
-    'use strict';
+(function () {
+  'use strict';
 
-    angular.module('carTowingApp')
-        .factory('DecalService', DecalService);
+  angular.module('carTowingApp')
+    .factory('DecalService', DecalService);
 
-    DecalService.$inject = ['config', '$http'];
+  DecalService.$inject = ['config', '$http'];
 
-    function DecalService(config, $http) {
-        return {
-            getDecalById: getDecalById
-        };
+  function DecalService(config, $http) {
+    return {
+      getDecalById: getDecalById
+    };
 
-        function getDecalById(decalId) {
-            return $http.get(config.url + "/api/decal/" + decalId);
-        }
+    function getDecalById(decalId) {
+      return $http.get(config.url + "/api/decal/" + decalId);
     }
+  }
 })();

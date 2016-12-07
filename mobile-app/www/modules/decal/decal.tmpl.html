@@ -1,31 +1,32 @@
 <ion-view view-title="Decal">
-    <ion-header-bar align-title="center" class="bar-custom">
-        <div class="buttons">
-            <button class="button button-icon icon ion-chevron-left btn-back" ui-sref="properties({locationId: vm.property.location})"></button>
-        </div>
-        <h1 class="title" ng-bind="vm.title"></h1>
-        <div class="buttons">
-            <button class="button button-clear btn-header-text" ng-click="vm.openCamera()">Skip</button>
-        </div>
-    </ion-header-bar>
-    <ion-content class="has-header bg-color padding-23">
+  <ion-header-bar align-title="center" class="bar-custom">
+    <div class="buttons">
+      <button class="button button-icon icon ion-chevron-left btn-back"
+              ui-sref="properties({locationId: vm.property.location})"></button>
+    </div>
+    <h1 class="title" ng-bind="vm.title"></h1>
+    <div class="buttons">
+      <button class="button button-clear btn-header-text" ng-click="vm.openCamera()">Skip</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="has-header bg-color padding-23">
 
-        <p class="p-text text-left">Enter Decal serial #:</p>
+    <p class="p-text text-left">Enter Decal serial #:</p>
 
-        <div class="item-input-inset search">
-            <label class="item-input-wrapper">
-              <input type="search" placeholder="Decal serial #" ng-model="vm.decalId">
-            </label>
-            <button class="button button-positive btn-search" ng-click="vm.getDecalById()">
-              GO
-            </button>
-        </div>
+    <div class="item-input-inset search">
+      <label class="item-input-wrapper">
+        <input type="search" placeholder="Decal serial #" ng-model="vm.decalId">
+      </label>
+      <button class="button button-positive btn-search" ng-click="vm.getDecalById()">
+        GO
+      </button>
+    </div>
 
-        <p class="p-text text-left">Check information about Decal:</p>
+    <p class="p-text text-left">Check information about Decal:</p>
 
-        <div class="decal-wrap">
-            <p class="decal-item">Color of decal: <span>white</span></p>
-        </div>
+    <div class="decal-wrap">
+      <p class="decal-item">Color of decal: <span>white</span></p>
+    </div>
 
-    </ion-content>
+  </ion-content>
 </ion-view>

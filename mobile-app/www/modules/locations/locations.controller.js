@@ -1,24 +1,24 @@
-(function() {
-    'use strict';
+(function () {
+  'use strict';
 
-    angular.module('carTowingApp')
-        .controller('LocationsController', LocationsController);
+  angular.module('carTowingApp')
+    .controller('LocationsController', LocationsController);
 
-    LocationsController.$inject = ['LocationsService', '$stateParams', '$cordovaCamera', 'AuthService'];
+  LocationsController.$inject = ['LocationsService', '$stateParams', '$cordovaCamera', 'AuthService'];
 
-    function LocationsController(LocationsService, $stateParams, $cordovaCamera, AuthService) {
-        var vm = this;
+  function LocationsController(LocationsService, $stateParams, $cordovaCamera, AuthService) {
+    var vm = this;
 
-        vm.locations = LocationsService.locations;
+    vm.locations = LocationsService.locations;
 
-        vm.getLocations = function() {
-            LocationsService.getLocations();
-        };
+    vm.getLocations = function () {
+      LocationsService.getLocations();
+    };
 
-        vm.logout = function() {
-            AuthService.logout();
-        }
-
+    vm.logout = function () {
+      AuthService.logout();
     }
+
+  }
 
 })();

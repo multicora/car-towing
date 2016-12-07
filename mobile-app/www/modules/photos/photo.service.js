@@ -1,14 +1,12 @@
-(function() {
-    'use strict';
-    angular.module('carTowingApp')
-        .factory('PhotosService', PhotosService);
+(function () {
+  'use strict';
+  angular.module('carTowingApp')
+    .factory('PhotosService', PhotosService);
 
-    PhotosService.$inject = [];
+  PhotosService.$inject = [];
 
-    function PhotosService() {
-        return {
-
-        }
-    }
+  function PhotosService() {
+    return {}
+  }
 
 })();

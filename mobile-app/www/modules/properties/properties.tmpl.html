@@ -1,44 +1,45 @@
 <ion-view view-title="Properties" ng-init="vm.getProperties()">
-    <ion-header-bar align-title="center" class="bar-custom">
-        <div class="buttons">
-            <button class="button button-icon icon ion-chevron-left btn-back" ui-sref="locations"></button>
-        </div>
-        <h1 class="title" ng-bind="vm.title" ng-click="vm.showConfirmRules()"></h1>
-    </ion-header-bar>
-    <ion-content class="has-header bg-color padding-23" ng-switch="vm.properties.list.length">
+  <ion-header-bar align-title="center" class="bar-custom">
+    <div class="buttons">
+      <button class="button button-icon icon ion-chevron-left btn-back" ui-sref="locations"></button>
+    </div>
+    <h1 class="title" ng-bind="vm.title" ng-click="vm.showConfirmRules()"></h1>
+  </ion-header-bar>
+  <ion-content class="has-header bg-color padding-23" ng-switch="vm.properties.list.length">
 
-        <p class="p-text text-center">Emergency tow</p>
+    <p class="p-text text-center">Emergency tow</p>
 
-        <div class="item-input-inset search">
-            <label class="item-input-wrapper">
-              <input type="search" placeholder="Property name">
-            </label>
-            <button class="button button-positive btn-search">
-              GO
-            </button>
-        </div>
+    <div class="item-input-inset search">
+      <label class="item-input-wrapper">
+        <input type="search" placeholder="Property name">
+      </label>
+      <button class="button button-positive btn-search">
+        GO
+      </button>
+    </div>
 
-        <p class="p-text-devider text-center">or</p>
-        <p class="p-text text-center">Select a property you are at now</p>
+    <p class="p-text-devider text-center">or</p>
+    <p class="p-text text-center">Select a property you are at now</p>
 
-        <div class="item-input-inset search">
-            <label class="item-input-wrapper">
-              <input type="search" placeholder="Search properties" ng-model="query">
-            </label>
-            <button class="button button-icon icon ion-search btn-search-local"></button>
-        </div>
+    <div class="item-input-inset search">
+      <label class="item-input-wrapper">
+        <input type="search" placeholder="Search properties" ng-model="query">
+      </label>
+      <button class="button button-icon icon ion-search btn-search-local"></button>
+    </div>
 
-        <div class="empty-data" ng-switch-when="0">No locations</div>
-        <div class="p-list" ng-switch-default>
-            <div class="p-item" ng-repeat="property in vm.properties.list | PropertiesFilter:query:vm.location._id" ng-click="vm.showConfirm(property)">
-                <div class="p-img-wrap blocked">
-                    <div class="blocked-content" ng-if="property.blocked">Blocked</div>
-                    <img src="img/api.png" alt="">
-                </div>
-
-                <h4 class="p-item-title item-text-wrap">{{property.name}}</h4>
-            </div>
+    <div class="empty-data" ng-switch-when="0">No locations</div>
+    <div class="p-list" ng-switch-default>
+      <div class="p-item" ng-repeat="property in vm.properties.list | PropertiesFilter:query:vm.location._id"
+           ng-click="vm.showConfirm(property)">
+        <div class="p-img-wrap blocked">
+          <div class="blocked-content" ng-if="property.blocked">Blocked</div>
+          <img src="img/api.png" alt="">
         </div>
 
-    </ion-content>
+        <h4 class="p-item-title item-text-wrap">{{property.name}}</h4>
+      </div>
+    </div>
+
+  </ion-content>
 </ion-view>

@@ -21,7 +21,19 @@ module.exports = function (server) {
     config: {
       handler: function (request, reply) {
         DAL.decal.getById(request.params.id, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
+        });
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/decal-by-serial/{number}',
+    config: {
+      handler: function (request, reply) {
+        DAL.decal.getBySerial(request.params.number, function (err, docs) {
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
         });
       }
     }

@@ -3,6 +3,7 @@
   "app_id": "",
   "gulpStartupTasks": [
     "sass",
+    "modules",
     "watch"
   ],
   "watchPatterns": [
@@ -12,7 +13,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://95.85.15.154"
+      "proxyUrl": "http://95.85.15.154/api"
     }
   ]
 }

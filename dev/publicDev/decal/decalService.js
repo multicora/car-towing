@@ -15,7 +15,9 @@
     }
 
     function add(data) {
-      return $http.post('api/decal?' + TokenService.getTokenName() + '=' + TokenService.getToken(), data);
+      return $http.post('api/decal', data, {
+        headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+      });
     }
 
     function getDecals() {
@@ -27,11 +29,15 @@
     }
 
     function editDecal(id, decal) {
-      return $http.put('/api/decal/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken(), decal);
+      return $http.put('/api/decal/' + id, decal, {
+        headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+      });
     }
 
     function removeDecal(id) {
-      return $http.delete('/api/decal/' + id + '?' + TokenService.getTokenName() + '=' + TokenService.getToken());
+      return $http.delete('/api/decal/' + id, {
+        headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+      });
     }
   }
 })(angular);

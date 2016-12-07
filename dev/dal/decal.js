@@ -37,6 +37,9 @@ const decal = {
   getById: (id, cb) => {
     return model.findOne({_id: id }, cb);
   },
+  getBySerial: (number, cb) => {
+    return model.findOne({serialNumber: number}, cb);
+  },
   create: (decal, cb) => {
     const decalIns = new model(decal);
 

@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
 
-    <link rel="manifest" href="manifest.json">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
 
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- un-comment this code to enable service worker
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('service worker installed'))
+        .catch(err => console.log('Error', err));
+    }
+  </script>-->
 
 
-    <!-- compiled css output -->
-    <link href="css/ionic.app.css" rel="stylesheet">
+  <!-- compiled css output -->
+  <link href="css/ionic.app.css" rel="stylesheet">
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="js/ng-cordova.min.js"></script>
-    <script src="cordova.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="js/ng-cordova.min.js"></script>
+  <script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/run.js"></script>
-    <script src="js/routing.js"></script>
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/run.js"></script>
+  <script src="js/routing.js"></script>
 
-    <script src="modules/auth/token.service.js"></script>
-    <script src="modules/auth/auth.service.js"></script>
-    <script src="modules/auth/login.controller.js"></script>
-    <script src="modules/properties/properties.controller.js"></script>
-    <script src="modules/filter/filter.controller.js"></script>
-  </head>
-  <body ng-app="carTowingApp">
-    <ion-nav-view></ion-nav-view>
-  </body>
+  <script src="js/services/http-interceptor.js"></script>
+
+  <script src="js/modules.js"></script>
+  <!--<script src="modules/properties/properties.filter.js"></script>
+  <script src="modules/auth/token.service.js"></script>
+  <script src="modules/auth/auth.service.js"></script>
+  <script src="modules/auth/login.controller.js"></script>
+  <script src="modules/properties/properties.service.js"></script>
+  <script src="modules/properties/properties.controller.js"></script>
+  <script src="modules/properties/property-details.controller.js"></script>
+  <script src="modules/locations/locations.service.js"></script>
+  <script src="modules/locations/locations.controller.js"></script>
+
+  -->
+</head>
+
+<body ng-app="carTowingApp">
+  <ion-nav-view></ion-nav-view>
+</body>
+
 </html>

@@ -1,10 +1,10 @@
-(function(){
+(function () {
   'use strict';
   angular
     .module('carTowingApp')
-    .run(function($ionicPlatform, $rootScope, TokenService, $state) {
-      $ionicPlatform.ready(function() {
-        if(window.cordova && window.cordova.plugins.Keyboard) {
+    .run(function ($ionicPlatform, $rootScope, TokenService, $state) {
+      $ionicPlatform.ready(function () {
+        if (window.cordova && window.cordova.plugins.Keyboard) {
           // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
           // for form inputs)
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -14,15 +14,16 @@
           // a much nicer keyboard experience.
           cordova.plugins.Keyboard.disableScroll(true);
         }
-        if(window.StatusBar) {
+        if (window.StatusBar) {
           StatusBar.styleDefault();
         }
       });
 
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-        if(!TokenService.getToken()) {
-          $state.go('login');
-        }
+      $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+        // if (!TokenService.getToken()) {
+        //     event.preventDefault();
+        //     $state.go('login');
+        // }
       });
     });
 })();

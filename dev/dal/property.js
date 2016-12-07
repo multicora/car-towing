@@ -34,6 +34,12 @@ const properties = {
   getById: (id, cb) => {
     return model.findOne({_id: id }, cb);
   },
+  getByLocation: (locationId, cb) => {
+    return model.find({location: locationId}, cb);
+  },
+  getExisting: (cb) => {
+    return model.find({deleted: false}, cb);
+  },
   create: (property, cb) => {
     const propertyIns = new model(property);
 

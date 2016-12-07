@@ -2,6 +2,7 @@
 
 const Mongoose = require('mongoose');
 const DAL = require('../dal/dal.js');
+const Boom = require('boom');
 
 module.exports = function (server) {
 
@@ -21,7 +22,23 @@ module.exports = function (server) {
     config: {
       handler: function (request, reply) {
         DAL.decal.getById(request.params.id, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
+        });
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/decal-by-serial/{number}',
+    config: {
+      handler: function (request, reply) {
+        DAL.decal.getBySerial(request.params.number, function (err, doc) {
+          if (err) {
+            reply(Boom.badImplementation(err));
+          } else {
+            doc ? reply(doc) : reply(Boom.notFound('Not found decal with number: ' + request.params.number));
+          }
         });
       }
     }

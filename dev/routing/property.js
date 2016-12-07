@@ -14,8 +14,8 @@ module.exports = function (server) {
     method: 'GET',
     path: '/api/properties',
     handler: function (request, reply) {
-      DAL.properties.get(function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
+      DAL.properties.getExisting(function (err, docs) {
+        !err ? reply(docs) : reply(Boom.badRequest(err));
       });
     }
   });

@@ -1,65 +1,65 @@
 .filter-container {
-    @include flexbox;
-    @include justify-content(space-around);
-    @include flex-wrap(wrap);
-    margin-top: 15px;
+  @include flexbox;
+  @include justify-content(space-around);
+  @include flex-wrap(wrap);
+  margin-top: 15px;
 }
 
 .filter-item {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 1px solod white;
-    &:nth-child(4n+1) .filter-main-block {
-        background-color: #85ccfa;
-    }
-    &:nth-child(4n+2) .filter-main-block {
-        background-color: #75debb;
-    }
-    &:nth-child(4n+3) .filter-main-block {
-        background-color: #44a987;
-    }
-    &:nth-child(4n+4) .filter-main-block {
-        background-color: #6f89c5;
-    }
-    .filter-main-block {
-        @include flexbox;
-        @include justify-content(center);
-        @include align-items(center);
-        @include flex-wrap(wrap);
-        font-family: OpenSans;
-        color: #ffffff;
-        font-size: 25px;
-        font-weight: 400;
-        line-height: 25px;
-        text-align: center;
-    }
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solod white;
+  &:nth-child(4n+1) .filter-main-block {
+    background-color: #85ccfa;
+  }
+  &:nth-child(4n+2) .filter-main-block {
+    background-color: #75debb;
+  }
+  &:nth-child(4n+3) .filter-main-block {
+    background-color: #44a987;
+  }
+  &:nth-child(4n+4) .filter-main-block {
+    background-color: #6f89c5;
+  }
+  .filter-main-block {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include flex-wrap(wrap);
+    font-family: OpenSans;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 25px;
+    text-align: center;
+  }
 }
 
 .filter-b-1,
 .filter-b-2,
 .filter-b-3,
 .filter-b-4 {
-    display: block;
-    padding: 5px;
-    border-radius: 50%;
+  display: block;
+  padding: 5px;
+  border-radius: 50%;
 }
 
 .filter-b-1 {
-    border: 1px solid white;
+  border: 1px solid white;
 }
 
 .filter-b-2 {
-    border: 2px solid white;
-    height: 100%;
+  border: 2px solid white;
+  height: 100%;
 }
 
 .filter-b-3 {
-    border: 3px solid white;
-    height: 100%;
+  border: 3px solid white;
+  height: 100%;
 }
 
 .filter-b-4 {
-    border: 4px solid white;
-    height: 100%;
+  border: 4px solid white;
+  height: 100%;
 }

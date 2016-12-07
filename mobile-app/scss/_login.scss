@@ -6,6 +6,7 @@
     width: 100%;
   }
 }
+
 .l-input {
   height: 44px;
   margin-bottom: 11px;
@@ -25,12 +26,27 @@
     font-size: 15px;
     padding-top: 0px;
     font-weight: 600;
-    &::-webkit-input-placeholder {color:#a8a8a8;font-size: 15px;}
-    &::-moz-placeholder          {color:#a8a8a8;font-size: 15px;}/* Firefox 19+ */
-    &:-moz-placeholder           {color:#a8a8a8;font-size: 15px;}/* Firefox 18- */
-    &:-ms-input-placeholder      {color:#a8a8a8;font-size: 15px;}
+    &::-webkit-input-placeholder {
+      color: #a8a8a8;
+      font-size: 15px;
+    }
+    &::-moz-placeholder {
+      color: #a8a8a8;
+      font-size: 15px;
+    }
+    /* Firefox 19+ */
+    &:-moz-placeholder {
+      color: #a8a8a8;
+      font-size: 15px;
+    }
+    /* Firefox 18- */
+    &:-ms-input-placeholder {
+      color: #a8a8a8;
+      font-size: 15px;
+    }
   }
 }
+
 .l-btn {
   height: 44px;
   border-radius: 8px;
@@ -41,6 +57,7 @@
 .incorrect-input {
   border: 1px solid red !important;
 }
+
 .error-message {
   margin-bottom: 14px;
   font-size: 14px;

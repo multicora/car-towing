@@ -44,7 +44,7 @@ module.exports = function (server) {
 
   server.route({
     method: 'GET',
-    path: '/api/property-by-location/{id}',
+    path: '/api/properties-by-location/{id}',
     config: {
       handler: function (request, reply) {
         DAL.properties.getByLocation(request.params.id, function (err, docs) {

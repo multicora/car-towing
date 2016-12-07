@@ -1,11 +1,12 @@
 .managers-page
   .container
     .content
-      header-directive(class-name="'adaptive'")
+      header-directive
       include partial-view/decal-part.jade
       include partial-view/blocking-part.jade
       include partial-view/photos-part.jade
       include partial-view/parking-rules.jade
+      include partial-view/towing-matrix.jade
   .decal-popup(ng-show="vm.decalPopupEditmod")
     .decal-popup-container
       .popup-header

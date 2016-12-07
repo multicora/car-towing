@@ -119,7 +119,7 @@ module.exports = function (server) {
 
   server.route({
     method: 'DELETE',
-    path: '/api/property/{id}',
+    path: '/api/property-delete/{id}',
     config: {
       auth: 'simple',
       plugins: {
@@ -128,8 +128,26 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        DAL.properties.remove(request.params.id, function (err, docs) {
+        DAL.properties.delete(request.params.id, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
+    }
+  });
+
+  server.route({
+    method: 'PUT',
+    path: '/api/towingMatrix/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:edit']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
+          !err ? reply(docs) : reply(Boom.badRequest(err));
         });
       }
     }

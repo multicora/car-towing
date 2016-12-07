@@ -1,6 +1,7 @@
 /node_modules
 public
 bower_components
+/uploads
 .idea/uploads
 .idea/
 .vscode/

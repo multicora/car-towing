@@ -3,20 +3,23 @@
     .content
       header-directive
       admin-menu-directive
-      div
+      .content-padding(ng-init="vm.getAdminProperties()")
         a.addProperty(href="#/admin/properties/add")
           img(src="files/add-property.png")
           span Add property
-      div(ng-init="vm.getAdminProperties()", class="content-padding")
-        form(class="wrap-admin-property-search", ng-submit="vm.searchProperty()")
+        form.wrap-admin-property-search(ng-submit="vm.searchProperty()")
           input(type="text", placeholder="Search property", ng-model="vm.searchPropertyValue")
           button.btn.btn-submit.search Search
-        div(class="wrap-admin-properties")
-          div(ng-repeat="item in vm.adminProperties | filter: vm.searchObj", class="pa-item")
-            div(class="pa-img-wrap")
-            h5.pa-item-title {{item.name}}
+        .wrap-admin-properties
+          .pa-item(ng-repeat="item in vm.adminProperties | filter: vm.searchObj"
+            ng-hide="item.deleted")
+            .pa-img-wrap
+              // span(class="pa-img-bubbel") 45
+              .pa-blocked(ng-if="item.blocked") Blocked
+              .logo(ng-style="{backgroundImage: 'url('+ item.logo + ')' }")
             a.btn.btn-primary.btn-submit.edit(href="#/admin/properties/edit/{{item._id}}") edit
             button.btn.btn-primary.btn-circle.delete(
               type="button"
               ng-click="vm.removeProperty(item._id)")
               i.glyphicon.glyphicon-remove
+            h5.pa-item-title {{item.name}}

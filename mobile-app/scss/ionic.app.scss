@@ -17,43 +17,79 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+@import "www/lib/sass-flex-mixin/flex";
 @import "fonts";
-
 body {
-  font-family: 'OpenSans', sans-serif;
-}
-.bg-img {
-  background-image: url(../img/login-bg.png);
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-.bar.bar-custom {
-  border-color: #2e3955;
-  background-color: #2e3955;
-  .title {
-    color: #ffffff;
-    font-weight: 600;
     font-family: 'OpenSans', sans-serif;
-    text-transform: uppercase;
-  }
 }
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.bg-img {
+    background-image: url(../img/login-bg.png);
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.bar.bar-custom {
+    border-color: #2e3955;
+    background-color: #2e3955;
+    .title {
+        color: #ffffff;
+        font-weight: 600;
+        font-family: 'OpenSans', sans-serif;
+        text-transform: uppercase;
+    }
+}
+
 .padding-23 {
-  padding-left: 23px;
-  padding-right: 23px;
+    padding-left: 23px;
+    padding-right: 23px;
 }
+
 .btn-back {
-  &:before {
-    color: white;
-    font-size: 22px !important;
-  }
+    &:before {
+        color: white;
+        font-size: 22px !important;
+    }
 }
+
 .bg-color {
-  background-color: #ebeff1;
+    background-color: #ebeff1;
+}
+
+.empty-data {
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    font-size: 18px;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.button.button-clear.btn-header-text {
+    font-family: OpenSans;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 @import "login";
+@import "locations";
 @import "properties";
-
+@import "photos";

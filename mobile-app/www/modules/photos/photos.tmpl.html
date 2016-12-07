@@ -1,0 +1,45 @@
+<ion-view view-title="Photos">
+    <ion-header-bar align-title="center" class="bar-custom">
+        <div class="buttons">
+            <button class="button button-icon icon ion-chevron-left btn-back"></button>
+        </div>
+        <h1 class="title">PHOTOS</h1>
+        <div class="buttons">
+            <button class="button button-clear btn-header-text" ng-click="vm.openCamera()">Loguot</button>
+        </div>
+    </ion-header-bar>
+    <ion-content scroll="true" class="has-header bg-color">
+        <div class="photos-wrap">
+            <div class="photo-item" ng-repeat="i in [1,2,3]">
+                <div class="photo-img-wrap">
+                    <img src="img/login-bg.png" alt="">
+                    <div class="photo-loaded" ng-show="false">
+                        <i class="icon ion-checkmark-circled"></i>
+                    </div>
+                    <div class="photo-loading">
+                        <ion-spinner icon="android"></ion-spinner>
+                    </div>
+                </div>
+                <div class="photo-desc">
+                    Mc Donald’s,<br> 12/09/2016 15:32
+                </div>
+            </div>
+
+            <div class="photo-item" ng-repeat="i in [1,2,3]">
+                <div class="photo-img-wrap">
+                    <img src="img/login-bg.png" alt="">
+                    <div class="photo-loaded" ng-show="true">
+                        <i class="icon ion-checkmark-circled"></i>
+                    </div>
+                    <div class="photo-loading" ng-show="fasle">
+                        <ion-spinner icon="android"></ion-spinner>
+                    </div>
+                </div>
+                <div class="photo-desc">
+                    Mc Donald’s,<br> 12/09/2016 15:32
+                </div>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

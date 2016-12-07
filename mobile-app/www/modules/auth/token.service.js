@@ -1,28 +1,35 @@
 (function() {
-'use strict';
-  angular
-    .module('carTowingApp')
-    .factory('TokenService', TokenService);
+    'use strict';
+    angular
+        .module('carTowingApp')
+        .factory('TokenService', TokenService);
 
     TokenService.$inject = ['config'];
 
     function TokenService(config) {
-      return {
-        getToken: getToken,
-        setToken: setToken,
-        removeToken: removeToken,
-      };
+        return {
+            getTokenName: getTokenName,
+            getToken: getToken,
+            setToken: setToken,
+            removeToken: removeToken,
+        };
 
-      function getToken() {
-        return localStorage.getItem('cart.' + config.tokenName);
-      }
+        function getToken() {
+            console.log(JSON.stringify(localStorage.getItem('cart.' + getTokenName())));
+            return localStorage.getItem('cart.' + getTokenName());
+        }
 
-      function setToken(token) {
-        localStorage.setItem('cart.' + config.tokenName, token);
-      }
+        function setToken(token, callback) {
+            localStorage.setItem('cart.' + getTokenName(), token);
+            callback();
+        }
 
-      function removeToken() {
-        return localStorage.removeItem('cart.' + config.tokenName);
-      }
+        function removeToken() {
+            return localStorage.removeItem('cart.' + getTokenName());
+        }
+
+        function getTokenName() {
+            return config.tokenName;
+        }
     }
 })();

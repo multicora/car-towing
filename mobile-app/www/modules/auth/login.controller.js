@@ -1,32 +1,34 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('carTowingApp')
-    .controller('LoginController', LoginController);
+    angular
+        .module('carTowingApp')
+        .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['AuthService','$state', 'TokenService'];
+    LoginController.$inject = ['AuthService', '$state', 'TokenService', '$http'];
 
-  function LoginController(AuthService, $state, TokenService) {
-    var vm = this;
+    function LoginController(AuthService, $state, TokenService, $http) {
+        var vm = this;
 
-    vm.user = {
-      login: '',
-      password: ''
-    };
-    vm.errorMes = "";
+        vm.user = {
+            login: 'admin@admin.com',
+            password: 'admin'
+        };
+        vm.errorMes = "";
 
-    vm.signIn = function() {
-      console.log(vm.user);
-      AuthService.login(vm.user)
-        .then(function(success) {
-          TokenService.setToken(success.data.token);
-          $state.go('filter');
-        }, function(error) {
-          vm.errorMes = error.data.message;
-        });
+        vm.signIn = function() {
+            console.log(vm.user);
+            AuthService.login(vm.user)
+                .then(function(success) {
+                    TokenService.setToken(success.data.token, function() {
+                        $http.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
+                        $state.go('locations');
+                    });
+                }, function(error) {
+                    vm.errorMes = error.data.message;
+                });
 
+        }
     }
-  }
 
 })();

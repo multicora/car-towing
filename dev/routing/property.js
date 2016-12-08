@@ -1,9 +1,7 @@
 'use strict';
 
-const Mongoose = require('mongoose');
 const DAL = require('../dal/dal.js');
 const Utils = require('../services/utils.js');
-const Transaction = require('mongoose-transaction')(Mongoose);
 const path = require('path');
 const Boom = require('boom');
 const Joi = require('joi');

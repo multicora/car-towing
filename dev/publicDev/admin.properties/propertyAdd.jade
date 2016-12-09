@@ -43,10 +43,19 @@
               button.create(
                 ng-click="vm.editProperty(vm.newProperty._id)"
                 ng-show="vm.editMod") Edit
+            .contract(ng-show="vm.editMod")
+              | Please choose term: 
+              select.term-select(
+                ng-model="vm.propertyContractTerm"
+                ng-options="item.value as item.text for item in vm.contractTerms")
+              button(
+                ng-click="vm.activateContract(vm.propertyContractTerm)")
+                | Activate contract
           .propertyLogo
             h2 Upload logo
             div
               .logo( ng-style="{backgroundImage: 'url('+ vm.newProperty.logo + ')' }")
             div
               button(ng-click="vm.selectFile($event)") Upload logo
-                  input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")
+                //- TODO: move this to controller
+                input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")

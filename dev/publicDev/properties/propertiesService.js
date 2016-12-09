@@ -46,6 +46,64 @@ function service ($http, TokenService) {
           headers: {Authorization :TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );
+    },
+    activateContract: function(propertyId, term) {
+      // return $http.put('api/property/' + id, {
+      //     headers: {Authorization :TokenService.getTokenName() + ' ' + TokenService.getToken()}
+      //   }
+      // );
+    },
+    getTerms: function () {
+      return [
+        {
+          text: '1 month',
+          value: (function () {
+            var date = new Date();
+            date.setMonth(date.getMonth() + 1);
+            return date.getTime() - Date.now();
+          })()
+        },
+        {
+          text: '2 month',
+          value: (function () {
+            var date = new Date();
+            date.setMonth(date.getMonth() + 2);
+            return date.getTime() - Date.now();
+          })()
+        },
+        {
+          text: '3 month',
+          value: (function () {
+            var date = new Date();
+            date.setMonth(date.getMonth() + 3);
+            return date.getTime() - Date.now();
+          })()
+        },
+        {
+          text: '6 month',
+          value: (function () {
+            var date = new Date();
+            date.setMonth(date.getMonth() + 6);
+            return date.getTime() - Date.now();
+          })()
+        },
+        {
+          text: '1 year',
+          value: (function () {
+            var date = new Date();
+            date.setMonth(date.getMonth() + 12);
+            return date.getTime() - Date.now();
+          })()
+        },
+        {
+          text: '2 year',
+          value: (function () {
+            var date = new Date();
+            date.setMonth(date.getMonth() + 24);
+            return date.getTime() - Date.now();
+          })()
+        }
+      ];
     }
   };
 }

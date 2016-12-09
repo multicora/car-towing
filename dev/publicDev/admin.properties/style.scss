@@ -175,6 +175,16 @@
       }
     }
   }
+
+  .contract {
+    margin-top: 20px;
+
+    .term-select {
+      border-radius: 5px;
+      height: 46px;
+      margin: 0 10px;
+    }
+  }
 }
 
 // TODO: fix scope

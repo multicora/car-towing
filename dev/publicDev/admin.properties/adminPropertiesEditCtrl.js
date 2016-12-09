@@ -11,14 +11,7 @@
     var vm = this;
     var propId = $routeParams.id;
 
-    vm.editProperty = function(id) {
-      propertiesService.update(id, vm.newProperty)
-        .then(function(success) {
-          $location.path('/admin/properties');
-        }, function(error) {
-          vm.errorMes = error.data.message;
-        }
-      )};
+    vm.contractTerms = propertiesService.getTerms();
 
     if (propId) {
       vm.editMod = true;
@@ -35,5 +28,18 @@
           console.error(error);
         });
     }
+
+    vm.editProperty = function(id) {
+      propertiesService.update(id, vm.newProperty)
+        .then(function(success) {
+          $location.path('/admin/properties');
+        }, function(error) {
+          vm.errorMes = error.data.message;
+        }
+      )};
+
+    vm.activateContract = function(propertyContractTerm) {
+      propertiesService.activateContract(propId, propertyContractTerm);
+    };
   }
 })(angular);

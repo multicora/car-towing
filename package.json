@@ -37,6 +37,7 @@
     "mongoose-transaction": "0.0.3",
     "node-cmd": "^1.1.1",
     "node-uuid": "^1.4.7",
+    "nodemailer": "^2.7.0",
     "password-hash": "^1.2.2",
     "promise": "^7.1.1",
     "rand-token": "^0.2.1",

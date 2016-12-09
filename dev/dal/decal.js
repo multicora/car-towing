@@ -5,20 +5,20 @@ const path = require('path');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
-decalColor: String,
-decalSeries: String,
-seriesType: String,
-serialNumber: String,
-assignedParkingSpace: String,
-licensePlateNumber: String,
-mark: String,
-model: String,
-color: String,
-year: String,
-fullName: String,
-apartmentNumber: String,
-phoneNumber: String,
-emailAddress: String
+  decalColor: String,
+  decalSeries: String,
+  seriesType: String,
+  serialNumber: String,
+  assignedParkingSpace: String,
+  licensePlateNumber: String,
+  mark: String,
+  model: String,
+  color: String,
+  year: String,
+  fullName: String,
+  apartmentNumber: String,
+  phoneNumber: String,
+  emailAddress: String
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

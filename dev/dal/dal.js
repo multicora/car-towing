@@ -57,4 +57,6 @@ DAL.actions = require('./actions.js');
 
 DAL.decal = require('./decal.js');
 
+DAL.contract = require('./contract.js');
+
 module.exports = DAL;

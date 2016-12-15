@@ -45,9 +45,9 @@ const dal = {
   getById: (id, cb) => {
     return model.findOne({_id: id }, cb);
   },
-  create: (location, cb) => {
-    const locationInstance = new model(location);
-    return locationInstance.save(cb);
+  create: (data, cb) => {
+    const instance = new model(data);
+    return instance.save(cb);
   },
   remove: (id, cb) => {
     return model.findOneAndRemove({_id: id}, cb);

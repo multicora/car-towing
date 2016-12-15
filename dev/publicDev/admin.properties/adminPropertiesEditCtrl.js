@@ -5,13 +5,25 @@
     .module('app')
     .controller('adminPropertiesEditCtrl', adminPropertiesEditCtrl);
 
-  adminPropertiesEditCtrl.$inject = ['propertiesService', 'locationsService', '$location', '$routeParams'];
+  adminPropertiesEditCtrl.$inject = [
+    'propertiesService',
+    'locationsService',
+    'contractsService',
+    '$location',
+    '$routeParams'
+  ];
 
-  function adminPropertiesEditCtrl(propertiesService, locationsService, $location, $routeParams) {
+  function adminPropertiesEditCtrl(
+    propertiesService,
+    locationsService,
+    contractsService,
+    $location,
+    $routeParams
+  ) {
     var vm = this;
     var propId = $routeParams.id;
 
-    vm.contractTerms = propertiesService.getTerms();
+    vm.contractTerms = contractsService.getTerms();
 
     if (propId) {
       vm.editMod = true;
@@ -39,7 +51,7 @@
       )};
 
     vm.activateContract = function(propertyContractTerm) {
-      propertiesService.activateContract(propId, propertyContractTerm);
+      contractsService.activate(propId, propertyContractTerm);
     };
   }
 })(angular);

@@ -11,32 +11,34 @@
   function managersCtrl(rulesDataService, $routeParams, propertiesService, authService, decalService, $location) {
     // TODO: figureout better propId solution
     var vm = this;
-    var property = null;
     var user = authService.getUser();
 
     vm.managerName = null;
+    vm.property = null;
 
-    propertiesService.getUsersProperty(user._id)
-      .then(function (res) {
-        if (!res.data) {
-          vm.message = 'Unfortunately we couldn\'t find your property.';
-        }
-        property = res.data;
-        vm.managerName = property.name;
-        if (property.towingMatrix) {
-          vm.towingMatrix = JSON.parse(property.towingMatrix);
+    propertiesService.getUsersProperty(user._id).then(function (res) {
+      if (!res) {
+        vm.message = 'Unfortunately we couldn\'t find your property.';
+      } else {
+        vm.property = res.data;
+        vm.managerName = vm.property.name;
+        if (vm.property.towingMatrix) {
+          vm.towingMatrix = JSON.parse(vm.property.towingMatrix);
           vm.towingMatrix.date = new Date(vm.towingMatrix.date);
         }
 
-        return property;
-    }).then(function (property) {
-      return getAllRules(property._id);
-    }).then(function () {
-      return propertiesService.getPhotos(property._id);
-    }).then(function (res) {
-      vm.photos = res.data.map(function (photo) {
-        return propertiesService.getPhotoPath(photo);
-      });
+        getAllRules(vm.property._id).then(function () {
+          return propertiesService.getPhotos(vm.property._id);
+        }).then(
+          function (res) {
+            vm.photos = res.data.map(function (photo) {
+              return propertiesService.getPhotoPath(photo);
+            });
+          }, function (err) {
+            console.log(err);
+          }
+        );
+      }
     });
 
 
@@ -57,10 +59,10 @@
     }
 
     vm.add = function(rule) {
-      rulesDataService.create(property._id, rule)
+      rulesDataService.create(vm.property._id, rule)
         .then(function() {
           clearNewRule();
-          getAllRules(property._id);
+          getAllRules(vm.property._id);
         });
     }
 
@@ -68,14 +70,14 @@
       vm.rules[ruleIndex].editmode = false;
       rulesDataService.update(id, rule)
         .then(function() {
-          getAllRules(property._id);
+          getAllRules(vm.property._id);
         });
     }
 
     vm.remove = function(id) {
       rulesDataService.remove(id)
         .then(function() {
-          getAllRules(property._id);
+          getAllRules(vm.property._id);
         });
     }
 
@@ -109,8 +111,8 @@
     // ****** TOWING MATRIX ******
 
     vm.saveTowingMatrix = function(form) {
-      property.towingMatrix = JSON.stringify(vm.towingMatrix);
-      propertiesService.updateTowingMatrix(property._id, property)
+      vm.property.towingMatrix = JSON.stringify(vm.towingMatrix);
+      propertiesService.updateTowingMatrix(vm.property._id, vm.property)
         .then(function(res) {
         });
     }

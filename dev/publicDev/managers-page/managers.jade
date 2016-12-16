@@ -2,11 +2,15 @@
   .container
     .content
       header-directive
-      include partial-view/decal-part.jade
-      include partial-view/blocking-part.jade
-      include partial-view/photos-part.jade
-      include partial-view/parking-rules.jade
-      include partial-view/towing-matrix.jade
+      p.message(
+        ng-if="vm.message"
+        ng-bind="vm.message")
+      span(ng-if="vm.property")
+        include partial-view/decal-part.jade
+        include partial-view/blocking-part.jade
+        include partial-view/photos-part.jade
+        include partial-view/parking-rules.jade
+        include partial-view/towing-matrix.jade
   .decal-popup(ng-show="vm.decalPopupEditmod")
     .decal-popup-container
       .popup-header

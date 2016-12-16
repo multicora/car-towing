@@ -127,6 +127,12 @@
       }
     }
   }
+
+  .message {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+  }
 }
 
 .blocking-part {
@@ -192,12 +198,6 @@
         display: inline-block;
       }
     }
-  }
-
-  .message {
-    text-align: center;
-    font-weight: 600;
-    font-size: 18px;
   }
 }
 

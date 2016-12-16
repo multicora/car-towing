@@ -32,7 +32,7 @@ module.exports = function (server) {
 
   server.route({
     method: 'GET',
-    path: '/api/contract-by-propety/{propertyId}',
+    path: '/api/check-contract/{propertyId}',
     config: {
       auth: 'simple',
       plugins: {
@@ -44,7 +44,19 @@ module.exports = function (server) {
 
         const propId = request.params.propertyId;
         DAL.contract.getByPropId(propId, function (err, res) {
-          !err ? reply(res).code( res ? 200 : 404) : reply( Boom.badImplementation(err) );
+          if (err) {
+            return reply( Boom.badImplementation(err) );
+          }
+
+          let now = new Date();
+          let validContracts = res.map(function (contract) {
+            let activationDate = new Date(contract.activationDate);
+            return new Date(activationDate.getTime() + contract.term);
+          }).filter(function (contract) {
+            return contract > now;
+          });
+
+          reply( (validContracts.length > 0) ? true : false );
         });
 
       }

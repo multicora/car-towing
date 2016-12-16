@@ -82,9 +82,9 @@
           }
         ];
       },
-      getByProperty: function (propId) {
+      check: function (propId) {
         return $http.get(
-          '/api/contract-by-propety/' + propId,
+          '/api/check-contract/' + propId,
           {
             headers: {
               Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()

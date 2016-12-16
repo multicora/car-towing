@@ -46,7 +46,7 @@ const dal = {
     return model.findOne({_id: id }, cb);
   },
   getByPropId: (propId, cb) => {
-    return model.findOne({property: propId}, cb);
+    return model.find({property: propId}, cb);
   },
   create: (data, cb) => {
     const instance = new model(data);

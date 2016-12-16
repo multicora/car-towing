@@ -45,11 +45,11 @@
         }
       }
     }).then(function () {
-      return contractsService.getByProperty(vm.property._id);
-    }).then(function (contract) {
-      if (!contract) {
+      return contractsService.check(vm.property._id);
+    }).then(function (res) {
+      if (!res.data) {
         vm.message = 'Your contract is not activated.';
-        throw( new Error() );
+        throw( new Error(vm.message) );
       }
     }).then(function () {
       return getAllRules(vm.property._id);

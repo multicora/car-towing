@@ -29,4 +29,45 @@ module.exports = function (server) {
       }
     }
   });
+
+  server.route({
+    method: 'GET',
+    path: '/api/contract-by-propety/{propertyId}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['contracts:read']
+        }
+      },
+      handler: function (request, reply) {
+
+        const propId = request.params.propertyId;
+        DAL.contract.getByPropId(propId, function (err, res) {
+          !err ? reply(res).code( res ? 200 : 404) : reply( Boom.badImplementation(err) );
+        });
+
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/contracts',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['contracts:read']
+        }
+      },
+      handler: function (request, reply) {
+
+        DAL.contract.get(function (err, res) {
+          !err ? reply(res) : reply( Boom.badImplementation(err) );
+        });
+
+      }
+    }
+  });
 };

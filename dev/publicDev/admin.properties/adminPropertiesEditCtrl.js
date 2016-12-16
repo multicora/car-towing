@@ -1,9 +1,9 @@
 'use strict';
 
 (function(angular) {
-  angular
-    .module('app')
-    .controller('adminPropertiesEditCtrl', adminPropertiesEditCtrl);
+  var app = angular.module('app');
+
+  app.controller('adminPropertiesEditCtrl', adminPropertiesEditCtrl);
 
   adminPropertiesEditCtrl.$inject = [
     'propertiesService',
@@ -27,18 +27,20 @@
 
     if (propId) {
       vm.editMod = true;
-    
-      locationsService.getLocations()
-        .then(function(response){
-          vm.locations = response.data;
-        });
 
-      propertiesService.getProperty(propId)
-        .then(function(success) {
-          vm.newProperty = success.data;
-        }, function(error) {
-          console.error(error);
-        });
+      locationsService.getLocations().then(function(response){
+        vm.locations = response.data;
+      });
+
+      propertiesService.getProperty(propId).then(function(success) {
+        vm.newProperty = success.data;
+      }, function(error) {
+        console.error(error);
+      });
+
+      contractsService.getAll().then(function (res) {
+        vm.contracts = res.data.map(parseContract);
+      });
     }
 
     vm.editProperty = function(id) {
@@ -52,6 +54,16 @@
 
     vm.activateContract = function(propertyContractTerm) {
       contractsService.activate(propId, propertyContractTerm);
+    };
+  }
+
+  function parseContract(contract) {
+    let activationDate = new Date(contract.activationDate);
+    let endDate = new Date(activationDate.getTime() + contract.term);
+    
+    return {
+      activationDate: activationDate.toLocaleString(),
+      endDate: endDate.toLocaleString()
     };
   }
 })(angular);

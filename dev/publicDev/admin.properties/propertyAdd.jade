@@ -44,16 +44,24 @@
                 ng-click="vm.editProperty(vm.newProperty._id)"
                 ng-show="vm.editMod") Edit
 
-            //- Contract
-            .contract(ng-show="vm.editMod")
-              | Please choose term: 
-              select.term-select(
-                ng-model="vm.propertyContractTerm"
-                ng-options="item.value as item.text for item in vm.contractTerms")
-              button(
-                ng-disabled="!vm.propertyContractTerm"
-                ng-click="vm.activateContract(vm.propertyContractTerm)")
-                | Activate contract
+            //- Contracts
+            .contracts-section(ng-show="vm.editMod")
+              table.contracts-list
+                tr
+                  td Activation date
+                  td End date
+                tr.contract(ng-repeat="contract in vm.contracts")
+                  td {{contract.activationDate}}
+                  td {{contract.endDate}}
+              .new-contract
+                | Please choose term: 
+                select.term-select(
+                  ng-model="vm.propertyContractTerm"
+                  ng-options="item.value as item.text for item in vm.contractTerms")
+                button(
+                  ng-disabled="!vm.propertyContractTerm"
+                  ng-click="vm.activateContract(vm.propertyContractTerm)")
+                  | Activate contract
 
           .propertyLogo
             h2 Upload logo

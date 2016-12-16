@@ -23,6 +23,13 @@
           }
         });
       },
+      getAll: function() {
+        return $http.get('/api/contracts', {
+          headers: {
+            Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()
+          }
+        });
+      },
       getTerms: function () {
         return [
           {
@@ -75,6 +82,16 @@
           }
         ];
       },
+      getByProperty: function (propId) {
+        return $http.get(
+          '/api/contract-by-propety/' + propId,
+          {
+            headers: {
+              Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()
+            }
+          }
+        );
+      }
     };
   }
 

@@ -5,7 +5,7 @@
       p.message(
         ng-if="vm.message"
         ng-bind="vm.message")
-      span(ng-if="vm.property")
+      span(ng-if="vm.property && !vm.message")
         include partial-view/decal-part.jade
         include partial-view/blocking-part.jade
         include partial-view/photos-part.jade

@@ -5,10 +5,26 @@
   }
 
   var app = NG.module('app');
-  var injections = ['rulesDataService', '$routeParams', 'propertiesService', 'authService', 'decalService', '$location'];
+  var injections = [
+    'rulesDataService',
+    '$routeParams',
+    'propertiesService',
+    'contractsService',
+    'authService',
+    'decalService',
+    '$location'
+  ];
 
 
-  function managersCtrl(rulesDataService, $routeParams, propertiesService, authService, decalService, $location) {
+  function managersCtrl(
+    rulesDataService,
+    $routeParams,
+    propertiesService,
+    contractsService,
+    authService,
+    decalService,
+    $location
+  ) {
     // TODO: figureout better propId solution
     var vm = this;
     var user = authService.getUser();
@@ -19,6 +35,7 @@
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
         vm.message = 'Unfortunately we couldn\'t find your property.';
+        throw( new Error('Property not found') );
       } else {
         vm.property = res.data;
         vm.managerName = vm.property.name;
@@ -26,21 +43,29 @@
           vm.towingMatrix = JSON.parse(vm.property.towingMatrix);
           vm.towingMatrix.date = new Date(vm.towingMatrix.date);
         }
-
-        getAllRules(vm.property._id).then(function () {
-          return propertiesService.getPhotos(vm.property._id);
-        }).then(
-          function (res) {
-            vm.photos = res.data.map(function (photo) {
-              return propertiesService.getPhotoPath(photo);
-            });
-          }, function (err) {
-            console.log(err);
-          }
-        );
       }
-    });
-
+    }).then(function () {
+      return contractsService.getByProperty(vm.property._id);
+    }).then(function (contract) {
+      if (!contract) {
+        vm.message = 'Your contract is not activated.';
+        throw( new Error() );
+      }
+    }).then(function () {
+      return getAllRules(vm.property._id);
+    }).then(function () {
+      return propertiesService.getPhotos(vm.property._id);
+    }).then(
+      function (res) {
+        if (res) {
+          vm.photos = res.data.map(function (photo) {
+            return propertiesService.getPhotoPath(photo);
+          });
+        }
+      }, function (err) {
+        console.log(err);
+      }
+    );
 
     function getAllRules(propertyId) {
       return rulesDataService.get(propertyId)

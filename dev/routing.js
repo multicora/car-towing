@@ -22,6 +22,7 @@ module.exports.init = function (server) {
   require('./routing/complaint.js')(server);
   require('./routing/roles.js')(server);
   require('./routing/decal.js')(server);
+  require('./routing/contracts.js')(server);
 
   // For debugging
   //require('./routing/roles.js')(server);

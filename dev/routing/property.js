@@ -18,12 +18,19 @@ module.exports = function (server) {
     }
   });
 
+  // GET /api/user-property/{userId}
   server.route({
     method: 'GET',
     path: '/api/user-property/{userId}',
     handler: function (request, reply) {
-      DAL.properties.getByUserId(request.params.userId, function (err, docs) {
-        !err ? reply(docs) : reply(JSON.stringify(err));
+      DAL.properties.getByUserId(request.params.userId, function (err, res) {
+        if (err) {
+          reply( Boom.badImplementation(err) )
+        } else if (!res) {
+          reply( Boom.notFound('Property not found', 'Property not found') );
+        } else {
+          reply(res);
+        }
       });
     }
   });
@@ -34,7 +41,7 @@ module.exports = function (server) {
     config: {
       handler: function (request, reply) {
         DAL.properties.getById(request.params.id, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
         });
       }
     }
@@ -121,15 +128,16 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
         });
       }
     }
   });
 
+  // DELETE /api/property/{id}
   server.route({
     method: 'DELETE',
-    path: '/api/property-delete/{id}',
+    path: '/api/property/{id}',
     config: {
       auth: 'simple',
       plugins: {
@@ -139,7 +147,7 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         DAL.properties.delete(request.params.id, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
         });
       }
     }

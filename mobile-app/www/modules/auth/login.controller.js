@@ -19,7 +19,8 @@
     vm.signIn = function () {
       console.log(vm.user);
       AuthService.login(vm.user)
-        .then(function (success) {
+        .then(function(success) {
+          console.log(success);
           TokenService.setToken(success.data.token, function () {
             $http.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
             $state.go('locations');

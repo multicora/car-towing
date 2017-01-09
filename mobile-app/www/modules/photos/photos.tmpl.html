@@ -1,4 +1,4 @@
-<ion-view view-title="Photos">
+<ion-view view-title="Photos" ng-init="vm.getAllPhotos()">
   <ion-header-bar align-title="center" class="bar-custom">
     <div class="buttons">
       <button class="button button-icon icon ion-chevron-left btn-back" ui-sref="locations"></button>
@@ -10,7 +10,7 @@
   </ion-header-bar>
   <ion-content scroll="true" class="has-header bg-color">
     <div class="photos-wrap">
-      <div class="photo-item" ng-repeat="i in [1,2,3]">
+      <div class="photo-item" ng-repeat="photo in [1,2,3,4]">
         <div class="photo-img-wrap">
           <img src="img/login-bg.png" alt="">
           <div class="photo-loaded" ng-show="false">

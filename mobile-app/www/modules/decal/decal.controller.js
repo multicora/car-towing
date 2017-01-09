@@ -4,9 +4,9 @@
   angular.module('carTowingApp')
     .controller('DecalController', DecalController);
 
-  DecalController.$inject = ['$stateParams', 'DecalService', 'PropertiesService', '$cordovaCamera'];
+  DecalController.$inject = ['$stateParams', 'DecalService', 'PropertiesService', '$cordovaCamera', 'PhotosService'];
 
-  function DecalController($stateParams, DecalService, PropertiesService, $cordovaCamera) {
+  function DecalController($stateParams, DecalService, PropertiesService, $cordovaCamera, PhotosService) {
     var vm = this;
     vm.decalId = '';
     vm.decal = undefined;
@@ -36,25 +36,41 @@
       document.addEventListener("deviceready", function () {
 
         var options = {
-          quality: 50,
           destinationType: Camera.DestinationType.DATA_URL,
           sourceType: Camera.PictureSourceType.CAMERA,
-          allowEdit: true,
+          allowEdit: false,
           encodingType: Camera.EncodingType.JPEG,
-          targetWidth: 300,
-          targetHeight: 300,
           popoverOptions: CameraPopoverOptions,
-          saveToPhotoAlbum: false,
-          correctOrientation: true
+          saveToPhotoAlbum: false
         };
 
 
         $cordovaCamera.getPicture(options)
           .then(function (imageData) {
-          alert(imageData);
-        }, function (err) {
-          alert(error);
-        });
+            var d = new Date,
+              dformat = [ (d.getMonth()+1).padLeft(),
+                  d.getDate().padLeft(),
+                  d.getFullYear()].join('/')+
+                ' ' +
+                [ d.getHours().padLeft(),
+                  d.getMinutes().padLeft()].join(':');
+
+
+
+            var data = "data:image/jpeg;base64," + imageData;
+
+            var photoObj = {
+              name: "No name",
+              base64: data,
+              date: dformat,
+              sent: false,
+              deleted: false
+            };
+
+            PhotosService.addPhoto(photoObj);
+          }, function (err) {
+            alert(err);
+          });
 
       }, false);
     }

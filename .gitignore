@@ -14,3 +14,4 @@ mobile-app/resources/
 mobile-app/xdk/
 mobile-app/www/css/
 
+/mobile-app/www/js/modules.js

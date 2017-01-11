@@ -18,18 +18,17 @@
     };
 
     function getProperties(locationId) {
-      $http.get(config.url + "/api/properties-by-location/" + locationId)
-        .then(function (response) {
-          properties.list = [].concat(response.data);
-          console.log(properties);
-        }, function (error) {
-          console.error(error);
-        });
+      var url = config.url + "/api/properties-by-location/" + locationId;
+
+      return $http.get(url).then(function (response) {
+        properties.list = [].concat(response.data);
+      }, function (error) {
+        console.error(error);
+      });
     }
 
     function getPropertyById(propertyId) {
       return properties.list.find(function (propery) {
-        console.log('propery._id == propertyId' + propery._id + ' ' + propertyId)
         return propery._id == propertyId;
       });
     }

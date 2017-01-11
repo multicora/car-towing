@@ -18,13 +18,13 @@
     };
 
     function getLocations() {
-      $http.get(config.url + "/api/locations")
-        .then(function (response) {
-          console.log(response);
+      return $http.get(config.url + "/api/locations").then(
+        function (response) {
           locations.list = [].concat(response.data);
         }, function (error) {
           console.error(error);
-        });
+        }
+      );
     }
 
     function getLocationById(id) {

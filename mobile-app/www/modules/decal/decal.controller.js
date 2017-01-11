@@ -15,20 +15,24 @@
     vm.notFoundDecalError = '';
 
     vm.getDecalBySerialNumber = function () {
-      DecalService.getDecalBySerialNumber(vm.serialNumber)
-        .then(function (response) {
-          if(response.status == 404) {
-            vm.notFoundDecalError = response.data.message;
+      if (vm.serialNumber) {
+        DecalService.getDecalBySerialNumber(vm.serialNumber).then(
+          function (response) {
+            if(response.status == 404) {
+              vm.notFoundDecalError = response.data.message;
+              vm.decal = undefined;
+            } else {
+              vm.notFoundDecalError = '';
+              vm.decal = response.data;
+              console.log(response);
+            }
+          },
+          function (error) {
             vm.decal = undefined;
-          } else {
-            vm.notFoundDecalError = '';
-            vm.decal = response.data;
-            console.log(response);
+            console.error(error);
           }
-        }, function (error) {
-          vm.decal = undefined;
-          console.error(error);
-        });
+        );
+      }
     };
 
     vm.openCamera = function () {

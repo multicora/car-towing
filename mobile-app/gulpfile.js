@@ -29,16 +29,16 @@ gulp.task('sass', function (done) {
 });
 
 gulp.task('modules', function () {
-  return gulp.src('./www/modules/**/*.js')
+  return gulp.src(paths.modules)
     .pipe(sourcemaps.init())
     .pipe(concat('modules.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./www/js/'));
 });
 
+gulp.task('serve:before', ['sass', 'modules', 'watch']);
+
 gulp.task('watch', function () {
-  gulp.run('sass');
-  gulp.run('modules');
   gulp.watch(paths.sass, function () {
     gulp.run('sass');
   });

@@ -1,4 +1,4 @@
-<ion-view view-title="Locations" ng-init="vm.getLocations()">
+<ion-view view-title="Locations">
   <ion-header-bar align-title="center" class="bar-custom">
     <div class="buttons">
       <button class="button" ng-click="vm.logout()">Log out</button>
@@ -8,10 +8,10 @@
       <button class="button" ui-sref="photos">Photos</button>
     </div>
   </ion-header-bar>
-  <ion-content scroll="true" class="has-header bg-img padding-23" ng-switch="vm.locations.list.length">
+  <ion-content scroll="true" class="has-header bg-img padding-23" ng-switch="vm.locations.length">
     <div class="empty-data" ng-switch-when="0">No locations</div>
     <div class="filter-container" ng-switch-default>
-      <p class="filter-item filter-b-1" ng-repeat="location in vm.locations.list"
+      <div class="filter-item filter-b-1" ng-repeat="location in vm.locations"
          ui-sref="properties({locationId: location._id})">
         <span class="filter-b-2">
           <span class="filter-b-3">
@@ -20,7 +20,7 @@
             </span>
           </span>
         </span>
-      </p>
+      </div>
     </div>
   </ion-content>
 </ion-view>

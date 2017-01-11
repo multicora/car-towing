@@ -11,9 +11,14 @@
 
     <div class="item-input-inset search">
       <label class="item-input-wrapper">
-        <input type="search" placeholder="Property name">
+        <input
+          type="search"
+          placeholder="Property name"
+          ng-model="emergencyTowName">
       </label>
-      <button class="button button-positive btn-search">
+      <button
+        class="button button-positive btn-search"
+        ng-click="vm.emergencyTowClick(emergencyTowName)">
         GO
       </button>
     </div>

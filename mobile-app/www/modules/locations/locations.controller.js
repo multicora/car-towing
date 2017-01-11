@@ -4,20 +4,22 @@
   angular.module('carTowingApp')
     .controller('LocationsController', LocationsController);
 
-  LocationsController.$inject = ['LocationsService', '$stateParams', 'AuthService'];
+  LocationsController.$inject = ['LocationsService', 'AuthService'];
 
-  function LocationsController(LocationsService, $stateParams, AuthService) {
+  function LocationsController(LocationsService, AuthService) {
     var vm = this;
 
-    vm.locations = LocationsService.locations;
+    vm.locations = null;
 
-    vm.getLocations = function () {
-      LocationsService.getLocations();
-    };
+    console.log('some3');
+
+    LocationsService.getLocations().then(function (locations) {
+      vm.locations = locations;
+    });
 
     vm.logout = function () {
       AuthService.logout();
-    }
+    };
 
   }
 

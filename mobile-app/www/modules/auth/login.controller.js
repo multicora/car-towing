@@ -11,8 +11,8 @@
     var vm = this;
 
     vm.user = {
-      login: 'admin@admin.com',
-      password: 'admin'
+      login: null,
+      password: null
     };
     vm.errorMes = "";
 

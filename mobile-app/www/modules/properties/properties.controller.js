@@ -13,7 +13,7 @@
 
     vm.title = vm.location ? vm.location.name : "No title";
 
-    vm.properties = PropertiesService.properties;
+    vm.properties = PropertiesService.getProperties().then;
     vm.getProperties = function () {
       PropertiesService.getProperties($stateParams.locationId);
     };
@@ -61,6 +61,10 @@
           console.log('You are not sure');
         }
       });
+    };
+
+    vm.emergencyTowClick = function (emergencyTowName) {
+
     };
   }
 

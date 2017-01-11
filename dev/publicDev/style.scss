@@ -32,8 +32,9 @@ body {
 }
 
 .admin-page, .managers-page {
+  width: 1366px;
   .container {
-    width: 1366px;
+    width: 100%;
   }
 }
 

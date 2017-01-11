@@ -3,10 +3,6 @@
   min-height: 100%;
   background: #f7f7f7;
 
-  .container {
-    min-width: 1366px;
-  }
-
   .row + .row {
     margin-top: 10px;
   }
@@ -127,6 +123,12 @@
       }
     }
   }
+
+  .message {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+  }
 }
 
 .blocking-part {
@@ -192,12 +194,6 @@
         display: inline-block;
       }
     }
-  }
-
-  .message {
-    text-align: center;
-    font-weight: 600;
-    font-size: 18px;
   }
 }
 

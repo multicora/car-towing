@@ -59,7 +59,7 @@
       outline: 0;
     }
 
-    button:hover {
+    button:hover, button[disabled] {
       background: #7fbbe6;
     }
 
@@ -173,6 +173,24 @@
           padding-left: 10px;
         }
       }
+    }
+  }
+
+  .new-contract {
+    margin-top: 20px;
+
+    .term-select {
+      border-radius: 5px;
+      height: 46px;
+      margin: 0 10px;
+    }
+  }
+
+  .contracts-list {
+    margin: 20px;
+    width: 100%;
+    .contract {
+      border-top: 1px #a9a9a9 solid;
     }
   }
 }

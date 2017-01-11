@@ -9,9 +9,6 @@ function service ($http, TokenService) {
     getProperty: function(id) {
       return $http.get('api/property/' + id);
     },
-    getRules: function(id) {
-      return $http.get('/api/parkingRules/' + id);
-    },
     create: function(data) {
       return $http.post('/api/property', data, {
           headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
@@ -31,7 +28,7 @@ function service ($http, TokenService) {
       return photoPath + '?' + TokenService.getTokenName() + '=' + TokenService.getToken();
     },
     delete: function(id) {
-      return $http.delete('/api/property-delete/' + id, {
+      return $http.delete('/api/property/' + id, {
           headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );

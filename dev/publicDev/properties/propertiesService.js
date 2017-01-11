@@ -42,7 +42,7 @@ function service ($http, TokenService) {
         });
     },
     update: function(id, property) {
-      return $http.put('api/property/' + id, {
+      return $http.put('api/property/' + id, property, {
           headers: {Authorization :TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );

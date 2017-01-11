@@ -11,8 +11,6 @@
 
     vm.locations = null;
 
-    console.log('some3');
-
     LocationsService.getLocations().then(function (locations) {
       vm.locations = locations;
     });

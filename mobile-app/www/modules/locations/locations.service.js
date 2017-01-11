@@ -4,32 +4,38 @@
   angular.module('carTowingApp')
     .factory('LocationsService', LocationsService);
 
-  LocationsService.$inject = ['config', '$http'];
+  LocationsService.$inject = ['$q', '$log', 'config', '$http'];
 
-  function LocationsService(config, $http) {
-    var locations = {
-      list: []
-    };
+  function LocationsService($q, $log, config, $http) {
+    var locations = null;
 
     return {
-      locations: locations,
       getLocations: getLocations,
       getLocationById: getLocationById
     };
 
     function getLocations() {
-      return $http.get(config.url + "/api/locations").then(
-        function (response) {
-          locations.list = [].concat(response.data);
-        }, function (error) {
-          console.error(error);
-        }
-      );
+      var deferred = $q.defer();
+
+      if (locations) {
+        return $q.resolve(locations);
+      } else {
+        return $http.get(config.url + "/api/locations").then(
+          function (response) {
+            locations = response.data;
+            return locations;
+          }, function (error) {
+            $log(error);
+          }
+        );
+      }
     }
 
     function getLocationById(id) {
-      return locations.list.find(function (location) {
-        return location._id == id;
+      return getLocations().then(function (locations) {
+        return locations.find(function (location) {
+          return location._id == id;
+        });
       });
     }
   }

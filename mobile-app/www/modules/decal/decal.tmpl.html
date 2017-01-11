@@ -1,8 +1,9 @@
 <ion-view view-title="Decal">
   <ion-header-bar align-title="center" class="bar-custom">
     <div class="buttons">
-      <button class="button button-icon icon ion-chevron-left btn-back"
-              ui-sref="properties({locationId: vm.property.location})"></button>
+      <button
+        class="button button-icon icon ion-chevron-left btn-back"
+        ng-click="vm.goBack()"></button>
     </div>
     <h1 class="title" ng-bind="vm.title"></h1>
     <div class="buttons">
@@ -15,9 +16,9 @@
 
     <div class="item-input-inset search">
       <label class="item-input-wrapper">
-        <input type="search" placeholder="Decal serial #" ng-model="vm.serialNumber">
+        <input type="search" placeholder="Decal serial #" ng-model="serialNumber">
       </label>
-      <button class="button button-positive btn-search" ng-click="vm.getDecalBySerialNumber()">
+      <button class="button button-positive btn-search" ng-click="vm.getDecalBySerialNumber(serialNumber)">
         GO
       </button>
     </div>

@@ -7,31 +7,31 @@
   PropertiesService.$inject = ['$q', '$log', 'config', '$http'];
 
   function PropertiesService($q, $log, config, $http) {
-    var properties = null;
+    var properties = {};
 
     return {
       getProperties: getProperties,
-      getPropertyById: getPropertyById
+      getById: getById
     };
 
     function getProperties(locationId) {
       var url = config.url + "/api/properties-by-location/" + locationId;
 
-      if (properties) {
-        return $q.resolve(properties);
+      if (properties[locationId]) {
+        return $q.resolve(properties[locationId]);
       } else {
         return $http.get(url).then(function (response) {
-          properties = response.data;
-          return properties;
+          properties[locationId] = response.data;
+          return response.data;
         }, function (error) {
           $log(error);
         });
       }
     }
 
-    function getPropertyById(propertyId) {
-      return properties.list.find(function (propery) {
-        return propery._id == propertyId;
+    function getById(id) {
+      return $http.get('/api/property/' + id).then(function (res) {
+        return res.data;
       });
     }
   }

@@ -34,7 +34,7 @@
     function getLocationById(id) {
       return getLocations().then(function (locations) {
         return locations.find(function (location) {
-          return location._id == id;
+          return location._id === id;
         });
       });
     }

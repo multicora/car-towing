@@ -1,35 +1,55 @@
 (function () {
   'use strict';
 
-  angular.module('carTowingApp')
-    .controller('DecalController', DecalController);
+  var app = angular.module('carTowingApp');
 
-  DecalController.$inject = ['$stateParams', 'DecalService', 'PropertiesService', '$cordovaCamera'];
+  app.controller('DecalController', DecalController);
 
-  function DecalController($stateParams, DecalService, PropertiesService, $cordovaCamera) {
+  DecalController.$inject = [
+    '$log',
+    '$scope',
+    '$stateParams',
+    'DecalService',
+    'PropertiesService',
+    '$cordovaCamera'
+  ];
+  function DecalController(
+    $log,
+    $scope,
+    $stateParams,
+    DecalService,
+    PropertiesService,
+    $cordovaCamera
+  ) {
     var vm = this;
-    vm.decalId = '';
-    vm.decal = undefined;
-    vm.property = PropertiesService.getPropertyById($stateParams.propertyId);
-    vm.title = vm.property.name || 'NO TITLE';
-    vm.notFoundDecalError = '';
 
-    vm.getDecalBySerialNumber = function () {
-      if (vm.serialNumber) {
-        DecalService.getDecalBySerialNumber(vm.serialNumber).then(
+    vm.decal = null;
+    vm.title = null;
+    vm.notFoundDecalError = null;
+
+    PropertiesService.getById($stateParams.propertyId).then(function (property) {
+      vm.title = property.name || 'NO TITLE';
+    });
+
+    vm.goBack = function () {
+      history.back();
+    }
+
+    vm.getDecalBySerialNumber = function (serialNumber) {
+      if (serialNumber) {
+        DecalService.getBySN(serialNumber).then(
           function (response) {
             if(response.status == 404) {
               vm.notFoundDecalError = response.data.message;
-              vm.decal = undefined;
+              vm.decal = null;
             } else {
-              vm.notFoundDecalError = '';
+              vm.notFoundDecalError = null;
               vm.decal = response.data;
-              console.log(response);
             }
           },
           function (error) {
-            vm.decal = undefined;
-            console.error(error);
+            vm.decal = null;
+            $log(error);
           }
         );
       }

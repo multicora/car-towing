@@ -9,23 +9,21 @@
   function PropertiesController($state, $stateParams, $ionicPopup, LocationsService, PropertiesService, $scope) {
     var vm = this;
 
-    vm.location = LocationsService.getLocationById($stateParams.locationId);
+    vm.title = null;
+    vm.properties = null;
 
-    vm.title = vm.location ? vm.location.name : "No title";
+    LocationsService.getLocationById($stateParams.locationId).then(function (location) {
+      vm.title = location ? location.name : "No title";
+    });
 
-    vm.properties = PropertiesService.getProperties().then;
-    vm.getProperties = function () {
-      PropertiesService.getProperties($stateParams.locationId);
-    };
+    PropertiesService.getProperties($stateParams.locationId).then(function (properties) {
+      vm.properties = properties;
+    });
 
-    vm.showConfirm = function (property) {
-      $scope.property = property;
-      console.log($scope.property);
-      console.log($scope.property);
+    vm.propertyClickHandler = function (property) {
       var confirmPopup = $ionicPopup.confirm({
         title: 'Please confirm.',
-        scope: $scope,
-        template: 'Are you in {{property.name}}?',
+        template: 'Are you in ' + property.name + '?',
         okText: 'Yes',
         okType: 'button-default',
         cancelText: 'No',
@@ -35,14 +33,12 @@
 
       confirmPopup.then(function (res) {
         if (res) {
-          $state.go('decal', {propertyId: $scope.property._id});
-          console.log('You are sure');
-        } else {
-          console.log('You are not sure');
+          $state.go('decal', {propertyId: property._id});
         }
       });
     };
 
+    // TODO: fix it
     vm.showConfirmRules = function () {
       var confirmPopup = $ionicPopup.confirm({
         title: 'Rules have changed.',
@@ -63,6 +59,7 @@
       });
     };
 
+    // TODO: fix it
     vm.emergencyTowClick = function (emergencyTowName) {
 
     };

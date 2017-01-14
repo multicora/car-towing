@@ -14,7 +14,10 @@
 
     var migrations = [
       'create table if not exists "photos" (data TEXT)',
-      'alter table "photos" add "isSent" BOOLEAN constraint "isSentDefault" default false'
+      'alter table "photos" add "isSent" BOOLEAN constraint "isSentDefault" default false',
+      'DELETE FROM photos',
+      'alter table "photos" add "property" TEXT',
+      'alter table "photos" add "isEmergency" BOOLEAN constraint "isEmergencyDefault" default false'
     ];
 
     this.run = function () {

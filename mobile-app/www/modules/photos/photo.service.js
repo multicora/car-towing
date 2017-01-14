@@ -8,15 +8,15 @@
 
     var createQuery = 'create table if not exists "photos" (data TEXT)';
 
-    this.addPhoto = function (imageData) {
+    this.addPhoto = function (imageData, property, isEmergency) {
       var deferred = $q.defer();
 
       $ionicPlatform.ready(function () {
         var db = $cordovaSQLite.openDB({ name: "ultimateTowing.db", location: 'default' });
-        var query = "INSERT INTO photos (data) VALUES (?)";
+        var query = "INSERT INTO photos (data, property, isEmergency) VALUES (?, ?, ?)";
 
         return $cordovaSQLite.execute(db, createQuery).then(function(res) {
-          return $cordovaSQLite.execute(db, query, [imageData]);
+          return $cordovaSQLite.execute(db, query, [imageData, property, isEmergency]);
         }).then(function (data) {
           deferred.resolve(data);
         });

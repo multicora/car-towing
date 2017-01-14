@@ -94,7 +94,7 @@
         };
 
         $cordovaCamera.getPicture(options).then(function (imageData) {
-          return PhotosService.addPhoto(imageData);
+          return PhotosService.addPhoto(imageData, emergencyTowName, true);
         }).then(function(res) {
           console.log('JSON.stringify(res)');
           console.log(JSON.stringify(res));

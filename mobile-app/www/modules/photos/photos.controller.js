@@ -8,12 +8,12 @@
   function PhotosController(PhotosService) {
     var vm = this;
 
-    vm.photos = null;
+    vm.photos = [];
 
     PhotosService.getPhotos().then(function (res) {
-      console.log(' -======= photos');
-      console.log(JSON.stringify(res));
-      vm.photos = res;
+      for (var i = res.rows.length - 1; i >= 0; i--) {
+        vm.photos.push(res.rows.item(i));
+      }
     });
   }
 

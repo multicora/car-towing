@@ -7,22 +7,29 @@
   </ion-header-bar>
   <ion-content scroll="true" class="has-header bg-color">
     <div class="photos-wrap">
-      <div class="photo-item" ng-repeat="i in vm.photos">
+      <div class="photo-item" ng-repeat="photo in vm.photos">
         <div class="photo-img-wrap">
-          <img src="img/login-bg.png" alt="">
-          <div class="photo-loaded" ng-show="false">
+          <img
+            ng-src="data:image/jpeg;base64,{{photo.data}}"
+            alt="">
+          <div class="photo-loaded" ng-if="!photo.isSent">
             <i class="icon ion-checkmark-circled"></i>
           </div>
-          <div class="photo-loading">
+          <div class="photo-loading" ng-if="photo.isSent">
             <ion-spinner icon="android"></ion-spinner>
           </div>
         </div>
         <div class="photo-desc">
-          Mc Donald’s,<br> 12/09/2016 15:32
+          <span ng-if="photo.isEmergency">
+            {{photo.property}}
+          </span>
+          <span ng-if="!photo.isEmergency">
+            {{photo.property}}
+          </span>,<br> 12/09/2016 15:32
         </div>
       </div>
 
-      <div class="photo-item" ng-repeat="i in [1,2,3]">
+      <!-- <div class="photo-item" ng-repeat="i in [1,2,3]">
         <div class="photo-img-wrap">
           <img src="img/login-bg.png" alt="">
           <div class="photo-loaded" ng-show="true">
@@ -35,7 +42,7 @@
         <div class="photo-desc">
           Mc Donald’s,<br> 12/09/2016 15:32
         </div>
-      </div>
+      </div> -->
 
     </div>
   </ion-content>

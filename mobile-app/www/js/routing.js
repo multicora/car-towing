@@ -10,7 +10,6 @@
     $httpProvider.interceptors.push('httpInterceptor');
     var TokenService = TokenServiceProvider.$get();
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
-    $httpProvider.defaults.headers.common['X-CART-Token'] = TokenService.getToken() || '';
 
 
     /* Routing */

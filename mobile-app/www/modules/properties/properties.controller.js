@@ -4,9 +4,27 @@
   angular.module('carTowingApp')
     .controller('PropertiesController', PropertiesController);
 
-  PropertiesController.$inject = ['$state', '$stateParams', '$ionicPopup', 'LocationsService', 'PropertiesService', '$scope'];
+  PropertiesController.$inject = [
+    '$state',
+    '$stateParams',
+    '$ionicPopup',
+    '$cordovaCamera',
+    '$ionicPlatform',
+    'LocationsService',
+    'PropertiesService',
+    'PhotosService'
+  ];
 
-  function PropertiesController($state, $stateParams, $ionicPopup, LocationsService, PropertiesService, $scope) {
+  function PropertiesController(
+    $state,
+    $stateParams,
+    $ionicPopup,
+    $cordovaCamera,
+    $ionicPlatform,
+    LocationsService,
+    PropertiesService,
+    PhotosService
+  ) {
     var vm = this;
 
     vm.title = null;
@@ -59,9 +77,32 @@
       });
     };
 
-    // TODO: fix it
     vm.emergencyTowClick = function (emergencyTowName) {
+      $ionicPlatform.ready(function () {
+        // TODO: DRY
+        var options = {
+          quality: 50,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: Camera.PictureSourceType.CAMERA,
+          allowEdit: true,
+          encodingType: Camera.EncodingType.JPEG,
+          targetWidth: 300,
+          targetHeight: 300,
+          popoverOptions: CameraPopoverOptions,
+          saveToPhotoAlbum: false,
+          correctOrientation: true
+        };
 
+        $cordovaCamera.getPicture(options).then(function (imageData) {
+          return PhotosService.addPhoto(imageData);
+        }).then(function(res) {
+          console.log('JSON.stringify(res)');
+          console.log(JSON.stringify(res));
+        }, function (err) {
+          console.log('JSON.stringify(err)');
+          console.log(JSON.stringify(err));
+        });
+      });
     };
   }
 

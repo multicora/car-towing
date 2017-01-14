@@ -14,7 +14,6 @@ module.exports = {
       function updateNext() {
         let property = docs[i];
         if (property) {
-          console.log(i);
           i++
           DAL.properties.edit(property._id, {deleted: !!property.deleted}, updateNext);
         } else {

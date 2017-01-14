@@ -13,7 +13,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://DBorchyk:80/api"
+      "proxyUrl": "http://localhost:80/api"
     }
   ]
 }

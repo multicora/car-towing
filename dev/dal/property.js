@@ -14,8 +14,6 @@ const schema = new Schema({
   manager :  { type: Schema.Types.ObjectId, ref: 'users' },
   towingMatrix: String,
   deleted :  { type: Boolean, default: false }
-  /*manager: Schema.Types.ObjectId,
-  license: Schema.Types.ObjectId,*/
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);

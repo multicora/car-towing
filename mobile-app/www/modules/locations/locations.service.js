@@ -22,8 +22,10 @@
       } else {
         return $http.get(config.url + "/api/locations").then(
           function (response) {
-            locations = response.data;
-            return locations;
+            if (response.status === 200) {
+              locations = response.data;
+            }
+            return response.data;
           }, function (error) {
             $log(error);
           }

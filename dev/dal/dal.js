@@ -59,4 +59,6 @@ DAL.decal = require('./decal.js');
 
 DAL.contract = require('./contract.js');
 
+DAL.emergencyTow = require('./emergencyTow.js');
+
 module.exports = DAL;

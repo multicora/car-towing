@@ -18,7 +18,8 @@
       </label>
       <button
         class="button button-positive btn-search"
-        ng-click="vm.emergencyTowClick(emergencyTowName)">
+        ng-click="vm.emergencyTowClick(emergencyTowName)"
+        ng-disabled="!emergencyTowName">
         GO
       </button>
     </div>

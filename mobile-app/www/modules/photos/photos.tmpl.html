@@ -12,20 +12,15 @@
           <img
             ng-src="data:image/jpeg;base64,{{photo.data}}"
             alt="">
-          <div class="photo-loaded" ng-if="!photo.isSent">
+          <div class="photo-loaded" ng-if="photo.isSent === 'true'">
             <i class="icon ion-checkmark-circled"></i>
           </div>
-          <div class="photo-loading" ng-if="photo.isSent">
+          <div class="photo-loading" ng-if="photo.isSent !== 'true'">
             <ion-spinner icon="android"></ion-spinner>
           </div>
         </div>
         <div class="photo-desc">
-          <span ng-if="photo.isEmergency">
-            {{photo.property}}
-          </span>
-          <span ng-if="!photo.isEmergency">
-            {{photo.property}}
-          </span>,<br> 12/09/2016 15:32
+          {{photo.propertyName}},<br> 12/09/2016 15:32
         </div>
       </div>
 

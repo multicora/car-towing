@@ -9,17 +9,19 @@
     '$log',
     '$scope',
     '$stateParams',
+    '$cordovaCamera',
     'DecalService',
     'PropertiesService',
-    '$cordovaCamera'
+    'PhotosService'
   ];
   function DecalController(
     $log,
     $scope,
     $stateParams,
+    $cordovaCamera,
     DecalService,
     PropertiesService,
-    $cordovaCamera
+    PhotosService
   ) {
     var vm = this;
 
@@ -73,12 +75,16 @@
         };
 
 
-        $cordovaCamera.getPicture(options)
-          .then(function (imageData) {
-          alert(imageData);
-        }, function (err) {
-          alert(error);
-        });
+        $cordovaCamera.getPicture(options).then(function (imageData) {
+          return PhotosService.addPhoto(imageData, $stateParams.propertyId, false);
+        }).then(
+          function () {
+          },
+          function (err) {
+            console.log(' -== Error');
+            console.log(JSON.stringify(err));
+          }
+        );
 
       }, false);
     }

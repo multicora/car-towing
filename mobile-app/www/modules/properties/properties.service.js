@@ -30,7 +30,7 @@
     }
 
     function getById(id) {
-      return $http.get('/api/property/' + id).then(function (res) {
+      return $http.get(config.url + '/api/property/' + id).then(function (res) {
         return res.data;
       });
     }

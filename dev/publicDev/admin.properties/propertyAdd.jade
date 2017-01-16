@@ -68,6 +68,7 @@
             div
               .logo( ng-style="{backgroundImage: 'url('+ vm.newProperty.logo + ')' }")
             div
-              button(ng-click="vm.selectFile($event)") Upload logo
+              label(for="file")
+                span.btn Upload logo
                 //- TODO: move this to controller
                 input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")

@@ -10,7 +10,8 @@
     'locationsService',
     'contractsService',
     '$location',
-    '$routeParams'
+    '$routeParams',
+    '$scope'
   ];
 
   function adminPropertiesEditCtrl(
@@ -18,12 +19,14 @@
     locationsService,
     contractsService,
     $location,
-    $routeParams
+    $routeParams,
+    $scope
   ) {
     var vm = this;
     var propId = $routeParams.id;
 
     vm.contractTerms = contractsService.getTerms();
+    vm.newProperty = {};
 
     if (propId) {
       vm.editMod = true;
@@ -55,6 +58,17 @@
     vm.activateContract = function(propertyContractTerm) {
       contractsService.activate(propId, propertyContractTerm);
     };
+
+    $scope.convertToBase64 = function(event){
+      var f = document.getElementById('file').files[0],
+      r = new FileReader();
+      r.onloadend = function(e){
+        // TODO: converted to base64 image
+        vm.newProperty.logo = e.target.result;
+        $scope.$digest();
+      }
+      r.readAsDataURL(f);
+    }
   }
 
   function parseContract(contract) {

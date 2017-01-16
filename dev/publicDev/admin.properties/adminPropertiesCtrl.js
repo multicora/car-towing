@@ -31,23 +31,6 @@
     };
 
     vm.errorMes = '';
-    vm.newProperty = {};
-
-    vm.selectFile = function(e) {
-      e.preventDefault();
-      document.getElementById('file').click();
-    };
-
-    $scope.convertToBase64 = function(event){
-      var f = document.getElementById('file').files[0],
-      r = new FileReader();
-      r.onloadend = function(e){
-        // TODO: converted to base64 image
-        vm.newProperty.logo = e.target.result;
-        $scope.$digest();
-      }
-      r.readAsDataURL(f);
-    }
 
     function getUrl() {
       return [

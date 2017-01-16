@@ -30,6 +30,13 @@
           }
         });
       },
+      getByProperty: function(id) {
+        return $http.get('/api/contracts/' + id, {
+          headers: {
+            Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()
+          }
+        });
+      },
       getTerms: function () {
         return [
           {

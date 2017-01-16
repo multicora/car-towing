@@ -29,6 +29,12 @@
             headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
           }
         );
+      },
+      edit: function(id, data) {
+        return $http.put('/api/locations/' + id, data, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
       }
     };
   }

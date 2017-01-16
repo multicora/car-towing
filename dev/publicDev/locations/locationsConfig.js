@@ -1,11 +1,6 @@
-(function(window, document, NG) {
-
-  if (typeof NG === 'undefined') {
-    alert('Problem with app initialization!');
-  }
-
-  var app = NG.module('app'),
-    configInjections = ['$routeProvider', 'locationsRoute', 'resolverProvider'];
+(function(window, document, angular) {
+  var app = angular.module('app'),
+    configInjections = ['$routeProvider', 'locationsRoute', 'resolverProvider', 'userActions'];
 
   app.constant('locationsRoute', {
     path: '/locations',
@@ -15,11 +10,11 @@
     }
   });
 
-  function locaiotnsConfig($routeProvider, locationsRoute, resolverProvider) {
+  function locaiotnsConfig($routeProvider, locationsRoute, resolverProvider, userActions) {
     var resolver = resolverProvider.$get();
 
     locationsRoute.route.resolve = {
-      resolver: resolver.get
+      resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
     };
 
     $routeProvider.when(locationsRoute.path, locationsRoute.route);

@@ -37,6 +37,9 @@ const locations = {
   },
   remove: (id, cb) => {
     return model.findOneAndRemove({_id: id}, cb);
+  },
+  edit: (id, data, cb) => {
+    return model.findOneAndUpdate({_id: id}, data, cb);
   }
 };
 

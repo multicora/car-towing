@@ -10,6 +10,7 @@
   function locationsCtrl(locationsService) {
 
     var vm = this;
+    var lastEditedLocation = null;
 
     function getAllLocations() {
       locationsService.getLocations().then(function(response){
@@ -28,20 +29,31 @@
         clearNewLocation();
         getAllLocations();
       });
-    }
-
-    // // TODO: future update functionality
-    // vm.edit = function(location) {
-    //   locationsService.update(location._id, location).then(function() {
-    //     getAllRules(property._id);
-    //   });
-    // }
+    };
 
     vm.remove = function(id) {
       locationsService.remove(id).then(function() {
         getAllLocations();
       });
-    }
+    };
+
+    vm.editMode = function (location) {
+      if (lastEditedLocation) {
+        lastEditedLocation.editMode = false;
+      }
+      if (location) {
+        location.editMode = true;
+      }
+      lastEditedLocation = location;
+    };
+
+    vm.editLocation = function (location) {
+      locationsService.edit(location._id, location).then(function() {
+        vm.editMode();
+        getAllLocations();
+      });
+    };
+
   }
 
   locationsCtrl.$inject = injections;

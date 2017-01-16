@@ -38,7 +38,7 @@
         console.error(error);
       });
 
-      contractsService.getAll().then(function (res) {
+      contractsService.getByProperty(propId).then(function (res) {
         vm.contracts = res.data.map(parseContract);
       });
     }

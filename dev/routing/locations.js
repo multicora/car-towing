@@ -19,7 +19,7 @@ module.exports = (server) => {
       },
       handler:(request, reply) => {
         DAL.locations.create(request.payload, (err, docs) => {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
         });
       }
     }
@@ -37,7 +37,7 @@ module.exports = (server) => {
       },
       handler:(request, reply) => {
         DAL.locations.get((err, docs) => {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
         });
       }
     }
@@ -55,7 +55,7 @@ module.exports = (server) => {
       },
       handler:(request, reply) => {
         DAL.locations.getById(request.params.locationId, (err, docs) => {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
         });
       }
     }
@@ -72,9 +72,26 @@ module.exports = (server) => {
         }
       },
       handler: function (request, reply) {
-        console.log(request.params.locationId);
         DAL.locations.remove(request.params.locationId, function (err, docs) {
-          !err ? reply('Done') : reply(JSON.stringify(err));
+          !err ? reply('Done') : reply(Boom.badImplementation(err));
+        });
+      }
+    }
+  });
+
+  server.route({
+    method: 'PUT',
+    path: '/api/locations/{locationId}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['locations:create']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.locations.edit(request.params.locationId, request.payload, function (err, docs) {
+          !err ? reply('Done') : reply(Boom.badImplementation(err));
         });
       }
     }

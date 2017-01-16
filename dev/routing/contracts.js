@@ -82,4 +82,24 @@ module.exports = function (server) {
       }
     }
   });
+
+  server.route({
+    method: 'GET',
+    path: '/api/contracts/{propertyId}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['contracts:read']
+        }
+      },
+      handler: function (request, reply) {
+
+        DAL.contract.getByPropId(request.params.propertyId, function (err, res) {
+          !err ? reply(res) : reply( Boom.badImplementation(err) );
+        });
+
+      }
+    }
+  });
 };

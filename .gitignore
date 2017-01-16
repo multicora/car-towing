@@ -2,6 +2,7 @@
 public
 bower_components
 /uploads
+/dev/uploads
 .idea/uploads
 .idea/
 .vscode/

@@ -1,10 +1,15 @@
 'use strict';
-function propertiesCtrl(propertiesService) {
-  var vm = this;
-  vm.properties = null;
-  propertiesService.getProperties().then(function(res) {
-    vm.properties = res.data;
-  });
-}
-propertiesCtrl.$inject = ['propertiesService'];
-app.controller('propertiesCtrl', propertiesCtrl);
+(function (angular) {
+  var app = angular.module('app');
+
+  app.controller('propertiesCtrl', propertiesCtrl);
+
+  propertiesCtrl.$inject = ['propertiesService'];
+  function propertiesCtrl(propertiesService) {
+    var vm = this;
+    vm.properties = null;
+    propertiesService.getProperties().then(function(res) {
+      vm.properties = res.data;
+    });
+  }
+})(angular);

@@ -17,7 +17,11 @@
       'alter table "photos" add "isSent" BOOLEAN constraint "isSentDefault" default false',
       'DELETE FROM photos',
       'alter table "photos" add "property" TEXT',
-      'alter table "photos" add "isEmergency" BOOLEAN constraint "isEmergencyDefault" default false'
+      'alter table "photos" add "isEmergency" BOOLEAN constraint "isEmergencyDefault" default false',
+      'DELETE FROM photos',
+      'alter table "photos" add "location" TEXT',
+      'DROP TABLE photos;',
+      'CREATE TABLE photos (id integer primary key autoincrement, data TEXT, isSent BOOLEAN default false, property text, isEmergency BOOLEAN default false, location text);'
     ];
 
     this.run = function () {

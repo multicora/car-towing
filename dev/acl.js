@@ -49,6 +49,11 @@ const permissionsFunc = function(credentials, callback) {
       read: hasRole('driver') || hasRole('admin') || hasRole('property-manager'),
       create: hasRole('admin'),
       delete: hasRole('admin')
+    },
+    towing: {
+      read: hasRole('driver') || hasRole('admin') || hasRole('property-manager'),
+      create: hasRole('driver') || hasRole('admin'),
+      delete: hasRole('admin')
     }
   };
 

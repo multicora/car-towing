@@ -76,7 +76,7 @@
 
 
         $cordovaCamera.getPicture(options).then(function (imageData) {
-          return PhotosService.addPhoto(imageData, $stateParams.propertyId, false);
+          return PhotosService.addPhoto(imageData, $stateParams.propertyId, null, false);
         }).then(
           function () {
           },

@@ -39,6 +39,15 @@ module.exports = function (config) {
         })
       }
     },
+    saveFromBase64: (base64Data, ext, cb) => {
+      const id = uuid.v1();
+      const path = folder + '/' + id + '.' + ext;
+      console.log('path');
+      console.log(path);
+      fs.writeFile(path, base64Data, 'base64', function(err) {
+        cb(err, id);
+      });
+    },
     getFile: (id, cb) => {
       return new Promise(function (resolve, reject) {
         const path = folder + '/' + id + separator;

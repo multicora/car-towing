@@ -84,17 +84,15 @@
           quality: 50,
           destinationType: Camera.DestinationType.DATA_URL,
           sourceType: Camera.PictureSourceType.CAMERA,
-          allowEdit: true,
+          allowEdit: false,
           encodingType: Camera.EncodingType.JPEG,
-          targetWidth: 300,
-          targetHeight: 300,
           popoverOptions: CameraPopoverOptions,
           saveToPhotoAlbum: false,
           correctOrientation: true
         };
 
         $cordovaCamera.getPicture(options).then(function (imageData) {
-          return PhotosService.addPhoto(imageData, emergencyTowName, true);
+          return PhotosService.addPhoto(imageData, emergencyTowName, $stateParams.locationId, true);
         }).then(function(res) {
           console.log('JSON.stringify(res)');
           console.log(JSON.stringify(res));

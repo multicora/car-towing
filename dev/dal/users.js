@@ -24,7 +24,7 @@ model.on('index', function(error) {
   }
 });
 
-let filter = 'email name roles';
+let filter = 'email name blocked roles';
 
 const users = {
   get: (cb) => {

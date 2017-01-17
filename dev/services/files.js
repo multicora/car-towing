@@ -11,7 +11,7 @@ const Promise = require('promise');
 module.exports = function (config) {
   config = config || {};
 
-  const folder = config.folder || 'uploads';
+  const folder = 'uploads';
   const separator = '_';
 
   if (!fs.existsSync(folder)){
@@ -41,7 +41,7 @@ module.exports = function (config) {
     },
     saveFromBase64: (base64Data, ext, cb) => {
       const id = uuid.v1();
-      const path = folder + '/' + id + '.' + ext;
+      const path = folder + '/' + id + separator + '.' + ext;
       console.log('path');
       console.log(path);
       fs.writeFile(path, base64Data, 'base64', function(err) {
@@ -52,7 +52,7 @@ module.exports = function (config) {
       return new Promise(function (resolve, reject) {
         const path = folder + '/' + id + separator;
 
-        glob(path + '*', {nonull:true}, function (err, files) {
+        glob(path + '*', {}, function (err, files) {
           err ? reject(err) : resolve(files[0]);
           cb && cb(err, files);
         });

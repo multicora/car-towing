@@ -43,6 +43,8 @@
               button.create(
                 ng-click="vm.editProperty(vm.newProperty._id)"
                 ng-show="vm.editMod") Edit
+            .photos-link
+              a(ng-href="#/photos/{{vm.newProperty._id}}") Photos
 
             //- Contracts
             .contracts-section(ng-show="vm.editMod")

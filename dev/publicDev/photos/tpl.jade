@@ -1,0 +1,9 @@
+.admin-page.photos-page
+  .container
+    .content
+      header-directive
+      .content-padding
+        .photo(ng-repeat="photo in vm.photos")
+          img(ng-src="{{photo}}")
+        .message(ng-if="!vm.photos.length")
+          | No photos

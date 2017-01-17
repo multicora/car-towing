@@ -47,6 +47,7 @@ module.exports = function (server) {
     }
   });
 
+  // GET: /api/files/{propId}
   server.route({
     method: 'GET',
     path: '/api/files/{propId}',
@@ -65,6 +66,8 @@ module.exports = function (server) {
 
           Promise.all(filesPromises).then(
             (res) => {
+              res = res.filter( item => !!item);
+
               reply(res);
             },
             (err) => {
@@ -78,16 +81,10 @@ module.exports = function (server) {
 
   server.route({
     method: 'GET',
-    path: '/uploads/{fileName}',
+    path: '/uploads/{fileName*}',
     config: {
-      auth: 'simple',
-      plugins: {
-        hapiRouteAcl: {
-          permissions: ['files:read']
-        }
-      },
       handler: function (request, reply) {
-        reply.file(path.resolve(__dirname, './../../uploads/' + request.params.fileName));
+        reply.file(path.resolve(__dirname, './../uploads/') + '/' + request.params.fileName);
       }
     }
   });

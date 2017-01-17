@@ -22,7 +22,10 @@ module.exports = function (cb) {
       require('./scripts/v010.js'),
       require('./scripts/v011.js'),
       require('./scripts/v012.js'),
-      require('./scripts/v013.js')
+      require('./scripts/v013.js'),
+      require('./scripts/v014.js'),
+      require('./scripts/v015.js'),
+      require('./scripts/v016.js')
     ],
     done: cb
   };

@@ -23,6 +23,7 @@
                 authService.setUser(res[0].data);
 
                 if (action && !UserCheckingService.checkUser(user, roles, action)) {
+                  console.log('User do not have action "' + action + '"');
                   $location.path('/');
                 }
                 resolve();

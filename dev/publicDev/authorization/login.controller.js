@@ -27,13 +27,18 @@
     function signIn() {
       authService.login(vm.user).then(
         function(success) {
-          authService.setUser(success.data);
-          TokenService.setToken(success.data.token);
-          $http.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
-          redirectByRole(success.data.roles);
-          vm.errorMes = '';
+          if (success && success.status === 200) {
+            authService.setUser(success.data);
+            TokenService.setToken(success.data.token);
+            $http.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
+            redirectByRole(success.data.roles);
+            vm.errorMes = '';
+          } else {
+            vm.errorMes = 'The username or password is incorrect';
+          }
         },
         function(error) {
+          console.log(11111);
           vm.errorMes = error.data.message;
         }
       );

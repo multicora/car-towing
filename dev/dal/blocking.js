@@ -39,13 +39,18 @@ module.exports = {
     get: (cb) => {
       return model.find({}, cb);
     },
-    getByPropId: (id, cb) => {
-      return model.find({propertyId: id }, cb);
+    getByPropId: (propertyId, cb) => {
+      return model.find({propertyId: propertyId }, cb);
     },
-    create: (data, cb) => {
-      const instance = new model(data);
+    create: (propertyId, data, cb) => {
+       const instance = new model({
+         propertyId: propertyId,
+         from: data.dateFrom,
+         to: data.dateTo,
+         reason: data.reason
+       });
 
-      instance.save(cb);
+       instance.save(cb);
     },
     edit: (id, model, cb) => {
       return model.findOneAndUpdate({_id: id}, model, cb);

@@ -23,7 +23,7 @@ module.exports = function (server) {
   });
   server.route({
     method: 'POST',
-    path: '/api/blocking',
+    path: '/api/blocking/{propertyId}',
     config: {
       auth: 'simple',
       plugins: {
@@ -32,7 +32,7 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        DAL.blocking.create(request.payload, function (err, docs) {
+        DAL.blocking.create(request.params.propertyId, request.payload, function (err, docs) {
           !err ? reply(docs) : reply(JSON.stringify(err));
         });
       }

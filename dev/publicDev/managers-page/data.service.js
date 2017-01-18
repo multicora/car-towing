@@ -12,8 +12,24 @@
         create: create,
         remove: remove,
         update: update,
-        get: get
+        get: get,
+        blocking: blocking,
+        getBlocking: getBlocking
       };
+
+      function blocking(data, propertyId) {
+        return $http.post('api/blocking/' + propertyId, data, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
+      }
+
+      function getBlocking(propertyId) {
+        return $http.get('api/blocking/' + propertyId, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
+      }
 
       function get(propertyId) {
         return $http.get('/api/parkingRules/' + propertyId);

@@ -38,7 +38,7 @@ module.exports = function (server) {
                   user.token = token;
                   reply(user);
                 } else {
-                  reply( Boom.badImplementation('Server error') )
+                  reply(Boom.badImplementation('Server error'));
                 }
               });
           } else {

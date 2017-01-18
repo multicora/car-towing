@@ -202,8 +202,13 @@
     width: 100%;
   }
 
-  .photo img {
-    width: 200px;
+  .photo {
+    display: inline-block;
+    padding: 10px;
+
+    img {
+      width: 200px;
+    }
   }
 }
 

@@ -11,17 +11,6 @@
     var vm = this;
     var editorInstance = null;
 
-    customPageService.getGotTowed()
-      .then(function(res) {
-        vm.data = res.data;
-        vm.data.customJson = JSON.parse(res.data.customJson || null);
-        vm.data.customJson = vm.data.customJson || {};
-        vm.data.customJson.taxis = vm.data.customJson.taxis || [];
-        vm.data.customJson.address = vm.data.customJson.address || '';
-        vm.data.editableContent = res.data.editableContent || null;
-        vm.data.editableContent = JSON.parse(vm.data.editableContent) || {ops:[]};
-      });
-
     vm.addTaxi = function() {
       vm.data.customJson.taxis.push({});
     }
@@ -31,8 +20,18 @@
     }
 
     vm.initCallback = function(editor, name) {
-      editorInstance = editor;
-      editorInstance.setContents(vm.data.editableContent);
+      customPageService.getGotTowed()
+      .then(function(res) {
+        vm.data = res.data;
+        vm.data.customJson = JSON.parse(res.data.customJson || null);
+        vm.data.customJson = vm.data.customJson || {};
+        vm.data.customJson.taxis = vm.data.customJson.taxis || [];
+        vm.data.customJson.address = vm.data.customJson.address || '';
+        vm.data.editableContent = res.data.editableContent || null;
+        vm.data.editableContent = JSON.parse(vm.data.editableContent) || {ops:[]};
+        editorInstance = editor;
+        editorInstance.setContents(vm.data.editableContent);
+      })
     }
 
     vm.addGotTowed = function(form) {

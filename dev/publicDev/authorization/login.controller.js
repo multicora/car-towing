@@ -38,7 +38,6 @@
           }
         },
         function(error) {
-          console.log(11111);
           vm.errorMes = error.data.message;
         }
       );

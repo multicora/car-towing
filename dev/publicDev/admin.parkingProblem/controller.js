@@ -11,15 +11,14 @@
     var vm = this;
     var editorInstance = null;
 
-    customPageService.getParkingProblem()
-      .then(function(res) {
-        vm.data = res.data || {};
-        vm.data.editableContent = JSON.parse(res.data.editableContent || null) || {ops:[]};
-      });
 
     vm.initCallback = function(editor, name) {
       editorInstance = editor;
-      editorInstance.setContents(vm.data.editableContent);
+      customPageService.getParkingProblem().then(function(res) {
+        vm.data = res.data || {};
+        vm.data.editableContent = JSON.parse(res.data.editableContent || null) || {ops:[]};
+        editorInstance.setContents(vm.data.editableContent);
+      });
     }
 
     vm.addParkingProblem = function() {

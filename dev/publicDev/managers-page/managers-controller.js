@@ -127,9 +127,8 @@
     function getBlocking(id) {
       rulesDataService.getBlocking(id)
         .then(function(res) {
-
+          console.log(res);
           vm.blockingDataArr = res.data;
-
           for (var i = 0; i < vm.blockingDataArr.length; i++) {
             vm.blockingDataArr[i].to = new Date(vm.blockingDataArr[i].to);
             vm.blockingDataArr[i].from = new Date(vm.blockingDataArr[i].form);

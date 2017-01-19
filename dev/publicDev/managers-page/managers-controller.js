@@ -110,17 +110,31 @@
     }
 
     vm.block = function() {
-      rulesDataService.blocking(vm.blockingData, vm.property._id);
+      rulesDataService.blocking(vm.blockingData, vm.property._id)
+        .then(function() {
+          getBlocking(vm.property._id);
+        });
+    }
+
+    vm.unblocking = function(id) {
+      console.log(id);
+      rulesDataService.unblocking(id)
+        .then(function() {
+          getBlocking(vm.property._id);
+        });
     }
 
     function getBlocking(id) {
       rulesDataService.getBlocking(id)
         .then(function(res) {
-          if(res.data.length > 0) {
-            vm.blockingData.reason = res.data[0].reason;
-            vm.blockingData.dateFrom = new Date(res.data[0].from);
-            vm.blockingData.dateTo = new Date(res.data[0].to);
+
+          vm.blockingDataArr = res.data;
+
+          for (var i = 0; i < vm.blockingDataArr.length; i++) {
+            vm.blockingDataArr[i].to = new Date(vm.blockingDataArr[i].to);
+            vm.blockingDataArr[i].from = new Date(vm.blockingDataArr[i].form);
           }
+
         });
     }
 

@@ -38,4 +38,21 @@ module.exports = function (server) {
       }
     }
   });
+  server.route({
+    method: 'DELETE',
+    path: '/api/unblocking/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['blocking:create']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.blocking.remove(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(JSON.stringify(err));
+        });
+      }
+    }
+  });
 };

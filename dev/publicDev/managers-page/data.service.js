@@ -14,7 +14,8 @@
         update: update,
         get: get,
         blocking: blocking,
-        getBlocking: getBlocking
+        getBlocking: getBlocking,
+        unblocking: unblocking
       };
 
       function blocking(data, propertyId) {
@@ -26,6 +27,13 @@
 
       function getBlocking(propertyId) {
         return $http.get('api/blocking/' + propertyId, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
+      }
+
+      function unblocking(id) {
+        return $http.delete('api/unblocking/' + id, {
             headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
           }
         );

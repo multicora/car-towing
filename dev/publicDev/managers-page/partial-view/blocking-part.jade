@@ -31,10 +31,10 @@
           p.blocking-list-title Reason
           p.blocking-list-title Date from
           p.blocking-list-title Date To
-      .bloking-list-container(ng-repeat="blocking in vm.blockingDataArr")
-        .center-block.blocking-list
-          p.reason-list(ng-bind="blocking.reason")
-          input.blocking-list-input(type="date" ng-model="blocking.from" disabled)
-          input.blocking-list-input(type="date" ng-model="blocking.to" disabled)
-        .right-block
-          button.btn.btn-primary.btn-block.unblocking-button(type="button" ng-click="vm.unblocking(blocking._id)") Unblock
+        div(ng-repeat="blocking in vm.blockingDataArr")
+          .center-block.blocking-list
+            p.reason-list(ng-bind="blocking.reason")
+            input.blocking-list-input(type="date" ng-model="blocking.from" disabled)
+            input.blocking-list-input(type="date" ng-model="blocking.to" disabled)
+          .right-block
+            button.btn.btn-primary.btn-block.unblocking-button(type="button" ng-click="vm.unblocking(blocking._id)") Unblock

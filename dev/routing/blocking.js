@@ -16,7 +16,6 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         DAL.blocking.getByPropId(request.params.propertyId, function (err, docs) {
-          console.log(docs);
           !err ? reply(docs) : reply(JSON.stringify(err));
         });
       }

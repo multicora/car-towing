@@ -45,8 +45,8 @@ module.exports = {
     create: (propertyId, data, cb) => {
        const instance = new model({
          propertyId: propertyId,
-         from: new Date(data.dateFrom),
-         to: new Date(data.dateTo),
+         from: data.dateFrom,
+         to: data.dateTo,
          reason: data.reason
        });
 

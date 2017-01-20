@@ -54,7 +54,10 @@
     }).then(function () {
       return contractsService.checkTime(vm.property._id);
     }).then(function (res) {
-      console.log(res);
+      vm.contractsTime = new Date(res.data).getMonth();
+      if (vm.contractsTime < 3) {
+        vm.timeEndClass = 'redText';
+      }
       return getAllRules(vm.property._id);
     }).then(function () {
       return propertiesService.getPhotos(vm.property._id);

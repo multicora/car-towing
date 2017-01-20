@@ -6,6 +6,7 @@ const DAL = require('../dal/dal.js');
 const Utils = require('../services/utils.js');
 const Joi = require('joi');
 const passwordHash = require('password-hash');
+const resetPasswordService = require('../services/resetPassword.js');
 
 module.exports = function (server) {
   server.route({
@@ -15,6 +16,21 @@ module.exports = function (server) {
       DAL.users.resetPassword(request.payload, function (err, docs) {
         !err ? reply(docs) : reply(Boom.badRequest(err));
       });
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/api/reset_password',
+    config: {
+      validate: {
+        payload: {
+          email: Joi.string().email().min(3).max(255).required(),
+        }
+      },
+      handler: function (request, reply) {
+        reply(resetPasswordService.resetPassword(request.payload.email));
+      }
     }
   });
 

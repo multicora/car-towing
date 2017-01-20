@@ -55,6 +55,11 @@
       );
     }
 
+    vm.resetPassword = function() {
+      console.log(vm.email);
+      authService.resetPassword({email: vm.email});
+    }
+
     function redirectByRole(roles) {
       var map = {
         'admin': '/admin',

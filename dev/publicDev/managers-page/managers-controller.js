@@ -52,6 +52,9 @@
         throw( new Error(vm.message) );
       }
     }).then(function () {
+      return contractsService.checkTime(vm.property._id);
+    }).then(function (res) {
+      console.log(res);
       return getAllRules(vm.property._id);
     }).then(function () {
       return propertiesService.getPhotos(vm.property._id);

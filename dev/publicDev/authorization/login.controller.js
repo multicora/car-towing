@@ -56,7 +56,6 @@
     }
 
     vm.resetPassword = function() {
-      console.log(vm.email);
       authService.resetPassword({email: vm.email});
     }
 

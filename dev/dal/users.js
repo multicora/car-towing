@@ -47,7 +47,8 @@ const users = {
     ).populate('roles').exec(cb);
   },
   updateResetToken: (resetToken, email, cb) => {
-    return model.findOneAndUpdate({_email: email}, resetToken, cb);
+    console.log(1111);
+    return model.findOneAndUpdate({email: email}, resetToken, cb);
   },
   getUserByEmail: (email, cb) => {
     model.findOne({email: email}, filter, cb);

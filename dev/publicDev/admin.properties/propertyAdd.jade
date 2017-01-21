@@ -27,11 +27,12 @@
                     required)
                   span.text {{location.name}}
             input(
-              type="text"
+              type="email"
               placeholder="Login"
               ng-model="vm.newProperty.login"
               ng-hide="vm.editMod"
-              ng-class="{'l-error-input': vm.errorMes.length > 0}")
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
             p
               .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
               a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
@@ -39,7 +40,7 @@
               button.create(
                 type="submit"
                 ng-hide="vm.editMod"
-                ng-class="{'disabled': propertyForm.$invalid}") Create
+                ng-disabled="propertyForm.$invalid") Create
               button.create(
                 ng-click="vm.editProperty(vm.newProperty._id)"
                 ng-show="vm.editMod") Edit

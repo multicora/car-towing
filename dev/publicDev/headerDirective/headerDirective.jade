@@ -18,7 +18,8 @@ header(class="{{className}}")
     div.location
       img.icon(src="files/location-icon.png")
       span.text 907 SW 3rd St. Gainesville, FL
-.logout-popup(ng-if="vm.shown")
-  p You are logged out
-  .button-container
-    button.btn.btn-submit(ng-click="vm.closePopup()") OK
+.logauut-popup-container(ng-if="vm.isShownLogoutPopup")
+  .logout-popup
+    p You are logged out
+    .button-container
+      button.btn.btn-submit(ng-click="vm.closePopup()") OK

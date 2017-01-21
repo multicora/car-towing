@@ -5,20 +5,24 @@ var HeaderController = function(TokenService, $location, authService, $timeout) 
   vm.user = authService.getUser();
 
   vm.closePopup = function() {
-    vm.shown = false;
+    vm.isShownLogoutPopup = false;
+    clearTimeout(closeTimeout);
     $location.path('/');
+  }
+
+  function closeTimeout() {
+    $timeout(function () {
+      vm.closePopup();
+    }, 5000);
   }
 
   vm.logout = function() {
     authService.setUser(null);
     vm.user = null;
     TokenService.removeToken();
-    vm.shown = true;
+    vm.isShownLogoutPopup = true;
 
-    $timeout(function () {
-      vm.shown = false;
-      $location.path('/');
-    }, 5000);
+    closeTimeout();
   };
 };
 

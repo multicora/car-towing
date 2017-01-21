@@ -28,7 +28,7 @@
     vm.contractTerms = contractsService.getTerms();
     vm.newProperty = {};
 
-    var getContacts = function() {
+    function getContacts() {
       contractsService.getByProperty(propId).then(function (res) {
         vm.contracts = res.data.map(parseContract);
       });

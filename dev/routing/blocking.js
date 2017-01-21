@@ -45,7 +45,7 @@ module.exports = function (server) {
       auth: 'simple',
       plugins: {
         hapiRouteAcl: {
-          permissions: ['blocking:create']
+          permissions: ['blocking:edit']
         }
       },
       handler: function (request, reply) {

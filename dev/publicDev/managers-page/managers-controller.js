@@ -117,7 +117,6 @@
     }
 
     vm.unblocking = function(id) {
-      console.log(id);
       rulesDataService.unblocking(id)
         .then(function() {
           getBlocking(vm.property._id);

@@ -43,14 +43,14 @@ module.exports = {
       return model.find({propertyId: propertyId }, cb);
     },
     create: (propertyId, data, cb) => {
-       const instance = new model({
-         propertyId: propertyId,
-         from: data.dateFrom,
-         to: data.dateTo,
-         reason: data.reason
-       });
+      const instance = new model({
+        propertyId: propertyId,
+        from: data.dateFrom,
+        to: data.dateTo,
+        reason: data.reason
+      });
 
-       instance.save(cb);
+      instance.save(cb);
     },
     edit: (id, model, cb) => {
       return model.findOneAndUpdate({_id: id}, model, cb);

@@ -1,17 +1,18 @@
 'use strict'
 var HeaderController = function(TokenService, $location, authService, $timeout) {
   var vm = this;
+  var timer;
 
   vm.user = authService.getUser();
 
   vm.closePopup = function() {
     vm.isShownLogoutPopup = false;
-    clearTimeout(closeTimeout);
+    $timeout.cancel(timer);
     $location.path('/');
   }
 
   function closeTimeout() {
-    $timeout(function () {
+    timer = $timeout(function () {
       vm.closePopup();
     }, 5000);
   }

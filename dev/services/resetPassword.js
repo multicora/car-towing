@@ -1,3 +1,5 @@
+'use strict';
+
 const config = require('../config.js');
 const Mailer = require('../services/mailer.js');
 const Utils = require('../services/utils.js');

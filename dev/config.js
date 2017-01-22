@@ -4,6 +4,6 @@ module.exports = {
     port: 465,
     user: 'no.reply.ultimatetowing@gmail.com',
     pass: 'noreplyultimatetowing',
-    link: 'http://localhost:9000/#/new_password/'
+    resetLink: '#/new_password/'
   }
 };

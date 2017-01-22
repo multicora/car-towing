@@ -7,13 +7,13 @@ const Promise = require('promise');
 const DAL = require('../dal/dal.js');
 
 module.exports = {
-  resetPassword: (email) => {
+  resetPassword: (email, serverUrl) => {
     return new Promise((resolve, reject) => {
       let resetToken = Utils.newToken();
       DAL.users.updateResetToken(resetToken, email, function(err, res) {
         if (res) {
           const message = [
-            config.mail.link + resetToken,
+            serverUrl + config.mail.resetLink + resetToken,
           ].join('\n');
 
           const mail = {

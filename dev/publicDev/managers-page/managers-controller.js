@@ -31,6 +31,7 @@
 
     vm.managerName = null;
     vm.property = null;
+    vm.blockingData = {};
 
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
@@ -53,6 +54,8 @@
       }
     }).then(function () {
       return getAllRules(vm.property._id);
+    }).then(function () {
+      return getBlocking(vm.property._id);
     }).then(function () {
       return propertiesService.getPhotos(vm.property._id);
     }).then(
@@ -106,6 +109,31 @@
         });
     }
 
+    vm.block = function() {
+      rulesDataService.blocking(vm.blockingData, vm.property._id)
+        .then(function() {
+          getBlocking(vm.property._id);
+        });
+    }
+
+    vm.unblocking = function(id) {
+      rulesDataService.unblocking(id)
+        .then(function() {
+          getBlocking(vm.property._id);
+        });
+    }
+
+    function getBlocking(id) {
+      rulesDataService.getBlocking(id)
+        .then(function(res) {
+          vm.blockingDataArr = res.data;
+          for (var i = 0; i < vm.blockingDataArr.length; i++) {
+            vm.blockingDataArr[i].to = new Date(vm.blockingDataArr[i].to);
+            vm.blockingDataArr[i].from = new Date(vm.blockingDataArr[i].from);
+          }
+        });
+    }
+
     // ****** DECAL ******
 
     vm.showDecalPopup = function() {
@@ -119,7 +147,6 @@
     function getAllDecals() {
       decalService.getDecals()
         .then(function(res) {
-          // console.log(res.data);
           vm.decals = res.data;
         });
     }

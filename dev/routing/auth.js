@@ -29,7 +29,11 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        reply(resetPasswordService.resetPassword(request.payload.email));
+        resetPasswordService.resetPassword(request.payload.email).then((res) => {
+          reply (res);
+        }, (err) => {
+          reply (Boom.badImplementation('Server error', err));
+        });
       }
     }
   });

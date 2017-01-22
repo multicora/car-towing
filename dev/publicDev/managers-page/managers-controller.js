@@ -54,10 +54,18 @@
     }).then(function () {
       return contractsService.checkTime(vm.property._id);
     }).then(function (res) {
-      vm.contractsTime = new Date(res.data).getMonth();
-      if (vm.contractsTime < 3) {
+      if (res.data <= 2678258891) {
+        vm.contractsTime = new Date(res.data).getUTCDate();
+        vm.timeMeasure = 'days';
         vm.timeEndClass = 'redText';
+      } else {
+        vm.contractsTime = new Date(res.data).getMonth();
+        vm.timeMeasure = 'month';
+        if (vm.contractsTime < 3) {
+          vm.timeEndClass = 'redText';
+        }
       }
+
       return getAllRules(vm.property._id);
     }).then(function () {
       return propertiesService.getPhotos(vm.property._id);

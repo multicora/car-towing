@@ -3,7 +3,7 @@
     .row
       .long-block.font-regular
         span(ng-bind="'Welcome, ' + vm.managerName +'!'")
-        span.contractsTime(ng-bind="'Your contract will be expired in '+ vm.contractsTime +' month!'"
+        span.contractsTime(ng-bind="'Your contract will be expired in '+ vm.contractsTime + ' ' +vm.timeMeasure +' !'"
           ng-class="vm.timeEndClass")
       .right-block
         button.btn.btn-primary.btn-block(type="button") Report Exec

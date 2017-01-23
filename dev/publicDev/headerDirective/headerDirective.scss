@@ -137,6 +137,11 @@ header {
       }
     }
   }
+  &.withoutLogin {
+    .login-button {
+      display: none;
+    }
+  }
 }
 
 .logauut-popup-container {

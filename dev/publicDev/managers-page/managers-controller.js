@@ -31,6 +31,9 @@
 
     vm.managerName = null;
     vm.property = null;
+    vm.monthInMilisecond = 2678258891;
+    vm.blockingData = {};
+
 
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
@@ -52,7 +55,23 @@
         throw( new Error(vm.message) );
       }
     }).then(function () {
+      return contractsService.checkTime(vm.property._id);
+    }).then(function (res) {
+      if (res.data <= vm.monthInMilisecond) {
+        vm.contractsTime = new Date(res.data).getUTCDate();
+        vm.timeMeasure = 'days';
+        vm.timeEndClass = 'redText';
+      } else {
+        vm.contractsTime = new Date(res.data).getMonth();
+        vm.timeMeasure = 'month';
+        if (vm.contractsTime < 3) {
+          vm.timeEndClass = 'redText';
+        }
+      }
+
       return getAllRules(vm.property._id);
+    }).then(function () {
+      return getBlocking(vm.property._id);
     }).then(function () {
       return propertiesService.getPhotos(vm.property._id);
     }).then(
@@ -106,6 +125,31 @@
         });
     }
 
+    vm.block = function() {
+      rulesDataService.blocking(vm.blockingData, vm.property._id)
+        .then(function() {
+          getBlocking(vm.property._id);
+        });
+    }
+
+    vm.unblocking = function(id) {
+      rulesDataService.unblocking(id)
+        .then(function() {
+          getBlocking(vm.property._id);
+        });
+    }
+
+    function getBlocking(id) {
+      rulesDataService.getBlocking(id)
+        .then(function(res) {
+          vm.blockingDataArr = res.data;
+          for (var i = 0; i < vm.blockingDataArr.length; i++) {
+            vm.blockingDataArr[i].to = new Date(vm.blockingDataArr[i].to);
+            vm.blockingDataArr[i].from = new Date(vm.blockingDataArr[i].from);
+          }
+        });
+    }
+
     // ****** DECAL ******
 
     vm.showDecalPopup = function() {
@@ -119,7 +163,6 @@
     function getAllDecals() {
       decalService.getDecals()
         .then(function(res) {
-          // console.log(res.data);
           vm.decals = res.data;
         });
     }

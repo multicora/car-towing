@@ -14,6 +14,10 @@
       return $sce.trustAsResourceUrl(src);
     }
 
+    vm.load = function() {
+      document.getElementById("map-overlay").className = "map-loaded";
+    }
+
     customPageService.getGotTowed()
       .then(function(res) {
         vm.data = res.data;

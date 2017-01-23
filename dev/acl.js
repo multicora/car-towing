@@ -12,7 +12,8 @@ const permissionsFunc = function(credentials, callback) {
   var userPermissions = {
     blocking: {
       read: hasRole('driver') || hasRole('admin') || hasRole('property-manager'),
-      create: hasRole('admin') || hasRole('property-manager')
+      create: hasRole('admin') || hasRole('property-manager'),
+      edit: hasRole('admin') || hasRole('property-manager')
     },
     customPages: {
       edit: hasRole('admin')

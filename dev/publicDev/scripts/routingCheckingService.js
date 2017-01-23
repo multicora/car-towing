@@ -5,16 +5,21 @@
     .module('app')
     .factory('routingCheckingService', routingCheckingService);
 
-
-  routingCheckingService.$inject = ['$http'];
-
-  function routingCheckingService($http) {
+  function routingCheckingService() {
     return {
       checkRouting: checkRouting
     }
 
     function checkRouting(routing) {
-      var routingArr = [];
+      var routingArr = [
+        '/login',
+        '/',
+        '/properties',
+        '/parking_problem',
+        '/towed_car',
+        '/complaint'
+      ];
+
       var result;
 
       if (routingArr.indexOf(routing) >= 0) {

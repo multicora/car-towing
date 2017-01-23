@@ -19,7 +19,7 @@
           },
           responseError: function(response) {
             LoadingService.hideSpinner();
-            console.log($location.url());
+
             if (response.status == 401) {
               if (!routingCheckingService.checkRouting($location.url())) {
                 $location.path('/login');

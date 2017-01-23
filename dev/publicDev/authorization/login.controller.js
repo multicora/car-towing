@@ -56,7 +56,15 @@
     }
 
     vm.resetPassword = function() {
-      authService.resetPassword({email: vm.email});
+      authService.resetPassword({email: vm.email}).then(
+        function(success) {
+          if(!success || success.status != 200) {
+            vm.errorResetMessage = "User doesn't exists";
+          } else {
+            vm.errorResetMessage = "";
+          }
+        }
+      );
     }
 
     function redirectByRole(roles) {

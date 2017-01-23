@@ -22,7 +22,6 @@ var HeaderController = function(TokenService, $location, authService, $timeout) 
     vm.user = null;
     TokenService.removeToken();
     vm.isShownLogoutPopup = true;
-
     closeTimeout();
   };
 };

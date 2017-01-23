@@ -1,5 +1,7 @@
-.photos-part.main-border-bottom(ng-if="vm.photos.length > 0")
+.photos-part.main-border-bottom
   .big-indent-bottom.big-indent-top
-    .row.photos-container
-      .photo(ng-repeat="photo in vm.photos")
-        img(ng-src="{{photo}}")
+    .row
+      .left-block.font-small
+        .bold-title Photos
+      .center-block.font-small
+        a.photo-page-link(href="#/photos/{{vm.property._id}}") Go to photos folder >>>

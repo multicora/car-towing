@@ -98,6 +98,16 @@
             }
           }
         );
+      },
+      checkTime: function (propId) {
+        return $http.get(
+          '/api/contracts-time/' + propId,
+          {
+            headers: {
+              Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()
+            }
+          }
+        );
       }
     };
   }

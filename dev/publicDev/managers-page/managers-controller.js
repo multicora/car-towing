@@ -31,7 +31,9 @@
 
     vm.managerName = null;
     vm.property = null;
+    vm.monthInMilisecond = 2678258891;
     vm.blockingData = {};
+
 
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
@@ -53,6 +55,20 @@
         throw( new Error(vm.message) );
       }
     }).then(function () {
+      return contractsService.checkTime(vm.property._id);
+    }).then(function (res) {
+      if (res.data <= vm.monthInMilisecond) {
+        vm.contractsTime = new Date(res.data).getUTCDate();
+        vm.timeMeasure = 'days';
+        vm.timeEndClass = 'redText';
+      } else {
+        vm.contractsTime = new Date(res.data).getMonth();
+        vm.timeMeasure = 'month';
+        if (vm.contractsTime < 3) {
+          vm.timeEndClass = 'redText';
+        }
+      }
+
       return getAllRules(vm.property._id);
     }).then(function () {
       return getBlocking(vm.property._id);

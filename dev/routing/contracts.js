@@ -2,6 +2,7 @@
 
 const DAL = require('../dal/dal.js');
 const Boom = require('boom');
+const contractsTimeCalculate = require('../services/contractsTimeCalculate.js')();
 
 module.exports = function (server) {
   server.route({
@@ -97,6 +98,26 @@ module.exports = function (server) {
 
         DAL.contract.getByPropId(request.params.propertyId, function (err, res) {
           !err ? reply(res) : reply( Boom.badImplementation(err) );
+        });
+
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/contracts-time/{propertyId}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['contracts:read']
+        }
+      },
+      handler: function (request, reply) {
+
+        DAL.contract.getByPropId(request.params.propertyId, function (err, res) {
+          !err ? reply(contractsTimeCalculate.calculate(res)) : reply( Boom.badImplementation(err) );
         });
 
       }

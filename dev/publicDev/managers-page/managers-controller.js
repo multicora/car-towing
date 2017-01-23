@@ -31,6 +31,7 @@
 
     vm.managerName = null;
     vm.property = null;
+    vm.monthInMilisecond = 2678258891;
 
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
@@ -54,7 +55,7 @@
     }).then(function () {
       return contractsService.checkTime(vm.property._id);
     }).then(function (res) {
-      if (res.data <= 2678258891) {
+      if (res.data <= vm.monthInMilisecond) {
         vm.contractsTime = new Date(res.data).getUTCDate();
         vm.timeMeasure = 'days';
         vm.timeEndClass = 'redText';

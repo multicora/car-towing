@@ -108,6 +108,10 @@
 
     // ****** DECAL ******
 
+    vm.stopPropagation = function($event) {
+      $event.stopPropagation();
+    }
+
     vm.showDecalPopup = function() {
       vm.decalPopupEditmod = true;
     }
@@ -119,7 +123,6 @@
     function getAllDecals() {
       decalService.getDecals()
         .then(function(res) {
-          // console.log(res.data);
           vm.decals = res.data;
         });
     }

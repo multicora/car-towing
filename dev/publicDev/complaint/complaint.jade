@@ -1,12 +1,12 @@
 .complaint
-  .popup
+  .popup(ng-click="vm.closePopup()")
     .container
       header-directive(class-name="'adaptive'")
       div.row.info
         div.col-md-12
           h1 Complaint form
           h2 Leave your complaint
-      div.row.page-popup
+      div.row.page-popup(ng-click="vm.stopPropagation($event)")
         div.col-md-12
           form.complaint-form(name="complaintForm",
             ng-submit="vm.save(complaintForm)")

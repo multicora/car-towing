@@ -28,6 +28,12 @@
     vm.contractTerms = contractsService.getTerms();
     vm.newProperty = {};
 
+    function getContacts() {
+      contractsService.getByProperty(propId).then(function (res) {
+        vm.contracts = res.data.map(parseContract);
+      });
+    }
+
     if (propId) {
       vm.editMod = true;
 
@@ -41,9 +47,7 @@
         console.error(error);
       });
 
-      contractsService.getByProperty(propId).then(function (res) {
-        vm.contracts = res.data.map(parseContract);
-      });
+      getContacts();
     }
 
     vm.editProperty = function(id) {
@@ -57,6 +61,7 @@
 
     vm.activateContract = function(propertyContractTerm) {
       contractsService.activate(propId, propertyContractTerm);
+      getContacts();
     };
 
     $scope.convertToBase64 = function(event){

@@ -136,6 +136,10 @@ html, body {
   }
 }
 
+.btn[disabled] {
+  cursor: default;
+}
+
 // TODO: visitors counter temporary styles
 .visitors {
   bottom: 0;

@@ -5,9 +5,9 @@
     .module('app')
     .factory('Interseptor', Interseptor);
 
-    Interseptor.$inject = ['LoadingService', '$location'];
+    Interseptor.$inject = ['LoadingService', 'routingCheckingService', '$location'];
 
-    function Interseptor(LoadingService, $location) {
+    function Interseptor(LoadingService, routingCheckingService, $location) {
       var loadingMessage = {
           request: function(request) {
             LoadingService.showSpinner();
@@ -19,8 +19,11 @@
           },
           responseError: function(response) {
             LoadingService.hideSpinner();
+
             if (response.status == 401) {
-              $location.path('/login');
+              if (!routingCheckingService.checkRouting($location.url())) {
+                $location.path('/login');
+              }
             }
           }
       };

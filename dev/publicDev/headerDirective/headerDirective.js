@@ -1,18 +1,32 @@
 'use strict'
-var HeaderController = function(TokenService, $location, authService) {
+var HeaderController = function(TokenService, $location, authService, $timeout) {
   var vm = this;
+  var timer;
 
   vm.user = authService.getUser();
+
+  vm.closePopup = function() {
+    vm.isShownLogoutPopup = false;
+    $timeout.cancel(timer);
+    $location.path('/');
+  }
+
+  function closeTimeout() {
+    timer = $timeout(function () {
+      vm.closePopup();
+    }, 5000);
+  }
 
   vm.logout = function() {
     authService.setUser(null);
     vm.user = null;
     TokenService.removeToken();
-    $location.path('/');
+    vm.isShownLogoutPopup = true;
+    closeTimeout();
   };
 };
 
-HeaderController.$inject = ['TokenService', '$location', 'authService'];
+HeaderController.$inject = ['TokenService', '$location', 'authService', '$timeout'];
 
 var app = angular.module('app');
 

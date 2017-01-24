@@ -3,6 +3,7 @@ module.exports = {
     host: 'smtp.gmail.com',
     port: 465,
     user: 'no.reply.ultimatetowing@gmail.com',
-    pass: 'noreplyultimatetowing'
+    pass: 'noreplyultimatetowing',
+    resetLink: '#/new_password/'
   }
 };

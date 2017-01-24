@@ -114,6 +114,14 @@
     }
 
     vm.block = function() {
+      vm.blockingData.dateFrom = new Date(vm.dateFrom).setHours(new Date(vm.timeFrom).getHours());
+      vm.blockingData.dateFrom = new Date(vm.dateFrom).setMinutes(new Date(vm.timeFrom).getMinutes());
+
+      vm.blockingData.dateTo = new Date(vm.dateTo).setHours(new Date(vm.timeTo).getHours());
+      vm.blockingData.dateTo = new Date(vm.dateTo).setMinutes(new Date(vm.timeTo).getMinutes());
+      console.log(new Date(vm.blockingData.dateFrom));
+      console.log(new Date(vm.blockingData.dateTo));
+
       rulesDataService.blocking(vm.blockingData, vm.property._id)
         .then(function() {
           getBlocking(vm.property._id);

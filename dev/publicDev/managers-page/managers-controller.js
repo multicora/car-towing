@@ -72,19 +72,7 @@
       return getAllRules(vm.property._id);
     }).then(function () {
       return getBlocking(vm.property._id);
-    }).then(function () {
-      return propertiesService.getPhotos(vm.property._id);
-    }).then(
-      function (res) {
-        if (res) {
-          vm.photos = res.data.map(function (photo) {
-            return propertiesService.getPhotoPath(photo);
-          });
-        }
-      }, function (err) {
-        console.log(err);
-      }
-    );
+    });
 
     function getAllRules(propertyId) {
       return rulesDataService.get(propertyId)

@@ -152,6 +152,10 @@
 
     // ****** DECAL ******
 
+    vm.stopPropagation = function($event) {
+      $event.stopPropagation();
+    }
+
     vm.showDecalPopup = function() {
       vm.decalPopupEditmod = true;
     }

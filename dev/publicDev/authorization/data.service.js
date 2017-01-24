@@ -16,7 +16,8 @@
       getCurrentUser: getCurrentUser,
       setUser: setUser,
       getUser: getUser,
-      getRoles: getRoles
+      getRoles: getRoles,
+      resetPassword: resetPassword
     };
 
     function login(user) {
@@ -25,6 +26,10 @@
 
     function newPassword(data) {
       return $http.post('api/new_password', data);
+    }
+
+    function resetPassword(data) {
+      return $http.post('/api/reset_password', data);
     }
 
     function getCurrentUser() {

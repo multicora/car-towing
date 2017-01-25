@@ -14,8 +14,7 @@ const schema = new Schema({
   blocked: Boolean,
   roles: [ {type: Schema.Types.ObjectId, ref: 'roles'} ],
   number: {
-    type: String,
-    unique: true
+    type: String
   }
 });
 

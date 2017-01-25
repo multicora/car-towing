@@ -12,9 +12,11 @@
             span Add user
       .employees-content
         .title
+          p.number Number
           p.name Name
           p.email Email
         .user(ng-repeat="user in vm.usersData")
+          p.ellipsis.number(ng-bind="user.number") Number
           p.ellipsis.name(ng-bind="user.name") Name
           p.ellipsis.email(ng-bind="user.email") Email
           .buttons

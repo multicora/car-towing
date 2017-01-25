@@ -19,5 +19,11 @@
               placeholder="Email"
               ng-model="vm.user.email"
               required)
+            input(
+              type="text"
+              placeholder="Number in format '000'"
+              ng-model="vm.user.number"
+              maxlength="3"
+              required)
             div
               button.btn.btn-submit.add(type="submit") Save

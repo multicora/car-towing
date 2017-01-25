@@ -50,6 +50,10 @@
       getContacts();
     }
 
+    vm.changeManager = function() {
+      vm.changeMod = true;
+    }
+
     vm.editProperty = function(id) {
       propertiesService.update(id, vm.newProperty)
         .then(function(success) {

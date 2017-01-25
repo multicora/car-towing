@@ -33,6 +33,11 @@
               ng-hide="vm.editMod"
               ng-class="{'l-error-input': vm.errorMes.length > 0}"
               required)
+            input(
+              type="email"
+              placeholder="New Login"
+              ng-model="vm.newManager"
+              ng-show="vm.changeMod")
             p
               .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
               a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
@@ -44,6 +49,9 @@
               button.create(
                 ng-click="vm.editProperty(vm.newProperty._id)"
                 ng-show="vm.editMod") Edit
+              button.create.change(
+                ng-click="vm.changeManager()"
+                ng-show="vm.editMod") Change manager
             .photos-link
               a(ng-href="#/photos/{{vm.newProperty._id}}") Photos
 

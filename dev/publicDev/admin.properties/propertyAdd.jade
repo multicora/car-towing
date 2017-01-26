@@ -13,6 +13,7 @@
             input(
               type="text"
               placeholder="Property name"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
               ng-model="vm.newProperty.name")
             .location-block
               .title Location
@@ -48,7 +49,8 @@
                 ng-disabled="propertyForm.$invalid") Create
               button.create(
                 ng-click="vm.editProperty(vm.newProperty._id)"
-                ng-show="vm.editMod") Edit
+                ng-show="vm.editMod"
+                ng-disabled="!vm.newProperty.name") Edit
               button.create.change(
                 ng-click="vm.changeManager()"
                 ng-show="vm.editMod"

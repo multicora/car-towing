@@ -13,7 +13,8 @@
               type="text"
               placeholder="Property name"
               ng-model="vm.newProperty.name"
-              ng-class="{'l-error-input': vm.errorMes.length > 0}")
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
             .location-block
               .title Location
               .radio
@@ -43,7 +44,8 @@
                 ng-disabled="propertyForm.$invalid") Create
               button.create(
                 ng-click="vm.editProperty(vm.newProperty._id)"
-                ng-show="vm.editMod") Edit
+                ng-show="vm.editMod"
+                ng-disabled="!vm.newProperty.name") Edit
             .photos-link
               a(ng-href="#/photos/{{vm.newProperty._id}}") Photos
 

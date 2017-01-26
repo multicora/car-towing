@@ -12,8 +12,7 @@
             input(
               type="text"
               placeholder="Property name"
-              ng-model="vm.newProperty.name"
-              ng-class="{'l-error-input': vm.errorMes.length > 0}")
+              ng-model="vm.newProperty.name")
             .location-block
               .title Location
               .radio
@@ -51,7 +50,12 @@
                 ng-show="vm.editMod") Edit
               button.create.change(
                 ng-click="vm.changeManager()"
-                ng-show="vm.editMod") Change manager
+                ng-show="vm.editMod"
+                ng-hide="vm.changeMod") Change manager
+              button.create.change(
+                ng-click="vm.saveNewManager()"
+                ng-show="vm.changeMod"
+                ng-disabled="!vm.newManager") Save new manager
             .photos-link
               a(ng-href="#/photos/{{vm.newProperty._id}}") Photos
 

@@ -54,6 +54,11 @@
       vm.changeMod = true;
     }
 
+    vm.saveNewManager = function() {
+      console.log(vm.newManager);
+    }
+
+
     vm.editProperty = function(id) {
       propertiesService.update(id, vm.newProperty)
         .then(function(success) {

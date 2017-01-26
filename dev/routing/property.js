@@ -115,6 +115,53 @@ module.exports = function (server) {
     }
   });
 
+    server.route({
+    method: 'POST',
+    path: '/api/new_manager',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:create']
+        }
+      },
+      validate: {
+        payload: {
+          login: Joi.string().email()
+        }
+      },
+      handler: function handler(request, reply) {
+        const createOrGetUser = (newUser, cb) => {
+          DAL.users.getUserByEmail(newUser.email, function (err, user) {
+            if (!user) {
+              DAL.users.createUser(newUser, cb);
+            } else {
+              cb(null, user);
+            }
+          });
+        };
+        let generateSetPasswordLink = (token) => {
+          let route = Utils.getSetPassRoute();
+          return [route, token].join('');
+        }
+
+        DAL.roles.getByName(Utils.rolesNames.propertyManager, function(err, role) {
+          let newUser = {
+            email: request.payload.login,
+            resetToken: Utils.newToken(),
+            roles: [role._id]
+          };
+
+          createOrGetUser(newUser, function (err, user) {
+            DAL.properties.newManager(propertyId, user._id, function (err, property) {
+              !err ? reply( generateSetPasswordLink(user.resetToken) ) : reply( Boom.badRequest(err) );
+            });
+          });
+        });
+      }
+    }
+  });
+
   /*Content-Type: application/x-www-form-urlencoded*/
   server.route({
     method: 'PUT',

@@ -68,13 +68,11 @@
         propertyId: propId,
         email: vm.newManager
       }).then(function(success) {
-        vm.setPassLink = [getUrl(), success.data].join('');
       }, function (err) {
         vm.errorMes = err;
       });
 
     }
-
 
     vm.editProperty = function(id) {
       propertiesService.update(id, vm.newProperty)

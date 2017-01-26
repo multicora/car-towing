@@ -5,6 +5,7 @@ const Utils = require('../services/utils.js');
 const path = require('path');
 const Boom = require('boom');
 const Joi = require('joi');
+const propertyService = require('../services/propertyService.js');
 
 module.exports = function (server) {
 
@@ -18,6 +19,7 @@ module.exports = function (server) {
     }
   });
 
+  // GET /api/user-property/{userId}
   server.route({
     method: 'GET',
     path: '/api/user-property/{userId}',
@@ -79,11 +81,14 @@ module.exports = function (server) {
         }
       },
       handler: function handler(request, reply) {
+        let userExist = false;
+        const serverUrl = request.headers.referer;
         const createOrGetUser = (newUser, cb) => {
           DAL.users.getUserByEmail(newUser.email, function (err, user) {
             if (!user) {
               DAL.users.createUser(newUser, cb);
             } else {
+              userExist = true;
               cb(null, user);
             }
           });
@@ -105,8 +110,8 @@ module.exports = function (server) {
 
             newProperty.manager = user._id;
             DAL.properties.create(newProperty, function (err, property) {
-              console.log(property);
-              !err ? reply( generateSetPasswordLink(user.resetToken) ) : reply( Boom.badRequest(err) );
+
+              !err ? reply( propertyService.sendConfirmMail(user.email, generateSetPasswordLink(user.resetToken), serverUrl , userExist) ) : reply( Boom.badRequest(err) );
             });
           });
         });
@@ -127,12 +132,15 @@ module.exports = function (server) {
       handler: function handler(request, reply) {
         const propertyId = request.payload.propertyId;
         const managerEmail = request.payload.email;
+        const serverUrl = request.headers.referer;
+        let userExist = false;
 
         const createOrGetUser = (newUser, cb) => {
           DAL.users.getUserByEmail(newUser.email, function (err, user) {
             if (!user) {
               DAL.users.createUser(newUser, cb);
             } else {
+              userExist = true;
               cb(null, user);
             }
           });
@@ -151,7 +159,8 @@ module.exports = function (server) {
 
           createOrGetUser(newUser, function (err, user) {
             DAL.properties.newManager(propertyId, user._id, function (err, property) {
-              !err ? reply( generateSetPasswordLink(user.resetToken) ) : reply( Boom.badRequest(err) );
+              console.log(user.email, generateSetPasswordLink(user.resetToken), serverUrl);
+              !err ? reply( propertyService.sendConfirmMail(user.email, generateSetPasswordLink(user.resetToken), serverUrl, userExist) ) : reply( Boom.badRequest(err) );
             });
           });
         });

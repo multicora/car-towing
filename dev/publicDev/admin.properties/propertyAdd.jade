@@ -41,7 +41,7 @@
               ng-show="vm.changeMod")
             p
               .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
-              a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
+              //- a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
             div
               button.create(
                 type="submit"
@@ -53,8 +53,7 @@
                 ng-disabled="!vm.newProperty.name") Edit
               button.create.change(
                 ng-click="vm.changeManager()"
-                ng-show="vm.editMod"
-                ng-hide="vm.changeMod") Change manager
+                ng-show="vm.editMod && !vm.changeMod") Change manager
               button.create.change(
                 ng-click="vm.saveNewManager()"
                 ng-show="vm.changeMod"

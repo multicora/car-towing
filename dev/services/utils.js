@@ -2,7 +2,8 @@
 
 const RandToken = require('rand-token');
 const Roles = {
-  propertyManager: 'property-manager'
+  propertyManager: 'property-manager',
+  driver: 'driver'
 }
 
 module.exports = {

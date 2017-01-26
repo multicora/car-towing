@@ -4,6 +4,7 @@ const path = require('path');
 const DAL = require('../dal/dal.js');
 const Boom = require('boom');
 const Joi = require('joi');
+const Utils = require('../services/utils.js');
 
 module.exports = function (server) {
 
@@ -37,7 +38,7 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         let user = request.payload;
-        DAL.roles.getByName('driver', function (err, role) {
+        DAL.roles.getByName(Utils.rolesNames.driver, function (err, role) {
           user.roles = [];
           user.roles.push(role._id);
           DAL.users.createUser(request.payload, function (err, docs) {
@@ -80,7 +81,7 @@ module.exports = function (server) {
         let driversArr = [];
 
         DAL.users.get(function (err, usersArr) {
-          DAL.roles.getByName('driver', function (err, role) {
+          DAL.roles.getByName(Utils.rolesNames.driver, function (err, role) {
 
             usersArr.map(function(user) {
               if (user.roles.indexOf(role._id) >= 0) {

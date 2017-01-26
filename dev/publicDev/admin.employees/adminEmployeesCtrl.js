@@ -11,7 +11,7 @@
     var vm = this;
 
     var getAllUsers = function() {
-      AdminEmployeesService.getUsers()
+      AdminEmployeesService.getDrivers()
         .then(function(res) {
           vm.usersData = res.data;
         });

@@ -12,7 +12,10 @@ const schema = new Schema({
   token: { type: String, max: 255 },
   resetToken: {type: String, max: 255 },
   blocked: Boolean,
-  roles: [ {type: Schema.Types.ObjectId, ref: 'roles'} ]
+  roles: [ {type: Schema.Types.ObjectId, ref: 'roles'} ],
+  number: {
+    type: String
+  }
 });
 
 let model = mongoose.model(path.basename(module.filename, '.js'), schema);
@@ -24,7 +27,7 @@ model.on('index', function(error) {
   }
 });
 
-let filter = 'email name blocked roles';
+let filter = 'email name blocked roles number';
 
 const users = {
   get: (cb) => {

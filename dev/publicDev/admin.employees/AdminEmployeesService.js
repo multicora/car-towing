@@ -12,11 +12,12 @@
       getUserById: getUserById,
       editUser: editUser,
       blockUser: blockUser,
-      unBlockUser: unBlockUser
+      unBlockUser: unBlockUser,
+      getDrivers: getDrivers
     }
 
     function add(data) {
-      return $http.post('api/users', data, {
+      return $http.post('api/drivers', data, {
         headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );
@@ -24,6 +25,13 @@
 
     function getUsers() {
       return $http.get('/api/users', {
+        headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        }
+      );
+    }
+
+    function getDrivers() {
+      return $http.get('/api/drivers', {
         headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );

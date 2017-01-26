@@ -8,7 +8,7 @@
           name="userForm"
           ng-submit="vm.save()")
           .driverContent
-            h2 Add new user
+            h2 Add new driver
             input(
               type="text"
               placeholder="Name"
@@ -18,6 +18,12 @@
               type="email"
               placeholder="Email"
               ng-model="vm.user.email"
+              required)
+            input(
+              type="text"
+              placeholder="Number in format '000'"
+              ng-model="vm.user.number"
+              maxlength="3"
               required)
             div
               button.btn.btn-submit.add(type="submit") Save

@@ -48,12 +48,17 @@
     margin-top: 40px;
     width: 100%;
     padding: 0 70px;
-    .name, .email {
+    .name, .email, .number {
       display: inline-block;
-      width: 35%;
       vertical-align: middle;
       height: 52px;
       padding: 16px 10px 0 0;
+    }
+    .name, .email {
+      width: 30%;
+    }
+    .number {
+      width: 10%;
     }
     .title {
       font-size: 18px;

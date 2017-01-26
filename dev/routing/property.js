@@ -18,7 +18,6 @@ module.exports = function (server) {
     }
   });
 
-  // GET /api/user-property/{userId}
   server.route({
     method: 'GET',
     path: '/api/user-property/{userId}',
@@ -125,12 +124,10 @@ module.exports = function (server) {
           permissions: ['properties:create']
         }
       },
-      validate: {
-        payload: {
-          login: Joi.string().email()
-        }
-      },
       handler: function handler(request, reply) {
+        const propertyId = request.payload.propertyId;
+        const managerEmail = request.payload.email;
+
         const createOrGetUser = (newUser, cb) => {
           DAL.users.getUserByEmail(newUser.email, function (err, user) {
             if (!user) {
@@ -147,7 +144,7 @@ module.exports = function (server) {
 
         DAL.roles.getByName(Utils.rolesNames.propertyManager, function(err, role) {
           let newUser = {
-            email: request.payload.login,
+            email: managerEmail,
             resetToken: Utils.newToken(),
             roles: [role._id]
           };

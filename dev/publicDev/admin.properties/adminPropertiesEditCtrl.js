@@ -34,6 +34,15 @@
       });
     }
 
+    function getUrl() {
+      return [
+        $location.protocol(),
+        "://", $location.host(),
+        ':', $location.port(),
+        !$location.$$html5 ? '/#/' : '/'
+      ].join('');
+    }
+
     if (propId) {
       vm.editMod = true;
 
@@ -55,7 +64,15 @@
     }
 
     vm.saveNewManager = function() {
-      console.log(vm.newManager);
+      propertiesService.newManager({
+        propertyId: propId,
+        email: vm.newManager
+      }).then(function(success) {
+        vm.setPassLink = [getUrl(), success.data].join('');
+      }, function (err) {
+        vm.errorMes = err;
+      });
+
     }
 
 

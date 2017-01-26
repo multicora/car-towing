@@ -1,7 +1,6 @@
 'use strict';
 
 const DAL = require('./../../dal/dal.js');
-const passwordHash = require('password-hash');
 
 module.exports = {
   version: 17,
@@ -34,7 +33,6 @@ module.exports = {
       });
 
       function modifyUser(user) {
-        console.log(user);
         return new Promise(function (resolve, reject) {
           DAL.users.updateUser(user._id, user, resolve);
         });

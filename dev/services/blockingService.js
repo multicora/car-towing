@@ -3,16 +3,10 @@
 const config = require('../config.js');
 const Mailer = require('../services/mailer.js');
 const Promise = require('promise');
+const lettersStorage = require('../services/lettersStorage.js');
 
 module.exports = {
   sendNotification: (emailDriver, emailAdmin) => {
-    let messageToDriver = [
-      'Your accout was blocked!'
-    ].join('\n');
-
-    let messageToAdmin = [
-      'Driver ' + emailDriver + 'was blocked!'
-    ].join('\n');
 
     let driverPromise = new Promise((resolve, reject) => {
 
@@ -20,8 +14,8 @@ module.exports = {
         from: config.mail, // sender address
         to: emailDriver, // list of receivers
         subject: 'Blocking notification', // Subject line
-        text: messageToDriver, // plaintext body
-        html: '<div style="white-space: pre;">' + messageToDriver + '</div>'
+        text: lettersStorage.letterNames.BlockingLetterToDriver, // plaintext body
+        html: '<div style="white-space: pre;">' + lettersStorage.letterNames.BlockingLetterToDriver + '</div>'
       };
 
       Mailer(config.mail).send(mail).then(
@@ -39,8 +33,8 @@ module.exports = {
         from: config.mail, // sender address
         to: emailAdmin, // list of receivers
         subject: 'Blocking notification', // Subject line
-        text: messageToAdmin, // plaintext body
-        html: '<div style="white-space: pre;">' + messageToAdmin + '</div>'
+        text: lettersStorage.letterNames.BlockingLetterToAdmin, // plaintext body
+        html: '<div style="white-space: pre;">' + lettersStorage.letterNames.BlockingLetterToAdmin + '</div>'
       };
 
       Mailer(config.mail).send(mail).then(

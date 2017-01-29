@@ -180,7 +180,11 @@ function setScheduledJobs() {
     console.log('Setting scheduled jobs');
 
     let contractCheckingJob = scheduleService.createDaylyJob(function () {
-      contractsCtrl.sendNotifications();
+      try {
+        contractsCtrl.sendNotifications();
+      } catch(err) {
+        console.error(err);
+      }
     });
   } catch(err) {
     console.error(err);

@@ -25,6 +25,8 @@
                 $location.path('/login');
               }
             }
+
+            return response;
           }
       };
       return loadingMessage;

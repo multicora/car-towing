@@ -6,6 +6,7 @@ const path = require('path');
 const Boom = require('boom');
 const Joi = require('joi');
 const propertyService = require('../services/propertyService.js');
+const propertyCtrl = require('../controllers/propertiesCtrl.js');
 
 module.exports = function (server) {
 
@@ -119,7 +120,7 @@ module.exports = function (server) {
     }
   });
 
-    server.route({
+  server.route({
     method: 'POST',
     path: '/api/new_manager',
     config: {
@@ -218,7 +219,13 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         DAL.properties.edit(request.params.id, request.payload, function (err, docs) {
-          !err ? reply(docs) : reply(Boom.badRequest(err));
+          if (!err) {
+            propertyCtrl.sendMatrixChangeNotifications(request.params.id).then(function () {
+              reply(docs)
+            });
+          } else {
+            reply(Boom.badRequest(err));
+          }
         });
       }
     }

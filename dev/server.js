@@ -176,9 +176,13 @@ function registerLoging(server) {
 }
 
 function setScheduledJobs() {
-  console.log('Setting scheduled jobs');
+  try {
+    console.log('Setting scheduled jobs');
 
-  let contractCheckingJob = scheduleService.createDaylyJob(function () {
-    contractsCtrl.sendNotifications();
-  });
+    let contractCheckingJob = scheduleService.createDaylyJob(function () {
+      contractsCtrl.sendNotifications();
+    });
+  } catch(err) {
+    console.error(err);
+  }
 }

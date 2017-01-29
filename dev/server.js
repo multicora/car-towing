@@ -63,13 +63,18 @@ function startServer() {
     return setScheduledJobs();
   }).then(function () {
     return notifyAboutStarting();
-  }).then(function () {
-    return registerDone();
-  });
+  }).then(
+    function () {
+      return registerDone();
+    },function (err) {
+      console.error(err);
+    }
+  );
 }
 
 function notifyAboutStarting() {
   try {
+    console.log('Notyfying about running');
     if (!config.debugMode) {
       let date = new Date();
       let message = 'Server ran at ' + date.toString();

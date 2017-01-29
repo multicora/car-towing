@@ -8,6 +8,8 @@ const Promise = require('promise');
 const DAL = require('./dal/dal.js');
 const scheduleService = require('./services/scheduleService.js');
 const contractsCtrl = require('./controllers/contractsCtrl.js');
+const config = require('./config.js');
+const Mailer = require('./services/mailer.js');
 
 mongoose.connect('mongodb://localhost/carTowing', function(err) {
   if (err)  {
@@ -60,8 +62,28 @@ function startServer() {
   }).then(function () {
     return setScheduledJobs();
   }).then(function () {
+    return notifyAboutStarting();
+  }).then(function () {
     return registerDone();
   });
+}
+
+function notifyAboutStarting() {
+  if (!config.debugMode) {
+    let date = new Date();
+    let message = 'Server ran at ' + date.toString();
+
+    const mail = {
+      to: config.mail.user, // list of receivers
+      subject: message, // Subject line
+      text: message, // plaintext body
+      html: '<div style="white-space: pre;">' + message + '</div>' // html body
+    };
+
+    return Mailer(config.mail).send(mail);
+  } else {
+    return Promise.resolve();
+  }
 }
 
 function registerACL(server) {

@@ -69,20 +69,24 @@ function startServer() {
 }
 
 function notifyAboutStarting() {
-  if (!config.debugMode) {
-    let date = new Date();
-    let message = 'Server ran at ' + date.toString();
+  try {
+    if (!config.debugMode) {
+      let date = new Date();
+      let message = 'Server ran at ' + date.toString();
 
-    const mail = {
-      to: config.mail.user, // list of receivers
-      subject: message, // Subject line
-      text: message, // plaintext body
-      html: '<div style="white-space: pre;">' + message + '</div>' // html body
-    };
+      const mail = {
+        to: config.mail.user, // list of receivers
+        subject: message, // Subject line
+        text: message, // plaintext body
+        html: '<div style="white-space: pre;">' + message + '</div>' // html body
+      };
 
-    return Mailer(config.mail).send(mail);
-  } else {
-    return Promise.resolve();
+      return Mailer(config.mail).send(mail);
+    } else {
+      return Promise.resolve();
+    }
+  } catch(err) {
+    console.error(err);
   }
 }
 

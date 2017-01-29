@@ -11,10 +11,7 @@ const schedule = require('node-schedule');
 // };
 module.exports = {
   createDaylyJob: function (cb) {
-    console.log('schedule.scheduleJob');
-    console.log(schedule.scheduleJob);
     return schedule.scheduleJob(' * * */1 * *', function(){
-      console.log('job');
       cb();
     });
   }

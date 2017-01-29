@@ -13,12 +13,17 @@
         span Block towing from
       .center-block.date-range
         input.form-control(type="date"
-          ng-model="vm.blockingData.dateFrom"
+          ng-model="vm.dateFrom"
           required)
+        input.form-control.time(type="time"
+          ng-model="vm.timeFrom"
+          placeholder="hrs:mins")
         span.connector to
         input.form-control(type="date"
-          ng-model="vm.blockingData.dateTo"
+          ng-model="vm.dateTo"
           required)
+        input.form-control.time(type="time"
+          ng-model="vm.timeTo")
       .right-block
         button.btn.btn-primary.btn-block(type="submit"
           ng-disabled="blocking-form.$invalid") Block
@@ -36,7 +41,7 @@
         div(ng-repeat="blocking in vm.blockingDataArr")
           .center-block.blocking-list
             p.reason-list(ng-bind="blocking.reason")
-            input.blocking-list-input(type="date" ng-model="blocking.from" disabled)
-            input.blocking-list-input(type="date" ng-model="blocking.to" disabled)
+            p.blocking-list-input{{blocking.from}}
+            p.blocking-list-input{{blocking.to}}
           .right-block
             button.btn.btn-primary.btn-block.unblocking-button(type="button" ng-click="vm.unblocking(blocking._id)") Unblock

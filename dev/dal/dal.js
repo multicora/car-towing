@@ -61,4 +61,6 @@ DAL.contract = require('./contract.js');
 
 DAL.emergencyTow = require('./emergencyTow.js');
 
+DAL.notifications = require('./notifications.js');
+
 module.exports = DAL;

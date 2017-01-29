@@ -61,6 +61,9 @@ const properties = {
   updateTowingMatrix: (id, data, cb) => {
     return model.findOneAndUpdate({_id: id}, data, cb);
   },
+  newManager: (id, userId, cb) => {
+    return model.findOneAndUpdate({_id: id}, {manager: userId}, cb);
+  },
   delete: (id, cb) => {
     model.findOneAndUpdate({_id: id}, {deleted : true}, cb);
   }

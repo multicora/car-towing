@@ -5,6 +5,7 @@ const Utils = require('../services/utils.js');
 const path = require('path');
 const Boom = require('boom');
 const Joi = require('joi');
+const propertyService = require('../services/propertyService.js');
 
 module.exports = function (server) {
 
@@ -80,11 +81,14 @@ module.exports = function (server) {
         }
       },
       handler: function handler(request, reply) {
+        let userExist = false;
+        const serverUrl = request.headers.referer;
         const createOrGetUser = (newUser, cb) => {
           DAL.users.getUserByEmail(newUser.email, function (err, user) {
             if (!user) {
               DAL.users.createUser(newUser, cb);
             } else {
+              userExist = true;
               cb(null, user);
             }
           });
@@ -106,8 +110,57 @@ module.exports = function (server) {
 
             newProperty.manager = user._id;
             DAL.properties.create(newProperty, function (err, property) {
-              console.log(property);
-              !err ? reply( generateSetPasswordLink(user.resetToken) ) : reply( Boom.badRequest(err) );
+
+              !err ? reply( propertyService.sendConfirmMail(user.email, generateSetPasswordLink(user.resetToken), serverUrl , userExist) ) : reply( Boom.badRequest(err) );
+            });
+          });
+        });
+      }
+    }
+  });
+
+    server.route({
+    method: 'POST',
+    path: '/api/new_manager',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['properties:create']
+        }
+      },
+      handler: function handler(request, reply) {
+        const propertyId = request.payload.propertyId;
+        const managerEmail = request.payload.email;
+        const serverUrl = request.headers.referer;
+        let userExist = false;
+
+        const createOrGetUser = (newUser, cb) => {
+          DAL.users.getUserByEmail(newUser.email, function (err, user) {
+            if (!user) {
+              DAL.users.createUser(newUser, cb);
+            } else {
+              userExist = true;
+              cb(null, user);
+            }
+          });
+        };
+        let generateSetPasswordLink = (token) => {
+          let route = Utils.getSetPassRoute();
+          return [route, token].join('');
+        }
+
+        DAL.roles.getByName(Utils.rolesNames.propertyManager, function(err, role) {
+          let newUser = {
+            email: managerEmail,
+            resetToken: Utils.newToken(),
+            roles: [role._id]
+          };
+
+          createOrGetUser(newUser, function (err, user) {
+            DAL.properties.newManager(propertyId, user._id, function (err, property) {
+              console.log(user.email, generateSetPasswordLink(user.resetToken), serverUrl);
+              !err ? reply( propertyService.sendConfirmMail(user.email, generateSetPasswordLink(user.resetToken), serverUrl, userExist) ) : reply( Boom.badRequest(err) );
             });
           });
         });

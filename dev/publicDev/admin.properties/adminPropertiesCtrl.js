@@ -46,8 +46,8 @@
         propertiesService.create(vm.newProperty)
         .then(function(success) {
           // TODO: replace with appropriate solution
-          vm.setPassLink = [getUrl(), success.data].join('');
-          // $location.path('/admin/properties');
+          // vm.setPassLink = [getUrl(), success.data].join('');
+          $location.path('/admin/properties');
         }, function(error) {
           // add appropriate logging
           vm.errorMes = error.data.message;

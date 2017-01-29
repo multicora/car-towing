@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 const Promise = require('promise');
 const DAL = require('./dal/dal.js');
+const scheduleService = require('./services/scheduleService.js');
+const contractsCtrl = require('./controllers/contractsCtrl.js');
 
 mongoose.connect('mongodb://localhost/carTowing', function(err) {
   if (err)  {
@@ -20,51 +22,6 @@ migrations(function () {
   console.log('-| Migrations end');
   startServer();
 });
-
-function registerStaticFilesServer(server, cb) {
-  const plugin = require('inert');
-
-  server.register(plugin, cb);
-}
-
-function registerLoging(server) {
-  return new Promise(function (resolve, reject) {
-    const Good = require('good');
-    server.register({
-      register: Good,
-      options: {
-        reporters: {
-          console: [{
-            module: 'good-squeeze',
-            name: 'Squeeze',
-            args: [{
-              response: '*',
-              log: '*'
-            }]
-          }, {
-            module: 'good-console'
-          }, 'stdout']
-        }
-      }
-    }, function (err) {
-      err ? reject() : resolve();
-    });
-  });
-}
-
-// Configure cookies for Hapi server
-let configureServer = (server) => {
-  // TODO: review all params
-  server.state('session', {
-    path: '/',
-    ttl: 253402300000000,
-    isSecure: false,
-    isHttpOnly: false,
-    encoding: 'base64json',
-    clearInvalid: false, // remove invalid cookies
-    strictHeader: false // don't allow violations of RFC 6265
-  });
-}
 
 function startServer() {
   const server = new Hapi.Server();
@@ -89,6 +46,7 @@ function startServer() {
         if (err) throw err;
         configureServer(server);
         server.log('info', 'Server running at: ' + server.info.uri);
+
       });
     },
     null,
@@ -99,6 +57,8 @@ function startServer() {
     return registerLoging(server);
   }).then(function () {
     return registerAuth(server);
+  }).then(function () {
+    return setScheduledJobs();
   }).then(function () {
     return registerDone();
   });
@@ -145,5 +105,58 @@ function registerAuth(server) {
         resolve();
       }
     });
+  });
+}
+
+// Configure cookies for Hapi server
+function configureServer(server) {
+  // TODO: review all params
+  server.state('session', {
+    path: '/',
+    ttl: 253402300000000,
+    isSecure: false,
+    isHttpOnly: false,
+    encoding: 'base64json',
+    clearInvalid: false, // remove invalid cookies
+    strictHeader: false // don't allow violations of RFC 6265
+  });
+}
+
+function registerStaticFilesServer(server, cb) {
+  const plugin = require('inert');
+
+  server.register(plugin, cb);
+}
+
+function registerLoging(server) {
+  return new Promise(function (resolve, reject) {
+    const Good = require('good');
+    server.register({
+      register: Good,
+      options: {
+        reporters: {
+          console: [{
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{
+              response: '*',
+              log: '*'
+            }]
+          }, {
+            module: 'good-console'
+          }, 'stdout']
+        }
+      }
+    }, function (err) {
+      err ? reject() : resolve();
+    });
+  });
+}
+
+function setScheduledJobs() {
+  console.log('Setting scheduled jobs');
+
+  let contractCheckingJob = scheduleService.createDaylyJob(function () {
+    contractsCtrl.sendNotifications();
   });
 }

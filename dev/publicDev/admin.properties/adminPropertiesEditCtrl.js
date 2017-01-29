@@ -34,6 +34,15 @@
       });
     }
 
+    function getUrl() {
+      return [
+        $location.protocol(),
+        "://", $location.host(),
+        ':', $location.port(),
+        !$location.$$html5 ? '/#/' : '/'
+      ].join('');
+    }
+
     if (propId) {
       vm.editMod = true;
 
@@ -48,6 +57,21 @@
       });
 
       getContacts();
+    }
+
+    vm.changeManager = function() {
+      vm.changeMod = true;
+    }
+
+    vm.saveNewManager = function() {
+      propertiesService.newManager({
+        propertyId: propId,
+        email: vm.newManager
+      }).then(function(success) {
+      }, function (err) {
+        vm.errorMes = err;
+      });
+
     }
 
     vm.editProperty = function(id) {

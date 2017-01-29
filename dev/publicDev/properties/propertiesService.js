@@ -15,6 +15,12 @@ function service ($http, TokenService) {
         }
       );
     },
+    newManager: function(data) {
+      return $http.post('/api/new_manager', data, {
+          headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+        }
+      );
+    },
     getUsersProperty: function(userId) {
       return $http.get('/api/user-property/' + userId);
     },

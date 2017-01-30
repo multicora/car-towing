@@ -146,9 +146,12 @@ module.exports = function (server) {
       handler: function (request, reply) {
         let userId = request.params.id;
         DAL.users.getUserById(userId, function(err, res) {
-          DAL.users.blockUser(userId, function (err, docs) {
-            !err ? reply(blockingService.sendNotification(res.email,
-            request.auth.credentials.email)) : reply(JSON.stringify(err));
+          DAL.users.blockUser(userId).then(function () {
+            blockingService.sendNotification(res.email, request.auth.credentials.email).then(function (res) {
+              reply(res);
+            }, function (err) {
+              reply(Boom.badImplementation(err));
+            })
           });
         });
       }

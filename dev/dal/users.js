@@ -71,9 +71,14 @@ const users = {
   getUserById: (id, cb) => {
     model.findOne({_id: id }, filter, cb);
   },
-  blockUser: (id, cb) => {
-    model.findOneAndUpdate({_id: id}, {blocked : true}, cb);
+  blockUser: (id) => {
+    return new Promise((resolve, reject) => {
+      model.findOneAndUpdate({_id: id}, {blocked : true}, (err, res) => {
+        err ? reject(err) : resolve (res);
+      });
+    });
   },
+    // model.findOneAndUpdate({_id: id}, {blocked : true}, cb);
   unBlockUser: (id, cb) => {
     model.findOneAndUpdate({_id: id}, {blocked : false}, cb);
   },

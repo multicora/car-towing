@@ -5,6 +5,7 @@
       .content-padding
         .photo(ng-repeat="photo in vm.photos")
           img(ng-src="{{photo}}")
+          p {{photo.updated}}
           p Driver {{photo.ownerNumber}}
         .message(ng-if="!vm.photos.length")
           | No photos

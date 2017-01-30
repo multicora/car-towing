@@ -134,7 +134,7 @@ module.exports = function (server) {
   });
 
   server.route({
-    method: 'POST',
+    method: 'GET',
     path: '/api/user-block/{id}',
     config: {
       auth: 'simple',
@@ -144,10 +144,12 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        console.log(request.payload);
-        console.log(request.auth.credentials.email);
-        DAL.users.blockUser(request.params.id, function (err, docs) {
-          !err ? reply(blockingService.sendNotification(request.payload.email, request.auth.credentials.email)) : reply(JSON.stringify(err));
+        let userId = request.params.id;
+        DAL.users.getUserById(userId, function(err, res) {
+          DAL.users.blockUser(userId, function (err, docs) {
+            !err ? reply(blockingService.sendNotification(res.email,
+            request.auth.credentials.email)) : reply(JSON.stringify(err));
+          });
         });
       }
     }

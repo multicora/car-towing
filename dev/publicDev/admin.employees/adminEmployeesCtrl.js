@@ -19,8 +19,8 @@
 
     getAllUsers();
 
-    vm.blockUser = function(userId, email) {
-      AdminEmployeesService.blockUser(userId, {email: email})
+    vm.blockUser = function(userId) {
+      AdminEmployeesService.blockUser(userId)
       .then(function() {
         getAllUsers();
       });

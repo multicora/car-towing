@@ -51,8 +51,8 @@
       );
     }
 
-    function blockUser(id, email) {
-      return $http.post('/api/user-block/' + id, email, {
+    function blockUser(id) {
+      return $http.get('/api/user-block/' + id, {
         headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
         }
       );

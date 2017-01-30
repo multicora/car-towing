@@ -15,26 +15,22 @@
     };
     function resolve (action) {
       return  $q(function (resolve) {
-        if (TokenService.getToken()) {
-          Promise.all([authService.getCurrentUser(), authService.getRoles()]).then(
-              function (res) {
-                var user = res[0].data;
-                var roles = res[1].data;
-                authService.setUser(res[0].data);
+        Promise.all([authService.getCurrentUser(), authService.getRoles()]).then(
+          function (res) {
+            var user = res[0].data;
+            var roles = res[1].data;
+            authService.setUser(res[0].data);
 
-                if (action && !UserCheckingService.checkUser(user, roles, action)) {
-                  console.log('User do not have action "' + action + '"');
-                  $location.path('/');
-                }
-                resolve();
-              },
-              function (errRes) {
-                resolve();
-              }
-          );
-        } else {
-          resolve();
-        }
+            if (action && !UserCheckingService.checkUser(user, roles, action)) {
+              console.log('User do not have action "' + action + '"');
+              $location.path('/');
+            }
+            resolve();
+          },
+          function (errRes) {
+            resolve();
+          }
+        );
       })
     };
   }

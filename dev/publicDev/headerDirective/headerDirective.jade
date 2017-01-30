@@ -4,11 +4,11 @@ header(class="{{className}}")
     a.login-button(
       title="Login"
       href="#/login"
-      ng-if="!vm.user") Login
+      ng-if="!vm.user.name") Login
     a.logout-button(
       title="Logout"
       ng-click="vm.logout()"
-      ng-if="vm.user") Logout
+      ng-if="vm.user.name") Logout
   a(href="#/")
     img.logo(src="files/logo-280.png")
   div.contacts

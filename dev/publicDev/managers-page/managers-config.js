@@ -21,6 +21,7 @@
     managersRoute.route.resolve = {
       resolver: resolver.get(userActions.SEE_MANAGER_PAGE)
     };
+
     $routeProvider.when(managersRoute.path, managersRoute.route);
   }
   managersConfig.$inject = configInjections;

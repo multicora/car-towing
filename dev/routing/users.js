@@ -5,6 +5,7 @@ const DAL = require('../dal/dal.js');
 const Boom = require('boom');
 const Joi = require('joi');
 const Utils = require('../services/utils.js');
+const blockingService = require('../services/blockingService.js');
 
 module.exports = function (server) {
 
@@ -133,7 +134,7 @@ module.exports = function (server) {
   });
 
   server.route({
-    method: 'get',
+    method: 'GET',
     path: '/api/user-block/{id}',
     config: {
       auth: 'simple',
@@ -143,8 +144,15 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        DAL.users.blockUser(request.params.id, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+        let userId = request.params.id;
+        DAL.users.getUserById(userId, function(err, res) {
+          DAL.users.blockUser(userId).then(function () {
+            blockingService.sendNotification(res.email, request.auth.credentials.email).then(function (res) {
+              reply(res);
+            }, function (err) {
+              reply(Boom.badImplementation(err));
+            })
+          });
         });
       }
     }

@@ -8,6 +8,8 @@ const Promise = require('promise');
 const DAL = require('./dal/dal.js');
 const scheduleService = require('./services/scheduleService.js');
 const contractsCtrl = require('./controllers/contractsCtrl.js');
+const config = require('./config.js');
+const Mailer = require('./services/mailer.js');
 
 mongoose.connect('mongodb://localhost/carTowing', function(err) {
   if (err)  {
@@ -60,8 +62,37 @@ function startServer() {
   }).then(function () {
     return setScheduledJobs();
   }).then(function () {
-    return registerDone();
-  });
+    return notifyAboutStarting();
+  }).then(
+    function () {
+      return registerDone();
+    },function (err) {
+      console.error(err);
+    }
+  );
+}
+
+function notifyAboutStarting() {
+  try {
+    console.log('Notyfying about running');
+    if (!config.debugMode) {
+      let date = new Date();
+      let message = 'Server ran at ' + date.toString();
+
+      const mail = {
+        to: config.mail.user, // list of receivers
+        subject: message, // Subject line
+        text: message, // plaintext body
+        html: '<div style="white-space: pre;">' + message + '</div>' // html body
+      };
+
+      return Mailer(config.mail).send(mail);
+    } else {
+      return Promise.resolve();
+    }
+  } catch(err) {
+    console.error(err);
+  }
 }
 
 function registerACL(server) {
@@ -154,9 +185,17 @@ function registerLoging(server) {
 }
 
 function setScheduledJobs() {
-  console.log('Setting scheduled jobs');
+  try {
+    console.log('Setting scheduled jobs');
 
-  let contractCheckingJob = scheduleService.createDaylyJob(function () {
-    contractsCtrl.sendNotifications();
-  });
+    let contractCheckingJob = scheduleService.createDaylyJob(function () {
+      try {
+        contractsCtrl.sendNotifications();
+      } catch(err) {
+        console.error(err);
+      }
+    });
+  } catch(err) {
+    console.error(err);
+  }
 }

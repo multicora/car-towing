@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const path = require('path');
 const passwordHash = require('password-hash');
+const Promise = require('promise');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
@@ -103,6 +104,13 @@ const users = {
     } else {
       cb(new Error('Passwords do not match'));
     }
+  },
+  getByRole: (roleId) => {
+    return new Promise(function (resolve, reject) {
+      model.find({}).where('roles').equals(roleId).exec(function (err, docs) {
+        err ? reject(err) : resolve(docs);
+      });
+    });
   }
 };
 

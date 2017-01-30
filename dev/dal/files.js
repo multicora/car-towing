@@ -19,6 +19,10 @@ const schema = new Schema({
   property: {
     type: Schema.Types.ObjectId,
     ref: 'property'
+  },
+  updated:  {
+    type: Date,
+    default: Date.now
   }
 });
 

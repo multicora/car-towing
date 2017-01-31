@@ -6,6 +6,7 @@ const Boom = require('boom');
 const Joi = require('joi');
 const Utils = require('../services/utils.js');
 const blockingService = require('../services/blockingService.js');
+const resetPasswordService = require('../services/resetPassword.js');
 
 module.exports = function (server) {
 
@@ -39,11 +40,13 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         let user = request.payload;
+        let serverUrl = request.headers.referer;
+        let userEmail = request.payload.email;
         DAL.roles.getByName(Utils.rolesNames.driver, function (err, role) {
           user.roles = [];
           user.roles.push(role._id);
           DAL.users.createUser(request.payload, function (err, docs) {
-            !err ? reply(docs) : reply(JSON.stringify(err));
+            !err ? reply(resetPasswordService.resetPassword(userEmail, serverUrl)) : reply(JSON.stringify(err));
           });
         });
       }

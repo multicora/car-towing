@@ -5,6 +5,7 @@ const Mailer = require('../services/mailer.js');
 const Utils = require('../services/utils.js');
 const Promise = require('promise');
 const DAL = require('../dal/dal.js');
+const lettersStorage = require('../services/lettersStorage.js');
 
 module.exports = {
   resetPassword: (email, serverUrl) => {
@@ -13,7 +14,7 @@ module.exports = {
       DAL.users.updateResetToken(resetToken, email, function(err, res) {
         if (res) {
           const message = [
-            serverUrl + config.mail.resetLink + resetToken,
+            lettersStorage.SetPasswordLetter + serverUrl + config.mail.resetLink + resetToken,
           ].join('\n');
 
           const mail = {

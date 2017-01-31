@@ -40,7 +40,6 @@ div.properties
           button( ng-click="letter=''") ALL
       .row.propertiesList
         a.propertiesLine.col-md-12(
-          class="disabled-{{property.blocked}}"
           href="#/property/{{property._id}}"
           ng-if="!property.blocked"
           ng-repeat="property in vm.properties | startWithLetter:letter")

@@ -46,7 +46,15 @@ module.exports = function (server) {
           user.roles = [];
           user.roles.push(role._id);
           DAL.users.createUser(request.payload, function (err, docs) {
-            !err ? reply(resetPasswordService.resetPassword(userEmail, serverUrl)) : reply(JSON.stringify(err));
+            if (!err) {
+              resetPasswordService.resetPassword(userEmail, serverUrl).then((res) => {
+                reply(res);
+              }, (err) => {
+                reply(err);
+              })
+            } else {
+              reply(Boom.badImplementation(err));
+            }
           });
         });
       }

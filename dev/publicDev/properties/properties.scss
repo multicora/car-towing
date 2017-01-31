@@ -79,6 +79,11 @@
         margin: 0;
       }
     }
+    .disabled-true {
+      cursor: default;
+      pointer-events: none;
+      color: #8e8b8b;
+    }
   }
 
   // TODO: what for?

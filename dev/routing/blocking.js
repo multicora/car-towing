@@ -2,6 +2,7 @@
 
 const path = require('path');
 const DAL = require('../dal/dal.js');
+const towingBlockingService = require('../services/towingBlockingService.js');
 
 module.exports = function (server) {
   server.route({
@@ -33,7 +34,8 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         DAL.blocking.create(request.params.propertyId, request.payload, function (err, docs) {
-          !err ? reply(docs) : reply(JSON.stringify(err));
+
+          !err ? reply(towingBlockingService.sendNotification(request.params.propertyId, request.auth.credentials.email)) : reply(JSON.stringify(err));
         });
       }
     }

@@ -8,13 +8,8 @@ const Utils = require('../services/utils.js');
 const lettersStorage = require('../services/lettersStorage.js');
 
 module.exports = {
-  sendNotification: (propertyId, emailAdmin) => {
+  sendNotification: (propertyId, propertyName, emailAdmin) => {
     let driverPromiseArr = [];
-    let propertyName;
-
-    DAL.properties.getById(propertyId, (err, res) => {
-      !err ? propertyName = res.name : propertyName = null;
-    });
 
     let driverPromise = (driverEmail) => {
       return new Promise((resolve, reject) => {

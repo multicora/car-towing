@@ -36,6 +36,9 @@ model.on('index', function(error) {
 });
 
 module.exports = {
+  getAll: (cb) => {
+    model.find({}, cb);
+  },
   save: (fileId, ownerId, propertyId, cb) => {
     let inst = new model({
       fileId: fileId,
@@ -50,5 +53,8 @@ module.exports = {
   },
   getByPropertyId: (id, cb) => {
     model.find({property: id}, cb);
+  },
+  update: (id, data, cb) => {
+    model.findOneAndUpdate({ _id: id}, data, cb);
   }
 };

@@ -15,15 +15,30 @@
         input.form-control(type="date"
           ng-model="vm.dateFrom"
           required)
-        input.form-control.time(type="time"
-          ng-model="vm.timeFrom"
-          placeholder="hrs:mins")
+        select.form-control.hoursSelect(
+          ng-model="vm.hoursFrom"
+          ng-options="item.value as item.text for item in vm.hoursSelect"
+          required
+        )
+        select.form-control.minutesSelect(
+          ng-model="vm.minutesFrom"
+          ng-options="item.value as item.text for item in vm.minutesSelect"
+          required
+        )
         span.connector to
         input.form-control(type="date"
           ng-model="vm.dateTo"
           required)
-        input.form-control.time(type="time"
-          ng-model="vm.timeTo")
+        select.form-control.hoursSelect(
+          ng-model="vm.hoursTo"
+          ng-options="item.value as item.text for item in vm.hoursSelect"
+          required
+        )
+        select.form-control.minutesSelect(
+          ng-model="vm.minutesTo"
+          ng-options="item.value as item.text for item in vm.minutesSelect"
+          required
+        )
       .right-block
         button.btn.btn-primary.btn-block(type="submit"
           ng-disabled="blocking-form.$invalid") Block

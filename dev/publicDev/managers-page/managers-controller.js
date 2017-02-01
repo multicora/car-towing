@@ -113,12 +113,43 @@
         });
     }
 
-    vm.block = function() {
-      vm.blockingData.dateFrom = new Date(vm.dateFrom).setHours(new Date(vm.timeFrom).getHours());
-      vm.blockingData.dateFrom = new Date(vm.dateFrom).setMinutes(new Date(vm.timeFrom).getMinutes());
+    vm.hoursSelect = [];
+    vm.minutesSelect = [];
 
-      vm.blockingData.dateTo = new Date(vm.dateTo).setHours(new Date(vm.timeTo).getHours());
-      vm.blockingData.dateTo = new Date(vm.dateTo).setMinutes(new Date(vm.timeTo).getMinutes());
+    for (var i = 0; i < 24; i++) {
+      vm.hoursSelect.push(
+      {
+        text: (function () {
+          if (i < 10) {
+            return '0' + i;
+          } else {
+            return i;
+          }
+        })(),
+        value: i
+      })
+    }
+
+    for (var i = 0; i < 60; i++) {
+      vm.minutesSelect.push(
+      {
+        text: (function () {
+          if (i < 10) {
+            return '0' + i;
+          } else {
+            return i;
+          }
+        })(),
+        value: i
+      })
+    }
+
+    vm.block = function() {
+      vm.blockingData.dateFrom = vm.dateFrom.setHours(vm.hoursFrom);
+      vm.blockingData.dateFrom = vm.dateFrom.setMinutes(vm.minutesFrom);
+
+      vm.blockingData.dateTo = vm.dateTo.setHours(vm.hoursTo);
+      vm.blockingData.dateTo = vm.dateTo.setMinutes(vm.minutesTo);
 
       rulesDataService.blocking(vm.blockingData, vm.property._id)
         .then(function() {

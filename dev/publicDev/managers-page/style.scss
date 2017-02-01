@@ -145,16 +145,21 @@
   .date-range {
     display: inline-block;
 
-    input {
+    input, select {
       display: inline-block;
-      width: 200px;
       border-color: #d4d4d4;
       border-radius: 5px;
       font-size: 16px;
+      padding: 6px;
+      vertical-align: bottom;
     }
 
-    input[type="time"] {
-      width: 100px;
+    input {
+      width: 160px;
+    }
+
+    select {
+      width: 65px;
     }
 
     .connector {

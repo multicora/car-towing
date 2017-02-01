@@ -83,8 +83,8 @@
         }
       )};
 
-    vm.activateContract = function(propertyContractTerm) {
-      contractsService.activate(propId, propertyContractTerm);
+    vm.activateContract = function(propertyContractTerm, contractDateFrom) {
+      contractsService.activate(propId, propertyContractTerm, contractDateFrom);
       getContacts();
     };
 

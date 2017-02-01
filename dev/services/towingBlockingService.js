@@ -13,7 +13,6 @@ module.exports = {
 
     let driverPromise = (driverEmail) => {
       return new Promise((resolve, reject) => {
-
         const mail = {
           from: config.mail, // sender address
           to: driverEmail, // list of receivers
@@ -33,7 +32,6 @@ module.exports = {
     }
 
     let adminPromise = new Promise((resolve, reject) => {
-
       const mail = {
         from: config.mail, // sender address
         to: emailAdmin, // list of receivers

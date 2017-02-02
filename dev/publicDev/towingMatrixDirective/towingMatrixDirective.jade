@@ -5,7 +5,8 @@
         .bold-title Property Towing Matrix
       .form-container.font-small
         form.towing-matrix-form(name="property-matrix-form"
-          ng-submit="vm.saveMatrix(property-matrix-form)")
+          ng-submit="saveMatrix()"
+          disabled)
           input.form-control(type="text"
             placeholder="Property name"
             ng-model="matrix.propertyName")

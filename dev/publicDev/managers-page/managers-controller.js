@@ -45,6 +45,7 @@
         if (vm.property.towingMatrix) {
           vm.towingMatrix = JSON.parse(vm.property.towingMatrix);
           vm.towingMatrix.date = new Date(vm.towingMatrix.date);
+          console.log(vm.towingMatrix);
         }
       }
     }).then(function () {
@@ -176,7 +177,7 @@
 
     // // ****** TOWING MATRIX ******
 
-    vm.saveTowingMatrix = function(form) {
+    vm.saveTowingMatrix = function() {
       vm.property.towingMatrix = JSON.stringify(vm.towingMatrix);
       propertiesService.updateTowingMatrix(vm.property._id, vm.property)
         .then(function(res) {

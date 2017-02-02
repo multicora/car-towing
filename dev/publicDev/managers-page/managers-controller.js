@@ -174,7 +174,7 @@
 
     // ****** END DECAL ******
 
-    // ****** TOWING MATRIX ******
+    // // ****** TOWING MATRIX ******
 
     vm.saveTowingMatrix = function(form) {
       vm.property.towingMatrix = JSON.stringify(vm.towingMatrix);
@@ -183,7 +183,7 @@
         });
     }
 
-    // ****** END TOWING MATRIX ******
+    // // ****** END TOWING MATRIX ******
   }
 
   managersCtrl.$inject = injections;

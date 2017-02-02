@@ -52,6 +52,10 @@
 
       propertiesService.getProperty(propId).then(function(success) {
         vm.newProperty = success.data;
+        if (vm.newProperty.towingMatrix) {
+          vm.towingMatrix = JSON.parse(vm.newProperty.towingMatrix);
+          vm.towingMatrix.date = new Date(vm.towingMatrix.date);
+        }
       }, function(error) {
         console.error(error);
       });
@@ -74,8 +78,8 @@
 
     }
 
-    vm.editProperty = function(id) {
-      propertiesService.update(id, vm.newProperty)
+    vm.editProperty = function() {
+      propertiesService.update(vm.newProperty._id, vm.newProperty)
         .then(function(success) {
           $location.path('/admin/properties');
         }, function(error) {
@@ -86,6 +90,14 @@
     vm.activateContract = function(propertyContractTerm) {
       contractsService.activate(propId, propertyContractTerm);
       getContacts();
+    };
+
+    vm.saveTowingMatrix = function() {
+      vm.newProperty.towingMatrix = JSON.stringify(vm.towingMatrix);
+      console.log(vm.newProperty.towingMatrix);
+      propertiesService.updateTowingMatrix(vm.newProperty._id, vm.newProperty)
+        .then(function(res) {
+        });
     };
 
     $scope.convertToBase64 = function(event){

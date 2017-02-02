@@ -45,7 +45,6 @@
         if (vm.property.towingMatrix) {
           vm.towingMatrix = JSON.parse(vm.property.towingMatrix);
           vm.towingMatrix.date = new Date(vm.towingMatrix.date);
-          console.log(vm.towingMatrix);
         }
       }
     }).then(function () {

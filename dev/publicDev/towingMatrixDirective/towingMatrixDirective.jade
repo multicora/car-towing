@@ -1,12 +1,10 @@
-.towing-matrix-part.main-border-bottom
-  .big-indent-bottom.big-indent-top
+.towing-matrix
+  .big-indent-top
     .row
       .title.font-small
         .bold-title Property Towing Matrix
       .form-container.font-small
-        form.towing-matrix-form(name="property-matrix-form"
-          ng-submit="saveMatrix()"
-          disabled)
+        form.towing-matrix-form()
           input.form-control(type="text"
             placeholder="Property name"
             ng-model="matrix.propertyName")
@@ -168,4 +166,6 @@
           textarea.form-control.notes(placeholder="Notes / Special Circumstances"
             ng-model="matrix.notes")
           .button-container
-            button.btn.btn-submit(type="submit") Save changes
+            button.btn.btn-submit(
+              type="button"
+              ng-click="saveMatrix()") Save changes

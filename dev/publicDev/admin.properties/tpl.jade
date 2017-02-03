@@ -11,6 +11,10 @@
           input(type="text", placeholder="Search property", ng-model="vm.searchPropertyValue")
           button.btn.btn-submit.search Search
         .wrap-admin-properties
+          .pa-item
+            a.pa-img-wrap(href="#/photos/emergency_towing")
+              .logo(ng-style="{backgroundImage: 'url('+ item.logo + ')' }")
+            h5.pa-item-title Emergency towing
           .pa-item(ng-repeat="item in vm.adminProperties | filter: vm.searchObj"
             ng-hide="item.deleted")
             .pa-img-wrap

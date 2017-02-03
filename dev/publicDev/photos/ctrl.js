@@ -6,37 +6,48 @@
   ctrl.$inject = [
     '$routeParams',
     'propertiesService',
-    'AdminEmployeesService'
+    'AdminEmployeesService',
+    'emergencyTowingService'
   ];
 
   function ctrl(
     $routeParams,
     propertiesService,
-    AdminEmployeesService
+    AdminEmployeesService,
+    emergencyTowingService
   ) {
     var vm = this;
 
     vm.photos = [];
+    vm.emergencyTowing = [];
 
-    propertiesService.getPhotos($routeParams.propertyId).then(function (res) {
-      vm.photos = res.data;
-
-      return vm.photos;
-    }).then(function (photos) {
-      vm.promiseArr = [];
-      photos.map(function (photo) {
-        vm.promiseArr.push(AdminEmployeesService.getUserById(photo.ownerId));
+    if ($routeParams.propertyId === "emergency_towing") {
+      emergencyTowingService.getEmergencyTowing().then(function(res) {
+        vm.emergencyTowing = res.data;
       });
+    } else {
+      propertiesService.getPhotos($routeParams.propertyId).then(function (res) {
+        vm.photos = res.data;
 
-      return Promise.all(vm.promiseArr);
-    }).then(function (users) {
+        return vm.photos;
+      }).then(function (photos) {
+        vm.promiseArr = [];
+        photos.map(function (photo) {
+          vm.promiseArr.push(AdminEmployeesService.getUserById(photo.ownerId));
+        });
 
-      for (var i = 0; i < vm.photos.length; i++) {
-        vm.photos[i].updated = new Date(vm.photos.updated);
-        vm.photos[i].ownerNumber = users[i].data.number;
-      }
+        return Promise.all(vm.promiseArr);
+      }).then(function (users) {
 
-      vm.promiseArr = [];
-    });
+        for (var i = 0; i < vm.photos.length; i++) {
+          vm.photos[i].updated = new Date(vm.photos.updated);
+          vm.photos[i].ownerNumber = users[i].data.number;
+        }
+
+        vm.promiseArr = [];
+      });
+    }
+
+
   }
 })(angular);

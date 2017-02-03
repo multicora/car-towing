@@ -216,7 +216,13 @@
   }
 
   .unblocking-button {
-    width: 200px;
+    width: 140px;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  .unblocking-button.unblocking-button {
+    margin-top: 0;
   }
 }
 

@@ -39,9 +39,22 @@
           p.blocking-list-title Date from
           p.blocking-list-title Date To
         div(ng-repeat="blocking in vm.blockingDataArr")
-          .center-block.blocking-list
-            p.reason-list(ng-bind="blocking.reason")
-            p.blocking-list-input{{blocking.from}}
-            p.blocking-list-input{{blocking.to}}
+          blocking-text(
+            ng-hide="blocking.editMode"
+            blocking="blocking")
+          edit-blocking(
+            ng-show="blocking.editMode"
+            blocking="blocking")
           .right-block
-            button.btn.btn-primary.btn-block.unblocking-button(type="button" ng-click="vm.unblocking(blocking._id)") Unblock
+            button.btn.btn-primary.btn-block.unblocking-button(
+              ng-hide="blocking.editMode"
+              type="button"
+              ng-click="vm.unblocking(blocking._id)") Unblock
+            button.btn.btn-primary.btn-block.unblocking-button(
+              ng-hide="blocking.editMode"
+              type="button"
+              ng-click="vm.showEditBlocking($index)") Edit
+            button.btn.btn-primary.btn-block.unblocking-button(
+              ng-show="blocking.editMode"
+              type="button"
+              ng-click="vm.editBlocking($index, blocking._id)") Save

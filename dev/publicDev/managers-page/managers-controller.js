@@ -34,7 +34,6 @@
     vm.monthInMilisecond = 2678258891;
     vm.blockingData = {};
 
-
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
         vm.message = 'Unfortunately we couldn\'t find your property.';
@@ -84,6 +83,14 @@
 
     function clearNewRule() {
       vm.newRule = {}
+    }
+
+    vm.showEditBlocking = function(blockingIndex) {
+      vm.blockingDataArr[blockingIndex].editMode = true;
+    }
+
+    vm.editBlocking = function(blockingIndex, id) {
+      vm.blockingDataArr[blockingIndex].editMode = false;
     }
 
     vm.edit = function(ruleIndex) {

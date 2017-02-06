@@ -82,12 +82,19 @@
           vm.errorMes = error.data.message;
         }
       )};
+    vm.removeProperty = function (id) {
+      propertiesService.delete(id)
+      .then(function(success) {
+        $location.path('/admin/properties');
+      }, function(error) {
+        vm.errorMes = error.data.message;
+      });
+    }
 
-    vm.activateContract = function(propertyContractTerm) {
-      contractsService.activate(propId, propertyContractTerm)
-        .then(function(success) {
-          getContacts();
-        });
+    vm.activateContract = function(propertyContractTerm, contractDateFrom) {
+      contractsService.activate(propId, propertyContractTerm, contractDateFrom);
+
+      getContacts();
     };
 
     vm.deactivateContract = function(contractId) {

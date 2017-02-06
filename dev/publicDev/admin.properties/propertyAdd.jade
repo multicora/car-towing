@@ -9,7 +9,7 @@
           novalidate
           ng-submit="vm.addProperty(propertyForm)")
           .propertyValue
-            h2 Add new property
+            h2 Property information
             input(
               type="text"
               placeholder="Property name"
@@ -58,6 +58,9 @@
                 ng-click="vm.saveNewManager()"
                 ng-show="vm.changeMod"
                 ng-disabled="!vm.newManager") Save new manager
+              button.delete(
+                ng-show="vm.editMod"
+                ng-click="vm.removeProperty(vm.newProperty._id)") Delete property
             .photos-link
               a(ng-href="#/photos/{{vm.newProperty._id}}") Photos
 
@@ -77,9 +80,13 @@
                 select.term-select(
                   ng-model="vm.propertyContractTerm"
                   ng-options="item.value as item.text for item in vm.contractTerms")
-                button(
-                  ng-disabled="!vm.propertyContractTerm"
-                  ng-click="vm.activateContract(vm.propertyContractTerm)")
+                | activated from: 
+                input.date-from(
+                  type="date"
+                  ng-model="vm.contractDateFrom")
+                button.activate-button(
+                  ng-disabled="!vm.propertyContractTerm || !vm.contractDateFrom"
+                  ng-click="vm.activateContract(vm.propertyContractTerm, vm.contractDateFrom)")
                   | Activate contract
 
           .propertyLogo

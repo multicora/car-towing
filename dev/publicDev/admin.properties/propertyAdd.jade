@@ -73,6 +73,8 @@
                 tr.contract(ng-repeat="contract in vm.contracts")
                   td {{contract.activationDate}}
                   td {{contract.endDate}}
+                  td
+                    button.deactivate-contract(ng-click="vm.deactivateContract(contract.id)") deactivate
               .new-contract
                 | Please choose term: 
                 select.term-select(

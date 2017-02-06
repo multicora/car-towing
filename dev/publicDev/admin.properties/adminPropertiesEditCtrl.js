@@ -98,6 +98,13 @@
       getContacts();
     };
 
+    vm.deactivateContract = function(contractId) {
+      contractsService.deactivate(contractId)
+        .then(function(success) {
+          getContacts();
+        });
+    }
+
     $scope.convertToBase64 = function(event){
       var f = document.getElementById('file').files[0],
       r = new FileReader();
@@ -115,6 +122,7 @@
     let endDate = new Date(activationDate.getTime() + contract.term);
     
     return {
+      id: contract._id,
       activationDate: activationDate.toLocaleString(),
       endDate: endDate.toLocaleString()
     };

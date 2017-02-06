@@ -111,7 +111,14 @@
             }
           }
         );
-      }
+      },
+      deactivate: function(id) {
+        return $http.delete('/api/contract/' + id, {
+          headers: {
+            Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()
+          }
+        });
+      },
     };
   }
 

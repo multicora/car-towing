@@ -123,4 +123,22 @@ module.exports = function (server) {
       }
     }
   });
+
+  server.route({
+    method: 'DELETE',
+    path: '/api/contract/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['contracts:delete']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.contract.remove(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
+        });
+      }
+    }
+  });
 };

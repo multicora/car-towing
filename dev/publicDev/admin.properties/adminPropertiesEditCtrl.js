@@ -83,10 +83,27 @@
         }
       )};
 
-    vm.activateContract = function(propertyContractTerm) {
-      contractsService.activate(propId, propertyContractTerm);
+    vm.removeProperty = function (id) {
+      propertiesService.delete(id)
+      .then(function(success) {
+        $location.path('/admin/properties');
+      }, function(error) {
+        vm.errorMes = error.data.message;
+      });
+    }
+
+    vm.activateContract = function(propertyContractTerm, contractDateFrom) {
+      contractsService.activate(propId, propertyContractTerm, contractDateFrom);
+
       getContacts();
     };
+
+    vm.deactivateContract = function(contractId) {
+      contractsService.deactivate(contractId)
+        .then(function(success) {
+          getContacts();
+        });
+    }
 
     $scope.convertToBase64 = function(event){
       var f = document.getElementById('file').files[0],
@@ -105,6 +122,7 @@
     let endDate = new Date(activationDate.getTime() + contract.term);
     
     return {
+      id: contract._id,
       activationDate: activationDate.toLocaleString(),
       endDate: endDate.toLocaleString()
     };

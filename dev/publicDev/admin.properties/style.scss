@@ -95,6 +95,10 @@
         margin: 20px 10px 0 0;
       }
 
+      .delete {
+        margin-top: 10px;
+      }
+
       .errorMessage {
         font-size: 18px;
         font-weight: 600;
@@ -187,6 +191,18 @@
       height: 46px;
       margin: 0 10px;
     }
+
+    input[type="date"] {
+      border-radius: 5px;
+      height: 46px;
+      margin: 0 10px;
+      padding: 6px;
+      width: 170px;
+    }
+
+    .activate-button {
+      width: 200px;
+    }
   }
 
   .contracts-list {
@@ -194,6 +210,12 @@
     width: 100%;
     .contract {
       border-top: 1px #a9a9a9 solid;
+      .deactivate-contract {
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        margin: 2px 0;
+      }
     }
   }
 
@@ -216,6 +238,7 @@
   position: relative;
   // TODO: fix name
   .pa-img-wrap {
+    display: block;
     position: relative;
     width: 150px;
     height: 150px;
@@ -255,13 +278,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-  }
-
-  .delete {
-    height: 35px;
-    position: absolute;
-    top: 0px;
-    left: 125px;
   }
 
   .edit {

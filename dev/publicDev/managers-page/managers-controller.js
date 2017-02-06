@@ -145,16 +145,21 @@
     }
 
     vm.block = function() {
-      vm.blockingData.dateFrom = vm.dateFrom.setHours(vm.hoursFrom);
-      vm.blockingData.dateFrom = vm.dateFrom.setMinutes(vm.minutesFrom);
+      if (!vm.hoursFrom || !vm.minutesFrom || !vm.hoursTo || !vm.minutesTo) {
+        vm.errorMessage = 'Error: Enter all data!';
+      } else {
+        vm.errorMessage = "";
+        vm.blockingData.dateFrom = vm.dateFrom.setHours(vm.hoursFrom);
+        vm.blockingData.dateFrom = vm.dateFrom.setMinutes(vm.minutesFrom);
 
-      vm.blockingData.dateTo = vm.dateTo.setHours(vm.hoursTo);
-      vm.blockingData.dateTo = vm.dateTo.setMinutes(vm.minutesTo);
+        vm.blockingData.dateTo = vm.dateTo.setHours(vm.hoursTo);
+        vm.blockingData.dateTo = vm.dateTo.setMinutes(vm.minutesTo);
 
-      rulesDataService.blocking(vm.blockingData, vm.property._id)
-        .then(function() {
-          getBlocking(vm.property._id);
-        });
+        rulesDataService.blocking(vm.blockingData, vm.property._id)
+          .then(function() {
+            getBlocking(vm.property._id);
+          });
+      }
     }
 
     vm.unblocking = function(id) {

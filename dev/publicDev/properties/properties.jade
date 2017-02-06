@@ -41,7 +41,6 @@ div.properties
       .row.propertiesList
         a.propertiesLine.col-md-12(
           href="#/property/{{property._id}}"
-          ng-if="!property.blocked"
           ng-repeat="property in vm.properties | startWithLetter:letter")
           .adress {{ property.address }}
           .name {{ property.name }}

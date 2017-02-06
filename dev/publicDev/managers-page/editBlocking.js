@@ -5,7 +5,9 @@
     return {
       templateUrl: 'managers-page/editBlockingDirective.html',
       scope: {
-        blocking: '='
+        blocking: '=blocking',
+        minutes: '=minutes',
+        hours: '=hours'
       }
     }
   });

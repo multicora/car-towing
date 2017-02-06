@@ -15,11 +15,19 @@
         get: get,
         blocking: blocking,
         getBlocking: getBlocking,
-        unblocking: unblocking
+        unblocking: unblocking,
+        updateBlocking: updateBlocking
       };
 
       function blocking(data, propertyId) {
         return $http.post('api/blocking/' + propertyId, data, {
+            headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
+          }
+        );
+      }
+
+      function updateBlocking(data, id) {
+        return $http.put('api/blocking/' + id, data, {
             headers: {Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()}
           }
         );

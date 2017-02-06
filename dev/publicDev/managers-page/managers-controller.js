@@ -33,6 +33,7 @@
     vm.property = null;
     vm.monthInMilisecond = 2678258891;
     vm.blockingData = {};
+    vm.newBlockingData = {};
 
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
@@ -83,14 +84,6 @@
 
     function clearNewRule() {
       vm.newRule = {}
-    }
-
-    vm.showEditBlocking = function(blockingIndex) {
-      vm.blockingDataArr[blockingIndex].editMode = true;
-    }
-
-    vm.editBlocking = function(blockingIndex, id) {
-      vm.blockingDataArr[blockingIndex].editMode = false;
     }
 
     vm.edit = function(ruleIndex) {
@@ -151,9 +144,11 @@
       })
     }
 
-    vm.block = function() {
-      if (!vm.hoursFrom || !vm.minutesFrom || !vm.hoursTo || !vm.minutesTo) {
-        vm.errorMessage = 'Error: Enter all data!';
+    vm.block = function(form) {
+      vm.invalidDate = !(vm.hoursFrom && vm.minutesFrom && vm.hoursTo && vm.minutesTo);
+
+      if (vm.invalidDate) {
+        vm.errorMessage = 'Error: Enter valid data!';
       } else {
         vm.errorMessage = "";
         vm.blockingData.dateFrom = vm.dateFrom.setHours(vm.hoursFrom);
@@ -163,17 +158,41 @@
         vm.blockingData.dateTo = vm.dateTo.setMinutes(vm.minutesTo);
 
         rulesDataService.blocking(vm.blockingData, vm.property._id)
-          .then(function() {
+          .then(function(success) {
             getBlocking(vm.property._id);
+            // vm.blockingData = {};
           });
       }
     }
 
     vm.unblocking = function(id) {
       rulesDataService.unblocking(id)
-        .then(function() {
+        .then(function(success) {
           getBlocking(vm.property._id);
         });
+    }
+
+    vm.showEditBlocking = function(blockingIndex) {
+      vm.blockingDataArr[blockingIndex].editMode = true;
+    }
+
+    vm.editBlocking = function(blockingIndex, id) {
+      vm.newBlockingData.reason = vm.blockingDataArr[blockingIndex].reason;
+      vm.newBlockingData.from = vm.blockingDataArr[blockingIndex].dateFrom.setHours(
+        vm.blockingDataArr[blockingIndex].hoursFrom);
+      vm.newBlockingData.from = vm.blockingDataArr[blockingIndex].dateFrom.setMinutes(
+        vm.blockingDataArr[blockingIndex].minutesFrom);
+
+      vm.newBlockingData.to = vm.blockingDataArr[blockingIndex].dateTo.setHours(
+        vm.blockingDataArr[blockingIndex].hoursTo);
+      vm.newBlockingData.to = vm.blockingDataArr[blockingIndex].dateTo.setMinutes(
+        vm.blockingDataArr[blockingIndex].minutesTo);
+
+        rulesDataService.updateBlocking(vm.newBlockingData, id)
+          .then(function(success) {
+            vm.newBlockingData = {};
+            getBlocking(vm.property._id);
+          });
     }
 
     function getBlocking(id) {
@@ -181,8 +200,15 @@
         .then(function(res) {
           vm.blockingDataArr = res.data;
           for (var i = 0; i < vm.blockingDataArr.length; i++) {
-            vm.blockingDataArr[i].to = new Date(vm.blockingDataArr[i].to).toLocaleString();
-            vm.blockingDataArr[i].from = new Date(vm.blockingDataArr[i].from).toLocaleString();
+            vm.blockingDataArr[i].toString = new Date(vm.blockingDataArr[i].to).toLocaleString();
+            vm.blockingDataArr[i].dateTo = new Date(vm.blockingDataArr[i].to);
+            vm.blockingDataArr[i].hoursTo = new Date(vm.blockingDataArr[i].to).getHours();
+            vm.blockingDataArr[i].minutesTo = new Date(vm.blockingDataArr[i].to).getMinutes();
+
+            vm.blockingDataArr[i].fromString = new Date(vm.blockingDataArr[i].from).toLocaleString();
+            vm.blockingDataArr[i].dateFrom = new Date(vm.blockingDataArr[i].from);
+            vm.blockingDataArr[i].hoursFrom = new Date(vm.blockingDataArr[i].from).getHours();
+            vm.blockingDataArr[i].minutesFrom = new Date(vm.blockingDataArr[i].from).getMinutes();
           }
         });
     }

@@ -193,7 +193,8 @@
     margin-top: 15px;
 
     .blocking-list {
-      margin-left: 300px;
+      margin-left: 230px;
+      width: 780px;
     }
 
     .reason-list {
@@ -202,6 +203,10 @@
       text-align: center;
       text-overflow: ellipsis;
       overflow: hidden;
+    }
+
+    .reason-list.edit {
+      width: 160px;
     }
   }
 
@@ -221,6 +226,17 @@
     display: inline-block;
   }
 
+  .blocking-list-input.edit {
+    width: 160px;
+    margin-left: 5px;
+    border: 1px solid #ccc;
+  }
+
+  select {
+    display: inline-block;
+    width: 65px;
+  }
+
   .blocking-list-input:disabled {
     background: none;
   }
@@ -233,6 +249,10 @@
 
   .unblocking-button.unblocking-button {
     margin-top: 0;
+  }
+
+  .edit-button {
+    margin-bottom: 5px;
   }
 }
 

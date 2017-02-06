@@ -15,27 +15,22 @@
           required)
         select.form-control.hoursSelect(
           ng-model="vm.hoursFrom"
-          ng-options="item.value as item.text for item in vm.hoursSelect"
-        )
+          ng-options="item.value as item.text for item in vm.hoursSelect")
         select.form-control.minutesSelect(
           ng-model="vm.minutesFrom"
-          ng-options="item.value as item.text for item in vm.minutesSelect"
-        )
+          ng-options="item.value as item.text for item in vm.minutesSelect")
         span.connector to
         input.form-control(type="date"
           ng-model="vm.dateTo"
           required)
         select.form-control.hoursSelect(
           ng-model="vm.hoursTo"
-          ng-options="item.value as item.text for item in vm.hoursSelect"
-        )
+          ng-options="item.value as item.text for item in vm.hoursSelect")
         select.form-control.minutesSelect(
           ng-model="vm.minutesTo"
-          ng-options="item.value as item.text for item in vm.minutesSelect"
-        )
+          ng-options="item.value as item.text for item in vm.minutesSelect")
       .right-block
-        button.btn.btn-primary.btn-block(type="submit"
-          ng-disabled="blocking-form.$invalid") Block
+        button.btn.btn-primary.btn-block(type="submit") Block
       .row.font-small
         .long-block.reason-block
           span Reason
@@ -56,7 +51,9 @@
             blocking="blocking")
           edit-blocking(
             ng-show="blocking.editMode"
-            blocking="blocking")
+            blocking="blocking"
+            hours="vm.hoursSelect"
+            minutes="vm.minutesSelect")
           .right-block
             button.btn.btn-primary.btn-block.unblocking-button(
               ng-hide="blocking.editMode"
@@ -66,7 +63,7 @@
               ng-hide="blocking.editMode"
               type="button"
               ng-click="vm.showEditBlocking($index)") Edit
-            button.btn.btn-primary.btn-block.unblocking-button(
+            button.btn.btn-primary.btn-block.unblocking-button.edit-button(
               ng-show="blocking.editMode"
               type="button"
               ng-click="vm.editBlocking($index, blocking._id)") Save

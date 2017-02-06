@@ -5,8 +5,6 @@
         span(ng-bind="'Welcome, ' + vm.managerName +'!'")
         span.contractsTime(ng-bind="'Your contract will be expired in '+ vm.contractsTime + ' ' +vm.timeMeasure +' !'"
           ng-class="vm.timeEndClass")
-      .right-block
-        a.btn.btn-primary.btn-block(href="http://www.reportexec.com/" target="_blank") Report Exec
     form.row.form-group.font-small(name="blocking-form"
       ng-submit="vm.block(blocking-form)")
       .left-block

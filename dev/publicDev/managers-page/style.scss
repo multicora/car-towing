@@ -38,6 +38,7 @@
     top: 0;
     min-height: 100%;
     width: 100%;
+    min-width: 1366px;
     background-color: rgba(0, 0, 0, 0.3);
 
     .decal-popup-container {
@@ -133,6 +134,10 @@
 
 .blocking-part {
 
+  .error-message {
+    margin-left: 50px;
+  }
+
   .contractsTime {
     margin-left: 20px;
   }
@@ -145,16 +150,21 @@
   .date-range {
     display: inline-block;
 
-    input {
+    input, select {
       display: inline-block;
-      width: 200px;
       border-color: #d4d4d4;
       border-radius: 5px;
       font-size: 16px;
+      padding: 6px;
+      vertical-align: bottom;
     }
 
-    input[type="time"] {
-      width: 100px;
+    input {
+      width: 160px;
+    }
+
+    select {
+      width: 65px;
     }
 
     .connector {

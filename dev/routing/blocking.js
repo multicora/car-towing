@@ -34,9 +34,13 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        DAL.blocking.create(request.params.propertyId, request.payload, function (err, docs) {
+        DAL.blocking.create(request.params.propertyId, request.payload, 
+        function (err, docs) {
           DAL.properties.getById(request.params.propertyId, (err, property) => {
-            !err ? reply(towingBlockingService.sendNotification(request.params.propertyId, property.name, request.auth.credentials.email)) : reply(Boom.badImplementation(err));
+            !err ? reply(towingBlockingService.sendNotification(
+              request.params.propertyId, property.name, 
+              request.auth.credentials.email
+            )) : reply(Boom.badImplementation(err));
           });
         });
       }

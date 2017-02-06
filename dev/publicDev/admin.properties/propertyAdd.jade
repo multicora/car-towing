@@ -10,7 +10,7 @@
           ng-submit="vm.addProperty(propertyForm)")
           .propertyValue
             h2 Property information
-            input(
+            input.property-value-input(
               type="text"
               placeholder="Property name"
               ng-class="{'l-error-input': vm.errorMes.length > 0}"
@@ -27,14 +27,14 @@
                     id="location_{{location.name}}"
                     required)
                   span.text {{location.name}}
-            input(
+            input.property-value-input(
               type="email"
               placeholder="Login"
               ng-model="vm.newProperty.login"
               ng-hide="vm.editMod"
               ng-class="{'l-error-input': vm.errorMes.length > 0}"
               required)
-            input(
+            input.property-value-input(
               type="email"
               placeholder="New Login"
               ng-model="vm.newManager"
@@ -48,7 +48,7 @@
                 ng-hide="vm.editMod"
                 ng-disabled="propertyForm.$invalid") Create
               button.create(
-                ng-click="vm.editProperty(vm.newProperty._id)"
+                ng-click="vm.editProperty()"
                 ng-show="vm.editMod"
                 ng-disabled="!vm.newProperty.name") Edit
               button.create.change(
@@ -88,6 +88,9 @@
                   ng-disabled="!vm.propertyContractTerm || !vm.contractDateFrom"
                   ng-click="vm.activateContract(vm.propertyContractTerm, vm.contractDateFrom)")
                   | Activate contract
+            towing-matrix(
+              matrix="vm.towingMatrix"
+              save-matrix="vm.saveTowingMatrix()")
 
           .propertyLogo
             h2 Upload logo

@@ -82,6 +82,7 @@
           vm.errorMes = error.data.message;
         }
       )};
+
     vm.removeProperty = function (id) {
       propertiesService.delete(id)
       .then(function(success) {

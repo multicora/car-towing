@@ -54,14 +54,5 @@
         });
       }
     }
-
-    vm.removeProperty = function (propId) {
-      propertiesService.delete(propId)
-      .then(function(success) {
-        vm.getAdminProperties();
-      }, function(error) {
-        vm.errorMes = error.data.message;
-      });
-    }
   }
 })(angular);

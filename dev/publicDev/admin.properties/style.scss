@@ -95,6 +95,10 @@
         margin: 20px 10px 0 0;
       }
 
+      .delete {
+        margin-top: 10px;
+      }
+
       .errorMessage {
         font-size: 18px;
         font-weight: 600;
@@ -228,6 +232,7 @@
   position: relative;
   // TODO: fix name
   .pa-img-wrap {
+    display: block;
     position: relative;
     width: 150px;
     height: 150px;
@@ -267,13 +272,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-  }
-
-  .delete {
-    height: 35px;
-    position: absolute;
-    top: 0px;
-    left: 125px;
   }
 
   .edit {

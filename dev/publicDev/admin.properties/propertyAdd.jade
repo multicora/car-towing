@@ -78,9 +78,13 @@
                 select.term-select(
                   ng-model="vm.propertyContractTerm"
                   ng-options="item.value as item.text for item in vm.contractTerms")
-                button(
-                  ng-disabled="!vm.propertyContractTerm"
-                  ng-click="vm.activateContract(vm.propertyContractTerm)")
+                | activated from: 
+                input.date-from(
+                  type="date"
+                  ng-model="vm.contractDateFrom")
+                button.activate-button(
+                  ng-disabled="!vm.propertyContractTerm || !vm.contractDateFrom"
+                  ng-click="vm.activateContract(vm.propertyContractTerm, vm.contractDateFrom)")
                   | Activate contract
 
           .propertyLogo

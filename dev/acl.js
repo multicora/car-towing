@@ -20,7 +20,8 @@ const permissionsFunc = function(credentials, callback) {
     },
     contracts: {
       read: hasRole('admin') || hasRole('property-manager'),
-      edit: hasRole('admin')
+      edit: hasRole('admin'),
+      delete: hasRole('admin')
     },
     decal: {
       edit: hasRole('admin') || hasRole('property-manager'),

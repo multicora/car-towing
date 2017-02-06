@@ -21,7 +21,7 @@ module.exports = function (server) {
           property: request.payload.property,
           term: request.payload.term,
           notifyTerm: request.payload.notifyTerm,
-          activationDate: new Date,
+          activationDate: request.payload.activationDate,
           activationAuthor: request.auth.credentials._id
         }, function (err, res) {
           !err ? reply(res) : reply( Boom.badImplementation(err) );
@@ -120,6 +120,24 @@ module.exports = function (server) {
           !err ? reply(contractsTimeCalculate.calculate(res)) : reply( Boom.badImplementation(err) );
         });
 
+      }
+    }
+  });
+
+  server.route({
+    method: 'DELETE',
+    path: '/api/contract/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['contracts:delete']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.contract.remove(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
+        });
       }
     }
   });

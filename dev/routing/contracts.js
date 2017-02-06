@@ -21,7 +21,7 @@ module.exports = function (server) {
           property: request.payload.property,
           term: request.payload.term,
           notifyTerm: request.payload.notifyTerm,
-          activationDate: new Date,
+          activationDate: request.payload.activationDate,
           activationAuthor: request.auth.credentials._id
         }, function (err, res) {
           !err ? reply(res) : reply( Boom.badImplementation(err) );

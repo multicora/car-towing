@@ -101,3 +101,5 @@
                 span.btn Upload logo
                 //- TODO: move this to controller
                 input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")
+              p.errorMessage(ng-if="vm.fileError"
+                ng-bind="vm.fileError")

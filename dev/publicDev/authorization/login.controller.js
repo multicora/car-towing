@@ -9,6 +9,7 @@
 
   function LoginController(authService, $location, TokenService, $http, $routeParams) {
     var vm = this;
+    var urlPrev = $routeParams.url_prev || '/';
 
     vm.user = {
       login: '',
@@ -31,7 +32,7 @@
             authService.setUser(success.data);
             TokenService.setToken(success.data.token);
             $http.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
-            redirectByRole(success.data.roles);
+            redirectByRole(success.data.roles, urlPrev);
             vm.errorMes = '';
           } else {
             vm.errorMes = 'The username or password is incorrect';
@@ -67,7 +68,7 @@
       );
     }
 
-    function redirectByRole(roles) {
+    function redirectByRole(roles, url) {
       var map = {
         'admin': '/admin',
         'property-manager': '/managers-page'
@@ -83,7 +84,7 @@
       if (pathArray.length > 0) {
         $location.path(pathArray[0]);
       } else {
-        $location.path('/');
+        $location.path(url);
       }
     }
   }

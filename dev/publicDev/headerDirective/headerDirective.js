@@ -17,6 +17,10 @@ var HeaderController = function(TokenService, $location, authService, $timeout) 
     }, 5000);
   }
 
+  vm.login = function() {
+    $location.path('/login' + $location.path());
+  }
+
   vm.logout = function() {
     authService.setUser(null);
     vm.user = null;

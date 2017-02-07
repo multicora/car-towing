@@ -3,7 +3,7 @@ header(class="{{className}}")
     a.home-button(href="#/" title="Home") Home
     a.login-button(
       title="Login"
-      href="#/login"
+      ng-click="vm.login()"
       ng-if="!vm.user.email") Login
     a.logout-button(
       title="Logout"

@@ -83,7 +83,7 @@ module.exports = function (server) {
       },
       handler: function handler(request, reply) {
         let userExist = false;
-        const serverUrl = request.headers.referer;
+        const serverUrl = request.headers.header;
         const createOrGetUser = (newUser, cb) => {
           DAL.users.getUserByEmail(newUser.email, function (err, user) {
             if (!user) {
@@ -133,7 +133,7 @@ module.exports = function (server) {
       handler: function handler(request, reply) {
         const propertyId = request.payload.propertyId;
         const managerEmail = request.payload.email;
-        const serverUrl = request.headers.referer;
+        const serverUrl = request.headers.header;
         let userExist = false;
 
         const createOrGetUser = (newUser, cb) => {

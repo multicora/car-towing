@@ -97,6 +97,7 @@
     }
 
     vm.activateContract = function(propertyContractTerm, contractDateFrom) {
+      console.log(propertyContractTerm);
       contractsService.activate(propId, propertyContractTerm, contractDateFrom);
 
       getContacts();
@@ -131,11 +132,18 @@
   function parseContract(contract) {
     let activationDate = new Date(contract.activationDate);
     let endDate = new Date(activationDate.getTime() + contract.term);
-    
+    let notExpire = false;
+
+    if (activationDate.getTime() === endDate.getTime()) {
+      notExpire = true;
+    }
+
+    console.log('notExpire', notExpire);
     return {
       id: contract._id,
       activationDate: activationDate.toLocaleString(),
-      endDate: endDate.toLocaleString()
+      endDate: endDate.toLocaleString(),
+      notExpire: notExpire
     };
   }
 })(angular);

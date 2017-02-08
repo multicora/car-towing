@@ -16,10 +16,17 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
+        let term;
+        if (request.payload.term === null) {
+          console.log(request.payload.term, 11111111111111111111111111111111);
+          term = 0;
+        } else {
+          term = request.payload.term;
+        }
 
         DAL.contract.create({
           property: request.payload.property,
-          term: request.payload.term,
+          term: term,
           notifyTerm: request.payload.notifyTerm,
           activationDate: request.payload.activationDate,
           activationAuthor: request.auth.credentials._id

@@ -127,7 +127,7 @@
         console.log(vm.fileError);
       } else {
         vm.fileError = '';
-        r.onloadend = function(e){
+        r.onloadend = function(e) {
           // TODO: converted to base64 image
           vm.newProperty.logo = e.target.result;
           $scope.$digest();

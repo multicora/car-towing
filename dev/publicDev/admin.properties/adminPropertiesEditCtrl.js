@@ -24,6 +24,7 @@
   ) {
     var vm = this;
     var propId = $routeParams.id;
+    vm.fileError = '';
 
     vm.contractTerms = contractsService.getTerms();
     vm.newProperty = {};
@@ -123,6 +124,7 @@
           type = (f.type.indexOf('image') >= 0);
       if (size || !type) {
         vm.fileError = 'File is too large or isn`t image, please choose another file!';
+        console.log(vm.fileError);
       } else {
         vm.fileError = '';
         r.onloadend = function(e){

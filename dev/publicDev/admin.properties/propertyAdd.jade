@@ -89,6 +89,7 @@
                   ng-click="vm.activateContract(vm.propertyContractTerm, vm.contractDateFrom)")
                   | Activate contract
             towing-matrix(
+              ng-show="vm.editMod"
               matrix="vm.towingMatrix"
               save-matrix="vm.saveTowingMatrix()")
 

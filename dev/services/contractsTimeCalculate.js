@@ -6,8 +6,12 @@ module.exports = function () {
       let timeToEnd;
       let i = 0;
       let j = 0;
+      let notExpire;
 
       for (; i < contracts.length; i++) {
+        if (contracts[i].notExpire) {
+          notExpire = true;
+        }
         endDates.push(new Date(new Date(contracts[i].activationDate).getTime() + contracts[i].term) - new Date);
       }
 
@@ -19,7 +23,10 @@ module.exports = function () {
         }
       }
 
-      return timeToEnd;
+      return {
+        timeToEnd: timeToEnd,
+        notExpire: notExpire
+      };
     }
   };
 };

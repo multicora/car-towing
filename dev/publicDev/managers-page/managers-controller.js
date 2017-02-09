@@ -57,14 +57,15 @@
     }).then(function () {
       return contractsService.checkTime(vm.property._id);
     }).then(function (res) {
-      if (res.data <= vm.monthInMilisecond) {
-        vm.contractsTime = new Date(res.data).getUTCDate();
+      vm.contractsTime = res.data;
+      if (vm.contractsTime.timeToEnd <= vm.monthInMilisecond) {
+        vm.contractsTime.timeToEnd = new Date(res.data.timeToEnd).getUTCDate();
         vm.timeMeasure = 'days';
         vm.timeEndClass = 'redText';
       } else {
-        vm.contractsTime = new Date(res.data).getMonth();
+        vm.contractsTime.timeToEnd = new Date(res.data.timeToEnd).getMonth();
         vm.timeMeasure = 'month';
-        if (vm.contractsTime < 3) {
+        if (vm.contractsTime.timeToEnd < 3) {
           vm.timeEndClass = 'redText';
         }
       }

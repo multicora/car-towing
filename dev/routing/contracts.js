@@ -17,9 +17,10 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         let term;
+        let notExpire = false;
         if (request.payload.term === null) {
-          console.log(request.payload.term, 11111111111111111111111111111111);
           term = 0;
+          notExpire = true;
         } else {
           term = request.payload.term;
         }
@@ -27,6 +28,7 @@ module.exports = function (server) {
         DAL.contract.create({
           property: request.payload.property,
           term: term,
+          notExpire: notExpire,
           notifyTerm: request.payload.notifyTerm,
           activationDate: request.payload.activationDate,
           activationAuthor: request.auth.credentials._id
@@ -56,12 +58,19 @@ module.exports = function (server) {
             return reply( Boom.badImplementation(err) );
           }
 
+          let notExpire;
           let now = new Date();
           let validContracts = res.map(function (contract) {
+
+            if (contract.notExpire) {
+              notExpire = true;
+            }
+
             let activationDate = new Date(contract.activationDate);
             return new Date(activationDate.getTime() + contract.term);
           }).filter(function (contract) {
-            return contract > now;
+
+            return notExpire || (contract > now);
           });
 
           reply( (validContracts.length > 0) ? true : false );

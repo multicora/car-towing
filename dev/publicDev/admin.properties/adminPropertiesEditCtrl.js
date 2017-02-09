@@ -97,10 +97,10 @@
     }
 
     vm.activateContract = function(propertyContractTerm, contractDateFrom) {
-      console.log(propertyContractTerm);
-      contractsService.activate(propId, propertyContractTerm, contractDateFrom);
-
-      getContacts();
+      contractsService.activate(propId, propertyContractTerm, contractDateFrom)
+        .then(function(success) {
+          getContacts();
+        });
     };
 
     vm.saveTowingMatrix = function() {
@@ -132,18 +132,13 @@
   function parseContract(contract) {
     let activationDate = new Date(contract.activationDate);
     let endDate = new Date(activationDate.getTime() + contract.term);
-    let notExpire = false;
+    let notExpire;
 
-    if (activationDate.getTime() === endDate.getTime()) {
-      notExpire = true;
-    }
-
-    console.log('notExpire', notExpire);
     return {
       id: contract._id,
       activationDate: activationDate.toLocaleString(),
       endDate: endDate.toLocaleString(),
-      notExpire: notExpire
+      notExpire: contract.notExpire
     };
   }
 })(angular);

@@ -6,7 +6,8 @@ app.directive('towingMatrix', function() {
   return {
     scope: {
       matrix: '=',
-      saveMatrix: '&saveMatrix'
+      saveMatrix: '&saveMatrix',
+      confirmation: '=confirmation'
     },
     templateUrl: 'towingMatrixDirective/towingMatrixDirective.html',
   }

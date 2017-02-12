@@ -11,7 +11,8 @@
 
     return {
       getProperties: getProperties,
-      getById: getById
+      getById: getById,
+      getBlockingStatus: getBlockingStatus
     };
 
     function getProperties(locationId) {
@@ -33,6 +34,10 @@
       return $http.get(config.url + '/api/property/' + id).then(function (res) {
         return res.data;
       });
+    }
+
+    function getBlockingStatus(propId) {
+      return $http.get(config.url + '/api/blocking/status/' + propId);
     }
   }
 

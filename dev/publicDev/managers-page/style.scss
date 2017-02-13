@@ -232,7 +232,8 @@
     border: 1px solid #ccc;
   }
 
-  select {
+  .hoursSelect,
+  .minutesSelect {
     display: inline-block;
     width: 65px;
   }

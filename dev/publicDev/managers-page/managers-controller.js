@@ -160,7 +160,6 @@
         rulesDataService.blocking(vm.blockingData, vm.property._id)
           .then(function(success) {
             getBlocking(vm.property._id);
-            // vm.blockingData = {};
           });
       }
     }
@@ -188,11 +187,11 @@
       vm.newBlockingData.to = vm.blockingDataArr[blockingIndex].dateTo.setMinutes(
         vm.blockingDataArr[blockingIndex].minutesTo);
 
-        rulesDataService.updateBlocking(vm.newBlockingData, id)
-          .then(function(success) {
-            vm.newBlockingData = {};
-            getBlocking(vm.property._id);
-          });
+      rulesDataService.updateBlocking(vm.newBlockingData, id)
+        .then(function(success) {
+          vm.newBlockingData = {};
+          getBlocking(vm.property._id);
+        });
     }
 
     function getBlocking(id) {

@@ -8,13 +8,21 @@
     }
   }
 
-  function ctrl($http, mainCtrlDataProvider) {
+  function ctrl($http, mainCtrlDataProvider, $scope, $location) {
     var vm = this;
     mainCtrlDataProvider.getVisitorsCount().then(function(response){
       vm.visitorsCount = response.data;
     });
+
+    $scope.redirect = function(url, urlParam) {
+      if (urlParam) {
+        return $location.patch(url + '/' + urlParam);
+      } else {
+        return $location.patch(url);
+      }
+    }
   }
-  ctrl.$inject = ['$http', 'mainCtrlDataProvider'];
+  ctrl.$inject = ['$http', 'mainCtrlDataProvider', '$scope', '$location'];
 
   app
   .controller('mainCtrl', ctrl)

@@ -86,6 +86,14 @@
       vm.newRule = {}
     }
 
+    $scope.redirect = function(url, urlParam) {
+      if (urlParam) {
+        return $location.patch(url + '/' + urlParam);
+      } else {
+        return $location.patch(url);
+      }
+    }
+
     vm.edit = function(ruleIndex) {
       vm.rules[ruleIndex].editmode = true;
     }

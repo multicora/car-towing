@@ -133,7 +133,7 @@ module.exports = function (server) {
       handler: function handler(request, reply) {
         const propertyId = request.payload.propertyId;
         const managerEmail = request.payload.email;
-        const serverUrl = request.headers.header;
+        const serverUrl = request.headers.referer;
         let userExist = false;
 
         const createOrGetUser = (newUser, cb) => {

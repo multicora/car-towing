@@ -14,11 +14,16 @@
       vm.visitorsCount = response.data;
     });
 
+    $scope.red = function() {
+      console.log(1111);
+    }
+
     $scope.redirect = function(url, urlParam) {
+      console.log(url, urlParam);
       if (urlParam) {
-        return $location.patch(url + '/' + urlParam);
+        return $location.path(url + '/' + urlParam);
       } else {
-        return $location.patch(url);
+        return $location.path(url);
       }
     }
   }

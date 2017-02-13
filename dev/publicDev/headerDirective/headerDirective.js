@@ -24,6 +24,15 @@ var HeaderController = function(TokenService, $location, authService, $timeout) 
     vm.isShownLogoutPopup = true;
     closeTimeout();
   };
+
+  vm.redirect = function(url, urlParam) {
+    console.log(url, urlParam);
+    if (urlParam) {
+      return $location.path(url + '/' + urlParam);
+    } else {
+      return $location.path(url);
+    }
+  }
 };
 
 HeaderController.$inject = ['TokenService', '$location', 'authService', '$timeout'];

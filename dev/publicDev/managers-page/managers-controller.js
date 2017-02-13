@@ -12,7 +12,8 @@
     'contractsService',
     'authService',
     'decalService',
-    '$location'
+    '$location',
+    '$scope'
   ];
 
 
@@ -23,7 +24,8 @@
     contractsService,
     authService,
     decalService,
-    $location
+    $location,
+    $scope
   ) {
     // TODO: figureout better propId solution
     var vm = this;
@@ -84,14 +86,6 @@
 
     function clearNewRule() {
       vm.newRule = {}
-    }
-
-    $scope.redirect = function(url, urlParam) {
-      if (urlParam) {
-        return $location.patch(url + '/' + urlParam);
-      } else {
-        return $location.patch(url);
-      }
     }
 
     vm.edit = function(ruleIndex) {

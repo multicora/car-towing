@@ -43,6 +43,12 @@
       getTerms: function () {
         return [
           {
+            text: 'Not Expire',
+            value: (function () {
+              return null;
+            })()
+          },
+          {
             text: '1 month',
             value: (function () {
               var date = new Date();

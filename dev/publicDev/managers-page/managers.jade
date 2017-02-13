@@ -12,6 +12,7 @@
         include partial-view/parking-rules.jade
         towing-matrix(
           matrix="vm.towingMatrix"
+          confirmation="vm.confirmationTowing"
           save-matrix="vm.saveTowingMatrix()")
   .decal-popup(ng-show="vm.decalPopupEditmod"
     ng-click="vm.hideDecalPopup()")

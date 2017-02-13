@@ -154,9 +154,13 @@ function configureServer(server) {
 }
 
 function registerStaticFilesServer(server, cb) {
-  const plugin = require('inert');
+  try {
+    const plugin = require('inert');
 
-  server.register(plugin, cb);
+    server.register(plugin, cb);
+  } catch(err) {
+    console.error(err);
+  }
 }
 
 function registerLoging(server) {

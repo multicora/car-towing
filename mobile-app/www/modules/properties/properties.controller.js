@@ -36,24 +36,33 @@
 
     PropertiesService.getProperties($stateParams.locationId).then(function (properties) {
       vm.properties = properties;
+
+      properties.map(function (property) {
+        return PropertiesService.getBlockingStatus(property._id).then(function (res) {
+          property.blocked = res.data;
+        });
+      });
+
     });
 
     vm.propertyClickHandler = function (property) {
-      var confirmPopup = $ionicPopup.confirm({
-        title: 'Please confirm.',
-        template: 'Are you in ' + property.name + '?',
-        okText: 'Yes',
-        okType: 'button-default',
-        cancelText: 'No',
-        cancelType: 'button-default',
-        cssClass: 'custom-conform-popup'
-      });
+      if (!property.blocked) {
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'Please confirm.',
+          template: 'Are you in ' + property.name + '?',
+          okText: 'Yes',
+          okType: 'button-default',
+          cancelText: 'No',
+          cancelType: 'button-default',
+          cssClass: 'custom-conform-popup'
+        });
 
-      confirmPopup.then(function (res) {
-        if (res) {
-          $state.go('decal', {propertyId: property._id});
-        }
-      });
+        confirmPopup.then(function (res) {
+          if (res) {
+            $state.go('decal', {propertyId: property._id});
+          }
+        });
+      }
     };
 
     // TODO: fix it

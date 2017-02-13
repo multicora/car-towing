@@ -50,7 +50,7 @@ module.exports = function (server) {
               resetPasswordService.resetPassword(userEmail, serverUrl).then((res) => {
                 reply(res);
               }, (err) => {
-                reply(err);
+                reply(Boom.badImplementation(err));
               })
             } else {
               reply(Boom.badImplementation(err));

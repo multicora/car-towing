@@ -83,7 +83,7 @@ module.exports = function (server) {
       },
       handler: function handler(request, reply) {
         let userExist = false;
-        const serverUrl = request.headers.header;
+        const serverUrl = request.headers.referer;
         const createOrGetUser = (newUser, cb) => {
           DAL.users.getUserByEmail(newUser.email, function (err, user) {
             if (!user) {

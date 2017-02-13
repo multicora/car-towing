@@ -53,7 +53,7 @@
         div(ng-repeat="blocking in vm.blockingDataArr")
           .center-block.blocking-list
             p.reason-list(ng-bind="blocking.reason")
-            p.blocking-list-input{{blocking.from}}
-            p.blocking-list-input{{blocking.to}}
+            p.blocking-list-input {{blocking.from}}
+            p.blocking-list-input {{blocking.to}}
           .right-block
             button.btn.btn-primary.btn-block.unblocking-button(type="button" ng-click="vm.unblocking(blocking._id)") Unblock

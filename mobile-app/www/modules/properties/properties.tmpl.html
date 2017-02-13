@@ -5,7 +5,7 @@
     </div>
     <h1 class="title" ng-bind="vm.title" ng-click="vm.showConfirmRules()"></h1>
   </ion-header-bar>
-  <ion-content class="has-header bg-color padding-23" ng-switch="vm.properties.list.length">
+  <ion-content class="has-header bg-color padding-23" ng-switch="vm.properties.length">
 
     <p class="p-text text-center">Emergency tow</p>
 
@@ -34,7 +34,7 @@
       <button class="button button-icon icon ion-search btn-search-local"></button>
     </div>
 
-    <div class="empty-data" ng-switch-when="0">No locations</div>
+    <div class="empty-data" ng-switch-when="0">No properties</div>
     <div class="p-list" ng-switch-default>
       <div
         class="p-item"

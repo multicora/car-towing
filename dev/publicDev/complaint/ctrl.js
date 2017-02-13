@@ -10,6 +10,17 @@
   function complaintCtrl(complaintService, $location) {
     var vm = this;
 
+    vm.data = {
+      name: '',
+      email: '',
+      phone: '',
+      type: '',
+      date: '',
+      location: '',
+      invoiceNumber: '',
+      complaintMessage: ''
+    }
+
     vm.closePopup = function() {
       $location.path('/');
     }

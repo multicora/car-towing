@@ -10,7 +10,10 @@
         include partial-view/blocking-part.jade
         include partial-view/photos-part.jade
         include partial-view/parking-rules.jade
-        include partial-view/towing-matrix.jade
+        towing-matrix(
+          matrix="vm.towingMatrix"
+          confirmation="vm.confirmationTowing"
+          save-matrix="vm.saveTowingMatrix()")
   .decal-popup(ng-show="vm.decalPopupEditmod"
     ng-click="vm.hideDecalPopup()")
     .decal-popup-container(ng-click="vm.stopPropagation($event)")

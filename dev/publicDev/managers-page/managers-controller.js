@@ -144,7 +144,7 @@
     }
 
     vm.block = function() {
-      if (!vm.hoursFrom || !vm.minutesFrom || !vm.hoursTo || !vm.minutesTo) {
+      if (isNaN(vm.hoursFrom) || isNaN(vm.minutesFrom) || isNaN(vm.hoursTo) || isNaN(vm.minutesTo)) {
         vm.errorMessage = 'Error: Enter all data!';
       } else {
         vm.errorMessage = "";

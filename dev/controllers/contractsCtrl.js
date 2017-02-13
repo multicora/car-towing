@@ -68,7 +68,6 @@ function notifyProperty(property) {
                 return item && (item.tag === tag);
               });
               if ( notificationsWithTag.length === 0 ) {
-                console.log(notificationsWithTag);
                 notifyUser(property, timeForNotification[i].tag, res._id);
                 break;
               }

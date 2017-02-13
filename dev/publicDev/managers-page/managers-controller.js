@@ -34,7 +34,6 @@
     vm.monthInMilisecond = 2678258891;
     vm.blockingData = {};
 
-
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
         vm.message = 'Unfortunately we couldn\'t find your property.';
@@ -216,6 +215,7 @@
       vm.property.towingMatrix = JSON.stringify(vm.towingMatrix);
       propertiesService.updateTowingMatrix(vm.property._id, vm.property)
         .then(function(res) {
+          vm.confirmationTowing = "Towing matrix successfully saved!";
         });
     }
 

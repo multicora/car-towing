@@ -107,6 +107,7 @@
       vm.newProperty.towingMatrix = JSON.stringify(vm.towingMatrix);
       propertiesService.updateTowingMatrix(vm.newProperty._id, vm.newProperty)
         .then(function(res) {
+          vm.confirmationTowing = "Towing matrix successfully saved!";
         });
     };
 

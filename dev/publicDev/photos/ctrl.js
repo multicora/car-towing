@@ -5,16 +5,14 @@
 
   ctrl.$inject = [
     '$routeParams',
-    'propertiesService',
-    'AdminEmployeesService',
-    'emergencyTowingService'
+    'photoesService',
+    'AdminEmployeesService'
   ];
 
   function ctrl(
     $routeParams,
-    propertiesService,
-    AdminEmployeesService,
-    emergencyTowingService
+    photoesService,
+    AdminEmployeesService
   ) {
     var vm = this;
 
@@ -22,11 +20,11 @@
     vm.emergencyTowing = [];
 
     if ($routeParams.propertyId === "emergency_towing") {
-      emergencyTowingService.getEmergencyTowing().then(function(res) {
+      photoesService.getEmergencyTowing().then(function(res) {
         vm.emergencyTowing = res.data;
       });
     } else {
-      propertiesService.getPhotos($routeParams.propertyId).then(function (res) {
+      photoesService.getPhotos($routeParams.propertyId).then(function (res) {
         vm.photos = res.data;
 
         return vm.photos;

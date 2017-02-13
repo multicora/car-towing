@@ -11,9 +11,7 @@
     'propertiesService',
     'contractsService',
     'authService',
-    'decalService',
-    '$location',
-    '$scope'
+    'decalService'
   ];
 
 
@@ -23,9 +21,7 @@
     propertiesService,
     contractsService,
     authService,
-    decalService,
-    $location,
-    $scope
+    decalService
   ) {
     // TODO: figureout better propId solution
     var vm = this;

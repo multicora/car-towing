@@ -37,10 +37,16 @@ module.exports = function (server) {
         DAL.blocking.create(request.params.propertyId, request.payload, 
         function (err, docs) {
           DAL.properties.getById(request.params.propertyId, (err, property) => {
-            !err ? reply(towingBlockingService.sendNotification(
-              request.params.propertyId, property.name, 
-              request.auth.credentials.email
-            )) : reply(Boom.badImplementation(err));
+            if(!err) {
+              towingBlockingService.sendNotification(
+                request.params.propertyId, property.name, 
+                request.auth.credentials.email
+              ).then((success) => {
+                reply(success);
+              });
+            } else {
+              reply(Boom.badImplementation(err));
+            }
           });
         });
       }

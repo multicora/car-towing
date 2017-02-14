@@ -109,7 +109,7 @@ function notifyUser(property, term, contractId) {
 
 function sendEmail(user, message) {
   const mail = {
-    from: '"No-reply" <no.reply.ultimatetowing@gmail.com>', // sender address
+    from: "No-reply" + config.mail, // sender address
     to: user.email, // list of receivers
     subject: 'Contract expiration notification', // Subject line
     text: message, // plaintext body

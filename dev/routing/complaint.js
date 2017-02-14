@@ -20,7 +20,7 @@ module.exports = function (server) {
         request.payload.complaintMessage
       ].join('\n');
       const mail = {
-        from: '"No-reply" <no.reply.ultimatetowing@gmail.com>', // sender address
+        from: "No-reply" + config.mail, // sender address
         to: config.mail, // list of receivers
         subject: 'Complaint from ' + request.payload.name, // Subject line
         text: message, // plaintext body

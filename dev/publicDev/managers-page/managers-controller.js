@@ -11,8 +11,7 @@
     'propertiesService',
     'contractsService',
     'authService',
-    'decalService',
-    '$location'
+    'decalService'
   ];
 
 
@@ -22,8 +21,7 @@
     propertiesService,
     contractsService,
     authService,
-    decalService,
-    $location
+    decalService
   ) {
     // TODO: figureout better propId solution
     var vm = this;
@@ -33,7 +31,6 @@
     vm.property = null;
     vm.monthInMilisecond = 2678258891;
     vm.blockingData = {};
-
 
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
@@ -57,14 +54,15 @@
     }).then(function () {
       return contractsService.checkTime(vm.property._id);
     }).then(function (res) {
-      if (res.data <= vm.monthInMilisecond) {
-        vm.contractsTime = new Date(res.data).getUTCDate();
+      vm.contractsTime = res.data;
+      if (vm.contractsTime.timeToEnd <= vm.monthInMilisecond) {
+        vm.contractsTime.timeToEnd = new Date(res.data.timeToEnd).getUTCDate();
         vm.timeMeasure = 'days';
         vm.timeEndClass = 'redText';
       } else {
-        vm.contractsTime = new Date(res.data).getMonth();
+        vm.contractsTime.timeToEnd = new Date(res.data.timeToEnd).getMonth();
         vm.timeMeasure = 'month';
-        if (vm.contractsTime < 3) {
+        if (vm.contractsTime.timeToEnd < 3) {
           vm.timeEndClass = 'redText';
         }
       }
@@ -113,17 +111,53 @@
         });
     }
 
+    vm.hoursSelect = [];
+    vm.minutesSelect = [];
+
+    for (var i = 0; i < 24; i++) {
+      vm.hoursSelect.push(
+      {
+        text: (function () {
+          if (i < 10) {
+            return '0' + i;
+          } else {
+            return i;
+          }
+        })(),
+        value: i
+      })
+    }
+
+    for (var i = 0; i < 60; i++) {
+      vm.minutesSelect.push(
+      {
+        text: (function () {
+          if (i < 10) {
+            return '0' + i;
+          } else {
+            return i;
+          }
+        })(),
+        value: i
+      })
+    }
+
     vm.block = function() {
-      vm.blockingData.dateFrom = new Date(vm.dateFrom).setHours(new Date(vm.timeFrom).getHours());
-      vm.blockingData.dateFrom = new Date(vm.dateFrom).setMinutes(new Date(vm.timeFrom).getMinutes());
+      if (isNaN(vm.hoursFrom) || isNaN(vm.minutesFrom) || isNaN(vm.hoursTo) || isNaN(vm.minutesTo)) {
+        vm.errorMessage = 'Error: Enter all data!';
+      } else {
+        vm.errorMessage = "";
+        vm.blockingData.dateFrom = vm.dateFrom.setHours(vm.hoursFrom);
+        vm.blockingData.dateFrom = vm.dateFrom.setMinutes(vm.minutesFrom);
 
-      vm.blockingData.dateTo = new Date(vm.dateTo).setHours(new Date(vm.timeTo).getHours());
-      vm.blockingData.dateTo = new Date(vm.dateTo).setMinutes(new Date(vm.timeTo).getMinutes());
+        vm.blockingData.dateTo = vm.dateTo.setHours(vm.hoursTo);
+        vm.blockingData.dateTo = vm.dateTo.setMinutes(vm.minutesTo);
 
-      rulesDataService.blocking(vm.blockingData, vm.property._id)
-        .then(function() {
-          getBlocking(vm.property._id);
-        });
+        rulesDataService.blocking(vm.blockingData, vm.property._id)
+          .then(function() {
+            getBlocking(vm.property._id);
+          });
+      }
     }
 
     vm.unblocking = function(id) {
@@ -174,16 +208,17 @@
 
     // ****** END DECAL ******
 
-    // ****** TOWING MATRIX ******
+    // // ****** TOWING MATRIX ******
 
-    vm.saveTowingMatrix = function(form) {
+    vm.saveTowingMatrix = function() {
       vm.property.towingMatrix = JSON.stringify(vm.towingMatrix);
       propertiesService.updateTowingMatrix(vm.property._id, vm.property)
         .then(function(res) {
+          vm.confirmationTowing = "Towing matrix successfully saved!";
         });
     }
 
-    // ****** END TOWING MATRIX ******
+    // // ****** END TOWING MATRIX ******
   }
 
   managersCtrl.$inject = injections;

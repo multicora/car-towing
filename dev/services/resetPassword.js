@@ -14,7 +14,7 @@ module.exports = {
       DAL.users.updateResetToken(resetToken, email, function(err, res) {
         if (res) {
           const message = [
-            lettersStorage.letterNames.SetPasswordLetter + serverUrl + config.mail.resetLink + resetToken,
+            lettersStorage.letterNames.SetPasswordLetter + serverUrl + '/' + config.mail.resetLink + resetToken,
           ].join('\n');
 
           const mail = {

@@ -9,7 +9,7 @@
 
   function LoginController(authService, $location, TokenService, $http, $routeParams) {
     var vm = this;
-    var urlPrev = $routeParams.url_prev || '/';
+    var urlPrev = $routeParams.url_prev;
 
     vm.user = {
       login: '',

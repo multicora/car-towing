@@ -21,11 +21,13 @@
             LoadingService.hideSpinner();
 
             if (response.status == 401) {
-              if (!routingCheckingService.checkRouting($location.url())) {
-                $location.path('/login');
+              var url = $location.url();
+              console.log(url);
+              if (!routingCheckingService.checkRouting(url)) {
+                $location.path('/login' + url);
               }
             }
-            
+
             return response;
           }
       };

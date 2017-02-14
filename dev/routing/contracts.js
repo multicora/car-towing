@@ -16,12 +16,21 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
+        let term;
+        let notExpire = false;
+        if (request.payload.term === null) {
+          term = 0;
+          notExpire = true;
+        } else {
+          term = request.payload.term;
+        }
 
         DAL.contract.create({
           property: request.payload.property,
-          term: request.payload.term,
+          term: term,
+          notExpire: notExpire,
           notifyTerm: request.payload.notifyTerm,
-          activationDate: new Date,
+          activationDate: request.payload.activationDate,
           activationAuthor: request.auth.credentials._id
         }, function (err, res) {
           !err ? reply(res) : reply( Boom.badImplementation(err) );
@@ -49,12 +58,19 @@ module.exports = function (server) {
             return reply( Boom.badImplementation(err) );
           }
 
+          let notExpire;
           let now = new Date();
           let validContracts = res.map(function (contract) {
+
+            if (contract.notExpire) {
+              notExpire = true;
+            }
+
             let activationDate = new Date(contract.activationDate);
             return new Date(activationDate.getTime() + contract.term);
           }).filter(function (contract) {
-            return contract > now;
+
+            return notExpire || (contract > now);
           });
 
           reply( (validContracts.length > 0) ? true : false );
@@ -120,6 +136,24 @@ module.exports = function (server) {
           !err ? reply(contractsTimeCalculate.calculate(res)) : reply( Boom.badImplementation(err) );
         });
 
+      }
+    }
+  });
+
+  server.route({
+    method: 'DELETE',
+    path: '/api/contract/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['contracts:delete']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.contract.remove(request.params.id, function (err, docs) {
+          !err ? reply(docs) : reply(Boom.badImplementation(err));
+        });
       }
     }
   });

@@ -1,15 +1,16 @@
 header(class="{{className}}")
   div.navigation
-    a.home-button(href="#/" title="Home") Home
+    a.home-button(title="Home"
+      ng-click="vm.redirect('/')") Home
     a.login-button(
       title="Login"
-      href="#/login"
-      ng-if="!vm.user.name") Login
+      ng-click="vm.redirect('/login')"
+      ng-if="!vm.user.email") Login
     a.logout-button(
       title="Logout"
       ng-click="vm.logout()"
-      ng-if="vm.user.name") Logout
-  a(href="#/")
+      ng-if="vm.user.email") Logout
+  a(ng-click="vm.redirect('/')")
     img.logo(src="files/logo-280.png")
   div.contacts
     div.phone

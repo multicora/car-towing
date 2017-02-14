@@ -10,11 +10,6 @@
 
     function config($routeProvider) {
       $routeProvider
-        .when('/login/:url_prev', {
-          templateUrl: 'authorization/login.html',
-          controller: 'LoginController',
-          controllerAs: 'vm'
-        })
         .when('/login', {
           templateUrl: 'authorization/login.html',
           controller: 'LoginController',

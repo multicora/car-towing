@@ -22,9 +22,8 @@
 
             if (response.status == 401) {
               var url = $location.url();
-              console.log(url);
               if (!routingCheckingService.checkRouting(url)) {
-                $location.path('/login' + url);
+                $location.path('/login').search({param: url});
               }
             }
 

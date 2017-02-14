@@ -62,7 +62,7 @@
                 ng-show="vm.editMod"
                 ng-click="vm.removeProperty(vm.newProperty._id)") Delete property
             .photos-link
-              a(ng-href="#/photos/{{vm.newProperty._id}}") Photos
+              a(ng-click="redirect('/photos', vm.newProperty._id)") Photos
 
             //- Contracts
             .contracts-section(ng-show="vm.editMod")

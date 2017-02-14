@@ -15,7 +15,6 @@
     });
 
     $scope.redirect = function(url, urlParam) {
-      console.log(url, urlParam);
       if (urlParam) {
         return $location.path(url + '/' + urlParam);
       } else {

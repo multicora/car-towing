@@ -216,7 +216,6 @@
   position: relative;
   // TODO: fix name
   .pa-img-wrap {
-    display: block;
     position: relative;
     width: 150px;
     height: 150px;
@@ -249,6 +248,10 @@
     color:  #4d4d4d;
     font-size: 18px;
     height: 25px;
+  }
+
+  .emergency-link {
+    display: block;
   }
 
   .logo {

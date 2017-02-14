@@ -8,7 +8,7 @@
           p {{photo.updated}}
           p Driver {{photo.ownerNumber}}
         .photo(ng-repeat="photo in vm.emergencyTowing")
-          img(ng-src="{{photo}}")
+          img(ng-src="{{photo.photo}}")
           p Property: {{photo.propertyName}}
         .message(ng-if="!vm.photos.length && !vm.emergencyTowing.length")
           | No photos

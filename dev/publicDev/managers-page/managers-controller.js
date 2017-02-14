@@ -11,8 +11,7 @@
     'propertiesService',
     'contractsService',
     'authService',
-    'decalService',
-    '$location'
+    'decalService'
   ];
 
 
@@ -22,8 +21,7 @@
     propertiesService,
     contractsService,
     authService,
-    decalService,
-    $location
+    decalService
   ) {
     // TODO: figureout better propId solution
     var vm = this;
@@ -33,7 +31,6 @@
     vm.property = null;
     vm.monthInMilisecond = 2678258891;
     vm.blockingData = {};
-
 
     propertiesService.getUsersProperty(user._id).then(function (res) {
       if (!res) {
@@ -57,14 +54,15 @@
     }).then(function () {
       return contractsService.checkTime(vm.property._id);
     }).then(function (res) {
-      if (res.data <= vm.monthInMilisecond) {
-        vm.contractsTime = new Date(res.data).getUTCDate();
+      vm.contractsTime = res.data;
+      if (vm.contractsTime.timeToEnd <= vm.monthInMilisecond) {
+        vm.contractsTime.timeToEnd = new Date(res.data.timeToEnd).getUTCDate();
         vm.timeMeasure = 'days';
         vm.timeEndClass = 'redText';
       } else {
-        vm.contractsTime = new Date(res.data).getMonth();
+        vm.contractsTime.timeToEnd = new Date(res.data.timeToEnd).getMonth();
         vm.timeMeasure = 'month';
-        if (vm.contractsTime < 3) {
+        if (vm.contractsTime.timeToEnd < 3) {
           vm.timeEndClass = 'redText';
         }
       }
@@ -145,7 +143,7 @@
     }
 
     vm.block = function() {
-      if (!vm.hoursFrom || !vm.minutesFrom || !vm.hoursTo || !vm.minutesTo) {
+      if (isNaN(vm.hoursFrom) || isNaN(vm.minutesFrom) || isNaN(vm.hoursTo) || isNaN(vm.minutesTo)) {
         vm.errorMessage = 'Error: Enter all data!';
       } else {
         vm.errorMessage = "";
@@ -216,6 +214,7 @@
       vm.property.towingMatrix = JSON.stringify(vm.towingMatrix);
       propertiesService.updateTowingMatrix(vm.property._id, vm.property)
         .then(function(res) {
+          vm.confirmationTowing = "Towing matrix successfully saved!";
         });
     }
 

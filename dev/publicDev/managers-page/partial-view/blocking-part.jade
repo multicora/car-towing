@@ -3,8 +3,11 @@
     .row
       .long-block.font-regular
         span(ng-bind="'Welcome, ' + vm.managerName +'!'")
-        span.contractsTime(ng-bind="'Your contract will be expired in '+ vm.contractsTime + ' ' +vm.timeMeasure +' !'"
+        span.contractsTime(
+          ng-if="!vm.contractsTime.notExpire"
+          ng-bind="'Your contract will be expired in '+ vm.contractsTime.timeToEnd + ' ' +vm.timeMeasure +' !'"
           ng-class="vm.timeEndClass")
+        span.contractsTime(ng-if="vm.contractsTime.notExpire") Your contract time is not expire!
     form.row.form-group.font-small(name="blocking-form"
       ng-submit="vm.block(blocking-form)")
       .left-block

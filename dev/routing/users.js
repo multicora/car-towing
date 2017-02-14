@@ -40,7 +40,7 @@ module.exports = function (server) {
       },
       handler: function (request, reply) {
         let user = request.payload;
-        let serverUrl = request.headers.host;
+        let serverUrl = request.server.info.protocol + '://' +request.headers.host;
         let userEmail = request.payload.email;
         DAL.roles.getByName(Utils.rolesNames.driver, function (err, role) {
           user.roles = [];

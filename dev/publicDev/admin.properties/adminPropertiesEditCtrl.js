@@ -52,6 +52,10 @@
 
       propertiesService.getProperty(propId).then(function(success) {
         vm.newProperty = success.data;
+        if (vm.newProperty.towingMatrix) {
+          vm.towingMatrix = JSON.parse(vm.newProperty.towingMatrix);
+          vm.towingMatrix.date = new Date(vm.towingMatrix.date);
+        }
       }, function(error) {
         console.error(error);
       });
@@ -74,8 +78,8 @@
 
     }
 
-    vm.editProperty = function(id) {
-      propertiesService.update(id, vm.newProperty)
+    vm.editProperty = function() {
+      propertiesService.update(vm.newProperty._id, vm.newProperty)
         .then(function(success) {
           $location.path('/admin/properties');
         }, function(error) {
@@ -83,10 +87,36 @@
         }
       )};
 
-    vm.activateContract = function(propertyContractTerm) {
-      contractsService.activate(propId, propertyContractTerm);
-      getContacts();
+    vm.removeProperty = function (id) {
+      propertiesService.delete(id)
+      .then(function(success) {
+        $location.path('/admin/properties');
+      }, function(error) {
+        vm.errorMes = error.data.message;
+      });
+    }
+
+    vm.activateContract = function(propertyContractTerm, contractDateFrom) {
+      contractsService.activate(propId, propertyContractTerm, contractDateFrom)
+        .then(function(success) {
+          getContacts();
+        });
     };
+
+    vm.saveTowingMatrix = function() {
+      vm.newProperty.towingMatrix = JSON.stringify(vm.towingMatrix);
+      propertiesService.updateTowingMatrix(vm.newProperty._id, vm.newProperty)
+        .then(function(res) {
+          vm.confirmationTowing = "Towing matrix successfully saved!";
+        });
+    };
+
+    vm.deactivateContract = function(contractId) {
+      contractsService.deactivate(contractId)
+        .then(function(success) {
+          getContacts();
+        });
+    }
 
     $scope.convertToBase64 = function(event){
       var f = document.getElementById('file').files[0],
@@ -103,10 +133,13 @@
   function parseContract(contract) {
     let activationDate = new Date(contract.activationDate);
     let endDate = new Date(activationDate.getTime() + contract.term);
-    
+    let notExpire;
+
     return {
+      id: contract._id,
       activationDate: activationDate.toLocaleString(),
-      endDate: endDate.toLocaleString()
+      endDate: endDate.toLocaleString(),
+      notExpire: contract.notExpire
     };
   }
 })(angular);

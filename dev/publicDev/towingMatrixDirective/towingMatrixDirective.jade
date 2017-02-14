@@ -1,164 +1,172 @@
-.towing-matrix-part.main-border-bottom
-  .big-indent-bottom.big-indent-top
+.towing-matrix
+  .big-indent-top
     .row
       .title.font-small
         .bold-title Property Towing Matrix
       .form-container.font-small
-        form.towing-matrix-form(name="property-matrix-form"
-          ng-submit="vm.saveTowingMatrix(property-matrix-form)")
+        form.towing-matrix-form()
           input.form-control(type="text"
             placeholder="Property name"
-            ng-model="vm.towingMatrix.propertyName")
+            ng-model="matrix.propertyName")
           .expiration-data-container
             span Expiration data
             input.form-control.date(type="date"
-              ng-model="vm.towingMatrix.date")
+              ng-model="matrix.date")
           .place
             label
               input(type="radio"
                 name="place"
                 value="City"
-                ng-model="vm.towingMatrix.place")
+                ng-model="matrix.place")
               span.city City
             label
               input(type="radio"
                 name="place"
                 value="Country"
-                ng-model="vm.towingMatrix.place")
+                ng-model="matrix.place")
               span Country
           input.form-control(type="text"
+            placeholder="Emergency contact number"
+            ng-model="matrix.EmergencyContractNumber")
+          input.form-control(type="text"
+            placeholder="Emergency contact name"
+            ng-model="matrix.EmergencyContractName")
+          input.form-control(type="text"
             placeholder="Hook-Up $"
-            ng-model="vm.towingMatrix.HookUp")
+            ng-model="matrix.HookUp")
           input.form-control(type="text"
             placeholder="Property address"
-            ng-model="vm.towingMatrix.propertyAddress")
+            ng-model="matrix.propertyAddress")
           input.form-control(type="text"
             placeholder="ZIP code"
-            ng-model="vm.towingMatrix.ZIPcode")
+            ng-model="matrix.ZIPcode")
           .roam-container
             span.roam-title Roam
             label
               input(type="radio"
                 name="roam"
                 value="No"
-                ng-model="vm.towingMatrix.roam")
+                ng-model="matrix.roam")
               span.roam-text No
             label
               input(type="radio"
                 name="roam"
                 value="Yes"
-                ng-model="vm.towingMatrix.roam")
+                ng-model="matrix.roam")
               span.roam-text Yes
           input.form-control(type="text"
             name="MCLPN"
             placeholder="MCLPN (office use only)"
-            ng-model="vm.towingMatrix.MCLPN")
+            ng-model="matrix.MCLPN")
           .day
             span 24/7
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.monday")
+                ng-model="matrix.monday")
               span Mon
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.tuesday")
+                ng-model="matrix.tuesday")
               span Tue
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.wednesday")
+                ng-model="matrix.wednesday")
               span Wed
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.thurday")
+                ng-model="matrix.thurday")
               span Thu
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.friday")
+                ng-model="matrix.friday")
               span Fri
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.saturday")
+                ng-model="matrix.saturday")
               span Sat
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.sunday")
+                ng-model="matrix.sunday")
               span Sun
           p Roam reasons:
           input.form-control(type="text"
             placeholder="No or Exp.Decal/Type"
-            ng-model="vm.towingMatrix.ExpDecalType")
+            ng-model="matrix.ExpDecalType")
           input.form-control(type="text"
             placeholder="Grace Days"
-            ng-model="vm.towingMatrix.graceDays")
+            ng-model="matrix.graceDays")
           input.form-control(type="text"
             placeholder="No or Exp Visitor Pass/ Grace Minutes"
-            ng-model="vm.towingMatrix.passGraceMinutes")
+            ng-model="matrix.passGraceMinutes")
           input.form-control(type="text"
             placeholder="Visitor Pass Type"
-            ng-model="vm.towingMatrix.visitorPassType")
+            ng-model="matrix.visitorPassType")
           input.form-control(type="text"
             placeholder="Hand-Written Notes"
-            ng-model="vm.towingMatrix.handWrittenNotes")
+            ng-model="matrix.handWrittenNotes")
           input.form-control(type="text"
             placeholder="No or Exp Tag / Grace Days"
-            ng-model="vm.towingMatrix.tagGraceDays")
+            ng-model="matrix.tagGraceDays")
           input.form-control(type="text"
             placeholder="Flat Tire / Grace Days"
-            ng-model="vm.towingMatrix.tireGraceDays")
+            ng-model="matrix.tireGraceDays")
           .reasons-container
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.onGtass")
+                ng-model="matrix.onGtass")
               span On-Grass
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.fireLane")
+                ng-model="matrix.fireLane")
               span Fire Lane
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.noParkZone")
+                ng-model="matrix.noParkZone")
               span No Park Zone
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.handicap")
+                ng-model="matrix.handicap")
               span Handicap
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.failureToPay")
+                ng-model="matrix.failureToPay")
               span Failure to Pay
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.jacks")
+                ng-model="matrix.jacks")
               span Jacks
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.backedIn")
+                ng-model="matrix.backedIn")
               span Backed-In
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.scooter")
+                ng-model="matrix.scooter")
               span Scooter
             label
               input(type="checkbox"
                 value="true"
-                ng-model="vm.towingMatrix.futureResidental")
+                ng-model="matrix.futureResidental")
               span Future Residental Parking After Hours
           textarea.form-control.notes(placeholder="Notes / Special Circumstances"
-            ng-model="vm.towingMatrix.notes")
+            ng-model="matrix.notes")
           .button-container
-            button.btn.btn-submit(type="submit") Save changes
+            button.btn.btn-submit(
+              type="button"
+              ng-click="saveMatrix()") Save changes
+          p.confirmation {{confirmation}}

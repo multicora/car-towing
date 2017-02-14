@@ -6,16 +6,19 @@
   service.$inject = ['$http', 'TokenService'];
   function service ($http, TokenService) {
     return {
-      activate: function(propertyId, term) {
+      activate: function(propertyId, term, activationDate) {
         var date = new Date();
         var notifyTerm;
 
         date.setMonth(date.getMonth() - 1);
+
         notifyTerm = Date.now() - date.getTime();
+        activationDate = activationDate.getTime();
 
         return $http.post('/api/contract', {
           property: propertyId,
           term: term,
+          activationDate: activationDate,
           notifyTerm: notifyTerm
         }, {
           headers: {
@@ -39,6 +42,12 @@
       },
       getTerms: function () {
         return [
+          {
+            text: 'Not Expire',
+            value: (function () {
+              return null;
+            })()
+          },
           {
             text: '1 month',
             value: (function () {
@@ -108,7 +117,14 @@
             }
           }
         );
-      }
+      },
+      deactivate: function(id) {
+        return $http.delete('/api/contract/' + id, {
+          headers: {
+            Authorization: TokenService.getTokenName() + ' ' + TokenService.getToken()
+          }
+        });
+      },
     };
   }
 

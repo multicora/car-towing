@@ -40,7 +40,7 @@ div.properties
           button( ng-click="letter=''") ALL
       .row.propertiesList
         a.propertiesLine.col-md-12(
-          href="#/property/{{property._id}}"
+          ng-click="redirect('/property', property._id)"
           ng-repeat="property in vm.properties | startWithLetter:letter")
           .adress {{ property.address }}
           .name {{ property.name }}

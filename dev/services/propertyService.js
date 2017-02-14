@@ -14,7 +14,7 @@ module.exports = {
         ].join('\n');
       } else {
         message = [
-          'Confirm your property login and set your password: ' + 'https://' + serverUrl + '/#/' + link
+          'Confirm your property login and set your password: ' + serverUrl + '/#/' + link
         ].join('\n');
       }
 

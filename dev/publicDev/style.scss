@@ -1,0 +1,165 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url('files/open_sans/opensans-regular-webfont.eot');
+  src: url('files/open_sans/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('files/open_sans/opensans-regular-webfont.woff2') format('woff2'),
+  url('files/open_sans/opensans-regular-webfont.woff') format('woff'),
+  url('files/open_sans/opensans-regular-webfont.ttf') format('truetype'),
+  url('files/open_sans/opensans-regular-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  min-width: 318px;
+  color: #1c1b1b;
+}
+
+.properties,
+.property-page,
+.managers-page,
+.reset-password,
+.new-password,
+.login-page,
+.towed-car-page,
+.decal,
+.complaint,
+.parking-problem-page {
+  background-image: url(files/background.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.admin-page, .managers-page {
+  .container {
+    width: 1366px;
+    margin: auto;
+  }
+}
+
+// reusable blocks______________________________________________________
+.bold-title {
+  font-weight: 600;
+}
+
+// .clearfix:after {
+//   content: "";
+//   display: table;
+//   clear: both;
+// }
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.min-indent-bottom {
+  padding-bottom: 5px;
+}
+.main-indent-bottom {
+  padding-bottom: 15px;
+}
+.big-indent-bottom {
+  padding-bottom: 25px;
+}
+.main-indent-top {
+  padding-top: 15px;
+}
+.big-indent-top {
+  padding-top: 25px;
+}
+
+.main-indent-left {
+  padding-left: 50px;
+}
+.main-indent-right {
+  padding-right: 50px;
+}
+
+.main-border-bottom {
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+input {
+  outline: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+// fonts__________________________________________________________________
+html, body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: #4D4D4D;
+}
+
+.font-regular {
+  font-size: 26px;
+}
+.font-small {
+  font-size: 20px;
+}
+.font-big {
+  font-size: 30px;
+}
+
+// controls__________________________________________________________________
+.btn {
+  &.btn-circle {
+    border-radius: 50%;
+    margin-right: 15px;
+    padding: 0;
+    width: 35px;
+  }
+
+  &.btn-submit {
+    border-radius: 6px;
+    border-width: 0px; 
+    background-color:  #3191d8;
+    color:  #ffffff;
+    font-size: 18px;
+  }
+  &.btn-submit:focus {
+    outline: none;
+    background-color: #2774ac;
+  }
+
+  &.btn-submit:hover {
+    background-color: #7fbbe6;
+  }
+}
+
+.btn[disabled] {
+  cursor: default;
+}
+
+// TODO: visitors counter temporary styles
+.visitors {
+  bottom: 0;
+  left: 10px;
+  color: black;
+  font-size: 8px;
+  padding: 4px;
+  position: absolute;
+  border: 3px solid #fff;
+  background: #858c96;
+  color: #fff;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(133,140,150,1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(133,140,150,1);
+  box-shadow: 0px 0px 5px 0px rgba(133,140,150,1);
+
+  p {
+    margin: 0;
+  }
+}

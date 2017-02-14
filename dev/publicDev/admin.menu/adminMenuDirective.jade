@@ -1,6 +1,6 @@
 div.menu
-  a(href="#/admin/properties" title="Properties") Properties
-  a(href="#/admin/got_towed" title="Been towad page") Been towed page
-  a(href="#/admin/parking_problem" title="Parking problem page") Parking problem page
-  a(title="Training materials") Training materials
-  a(href="#/admin/employees" title="Employees") Employees
+  a(ng-click="redirect('/admin/properties')" title="Properties") Properties
+  a(ng-click="redirect('/admin/got_towed')" title="Been towad page") Been towed page
+  a(ng-click="redirect('/admin/parking_problem')" title="Parking problem page") Parking problem page
+  a(ng-click="redirect('Training materials')") Training materials
+  a(ng-click="redirect('/admin/employees')") Employees

@@ -6,17 +6,21 @@ div.main-page
       .borderRight
       .buttons-container
         .leftButton
-          a.button(href="#/properties" title="Need info?") 
+          a.button(ng-click="redirect('/properties')"
+            title="Need info?") 
             p.title NEED INFO?
             p.subTitle Parking rules & regulation
-          a.button(href="#/towed_car" title="Got towed?")
+          a.button(ng-click="redirect('/towed_car')"
+            title="Got towed?")
             p.title GOT TOWED?
             p.subTitle Rates & Policies & Direction
         .rightButton
-          a.button(href="#/parking_problem" title="Parking problem?") 
+          a.button(ng-click="redirect('/parking_problem')"
+            title="Parking problem?") 
             p.title PARKING PROBLEM?
             p.subTitle We can help
-          a.button(href="#/complaint" title="Complaint?") 
+          a.button(ng-click="redirect('/complaint')"
+            title="Complaint?") 
             p.title COMPLAINT?
             p.subTitle We care
         footer-directive

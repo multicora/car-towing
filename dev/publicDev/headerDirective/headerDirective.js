@@ -30,7 +30,6 @@ var HeaderController = function(TokenService, $location, authService, $timeout) 
   };
 
   vm.redirect = function(url, urlParam) {
-    console.log(url, urlParam);
     if (urlParam) {
       return $location.path(url + '/' + urlParam);
     } else {

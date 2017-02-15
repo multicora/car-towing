@@ -5,9 +5,23 @@
     .module('Authorization')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['authService', '$location', 'TokenService', '$http', '$routeParams'];
+  LoginController.$inject = [
+    'authService',
+    '$location',
+    'TokenService',
+    '$http',
+    '$routeParams',
+    'UserCheckingService'
+  ];
 
-  function LoginController(authService, $location, TokenService, $http, $routeParams) {
+  function LoginController(
+    authService,
+    $location,
+    TokenService,
+    $http,
+    $routeParams,
+    UserCheckingService
+  ) {
     var vm = this;
     var urlPrev = $location.search().param;
 
@@ -32,10 +46,10 @@
             authService.setUser(success.data);
             TokenService.setToken(success.data.token);
             $http.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
+            authService.redirectByRole(success.data.roles);
             if (urlPrev) {
               $location.path(urlPrev).search('param', null);
             } else {
-              redirectByRole(success.data.roles, urlPrev);
             }
             vm.errorMes = '';
           } else {
@@ -70,26 +84,6 @@
           }
         }
       );
-    }
-
-    function redirectByRole(roles) {
-      var map = {
-        'admin': '/admin',
-        'property-manager': '/managers-page'
-      };
-      var pathArray = roles.map(function (role) {
-        return role.name;
-      }).map(function (name) {
-        return map[name];
-      }).filter(function (mapRole) {
-        return mapRole;
-      });
-
-      if (pathArray.length > 0) {
-        $location.path(pathArray[0]);
-      } else {
-        $location.path('/').search('param', null);
-      }
     }
   }
 })();

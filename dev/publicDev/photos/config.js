@@ -21,7 +21,7 @@
         controller: 'photosCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_PHOTOS_PAGE)
+          resolver: resolver.get(userActions.SEE_PHOTOS_PAGE, '/photos/:propertyId')
         }
       });
     }

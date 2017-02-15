@@ -88,7 +88,7 @@
       if (pathArray.length > 0) {
         $location.path(pathArray[0]);
       } else {
-        $location.path('/');
+        $location.path('/').search('param', null);
       }
     }
   }

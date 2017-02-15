@@ -21,10 +21,7 @@
             var roles = res[1].data;
             authService.setUser(res[0].data);
 
-            console.log($location.path(), path);
-
             if (action && !UserCheckingService.checkUser(user, roles, action) && $location.path() === path) {
-              console.log(11111);
               authService.redirectByRole(user.roles);
             }
             resolve();

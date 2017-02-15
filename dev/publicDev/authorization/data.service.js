@@ -65,7 +65,6 @@
         return mapRole;
       });
 
-      console.log(pathArray, 'pathArray');
       if (pathArray.length > 0) {
         $location.path(pathArray[0]);
       } else {

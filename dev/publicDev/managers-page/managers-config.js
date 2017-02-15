@@ -19,7 +19,7 @@
     var resolver = resolverProvider.$get();
 
     managersRoute.route.resolve = {
-      resolver: resolver.get(userActions.SEE_MANAGER_PAGE)
+      resolver: resolver.get(userActions.SEE_MANAGER_PAGE, managersRoute.path)
     };
 
     $routeProvider.when(managersRoute.path, managersRoute.route);

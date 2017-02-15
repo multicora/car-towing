@@ -46,10 +46,10 @@
             authService.setUser(success.data);
             TokenService.setToken(success.data.token);
             $http.defaults.headers.common['X-CART-Token'] = TokenService.getToken();
-            authService.redirectByRole(success.data.roles);
             if (urlPrev) {
               $location.path(urlPrev).search('param', null);
             } else {
+              authService.redirectByRole(success.data.roles);
             }
             vm.errorMes = '';
           } else {

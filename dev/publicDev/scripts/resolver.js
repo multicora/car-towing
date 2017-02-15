@@ -22,7 +22,7 @@
             authService.setUser(res[0].data);
 
             if (action && !UserCheckingService.checkUser(user, roles, action) && $location.path() === path) {
-              authService.redirectByRole(roles);
+              authService.redirectByRole(user.roles);
             }
             resolve();
           },

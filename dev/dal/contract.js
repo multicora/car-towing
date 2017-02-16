@@ -26,6 +26,9 @@ const schema = new Schema({
   notifyTerm: {
     type: Number,
     required: true
+  },
+  notExpire: {
+    type: Boolean
   }
 });
 

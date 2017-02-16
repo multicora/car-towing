@@ -12,7 +12,7 @@ var app = angular.module('app');
         templateUrl: 'admin.got-towed/admin.got-towed.html',
         controller: 'AdminGotTowedController as vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, '/admin/got_towed')
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/admin\/got_towed/)
         }
       }
     );

@@ -14,7 +14,7 @@
         controller: 'AdminEmployeesController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/admin\/employees/)
         }
       })
       .when('/admin/employees/edit', {
@@ -22,7 +22,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/admin\/employees\/edit/)
         }
       })
       .when('/admin/employees/edit/:id', {
@@ -30,7 +30,7 @@
         controller: 'userEditController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/admin\/employees\/edit\/[a-zA-Z0-9]+/)
         }
       });
     }

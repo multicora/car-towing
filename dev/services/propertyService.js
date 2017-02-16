@@ -14,10 +14,9 @@ module.exports = {
         ].join('\n');
       } else {
         message = [
-          'Confirm your property login and set your password: ' + serverUrl + '#/' + link
+          'Confirm your property login and set your password: ' + serverUrl + '/#/' + link
         ].join('\n');
       }
-
 
     return new Promise((resolve, reject) => {
 

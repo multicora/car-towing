@@ -12,7 +12,7 @@
         controller: 'AdminParkingProblemController',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/admin\/parking_problem/)
         }
       }
     );

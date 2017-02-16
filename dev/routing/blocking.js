@@ -63,7 +63,7 @@ module.exports = function (server) {
           DAL.properties.getById(request.params.propertyId, (err, property) => {
             if(!err) {
               towingBlockingService.sendNotification(
-                request.params.propertyId, property.name, 
+                request.params.propertyId, property.name,
                 request.auth.credentials.email
               ).then((success) => {
                 reply(success);

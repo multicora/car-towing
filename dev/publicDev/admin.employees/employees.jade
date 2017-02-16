@@ -7,7 +7,7 @@
         .title-container
           h2.title List of drivers
         .addDriver-container
-          a.btn.btn-submit.addDriver(href="#/admin/employees/edit")
+          a.btn.btn-submit.addDriver(ng-click="redirect('/admin/employees/edit')")
             img(src="files/add-property.png")
             span Add driver
       .employees-content
@@ -20,6 +20,8 @@
           p.ellipsis.name(ng-bind="user.name") Name
           p.ellipsis.email(ng-bind="user.email") Email
           .buttons
-            a.btn.btn-submit.edit(type="button" href="#/admin/employees/edit/{{user._id}}") Edit
+            a.btn.btn-submit.edit(
+              type="button" 
+              ng-click="redirect('/admin/employees/edit', user._id)") Edit
             button.btn.btn-submit.block(type="button" ng-if="!user.blocked" ng-click="vm.blockUser(user._id)") Block
             button.btn.btn-submit.block.unblock(type="button" ng-if="user.blocked" ng-click="vm.unBlockUser(user._id)") Unblock

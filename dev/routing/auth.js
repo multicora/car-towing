@@ -29,7 +29,7 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        resetPasswordService.resetPassword(request.payload.email, request.headers.referer).then((res) => {
+        resetPasswordService.resetPassword(request.payload.email, request.headers.host).then((res) => {
           reply (res);
         }, (err) => {
           reply (Boom.badImplementation('Server error', err));

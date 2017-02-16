@@ -89,4 +89,21 @@ module.exports = function (server) {
       }
     }
   });
+  server.route({
+    method: 'PUT',
+    path: '/api/blocking/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['blocking:edit']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.blocking.edit(request.params.id, request.payload, function (err, docs) {
+          !err ? reply(docs) : reply(Boom.badRequest(err));
+        });
+      }
+    }
+  });
 };

@@ -63,7 +63,6 @@ module.exports = function (server) {
         DAL.blocking.create(request.params.propertyId, request.payload, 
         function (err, docs) {
           DAL.properties.getById(request.params.propertyId, (err, property) => {
-
             if(!err) {
               towingBlockingService.sendNotification(
                 request.params.propertyId, property.name,

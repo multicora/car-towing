@@ -54,5 +54,24 @@
         });
       }
     }
+
+    $scope.convertToBase64 = function(event) {
+      var f = document.getElementById('file').files[0],
+          r = new FileReader(),
+          size = (f.size >= 1048576),
+          type = (f.type.indexOf('image') >= 0);
+      if (size || !type) {
+        vm.fileError = 'File is too large or isn`t image, please choose another file!';
+      } else {
+        vm.fileError = '';
+        r.onloadend = function(e) {
+          // TODO: converted to base64 image
+          vm.newProperty.logo = e.target.result;
+          $scope.$digest();
+        }
+        r.readAsDataURL(f);
+      }
+      $scope.$apply();
+    }
   }
 })(angular);

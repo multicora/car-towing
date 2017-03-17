@@ -53,7 +53,7 @@ module.exports = function (server) {
                 reply(Boom.badImplementation(err));
               })
             } else {
-              reply(Boom.badImplementation(err));
+              reply(Boom.badData('Email alredy used!', err));
             }
           });
         });

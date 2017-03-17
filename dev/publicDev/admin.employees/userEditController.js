@@ -18,15 +18,23 @@
         });
       vm.save = function() {
         AdminEmployeesService.editUser(userId, vm.user)
-          .then(function() {
-            $location.path('/admin/employees');
+          .then(function(res) {
+            if (res.data.statusCode != 200) {
+              vm.error = res.data.message;
+            } else {
+              $location.path('/admin/employees');
+            }
           });
       };
      } else {
        vm.save = function() {
          AdminEmployeesService.add(vm.user)
-          .then(function() {
-            $location.path('/admin/employees');
+          .then(function(res) {
+            if (res.data.statusCode != 200) {
+              vm.error = res.data.message;
+            } else {
+              $location.path('/admin/employees');
+            }
           });
        };
      }

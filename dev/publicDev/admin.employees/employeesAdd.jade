@@ -25,6 +25,7 @@
               ng-model="vm.user.number"
               maxlength="3"
               required)
+            p(ng-bind="vm.error")
             div
               button.btn.btn-submit.add(
                 type="submit"

@@ -90,7 +90,18 @@ module.exports = function (server) {
     path: '/uploads/{fileName*}',
     config: {
       handler: function (request, reply) {
-        reply.file(path.resolve(__dirname, './../../uploads/') + '/' + request.params.fileName);
+        const pathExists = require('path-exists');
+
+        let filePath = path.resolve(__dirname, './../../uploads/') + '/' + request.params.fileName;
+
+        pathExists(filePath).then(exists => {
+          if (exists) {
+            reply.file(filePath);
+          } else {
+            filePath = path.resolve(__dirname, './../uploads/') + '/' + request.params.fileName;
+            reply.file(filePath);
+          }
+        });
       }
     }
   });

@@ -17,6 +17,10 @@ var HeaderController = function(TokenService, $location, authService, $timeout) 
     }, 5000);
   }
 
+  vm.login = function() {
+    $location.path('/login' + $location.path());
+  }
+
   vm.logout = function() {
     authService.setUser(null);
     vm.user = null;
@@ -24,6 +28,14 @@ var HeaderController = function(TokenService, $location, authService, $timeout) 
     vm.isShownLogoutPopup = true;
     closeTimeout();
   };
+
+  vm.redirect = function(url, urlParam) {
+    if (urlParam) {
+      return $location.path(url + '/' + urlParam);
+    } else {
+      return $location.path(url);
+    }
+  }
 };
 
 HeaderController.$inject = ['TokenService', '$location', 'authService', '$timeout'];

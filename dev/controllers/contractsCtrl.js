@@ -55,7 +55,7 @@ function notifyProperty(property) {
   ];
 
   return getLatectContract(property.id).then(function (res) {
-    if (res) {
+    if (res && !res.notExpire) {
       getNotifications(property.id, res._id, timeForNotification).then(function (notifications) {
         try {
           let time = contractsTimeCalculate.calculate([res]);
@@ -109,7 +109,7 @@ function notifyUser(property, term, contractId) {
 
 function sendEmail(user, message) {
   const mail = {
-    from: '"No-reply" <no.reply.ultimatetowing@gmail.com>', // sender address
+    from: "No-reply" + config.mail, // sender address
     to: user.email, // list of receivers
     subject: 'Contract expiration notification', // Subject line
     text: message, // plaintext body
@@ -140,7 +140,7 @@ function getLatectContract(propId) {
         });
         latestDate = res[latestIndex];
         res.forEach(function (item, index) {
-          if (item.endDate > latestDate) {
+          if (item.notExpire || (item.endDate > latestDate)) {
             latestIndex = index;
             latestDate = item.endDate;
           }

@@ -14,7 +14,7 @@
         controller: 'adminPropertiesCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/admin\/properties/)
         }
       })
       .when('/admin/properties/add', {
@@ -22,7 +22,7 @@
         controller: 'adminPropertiesCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/admin\/properties\/add/)
         }
       })
       .when('/admin/properties/edit/:id', {
@@ -30,7 +30,7 @@
         controller: 'adminPropertiesEditCtrl',
         controllerAs: 'vm',
         resolve: {
-          resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+          resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/admin\/properties\/edit\/[a-zA-Z0-9]+/)
         }
       });
     }

@@ -62,7 +62,7 @@
                 ng-show="vm.editMod"
                 ng-click="vm.removeProperty(vm.newProperty._id)") Delete property
             .photos-link
-              a(ng-href="#/photos/{{vm.newProperty._id}}") Photos
+              a(ng-click="redirect('/photos', vm.newProperty._id)") Photos
 
             //- Contracts
             .contracts-section(ng-show="vm.editMod")
@@ -72,8 +72,9 @@
                   td End date
                 tr.contract(ng-repeat="contract in vm.contracts")
                   td {{contract.activationDate}}
-                  td {{contract.endDate}}
                   td
+                    p.end-date(ng-if="!contract.notExpire") {{contract.endDate}}
+                    p.end-date(ng-if="contract.notExpire") Not Expire
                     button.deactivate-contract(ng-click="vm.deactivateContract(contract.id)") deactivate
               .new-contract
                 | Please choose term: 
@@ -85,7 +86,7 @@
                   type="date"
                   ng-model="vm.contractDateFrom")
                 button.activate-button(
-                  ng-disabled="!vm.propertyContractTerm || !vm.contractDateFrom"
+                  ng-disabled="!vm.propertyContractTerm && !vm.contractDateFrom"
                   ng-click="vm.activateContract(vm.propertyContractTerm, vm.contractDateFrom)")
                   | Activate contract
             towing-matrix(

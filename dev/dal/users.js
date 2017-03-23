@@ -116,6 +116,13 @@ const users = {
         err ? reject(err) : resolve(docs);
       });
     });
+  },
+  remove: (id, cb) => {
+    return new Promise(function (resolve, reject) {
+      model.findOneAndRemove({_id: id}, function (err) {
+        err ? reject(err) : resolve();
+      });
+    });
   }
 };
 

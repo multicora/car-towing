@@ -29,6 +29,28 @@ module.exports = function (server) {
   });
 
   server.route({
+    method: 'DELETE',
+    path: '/api/users/{id}',
+    config: {
+      auth: 'simple',
+      plugins: {
+        hapiRouteAcl: {
+          permissions: ['users:delete']
+        }
+      },
+      handler: function (request, reply) {
+        DAL.users.remove(request.params.id).then(
+          () => {
+            reply();
+          }, (err) => {
+            reply(Boom.badImplementation(err, err));
+          }
+        );
+      }
+    }
+  });
+
+  server.route({
     method: 'POST',
     path: '/api/drivers',
     config: {

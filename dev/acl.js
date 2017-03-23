@@ -43,6 +43,7 @@ const permissionsFunc = function(credentials, callback) {
       delete: hasRole('admin') || hasRole('property-manager')
     },
     users: {
+      delete: hasRole('admin'),
       create: hasRole('admin'),
       write: hasRole('admin'),
       read: hasRole('admin') || hasRole('property-manager'),

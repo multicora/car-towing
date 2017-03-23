@@ -125,7 +125,6 @@
           type = (f.type.indexOf('image') >= 0);
       if (size || !type) {
         vm.fileError = 'File is too large or isn`t image, please choose another file!';
-        console.log(vm.fileError);
       } else {
         vm.fileError = '';
         r.onloadend = function(e) {
@@ -135,6 +134,7 @@
         }
         r.readAsDataURL(f);
       }
+      $scope.$apply();
     }
   }
 

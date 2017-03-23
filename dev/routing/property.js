@@ -230,4 +230,14 @@ module.exports = function (server) {
       }
     }
   });
+
+  server.route({
+    method: 'GET',
+    path: '/api/emergency_towing',
+    handler: function (request, reply) {
+      DAL.emergencyTow.get(function (err, docs) {
+        !err ? reply(docs) : reply(Boom.badImplementation(err));
+      });
+    }
+  });
 };

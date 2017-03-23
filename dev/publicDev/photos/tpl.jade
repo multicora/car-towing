@@ -4,7 +4,7 @@
       header-directive
       .content-padding
         .photo(ng-repeat="photo in vm.photos")
-          img(ng-src="{{photo}}")
+          img(ng-src="{{photo.url}}")
           p {{photo.updated}}
           p Driver {{photo.ownerNumber}}
         .photo(ng-repeat="photo in vm.emergencyTowing")

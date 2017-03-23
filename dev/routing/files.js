@@ -59,14 +59,20 @@ module.exports = function (server) {
         }
       },
       handler: function (request, reply) {
-        DAL.files.getByPropertyId(request.params.propId, function (err, res) {
-          const filesPromises = res.map(function (fileData) {
+        DAL.files.getByPropertyId(request.params.propId, function (err, fileDataArray) {
+          const filesPromises = fileDataArray.map(function (fileData) {
             return files.getFile(fileData.fileId);
           });
 
           Promise.all(filesPromises).then(
             (res) => {
-              res = res.filter( item => !!item);
+              res = res.map( (url, index) => {
+                return {
+                  url: url,
+                  ownerId: fileDataArray[index].ownerId,
+                  updated: fileDataArray[index].updated
+                }
+              }).filter( item => !!item);
 
               reply(res);
             },
@@ -84,7 +90,7 @@ module.exports = function (server) {
     path: '/uploads/{fileName*}',
     config: {
       handler: function (request, reply) {
-        reply.file(path.resolve(__dirname, './../uploads/') + '/' + request.params.fileName);
+        reply.file(path.resolve(__dirname, './../../uploads/') + '/' + request.params.fileName);
       }
     }
   });

@@ -28,10 +28,10 @@
 
       $ionicPlatform.ready(function () {
         var db = $cordovaSQLite.openDB({ name: "ultimateTowing.db", location: 'default' });
-        var query = "INSERT INTO photos (data, property, location, isEmergency) VALUES (?, ?, ?, ?)";
+        var query = "INSERT INTO photos (data, property, location, isEmergency, datetime) VALUES (?, ?, ?, ?, ?)";
 
         return $cordovaSQLite.execute(db, createQuery).then(function(res) {
-          return $cordovaSQLite.execute(db, query, [imageData, property, location, isEmergency]);
+          return $cordovaSQLite.execute(db, query, [imageData, property, location, isEmergency, (new Date()).getTime()]);
         }).then(function (data) {
           deferred.resolve(data);
         });
@@ -70,12 +70,13 @@
       return deferred.promise;
     };
 
-    this.uploadTowingPhoto = function (data, propertyId) {
+    this.uploadTowingPhoto = function (data, propertyId, datetime) {
       return $http.post(
         config.url + "/api/towing",
         {
           fileData: data,
-          propertyId: propertyId
+          propertyId: propertyId,
+          datetime: datetime
         }
       );
     };
@@ -151,7 +152,7 @@
 
     function sendPhoto(photo) {
       if (photo.isEmergency !== 'true') {
-        return _this.uploadTowingPhoto(photo.data, photo.property);
+        return _this.uploadTowingPhoto(photo.data, photo.property, photo.datetime);
       } else {
         return _this.uploadEmergencyTowingPhoto(photo.data, photo.property, photo.location);
       }

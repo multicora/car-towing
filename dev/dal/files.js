@@ -20,9 +20,8 @@ const schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'property'
   },
-  updated:  {
-    type: Date,
-    default: Date.now
+  updated: {
+    type: Date
   }
 });
 
@@ -36,11 +35,12 @@ model.on('index', function(error) {
 });
 
 module.exports = {
-  save: (fileId, ownerId, propertyId, cb) => {
+  save: (fileId, ownerId, propertyId, updated, cb) => {
     let inst = new model({
       fileId: fileId,
       ownerId: ownerId,
-      property: propertyId
+      property: propertyId,
+      updated: updated
     });
 
     inst.save(cb)

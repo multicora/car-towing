@@ -30,15 +30,21 @@ module.exports = function (server) {
       handler: function (request, reply) {
         files.setFile(request, function (err, fileId) {
           if (!err) {
-            DAL.files.save(fileId, request.auth.credentials._id, request.payload.propertyId, function (err, res) {
-              if (err) {
-                files.removeFile(fileId, function () {
-                  reply( Boom.badImplementation('Error while saving file', err) )
-                });
-              } else {
-                reply(res);
+            DAL.files.save(
+              fileId,
+              request.auth.credentials._id,
+              request.payload.propertyId,
+              request.payload.datetime || new Date(),
+              function (err, res) {
+                if (err) {
+                  files.removeFile(fileId, function () {
+                    reply( Boom.badImplementation('Error while saving file', err) )
+                  });
+                } else {
+                  reply(res);
+                }
               }
-            });
+            );
           } else {
             reply(err);
           }

@@ -21,7 +21,9 @@
       'DELETE FROM photos',
       'alter table "photos" add "location" TEXT',
       'DROP TABLE photos;',
-      'CREATE TABLE photos (id integer primary key autoincrement, data TEXT, isSent BOOLEAN default false, property text, isEmergency BOOLEAN default false, location text);'
+      'CREATE TABLE photos (id integer primary key autoincrement, data TEXT, isSent BOOLEAN default false, property text, isEmergency BOOLEAN default false, location text);',
+      'DROP TABLE photos;',
+      'CREATE TABLE photos (id integer primary key autoincrement, data TEXT, isSent BOOLEAN default false, property text, isEmergency BOOLEAN default false, location text, datetime text);'
     ];
 
     this.run = function () {

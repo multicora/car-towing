@@ -10,14 +10,14 @@ var app = angular.module('app');
       templateUrl: 'decal/decalAdd.html',
       controller: 'decalController as vm',
       resolve: {
-        resolver: resolver.get(userActions.SEE_MANAGER_PAGE)
+        resolver: resolver.get(userActions.SEE_MANAGER_PAGE, /^\/managers-page\/add_decal/)
       }
     })
     .when('/managers-page/add_decal/:id', {
       templateUrl: 'decal/decalAdd.html',
       controller: 'decalController as vm',
       resolve: {
-        resolver: resolver.get(userActions.SEE_MANAGER_PAGE)
+        resolver: resolver.get(userActions.SEE_MANAGER_PAGE, /^\/managers-page\/add_decal\/[a-zA-Z0-9]+/)
       }
     });
   }]);

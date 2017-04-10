@@ -24,6 +24,7 @@
   ) {
     var vm = this;
     var propId = $routeParams.id;
+    vm.fileError = '';
 
     vm.contractTerms = contractsService.getTerms();
     vm.newProperty = {};
@@ -97,15 +98,17 @@
     }
 
     vm.activateContract = function(propertyContractTerm, contractDateFrom) {
-      contractsService.activate(propId, propertyContractTerm, contractDateFrom);
-
-      getContacts();
+      contractsService.activate(propId, propertyContractTerm, contractDateFrom)
+        .then(function(success) {
+          getContacts();
+        });
     };
 
     vm.saveTowingMatrix = function() {
       vm.newProperty.towingMatrix = JSON.stringify(vm.towingMatrix);
       propertiesService.updateTowingMatrix(vm.newProperty._id, vm.newProperty)
         .then(function(res) {
+          vm.confirmationTowing = "Towing matrix successfully saved!";
         });
     };
 
@@ -116,26 +119,36 @@
         });
     }
 
-    $scope.convertToBase64 = function(event){
+    $scope.convertToBase64 = function(event) {
       var f = document.getElementById('file').files[0],
-      r = new FileReader();
-      r.onloadend = function(e){
-        // TODO: converted to base64 image
-        vm.newProperty.logo = e.target.result;
-        $scope.$digest();
+          r = new FileReader(),
+          size = (f.size >= 1048576),
+          type = (f.type.indexOf('image') >= 0);
+      if (size || !type) {
+        vm.fileError = 'File is too large or isn`t image, please choose another file!';
+      } else {
+        vm.fileError = '';
+        r.onloadend = function(e) {
+          // TODO: converted to base64 image
+          vm.newProperty.logo = e.target.result;
+          $scope.$digest();
+        }
+        r.readAsDataURL(f);
       }
-      r.readAsDataURL(f);
+      $scope.$apply();
     }
   }
 
   function parseContract(contract) {
     let activationDate = new Date(contract.activationDate);
     let endDate = new Date(activationDate.getTime() + contract.term);
-    
+    let notExpire;
+
     return {
       id: contract._id,
       activationDate: activationDate.toLocaleString(),
-      endDate: endDate.toLocaleString()
+      endDate: endDate.toLocaleString(),
+      notExpire: contract.notExpire
     };
   }
 })(angular);

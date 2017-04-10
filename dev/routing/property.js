@@ -83,7 +83,7 @@ module.exports = function (server) {
       },
       handler: function handler(request, reply) {
         let userExist = false;
-        const serverUrl = request.headers.referer;
+        const serverUrl = request.server.info.protocol + '://' +request.headers.host;
         const createOrGetUser = (newUser, cb) => {
           DAL.users.getUserByEmail(newUser.email, function (err, user) {
             if (!user) {
@@ -133,7 +133,7 @@ module.exports = function (server) {
       handler: function handler(request, reply) {
         const propertyId = request.payload.propertyId;
         const managerEmail = request.payload.email;
-        const serverUrl = request.headers.referer;
+        const serverUrl = request.server.info.protocol + '://' +request.headers.host;
         let userExist = false;
 
         const createOrGetUser = (newUser, cb) => {
@@ -228,6 +228,16 @@ module.exports = function (server) {
           }
         });
       }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/emergency_towing',
+    handler: function (request, reply) {
+      DAL.emergencyTow.get(function (err, docs) {
+        !err ? reply(docs) : reply(Boom.badImplementation(err));
+      });
     }
   });
 };

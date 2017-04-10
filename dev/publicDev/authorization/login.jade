@@ -25,4 +25,4 @@
         p.error-message(ng-bind="vm.errorMes")
         button.btn.btn-submit(type="submit",
           ng-disabled="loginForm.$invalid") Log in
-        a.forgot-password(href="#/reset") Forgot password?
+        a.forgot-password(ng-click="redirect('/reset')") Forgot password?

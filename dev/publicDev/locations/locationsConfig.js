@@ -14,7 +14,7 @@
     var resolver = resolverProvider.$get();
 
     locationsRoute.route.resolve = {
-      resolver: resolver.get(userActions.SEE_ADMIN_PAGE)
+      resolver: resolver.get(userActions.SEE_ADMIN_PAGE, /^\/locations/)
     };
 
     $routeProvider.when(locationsRoute.path, locationsRoute.route);

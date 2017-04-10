@@ -5,25 +5,36 @@
 
   app.service('resolver', service);
 
-  service.$inject = ['$q', 'authService', 'UserCheckingService', '$location', 'TokenService'];
+  service.$inject = [
+    '$q',
+    'authService',
+    'UserCheckingService',
+    '$location',
+    'TokenService'
+  ];
 
-  function service($q, authService, UserCheckingService, $location, TokenService) {
-    this.get = function (action) {
+  function service(
+    $q,
+    authService,
+    UserCheckingService,
+    $location,
+    TokenService
+  ) {
+    this.get = function (action, path) {
       return _.bind(function () {
-        return resolve(action);
+        return resolve(action, path);
       }, this);
     };
-    function resolve (action) {
+    function resolve (action, path) {
       return  $q(function (resolve) {
-        Promise.all([authService.getCurrentUser(), authService.getRoles()]).then(
+        $q.all([authService.getCurrentUser(), authService.getRoles()]).then(
           function (res) {
             var user = res[0].data;
             var roles = res[1].data;
             authService.setUser(res[0].data);
 
-            if (action && !UserCheckingService.checkUser(user, roles, action)) {
-              console.log('User do not have action "' + action + '"');
-              $location.path('/');
+            if (action && !UserCheckingService.checkUser(user, roles, action) && $location.path().match(path)) {
+              authService.redirectByRole(user.roles);
             }
             resolve();
           },

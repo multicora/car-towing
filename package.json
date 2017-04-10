@@ -41,6 +41,7 @@
     "node-uuid": "^1.4.7",
     "nodemailer": "^2.7.0",
     "password-hash": "^1.2.2",
+    "path-exists": "^3.0.0",
     "promise": "^7.1.1",
     "rand-token": "^0.2.1",
     "sanitize-html": "^1.13.0"

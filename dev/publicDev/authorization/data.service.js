@@ -5,9 +5,9 @@
 
   app.factory('authService', dataservice);
 
-  dataservice.$inject = ['$http', 'TokenService'];
+  dataservice.$inject = ['$http', 'TokenService', '$location'];
 
-  function dataservice($http, TokenService) {
+  function dataservice($http, TokenService, $location) {
     var user = null;
 
     return {
@@ -17,7 +17,8 @@
       setUser: setUser,
       getUser: getUser,
       getRoles: getRoles,
-      resetPassword: resetPassword
+      resetPassword: resetPassword,
+      redirectByRole: redirectByRole
     };
 
     function login(user) {
@@ -49,6 +50,26 @@
 
     function getRoles() {
       return $http.get('api/roles');
+    }
+
+    function redirectByRole(roles) {
+      var map = {
+        'admin': '/admin',
+        'property-manager': '/managers-page'
+      };
+      var pathArray = roles.map(function (role) {
+        return role.name;
+      }).map(function (name) {
+        return map[name];
+      }).filter(function (mapRole) {
+        return mapRole;
+      });
+
+      if (pathArray.length > 0) {
+        $location.path(pathArray[0]);
+      } else {
+        $location.path('/').search('param', null);
+      }
     }
   }
 })();

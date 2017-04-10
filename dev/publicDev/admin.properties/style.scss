@@ -199,10 +199,11 @@
       margin: 0 10px;
       padding: 6px;
       width: 170px;
+      border: 1px solid #a9a9a9;
     }
 
     .activate-button {
-      width: 200px;
+      width: 180px;
     }
   }
 
@@ -211,11 +212,16 @@
     width: 100%;
     .contract {
       border-top: 1px #a9a9a9 solid;
+      .end-date {
+        width: 200px;
+        display: inline-block;
+      }
+
       .deactivate-contract {
         width: 100px;
         height: 30px;
         line-height: 30px;
-        margin: 2px 0;
+        margin: 2px 0 2px 40px;
       }
     }
   }
@@ -272,6 +278,10 @@
     color:  #4d4d4d;
     font-size: 18px;
     height: 25px;
+  }
+
+  .emergency-link {
+    display: block;
   }
 
   .logo {

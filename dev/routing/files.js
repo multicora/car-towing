@@ -34,7 +34,6 @@ module.exports = function (server) {
               fileId,
               request.auth.credentials._id,
               request.payload.propertyId,
-              request.payload.datetime || new Date(),
               function (err, res) {
                 if (err) {
                   files.removeFile(fileId, function () {

@@ -84,6 +84,7 @@ module.exports = function (server) {
     path: '/uploads/{fileName*}',
     config: {
       handler: function (request, reply) {
+        console.log(path.resolve(__dirname, './../uploads/'));
         reply.file(path.resolve(__dirname, './../uploads/') + '/' + request.params.fileName);
       }
     }

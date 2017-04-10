@@ -35,6 +35,8 @@
       });
     });
 
+    PhotosService.tryUploadPhoto();
+
     function getPropertyName(photo) {
       var deferred = $q.defer();
 

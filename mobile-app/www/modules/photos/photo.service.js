@@ -139,10 +139,13 @@
             if (res.status === 200) {
               return _this.markPhotoAsRead(photosToSend[index]);
             } else {
-              return $q.reject();
+              return $q.reject(res);
             }
           }).then(function () {
             return sendNext(photosToSend, index + 1);
+          }).catch(function (err) {
+            err.fileData = 'removed';
+            console.error(JSON.stringify(err));
           });
         } else {
           return $q.resolve();

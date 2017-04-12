@@ -5,8 +5,10 @@ const Utils = require('../services/utils.js');
 const path = require('path');
 const Boom = require('boom');
 const Joi = require('joi');
+const Promise = require('promise');
 const propertyService = require('../services/propertyService.js');
 const propertyCtrl = require('../controllers/propertiesCtrl.js');
+const files = require('../services/files.js')();
 
 module.exports = function (server) {
 
@@ -236,7 +238,38 @@ module.exports = function (server) {
     path: '/api/emergency_towing',
     handler: function (request, reply) {
       DAL.emergencyTow.get(function (err, docs) {
-        !err ? reply(docs) : reply(Boom.badImplementation(err));
+
+        var promises = docs.map( emTow => {
+          return new Promise( (resolve, reject) => {
+            DAL.files.getById(emTow.photo, function (err, fileData) {
+              return files.getFile(fileData[0].fileId).then( url => {
+                resolve({
+                  updated: fileData[0].updated,
+                  url: url
+                });
+              }).catch((err) => {
+                reply(Boom.badImplementation('Error while getting files', err))
+              });
+            });
+          });
+        });
+
+        Promise.all(promises).then( (res) => {
+          res = res.map( (file, index) => {
+            return {
+              _id: docs[index]._id,
+              propertyName: docs[index].propertyName,
+              location: docs[index].location,
+              photo: file.url,
+              updated: file.updated
+            };
+          }).filter( item => !!item);
+
+          reply(res);
+        }).catch((err) => {
+          reply(Boom.badImplementation('Error while processing files', err))
+        });
+
       });
     }
   });

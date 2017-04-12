@@ -31,11 +31,16 @@
       return $q.all(promises);
     }).then(function (propertyNames) {
       vm.photos.forEach(function (item, index) {
+        var time = new Date( parseInt(item.datetime, 10) );
+
         item.propertyName = propertyNames[index];
+        item.viewTime = time.toLocaleDateString() + ' ' + time.toLocaleTimeString();
+
+        PhotosService.tryUploadPhoto(item).then(function () {
+          item.isSent = 'true';
+        });
       });
     });
-
-    PhotosService.tryUploadPhoto();
 
     function getPropertyName(photo) {
       var deferred = $q.defer();

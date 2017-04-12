@@ -50,5 +50,8 @@ module.exports = {
   },
   getByPropertyId: (id, cb) => {
     model.find({property: id}, cb);
+  },
+  getById: (id, cb) => {
+    model.find({_id: id}, cb);
   }
 };

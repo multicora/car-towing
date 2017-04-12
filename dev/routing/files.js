@@ -7,6 +7,7 @@ const files = require('../services/files.js')();
 const DAL = require('../dal/dal.js');
 const Boom = require('boom');
 const path = require('path');
+const Promise = require('promise');
 
 module.exports = function (server) {
   server.route({

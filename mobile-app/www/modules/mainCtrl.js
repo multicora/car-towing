@@ -17,7 +17,7 @@
   ) {
     var vm = this;
 
-    PhotosService.tryUploadPhoto();
+    PhotosService.tryUploadPhotos();
   }
 
 })();

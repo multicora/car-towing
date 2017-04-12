@@ -81,18 +81,19 @@
       );
     };
 
-    this.uploadEmergencyTowingPhoto = function (data, property, location) {
+    this.uploadEmergencyTowingPhoto = function (data, property, location, datetime) {
       return $http.post(
         config.url + "/api/emergency-towing",
         {
           fileData: data,
           propertyName: property,
-          location: location
+          location: location,
+          datetime: datetime
         }
       );
     };
 
-    this.tryUploadPhoto = function () {
+    this.tryUploadPhotos = function () {
       return $q(function (resolve) {
         if ( isWiFiConnected(getNetworkStatus()) ) {
           _this.getPhotos().then(function (res) {
@@ -116,6 +117,20 @@
           });
         }
       });
+    };
+
+    this.tryUploadPhoto = function (photo) {
+      if ( isWiFiConnected(getNetworkStatus()) && photo.isSent !== 'true') {
+        return sendPhoto(photo).then(function (res) {
+          if (res.status === 200) {
+            return _this.markPhotoAsRead(photo);
+          } else {
+            return $q.reject(res);
+          }
+        });
+      } else {
+        return $q.reject();
+      }
     };
 
     function getNetworkStatus() {
@@ -144,7 +159,7 @@
           }).then(function () {
             return sendNext(photosToSend, index + 1);
           }).catch(function (err) {
-            err.fileData = 'removed';
+            err.config.data.fileData = 'removed';
             console.error(JSON.stringify(err));
           });
         } else {
@@ -157,7 +172,7 @@
       if (photo.isEmergency !== 'true') {
         return _this.uploadTowingPhoto(photo.data, photo.property, photo.datetime);
       } else {
-        return _this.uploadEmergencyTowingPhoto(photo.data, photo.property, photo.location);
+        return _this.uploadEmergencyTowingPhoto(photo.data, photo.property, photo.location, photo.datetime);
       }
     }
   }

@@ -21,7 +21,14 @@
 
     if ($routeParams.propertyId === "emergency_towing") {
       photoesService.getEmergencyTowing().then(function(res) {
+        var time;
+
         vm.emergencyTowing = res.data;
+
+        for (var i = 0; i < vm.emergencyTowing.length; i++) {
+          time = new Date(vm.emergencyTowing[i].updated);
+          vm.emergencyTowing[i].updated = time.toLocaleDateString() + ' ' + time.toLocaleTimeString();
+        }
       });
     } else {
       photoesService.getPhotos($routeParams.propertyId).then(function (res) {

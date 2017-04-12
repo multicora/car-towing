@@ -29,17 +29,23 @@ module.exports = function (server) {
       handler:(request, reply) => {
         files.saveFromBase64(request.payload.fileData, 'jpg', function (err, fileId) {
           if (!err) {
-            DAL.files.save(fileId, request.auth.credentials._id, request.payload.propertyId, function (err, res) {
-              if (err) {
-                files.removeFile(fileId, function () {
-                  reply( Boom.badImplementation('Error while saving file', err) )
-                });
-              } else {
-                DAL.emergencyTow.create(request.payload.propertyName, res._id, request.payload.location, function (err) {
-                  err ? reply(Boom.badImplementation(err)) : reply(res);
-                });
+            DAL.files.save(
+              fileId,
+              request.auth.credentials._id,
+              request.payload.propertyId,
+              request.payload.datetime || new Date(),
+              function (err, res) {
+                if (err) {
+                  files.removeFile(fileId, function () {
+                    reply( Boom.badImplementation('Error while saving file', err) )
+                  });
+                } else {
+                  DAL.emergencyTow.create(request.payload.propertyName, res._id, request.payload.location, function (err) {
+                    err ? reply(Boom.badImplementation(err)) : reply(res);
+                  });
+                }
               }
-            });
+            );
           } else {
             reply(Boom.badImplementation(err));
           }

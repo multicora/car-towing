@@ -10,7 +10,8 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  modules: ['./www/modules/**/*.js']
+  modules: ['./www/modules/**/*.js'],
+  modulesWithMocks: ['./www/modules/**/*.js', './www/mocks/**/*.js']
 };
 
 gulp.task('default', ['sass', 'modules']);
@@ -36,14 +37,22 @@ gulp.task('modules', function () {
     .pipe(gulp.dest('./www/js/'));
 });
 
-gulp.task('serve:before', ['sass', 'modules', 'watch']);
+gulp.task('modulesWithMocks', function () {
+  return gulp.src(paths.modulesWithMocks)
+    .pipe(sourcemaps.init())
+    .pipe(concat('modules.js'))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./www/js/'));
+});
+
+gulp.task('serve:before', ['sass', 'modulesWithMocks', 'watch']);
 
 gulp.task('watch', function () {
   gulp.watch(paths.sass, function () {
     gulp.run('sass');
   });
-  gulp.watch(paths.modules, function () {
-    gulp.run('modules');
+  gulp.watch(paths.modulesWithMocks, function () {
+    gulp.run('modulesWithMocks');
   });
 });
 

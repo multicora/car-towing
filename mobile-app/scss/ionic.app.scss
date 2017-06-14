@@ -20,6 +20,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import "www/lib/sass-flex-mixin/flex";
+@import "www/lib/snackbar/src/sass/snackbar";
 @import "fonts";
 body {
   font-family: 'OpenSans', sans-serif;

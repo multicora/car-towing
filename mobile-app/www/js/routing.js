@@ -81,7 +81,8 @@
     '$urlRouterProvider',
     '$httpProvider',
     'TokenServiceProvider',
-    'migrationsProvider'
+    'migrationsProvider',
+    'RollbarProvider'
   ];
 
   function config(
@@ -89,13 +90,21 @@
     $urlRouterProvider,
     $httpProvider,
     TokenServiceProvider,
-    migrationsProvider
+    migrationsProvider,
+    RollbarProvider
   ) {
     var migrations = migrationsProvider.$get();
     $httpProvider.interceptors.push('httpInterceptor');
     var TokenService = TokenServiceProvider.$get();
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
 
+    RollbarProvider.init({
+      accessToken: '6e2feb0a351a4d01b56883d1fa3e3408',
+      captureUncaught: true,
+      payload: {
+        environment: 'production'
+      }
+    });
 
     /* Routing */
     $stateProvider

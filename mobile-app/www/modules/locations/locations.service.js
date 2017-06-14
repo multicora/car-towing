@@ -26,8 +26,9 @@
               locations = response.data;
             }
             return response.data;
-          }, function (error) {
-            $log(error);
+          }, function (err) {
+            $log.error(err);
+            return $q.reject(err)
           }
         );
       }

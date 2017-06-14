@@ -6,6 +6,11 @@
   },
   "dependencies": {
     "angular-ui-router": "0.3.1",
-    "sass-flex-mixin": "^1.0.3"
+    "sass-flex-mixin": "^1.0.3",
+    "snackbar": "^0.1.5",
+    "ng-rollbar": "^1.9.2"
+  },
+  "resolutions": {
+    "angular-ui-router": "0.2.13"
   }
 }

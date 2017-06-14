@@ -4,9 +4,15 @@
   angular.module('carTowingApp')
     .factory('httpInterceptor', httpInterceptor);
 
-  httpInterceptor.$inject = ['$injector'];
+  httpInterceptor.$inject = [
+    '$injector',
+    '$q'
+  ];
 
-  function httpInterceptor($injector) {
+  function httpInterceptor(
+    $injector,
+    $q
+  ) {
     return {
       request: request,
       responseError: responseError
@@ -23,7 +29,7 @@
         var $state = $injector.get("$state");
         $state.go('login');
       }
-      return response;
+      return $q.reject(response);
     }
   }
 })();

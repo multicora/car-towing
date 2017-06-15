@@ -64,6 +64,9 @@ module.exports = function (server) {
           permissions: ['towing:create']
         }
       },
+      payload: {
+        maxBytes: 2e+7, // 20Mb
+      },
       handler:(request, reply) => {
         files.saveFromBase64(request.payload.fileData, 'jpg', function (err, fileId) {
           if (!err) {

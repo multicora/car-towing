@@ -46,6 +46,7 @@ gulp.task('modulesWithMocks', function () {
 });
 
 gulp.task('ionic:watch:before', ['sass', 'modulesWithMocks', 'watch']);
+gulp.task('ionic:build:before', ['sass', 'modules']);
 
 gulp.task('watch', function () {
   gulp.watch(paths.sass, function () {

@@ -120,7 +120,7 @@
     };
 
     this.tryUploadPhoto = function (photo) {
-      if ( isWiFiConnected(getNetworkStatus()) && photo.isSent !== 'true') {
+      if ( isWiFiConnected(getNetworkStatus())) {
         return sendPhoto(photo).then(function (res) {
           if (res.status === 200) {
             return _this.markPhotoAsRead(photo);

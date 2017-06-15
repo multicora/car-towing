@@ -4,15 +4,19 @@
     .controller('PhotosController', PhotosController);
 
   PhotosController.$inject = [
+    '$log',
     '$q',
     'PhotosService',
-    'PropertiesService'
+    'PropertiesService',
+    'snackbar'
   ];
 
   function PhotosController(
+    $log,
     $q,
     PhotosService,
-    PropertiesService
+    PropertiesService,
+    snackbar
   ) {
     var vm = this;
 
@@ -30,16 +34,29 @@
 
       return $q.all(promises);
     }).then(function (propertyNames) {
-      vm.photos.forEach(function (item, index) {
+      var promises = vm.photos.map(function (item, index) {
         var time = new Date( parseInt(item.datetime, 10) );
+        var response;
 
         item.propertyName = propertyNames[index];
         item.viewTime = time.toLocaleDateString() + ' ' + time.toLocaleTimeString();
 
-        PhotosService.tryUploadPhoto(item).then(function () {
-          item.isSent = 'true';
-        });
+        if (item.isSent !== 'true') {
+          response = PhotosService.tryUploadPhoto(item).then(function () {
+            item.isSent = 'true';
+          });
+        } else {
+          response = $q.resolve();
+        }
+
+        return response;
       });
+
+      return $q.all(promises);
+    }).catch(function (err) {
+      $log.error(err);
+
+      err.status !== 401 && snackbar.showError(err);
     });
 
     function getPropertyName(photo) {
@@ -50,6 +67,8 @@
       } else {
         PropertiesService.getById(photo.property).then(function (property) {
           deferred.resolve(property.name);
+        }).catch(function (err) {
+          deferred.reject(err);
         });
       }
 

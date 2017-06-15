@@ -1,0 +1,20 @@
+.center-block.blocking-list.date-range
+  input.form-control.reason-list.edit(ng-model="blocking.reason")
+  input.form-control.blocking-list-input.edit(
+    type="date"
+    ng-model="blocking.dateFrom")
+  select.form-control.hoursSelect(
+    ng-model="blocking.hoursFrom"
+    ng-options="item.value as item.text for item in hours")
+  select.form-control.minutesSelect(
+    ng-model="blocking.minutesFrom"
+    ng-options="item.value as item.text for item in minutes")
+  input.form-control.blocking-list-input.edit(
+    type="date"
+    ng-model="blocking.dateTo")
+  select.form-control.hoursSelect(
+    ng-model="blocking.hoursTo"
+    ng-options="item.value as item.text for item in hours")
+  select.form-control.minutesSelect(
+    ng-model="blocking.minutesTo"
+    ng-options="item.value as item.text for item in minutes")

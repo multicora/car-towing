@@ -1,0 +1,146 @@
+.properties {
+  .container {
+    background-color: #ffffff;
+    min-height: 100vh;
+  }
+  .info {
+    height: 70px;
+    background: #f7f7f7;
+    color: #4f4f4f;
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 10px 0 0 0;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: 400;
+      margin: 5px 0 0 0;
+    }
+  }
+
+  .title {
+    color: #1c1b1b;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: left;
+    margin: 20px 0;
+  }
+
+  .propertiesContent {
+    padding: 0 15px 25px 15px;
+  }
+
+  .letters {
+    button {
+      text-decoration: none;
+      background: none;
+      border: none;
+      padding: 0 2px;
+      color: #3191d8;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: left;
+      height: 20px;
+      outline: none;
+    }
+
+    button:last-child {
+      margin-left: 20px;
+    }
+
+    button:hover {
+      color: #7fbbe6;
+    }
+
+    button:focus {
+      color: #15466a;
+      border-bottom: 1px solid #15466a;
+    }
+  }
+
+  .propertiesList {
+    color: #1c1c1c;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 20px;
+
+    .propertiesLine {
+      display: block;
+      line-height: 22px;
+      text-decoration: none;
+      color: #212121;
+      outline: none;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  // TODO: what for?
+  .propertiesList::-webkit-scrollbar {
+    width: 20px;
+    background-color: #ffffff;
+  }
+
+  .propertiesLists::-webkit-scrollbar-button {
+    background: #eaeaea;
+    width: 20px;
+    height: 20px;
+  }
+
+  .propertiesList::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
+
+  .propertiesList::-webkit-scrollbar-thumb {
+    background-color: #eaeaea;
+    width: 18px;
+    height: 188px;
+    border-radius: 10px;
+  }
+
+  .propertiesList::-webkit-scrollbar-thumb:active {
+    background-color: #bbbbbb;
+  }
+
+  .name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 116px;
+  }
+
+  .adress {
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+  }
+}
+
+@media (min-width: 970px) {
+  .properties {
+    .info {
+      height: 110px;
+      margin-top: 20px;
+      
+      h1 {
+        font-size: 26px;
+        margin-top: 26px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+    }
+
+    .propertiesContent {
+      border-top: 1px solid #eaeaea;
+      padding-top: 20px;
+    }
+  }
+}

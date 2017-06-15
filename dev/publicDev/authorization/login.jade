@@ -1,0 +1,28 @@
+.login-page
+  .container
+    header-directive(class-name="'adaptive withoutLogin'")
+    .login-page-container
+      form.login-form(name="loginForm",
+        ng-submit="vm.signIn()",
+        novalidate)
+        h5.login-title Please enter your username details
+        input(type="text",
+          name="username",
+          placeholder="Username", 
+          ng-model="vm.user.login",
+          min="3",
+          max="100",
+          required,
+          ng-class="{'incorrect-input': vm.errorMes.length > 0}")
+        input(type="password",
+          name="password",
+          placeholder="Password", 
+          ng-model="vm.user.password",
+          min="3",
+          max="100",
+          required,
+          ng-class="{'incorrect-input': vm.errorMes.length > 0}")
+        p.error-message(ng-bind="vm.errorMes")
+        button.btn.btn-submit(type="submit",
+          ng-disabled="loginForm.$invalid") Log in
+        a.forgot-password(ng-click="redirect('/reset')") Forgot password?

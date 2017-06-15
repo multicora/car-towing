@@ -1,0 +1,22 @@
+{
+  "name": "mobile-app",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "modules",
+    "watch",
+    "default"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*",
+    "scss/**/*"
+  ],
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost:80/api"
+    }
+  ],
+  "type": "ionic1"
+}

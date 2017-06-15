@@ -1,0 +1,59 @@
+
+.complaint#complaint
+
+  .popup(ng-click="vm.closePopup()")
+    .container
+      header-directive(class-name="'adaptive'")
+      div.row.info
+        div.col-md-12
+          h1 Complaint form
+          h2 Leave your complaint
+      div.row.page-popup(ng-click="vm.stopPropagation($event)")
+        div.col-md-12
+          form.complaint-form(name="complaintForm",
+            ng-submit="vm.save(complaintForm)")
+            p.title Leave your complaint
+            input.name.complaint-input(type="text",
+              name="name"
+              placeholder="Name"
+              ng-model="vm.data.name"
+              required)
+            input.email.complaint-input(type="email",
+              name="email"
+              placeholder="Email"
+              ng-model="vm.data.email"
+              required)
+            input.phone.complaint-input(type="text",
+              name="phone",
+              placeholder="Tel No"
+              ng-model="vm.data.phone")
+            div.radio
+              label
+                input.radio-button(type="radio"
+                  name="radio"
+                  value="Damaged Vehicle"
+                  ng-model="vm.data.type")
+                span Damaged Vehicle
+                input.radio-button(type="radio"
+                  name="radio"
+                  value="Towed"
+                  ng-model="vm.data.type")
+                span Towed
+            input.data.complaint-input(type="text"
+              name="data"
+              placeholder="When towed (date, time)"
+              ng-model="vm.data.date")
+            input.location.complaint-input(type="text"
+              name="location"
+              placeholder="Location"
+              ng-model="vm.data.location")
+            input.invoice-number.complaint-input(type="text"
+              name="invoice-number"
+              placeholder="Invoice number"
+              ng-model="vm.data.invoiceNumber")
+            textarea.complaint-text(name="complaint-text"
+              placeholder="Complaint"
+              ng-model="vm.data.complaintMessage")
+            div.save
+              button.btn.btn-submit.save(
+                type="submit") Send

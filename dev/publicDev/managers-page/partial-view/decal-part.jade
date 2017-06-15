@@ -1,0 +1,12 @@
+.decal-part.main-border-bottom
+  .big-indent-bottom.big-indent-top
+    .row
+      .left-block.font-small
+        .bold-title Decals
+      .center-block.font-small
+        .bold-title You can add new Decal #
+        a.decal-list-link(ng-click="vm.showDecalPopup()") Or see the full list of Decals &#62;&#62;&#62;
+      .right-block
+        a.btn.btn-primary.btn-block.add-decal(ng-click="redirect('/managers-page/add_decal')")
+          img(src="files/add-property.png")
+          span Add Decal

@@ -1,0 +1,33 @@
+.towed-car-page
+  .container
+    header-directive(class-name="'adaptive'")
+    .row.info
+      .col-md-12
+        h1 Got towed?
+        h2 Rates & Policies & Directions
+    .row
+      .col-md-12
+        h2.title Been Towed? Do not worry! Here we are:
+    .row.towed-car-content
+      .map-container.col-md-7
+        .map-overlay#map-overlay
+          img.loading-img(src="files/loading.svg")
+        iframe.map#map(ng-src="{{vm.trustSrc(vm.mapSrc)}}" width="100%" height="300px" ng-onload="vm.load()")
+        .map-button-container
+          a.btn.btn-submit(ng-href="https://www.google.com/maps/place/{{ vm.data.customJson.address }}/@{{ vm.data.customJson.address }},15z" target="blank") Open in Google Maps
+      .col-md-5.taxis-container
+        .uber
+          a.uber-link(href="https://www.uber.com/" target="blank")
+            img(src="files/uber.png", alt="uber")
+          .taxi-contact
+            h4.title Use Uber
+            p.sub-title to get to use
+        .taxis
+          img(src="files/taxi.png", alt="taxi")
+          .taxi-contact
+            h4.title Or call a taxi:
+            p(ng-repeat="taxi in vm.data.customJson.taxis track by $index")
+              span.phone(ng-bind="vm.data.customJson.taxis[$index].phone")
+              span.name(ng-bind="vm.data.customJson.taxis[$index].name")
+      .col-md-12#content
+

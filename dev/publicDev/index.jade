@@ -1,0 +1,16 @@
+html(lang='en-US', ng-app='app')
+  head
+    meta(charset='utf-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    title ULTIMATE-towing of Gainesville
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+    link(href="http://cdn.quilljs.com/0.20.1/quill.snow.css" rel="stylesheet")
+    link(rel='stylesheet', href='app.css')
+  body(ng-controller="mainCtrl as vm")
+    span(us-spinner="{lines: 8, radius:35, width:20, length: 0, opacity: 0}" spinner-key="loading-spinner")
+    .main-view(ng-view)
+      footer
+        p @ 2016 All rights reserved
+        p Design by Juless Design
+    script(src="libs.js")
+    script(src="app.js")

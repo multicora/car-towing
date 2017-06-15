@@ -1,0 +1,26 @@
+header(class="{{className}}")
+  div.navigation
+    a.home-button(title="Home"
+      ng-click="vm.redirect('/')") Home
+    a.login-button(
+      title="Login"
+      ng-click="vm.redirect('/login')"
+      ng-if="!vm.user.email") Login
+    a.logout-button(
+      title="Logout"
+      ng-click="vm.logout()"
+      ng-if="vm.user.email") Logout
+  a(ng-click="vm.redirect('/')")
+    img.logo(src="files/logo-280.png")
+  div.contacts
+    div.phone
+      img.icon(src="files/phone-icon.png")
+      span.text 844-CAR-TOWED
+    div.location
+      img.icon(src="files/location-icon.png")
+      span.text 907 SW 3rd St. Gainesville, FL
+.logauut-popup-container(ng-if="vm.isShownLogoutPopup")
+  .logout-popup
+    p You are logged out
+    .button-container
+      button.btn.btn-submit(ng-click="vm.closePopup()") OK

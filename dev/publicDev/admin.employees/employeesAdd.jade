@@ -1,0 +1,31 @@
+.admin-page.admin-employees
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .employeesEditor
+        form(
+          name="userForm"
+          ng-submit="vm.save()")
+          .driverContent
+            h2 Add new driver
+            input(
+              type="text"
+              placeholder="Name"
+              ng-model="vm.user.name"
+              required)
+            input(
+              type="email"
+              placeholder="Email"
+              ng-model="vm.user.email"
+              required)
+            input(
+              type="text"
+              placeholder="Number in format '000'"
+              ng-model="vm.user.number"
+              maxlength="3"
+              required)
+            div
+              button.btn.btn-submit.add(
+                type="submit"
+                ng-disabled="!vm.user.name || !vm.user.email || !vm.user.number") Save

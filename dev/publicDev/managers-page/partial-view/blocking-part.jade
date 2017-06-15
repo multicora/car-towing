@@ -1,0 +1,72 @@
+.blocking-part.main-border-bottom
+  .big-indent-bottom.big-indent-top
+    .row
+      .long-block.font-regular
+        span(ng-bind="'Welcome, ' + vm.managerName +'!'")
+        span.contractsTime(
+          ng-if="!vm.contractsTime.notExpire"
+          ng-bind="'Your contract will be expired in '+ vm.contractsTime.timeToEnd + ' ' +vm.timeMeasure +' !'"
+          ng-class="vm.timeEndClass")
+        span.contractsTime(ng-if="vm.contractsTime.notExpire") Your contract time is not expire!
+    form.row.form-group.font-small(name="blocking-form"
+      ng-submit="vm.block(blocking-form)")
+      .left-block
+        span Block towing from
+      .center-block.date-range
+        input.form-control(type="date"
+          ng-model="vm.dateFrom"
+          required)
+        select.form-control.hoursSelect(
+          ng-model="vm.hoursFrom"
+          ng-options="item.value as item.text for item in vm.hoursSelect")
+        select.form-control.minutesSelect(
+          ng-model="vm.minutesFrom"
+          ng-options="item.value as item.text for item in vm.minutesSelect")
+        span.connector to
+        input.form-control(type="date"
+          ng-model="vm.dateTo"
+          required)
+        select.form-control.hoursSelect(
+          ng-model="vm.hoursTo"
+          ng-options="item.value as item.text for item in vm.hoursSelect")
+        select.form-control.minutesSelect(
+          ng-model="vm.minutesTo"
+          ng-options="item.value as item.text for item in vm.minutesSelect")
+      .right-block
+        button.btn.btn-primary.btn-block(type="submit") Block
+      .row.font-small
+        .long-block.reason-block
+          span Reason
+          input.reason-input(type="text"
+            ng-model="vm.blockingData.reason"
+            required)
+          span.error-message(
+            ng-bind="vm.errorMessage"
+            ng-if="vm.errorMessage")
+      .bloking-list-container
+        .center-block.blocking-list
+          p.blocking-list-title Reason
+          p.blocking-list-title Date from
+          p.blocking-list-title Date To
+        div(ng-repeat="blocking in vm.blockingDataArr")
+          blocking-text(
+            ng-hide="blocking.editMode"
+            blocking="blocking")
+          edit-blocking(
+            ng-show="blocking.editMode"
+            blocking="blocking"
+            hours="vm.hoursSelect"
+            minutes="vm.minutesSelect")
+          .right-block
+            button.btn.btn-primary.btn-block.unblocking-button(
+              ng-hide="blocking.editMode"
+              type="button"
+              ng-click="vm.unblocking(blocking._id)") Unblock
+            button.btn.btn-primary.btn-block.unblocking-button(
+              ng-hide="blocking.editMode"
+              type="button"
+              ng-click="vm.showEditBlocking($index)") Edit
+            button.btn.btn-primary.btn-block.unblocking-button.edit-button(
+              ng-show="blocking.editMode"
+              type="button"
+              ng-click="vm.editBlocking($index, blocking._id)") Save

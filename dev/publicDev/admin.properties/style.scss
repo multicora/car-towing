@@ -1,0 +1,304 @@
+.admin-properties {
+  background-color: #f7f7f7;
+  min-height: 100%;
+
+  .content {
+    background-color: #ffffff;
+    min-height: 100%;
+    padding-bottom: 40px;
+  }
+
+  .addProperty {
+    text-decoration: none;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    background-color: #3191d8;
+    width: 279px;
+    height: 52px;
+    float: right;
+    padding: 13px 0 0 68px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+
+    img {
+      margin-right: 5px;
+    }
+
+    span {
+      vertical-align: top;
+    }
+  }
+
+  .addProperty:hover {
+    background: #7fbbe6;
+  }
+
+  .propertyEditor {
+    padding-top: 20px;
+    text-align: center;
+
+    h2 {
+      font-size: 26px;
+      font-weight: 400;
+      color: #4d4d4d;
+      margin-bottom: 35px;
+    }
+
+    button, .btn {
+      line-height: 40px;
+      width: 240px;
+      height: 52px;
+      border-radius: 6px;
+      background-color: #3191d8;
+      color: #ffffff;
+      font-size: 18px;
+      border: 0;
+    }
+
+    button:focus {
+      outline: 0;
+    }
+
+    button, .btn {
+      &:hover, &[disabled] {
+        background: #7fbbe6;
+      }
+    }
+
+    .propertyForm {
+      margin-bottom: 0;
+    }
+
+    .propertyValue {
+      width: 60%;
+      display: inline-block;
+      vertical-align: top;
+      padding: 0 35px;
+
+      .property-value-input {
+        width: 100%;
+        height: 46px;
+        border: 1px solid #a9a9a9;
+        font-size: 18px;
+        font-weight: 400;
+        padding-left: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      .property-value-input:focus {
+        outline: 0;
+      }
+
+      .create {
+        margin: 20px 10px 0 0;
+      }
+
+      .delete {
+        margin-top: 10px;
+      }
+
+      .errorMessage {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+
+    .propertyLogo {
+      width: 40%;
+      display: inline-block;
+      vertical-align: top;
+
+      .logo {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: inline-block;
+        max-width: 244px;
+        height: 200px;
+        margin-bottom:32px;
+        width: 200px;
+      }
+    }
+  }
+
+  .wrap-admin-property-search {
+    max-width: 592px;
+    width: 100%;
+    margin-bottom: 30px;
+    input {
+      height: 40px;
+      width: calc(100% - 144px);
+      padding: 0px 6px;
+      border: 1px solid #d4d4d4;
+      outline: none;
+      color: #a9a9a9;
+      border-right: none;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+    .search {
+      width: 144px;
+      height: 40px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  .location-block {
+    display: flex;
+    align-items: center;
+
+    .title {
+      align-self: flex-start;
+      color: #AAAAAA;
+      font-size: 18px;
+      flex-grow: 0;
+      margin-top: 10px;
+      padding-left: 10px;
+    }
+
+    .radio {
+      display: flex;
+      flex-grow: 1;
+      flex-wrap: wrap;
+      padding-left: 20px;
+
+      label {
+        margin-left: 25px;
+        padding-bottom: 10px;
+        text-align: left;
+        min-width: 100px;
+
+        input {
+          width: 20px;
+          height: 20px;
+          padding-right: 5px;
+        }
+        .text {
+          font-size: 18px;
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+
+  .new-contract {
+    margin-top: 20px;
+
+    .term-select {
+      border-radius: 5px;
+      height: 46px;
+      margin: 0 10px;
+    }
+
+    input[type="date"] {
+      border-radius: 5px;
+      height: 46px;
+      margin: 0 10px;
+      padding: 6px;
+      width: 170px;
+      border: 1px solid #a9a9a9;
+    }
+
+    .activate-button {
+      width: 180px;
+    }
+  }
+
+  .contracts-list {
+    margin: 20px;
+    width: 100%;
+    .contract {
+      border-top: 1px #a9a9a9 solid;
+      .end-date {
+        width: 200px;
+        display: inline-block;
+      }
+
+      .deactivate-contract {
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        margin: 2px 0 2px 40px;
+      }
+    }
+  }
+
+  .photos-link {
+    margin-top: 20px;
+  }
+}
+
+// TODO: fix scope
+.content-padding {
+  padding: 48px 98px;
+}
+// TODO: fix name and scope
+.pa-item {
+  width: 188px;
+  margin: 12px 0px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  position: relative;
+  // TODO: fix name
+  .pa-img-wrap {
+    display: block;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #e3ded2;
+    overflow: hidden;
+  }
+  // TODO: fix name
+  .pa-img-bubbel {
+    position: absolute;
+    top: 0;
+    right: 0;
+  } 
+  // TODO: fix name
+  .pa-blocked {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 150px;
+    background-color: rgba(244, 87, 91, 0.8);
+    color: #ffffff;
+    font-size: 26px;
+  }
+  // TODO: fix name
+  .pa-item-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color:  #4d4d4d;
+    font-size: 18px;
+    height: 25px;
+  }
+
+  .emergency-link {
+    display: block;
+  }
+
+  .logo {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+  }
+
+  .edit {
+    height: 35px;
+    position: absolute;
+    top: 105px;
+    left: 120px;
+  }
+
+  .delete:focus {
+    outline: none;
+  }
+}

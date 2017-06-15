@@ -1,0 +1,317 @@
+.managers-page {
+  position: relative;
+  min-height: 100%;
+  background: #f7f7f7;
+
+  .row + .row {
+    margin-top: 10px;
+  }
+
+  .content {
+    padding: 0 15px;
+    min-height: 100%;
+    background: #FFFFFF;
+  }
+
+  .left-block,
+  .right-block {
+    width: 325px;
+    display: inline-block;
+    padding: 0 15px;
+    vertical-align: top;
+  }
+
+  .center-block {
+    width: 680px;
+    display: inline-block;
+    padding: 0 15px;
+  }
+
+  .long-block {
+    width: 1005px;
+    display: inline-block;
+    padding: 0 15px;
+  }
+
+  .decal-popup {
+    position: absolute;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    min-width: 1366px;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    .decal-popup-container {
+      margin: 300px auto 0 auto;
+      width: 900px;
+      height: 700px;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 2px 4px 20px 0px rgba(0, 0, 0, 0.75);
+
+      .popup-header {
+        display: inline-block;
+        width: 100%;
+
+        .title {
+          display: inline-block;
+          padding-top: 20px;
+          padding-left: 200px;
+          width: 80%;
+          text-align: center;
+          font-weight: 400;
+          font-size: 32px;
+        }
+
+        .close-popup {
+          display: inline-block;
+          padding-right: 20px;
+          width: 20%;
+          color: #4d4d4d;
+          text-align: right;
+          font-weight: 600;
+          font-size: 30px;
+          cursor: pointer;
+        }
+
+        .close-popup:hover {
+          text-decoration: none;
+          opacity: 0.8;
+        }
+      }
+
+      .decal-popup-content {
+        overflow-y: auto;
+        margin-top: 30px;
+        max-height: 550px;
+
+        .decal-content-row {
+          margin-top: 10px;
+          padding: 0 50px;
+          width: 100%;
+          text-align: left;
+          font-size: 18px;
+
+          .number {
+            display: inline-block;
+            width: 30%;
+            font-weight: 600;
+          }
+
+          .name {
+            display: inline-block;
+            width: 40%;
+          }
+
+          .buttons-container {
+            display: inline-block;
+            width: 30%;
+            text-align: right;
+            font-weight: 600;
+
+            .delete {
+              margin-right: 20px;
+              color: #f22a31;
+              cursor: pointer;
+            }
+
+            .edit {
+              color: #49b71d;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .message {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+
+.blocking-part {
+
+  .error-message {
+    margin-left: 50px;
+  }
+
+  .contractsTime {
+    margin-left: 20px;
+  }
+
+  .redText {
+    color: red;
+    font-weight: 600;
+  }
+
+  .date-range {
+    display: inline-block;
+
+    input, select {
+      display: inline-block;
+      border-color: #d4d4d4;
+      border-radius: 5px;
+      font-size: 16px;
+      padding: 6px;
+      vertical-align: bottom;
+    }
+
+    input {
+      width: 160px;
+    }
+
+    select {
+      width: 65px;
+    }
+
+    .connector {
+      display: inline-block;
+      text-align: center;
+      padding: 0 15px;
+    }
+  }
+
+  .reason-block {
+    display: inline-block;
+    padding-left: 30px;
+
+    input {
+      display: inline-block;
+      width: 300px;
+      box-sizing: border-box;
+      padding-left: 10px;
+      border: none;
+      border-bottom: 1px solid #d4d4d4;
+      font-size: 20px;
+    }
+  }
+
+  .bloking-list-container {
+    margin-top: 15px;
+
+    .blocking-list {
+      margin-left: 230px;
+      width: 780px;
+    }
+
+    .reason-list {
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .reason-list.edit {
+      width: 160px;
+    }
+  }
+
+  .blocking-list-title {
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .blocking-list-input {
+    margin-left: 20px;
+    width: 200px;
+    border: none;
+    text-align: center;
+    vertical-align: top;
+    display: inline-block;
+  }
+
+  .blocking-list-input.edit {
+    width: 160px;
+    margin-left: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .hoursSelect,
+  .minutesSelect {
+    display: inline-block;
+    width: 65px;
+  }
+
+  .blocking-list-input:disabled {
+    background: none;
+  }
+
+  .unblocking-button {
+    width: 140px;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  .unblocking-button.unblocking-button {
+    margin-top: 0;
+  }
+
+  .edit-button {
+    margin-bottom: 5px;
+  }
+}
+
+.parking-rules {
+  .edit-rule{
+    box-sizing: border-box;
+    padding-left: 20px;
+    border-color: #d4d4d4;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+
+  .btn-block.btn-block {
+    margin-top: 0;
+  }
+
+  .rule {
+    .rule-controls {
+      .btn-circle {
+        flex-shrink: 0;
+      }
+      
+      .delete {
+        height: 35px;
+        display: inline-block;
+      }
+
+      .edit {
+        width: 245px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.photos-part {
+  .photos-container {
+    width: 100%;
+  }
+
+  .photo-page-link {
+    cursor: pointer;
+  }
+}
+
+.decal-part {
+  .bold-title {
+    margin-bottom: 20px;
+  }
+
+  .decal-list-link {
+    cursor: pointer;
+  }
+
+  .add-decal {
+    span {
+      margin-left: 10px;
+      vertical-align: bottom;
+    }
+  }
+}

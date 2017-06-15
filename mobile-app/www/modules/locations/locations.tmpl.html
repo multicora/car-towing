@@ -1,0 +1,26 @@
+<ion-view view-title="Locations">
+  <ion-header-bar align-title="center" class="bar-custom">
+    <div class="buttons">
+      <button class="button" ng-click="vm.logout()">Log out</button>
+    </div>
+    <h1 class="title">FILTER</h1>
+    <div class="buttons">
+      <button class="button" ui-sref="photos">Photos</button>
+    </div>
+  </ion-header-bar>
+  <ion-content scroll="true" class="has-header bg-img padding-23" ng-switch="vm.locations.length">
+    <div class="empty-data" ng-switch-when="0">No locations</div>
+    <div class="filter-container" ng-switch-default>
+      <div class="filter-item filter-b-1" ng-repeat="location in vm.locations"
+         ui-sref="properties({locationId: location._id})">
+        <span class="filter-b-2">
+          <span class="filter-b-3">
+            <span class="filter-b-4 filter-main-block">
+              {{location.name}}
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

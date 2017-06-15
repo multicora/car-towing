@@ -1,0 +1,97 @@
+.admin-got-towed {
+  background-color: #f7f7f7;
+  min-height: 100%;
+
+  .content {
+    background-color: #ffffff;
+    min-height: 100%;
+    padding-bottom: 20px;
+  }
+
+  .info {
+    padding-top: 20px;
+    text-align: center;
+
+    .title {
+      font-size: 26px;
+      font-weight: 400;
+      color: #4d4d4d;
+      margin-bottom: 35px;
+    }
+
+    .btn.btn-primary.btn-block {
+      width: 229px;
+      height: 46px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .btn.btn-primary.btn-block.submit {
+      margin-top: 20px;
+    }
+
+    .message {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+  }
+
+  .content-got-towed {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    padding: 0 35px;
+
+    h3 {
+      font-size: 18px;
+    }
+
+    .taxi-value {
+      display: inline-block;
+      width: 100%;
+
+      .btn.btn-primary.btn-circle {
+        height: 46px;
+        width: 46px;
+        vertical-align: top;
+        margin-right: 0;
+      }
+
+      .btn.btn-primary.btn-circle:focus {
+        outline: 0;
+      }
+    }
+
+    .address,
+    .taxi {
+      height: 46px;
+      border: 1px solid #a9a9a9;
+      font-size: 18px;
+      font-weight: 400;
+      padding-left: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .address {
+      width: 100%;
+    }
+
+    .taxi {
+      width: 455px;
+      margin-right: 20px;
+    }
+
+    .address:focus,
+    .taxi:focus {
+      outline: 0;
+    }
+
+    .ql-container {
+      height: 600px;
+      border: 1px solid #a9a9a9;
+      text-align: left;
+    }
+  }
+}

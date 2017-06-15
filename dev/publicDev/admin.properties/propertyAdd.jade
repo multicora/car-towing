@@ -1,0 +1,108 @@
+.admin-page.admin-properties
+  .container
+    .content
+      header-directive
+      admin-menu-directive
+      .propertyEditor
+        form.propertyForm(
+          name="propertyForm"
+          novalidate
+          ng-submit="vm.addProperty(propertyForm)")
+          .propertyValue
+            h2 Property information
+            input.property-value-input(
+              type="text"
+              placeholder="Property name"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              ng-model="vm.newProperty.name")
+            .location-block
+              .title Location
+              .radio
+                label.radio-inline(ng-repeat="location in vm.locations")
+                  input(
+                    type="radio"
+                    ng-model="vm.newProperty.location"
+                    ng-value="location._id"
+                    name="location"
+                    id="location_{{location.name}}"
+                    required)
+                  span.text {{location.name}}
+            input.property-value-input(
+              type="email"
+              placeholder="Login"
+              ng-model="vm.newProperty.login"
+              ng-hide="vm.editMod"
+              ng-class="{'l-error-input': vm.errorMes.length > 0}"
+              required)
+            input.property-value-input(
+              type="email"
+              placeholder="New Login"
+              ng-model="vm.newManager"
+              ng-show="vm.changeMod")
+            p
+              .errorMessage(ng-if="vm.errorMes" ng-href="{{vm.errorMes}}" ng-bind="vm.errorMes")
+              //- a.errorMessage(ng-if="!vm.errorMes" ng-href="{{vm.setPassLink}}" ng-bind="vm.setPassLink")
+            div
+              button.create(
+                type="submit"
+                ng-hide="vm.editMod"
+                ng-disabled="propertyForm.$invalid") Create
+              button.create(
+                ng-click="vm.editProperty()"
+                ng-show="vm.editMod"
+                ng-disabled="!vm.newProperty.name") Edit
+              button.create.change(
+                ng-click="vm.changeManager()"
+                ng-show="vm.editMod && !vm.changeMod") Change manager
+              button.create.change(
+                ng-click="vm.saveNewManager()"
+                ng-show="vm.changeMod"
+                ng-disabled="!vm.newManager") Save new manager
+              button.delete(
+                ng-show="vm.editMod"
+                ng-click="vm.removeProperty(vm.newProperty._id)") Delete property
+            .photos-link
+              a(ng-click="redirect('/photos', vm.newProperty._id)") Photos
+
+            //- Contracts
+            .contracts-section(ng-show="vm.editMod")
+              table.contracts-list
+                tr
+                  td Activation date
+                  td End date
+                tr.contract(ng-repeat="contract in vm.contracts")
+                  td {{contract.activationDate}}
+                  td
+                    p.end-date(ng-if="!contract.notExpire") {{contract.endDate}}
+                    p.end-date(ng-if="contract.notExpire") Not Expire
+                    button.deactivate-contract(ng-click="vm.deactivateContract(contract.id)") deactivate
+              .new-contract
+                | Please choose term: 
+                select.term-select(
+                  ng-model="vm.propertyContractTerm"
+                  ng-options="item.value as item.text for item in vm.contractTerms")
+                | activated from: 
+                input.date-from(
+                  type="date"
+                  ng-model="vm.contractDateFrom")
+                button.activate-button(
+                  ng-disabled="!vm.propertyContractTerm && !vm.contractDateFrom"
+                  ng-click="vm.activateContract(vm.propertyContractTerm, vm.contractDateFrom)")
+                  | Activate contract
+            towing-matrix(
+              ng-show="vm.editMod"
+              matrix="vm.towingMatrix"
+              save-matrix="vm.saveTowingMatrix()"
+              confirmation="vm.confirmationTowing")
+
+          .propertyLogo
+            h2 Upload logo
+            div
+              .logo( ng-style="{backgroundImage: 'url('+ vm.newProperty.logo + ')' }")
+            div
+              label(for="file")
+                span.btn Upload logo
+                //- TODO: move this to controller
+                input.hidden(type="file" id="file" onchange="angular.element(this).scope().convertToBase64()")
+              p.errorMessage(
+                ng-bind="vm.fileError")

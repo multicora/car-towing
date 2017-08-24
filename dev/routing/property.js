@@ -240,32 +240,19 @@ module.exports = function (server) {
       DAL.emergencyTow.get(function (err, docs) {
 
         var promises = docs.map( emTow => {
-          return new Promise( (resolve, reject) => {
-            DAL.files.getById(emTow.photo, function (err, fileData) {
-              return files.getFile(fileData[0].fileId).then( url => {
-                resolve({
-                  updated: fileData[0].updated,
-                  url: url
-                });
-              }).catch((err) => {
-                reply(Boom.badImplementation('Error while getting files', err))
-              });
-            });
-          });
+          return DAL.files.getById(emTow.photo);
         });
 
         Promise.all(promises).then( (res) => {
-          res = res.map( (file, index) => {
+          reply(res.map( (file, index) => {
             return {
               _id: docs[index]._id,
               propertyName: docs[index].propertyName,
               location: docs[index].location,
-              photo: file.url,
+              data: file.data,
               updated: file.updated
             };
-          }).filter( item => !!item);
-
-          reply(res);
+          }).filter( item => !!item));
         }).catch((err) => {
           reply(Boom.badImplementation('Error while processing files', err))
         });

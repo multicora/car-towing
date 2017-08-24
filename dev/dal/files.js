@@ -2,15 +2,11 @@
 
 const mongoose = require('mongoose');
 const path = require('path');
+const Promise = require('promise');
 
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-  fileId: {
-    type: String,
-    required: true,
-    unique: true
-  },
   ownerId: {
     type: Schema.Types.ObjectId,
     ref: 'users',
@@ -22,36 +18,54 @@ const schema = new Schema({
   },
   updated: {
     type: Date
+  },
+  data: {
+    type: String,
+    required: true
   }
 });
 
-let model = mongoose.model(path.basename(module.filename, '.js'), schema);
+const model = mongoose.model(path.basename(module.filename, '.js'), schema);
 
-model.on('index', function(error) {
+model.on('index', error => {
   if (error) {
-    console.log('-| Error creating index');
-    console.log(error);
+    console.error('-| Error creating index');
+    console.error(error);
   }
 });
 
 module.exports = {
-  save: (fileId, ownerId, propertyId, updated, cb) => {
-    let inst = new model({
-      fileId: fileId,
-      ownerId: ownerId,
+  model,
+  save: (ownerId, propertyId, updated, data) => {
+    console.log(ownerId, propertyId, updated);
+    const inst = new model({
+      ownerId,
       property: propertyId,
-      updated: updated
+      updated,
+      data,
     });
 
-    inst.save(cb)
+    return new Promise((resolve, reject) => {
+      inst.save((err, res) => {
+        err ? reject(err) : resolve(res);
+      });
+    });
   },
   getByOwnerId: (id, cb) => {
     model.find({ownerId: id}, cb);
   },
   getByPropertyId: (id, cb) => {
-    model.find({property: id}, cb);
+    return new Promise((resolve, reject) => {
+      model.find({property: id}, (err, res) => {
+        err ? reject(err) : resolve(res);
+      });
+    });
   },
-  getById: (id, cb) => {
-    model.find({_id: id}, cb);
+  getById(id, cb) {
+    return new Promise((resolve, reject) => {
+      model.find({_id: id}, (err, res) => {
+        err ? reject(err) : resolve(res[0]);
+      });
+    });
   }
 };

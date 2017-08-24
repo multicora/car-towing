@@ -10,49 +10,6 @@ const path = require('path');
 const Promise = require('promise');
 
 module.exports = function (server) {
-  server.route({
-    method: 'POST',
-    path: '/api/file',
-    config: {
-
-      payload: {
-        output: 'stream',
-        parse: true,
-        allow: 'multipart/form-data'
-      },
-
-      auth: 'simple',
-      plugins: {
-        hapiRouteAcl: {
-          permissions: ['files:create']
-        }
-      },
-
-      handler: function (request, reply) {
-        files.setFile(request, function (err, fileId) {
-          if (!err) {
-            DAL.files.save(
-              fileId,
-              request.auth.credentials._id,
-              request.payload.propertyId,
-              function (err, res) {
-                if (err) {
-                  files.removeFile(fileId, function () {
-                    reply( Boom.badImplementation('Error while saving file', err) )
-                  });
-                } else {
-                  reply(res);
-                }
-              }
-            );
-          } else {
-            reply(err);
-          }
-        });
-      }
-    }
-  });
-
   // GET: /api/files/{propId}
   server.route({
     method: 'GET',
@@ -64,29 +21,12 @@ module.exports = function (server) {
           permissions: ['files:read']
         }
       },
-      handler: function (request, reply) {
-        DAL.files.getByPropertyId(request.params.propId, function (err, fileDataArray) {
-          const filesPromises = fileDataArray.map(function (fileData) {
-            return files.getFile(fileData.fileId);
-          });
-
-          Promise.all(filesPromises).then(
-            (res) => {
-              res = res.map( (url, index) => {
-                return {
-                  url: url,
-                  ownerId: fileDataArray[index].ownerId,
-                  updated: fileDataArray[index].updated
-                }
-              }).filter( item => !!item);
-
-              reply(res);
-            },
-            (err) => {
-              reply(Boom.badImplementation('Error while getting files', err))
-            }
-          );
-        });
+      handler: (request, reply) => {
+        DAL.files.getByPropertyId(request.params.propId).then(
+          fileDataArray => reply(fileDataArray)
+        ).catch(
+          err => reply(Boom.badImplementation(err, err))
+        );
       }
     }
   });

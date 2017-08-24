@@ -19,22 +19,6 @@ module.exports = config => {
   }
 
   return {
-    setFile(request, cb) {
-      return new Promise((resolve, reject) => {
-        const data = request.payload;
-
-        if (data.file) {
-          const name = data.file.hapi.filename;
-          const id = uuid.v1();
-          const path = folder + '/' + id + separator + name;
-          const file = fs.createWriteStream(path);
-
-          file.on('error', err => cb(err));
-          data.file.pipe(file);
-          data.file.on('end', err => cb(null, id));
-        }
-      });
-    },
     saveFromBase64: (base64Data, ext, cb) => {
       const id = uuid.v1();
       const path = folder + '/' + id + separator + '.' + ext;

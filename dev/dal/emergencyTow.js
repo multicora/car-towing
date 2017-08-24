@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const path = require('path');
+const Promise = require('promise');
 
 const Schema = mongoose.Schema;
 const schema = new Schema({
@@ -31,7 +32,7 @@ model.on('index', function(error) {
 });
 
 const properties = {
-  get: (cb) => {
+  get(cb) {
     return model.find({}, cb);
   },
   getById: (id, cb) => {
@@ -40,14 +41,18 @@ const properties = {
   getByPropertyName: (propertyName, cb) => {
     return model.find({propertyName: propertyName}, cb);
   },
-  create: (propertyName, photo, location, cb) => {
-    const propertyIns = new model({
-      propertyName: propertyName,
-      photo: photo,
-      location: location
+  create(propertyName, photo, location, cb) {
+    const inst = new model({
+      propertyName,
+      photo,
+      location,
     });
 
-    propertyIns.save(cb);
+    return new Promise((resolve, reject) => {
+      inst.save((err, res) => {
+        err ? reject(err) : resolve(res);
+      });
+    });
   },
 };
 

@@ -5,17 +5,6 @@ const Boom = require('boom');
 const files = require('../services/files.js')();
 
 module.exports = function (server) {
-
-  server.route({
-    method: 'GET',
-    path: '/api/emergencyTow',
-    handler: function (request, reply) {
-      DAL.emergencyTow.get(function (err, docs) {
-        !err ? reply(docs) : reply(Boom.badImplementation(err));
-      });
-    }
-  });
-
   server.route({
     method: 'POST',
     path: '/api/emergency-towing',
@@ -26,30 +15,21 @@ module.exports = function (server) {
           permissions: ['towing:create']
         }
       },
-      handler:(request, reply) => {
-        files.saveFromBase64(request.payload.fileData, 'jpg', function (err, fileId) {
-          if (!err) {
-            DAL.files.save(
-              fileId,
-              request.auth.credentials._id,
-              request.payload.propertyId,
-              request.payload.datetime || new Date(),
-              function (err, res) {
-                if (err) {
-                  files.removeFile(fileId, function () {
-                    reply( Boom.badImplementation('Error while saving file', err) )
-                  });
-                } else {
-                  DAL.emergencyTow.create(request.payload.propertyName, res._id, request.payload.location, function (err) {
-                    err ? reply(Boom.badImplementation(err)) : reply(res);
-                  });
-                }
-              }
-            );
-          } else {
-            reply(Boom.badImplementation(err));
-          }
-        });
+      handler: (request, reply) => {
+        DAL.files.save(
+          request.auth.credentials._id,
+          request.payload.propertyId,
+          request.payload.datetime || new Date(),
+          request.payload.fileData
+        ).then(res => DAL.emergencyTow.create(
+          request.payload.propertyName,
+          res._id,
+          request.payload.location
+        )).then(
+          res => reply(res)
+        ).catch(
+          err => reply(Boom.badImplementation(err))
+        );
       }
     }
   });
@@ -67,28 +47,17 @@ module.exports = function (server) {
       payload: {
         maxBytes: 2e+7, // 20Mb
       },
-      handler:(request, reply) => {
-        files.saveFromBase64(request.payload.fileData, 'jpg', function (err, fileId) {
-          if (!err) {
-            DAL.files.save(
-              fileId,
-              request.auth.credentials._id,
-              request.payload.propertyId,
-              request.payload.datetime || new Date(),
-              function (err, res) {
-                if (err) {
-                  files.removeFile(fileId, function () {
-                    reply( Boom.badImplementation('Error while saving file', err) )
-                  });
-                } else {
-                  reply(res);
-                }
-              }
-            );
-          } else {
-            reply(Boom.badImplementation(err));
-          }
-        });
+      handler: (request, reply) => {
+        DAL.files.save(
+          request.auth.credentials._id,
+          request.payload.propertyId,
+          request.payload.datetime || new Date(),
+          request.payload.fileData
+        ).then(
+          res => reply(res)
+        ).catch(
+          err => reply(Boom.badImplementation(err, err))
+        );
       }
     }
   });

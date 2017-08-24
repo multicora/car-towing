@@ -4,11 +4,11 @@
       header-directive
       .content-padding
         .photo(ng-repeat="photo in vm.photos")
-          img(ng-src="{{photo.url}}")
+          img(ng-src="{{photo.data}}")
           p {{photo.updated}}
           p Driver {{photo.ownerNumber}}
         .photo(ng-repeat="photo in vm.emergencyTowing")
-          img(ng-src="{{photo.photo}}")
+          img(ng-src="{{photo.data}}")
           p {{photo.updated}}
           p Property: {{photo.propertyName}}
         .message(ng-if="!vm.photos.length && !vm.emergencyTowing.length")

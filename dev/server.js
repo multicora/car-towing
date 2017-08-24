@@ -11,27 +11,37 @@ const contractsCtrl = require('./controllers/contractsCtrl.js');
 const config = require('./config.js');
 const Mailer = require('./services/mailer.js');
 
-mongoose.connect('mongodb://localhost/carTowing', function(err) {
-  if (err)  {
-    throw 'Error connecting to mongodb';
-  }
-});
+module.exports = function() {
+  mongoose.connect('mongodb://localhost/carTowing', err => {
+    if (err) {
+      throw new Error('Error connecting to mongodb');
+    }
+  });
 
-// Migration
-const migrations = require('./migrations/migrations');
-console.log('-| Migrations start');
-migrations(function () {
-  console.log('-| Migrations end');
-  startServer();
-});
+  // Migration
+  const migrations = require('./migrations/migrations');
+  console.log('-| Migrations start');
+  migrations(() => {
+    console.log('-| Migrations end');
+    startServer();
+  });
+};
 
 function startServer() {
   const server = new Hapi.Server();
-  server.connection( {port: 80, routes: {cors: {origin: ['*'],credentials : true}}} );
+  server.connection({
+    port: 8080,
+    routes: {
+      cors: {
+        origin: ['*'],
+        credentials: true
+      }
+    }
+  });
 
   const cbBinded = _.bind(
-    function (server, err) {
-      if (err) throw err
+    (server, err) => {
+      if (err) throw err;
       const routing = require('./routing');
       routing.init(server);
     },
@@ -44,40 +54,30 @@ function startServer() {
       if (err) throw err; // something bad happened loading the plugin
       registerStaticFilesServer(server, cbBinded);
 
-      server.start((err) => {
+      server.start(err => {
         if (err) throw err;
         configureServer(server);
         server.log('info', 'Server running at: ' + server.info.uri);
-
       });
     },
     null,
     server
   );
 
-  registerACL(server).then(function () {
-    return registerLoging(server);
-  }).then(function () {
-    return registerAuth(server);
-  }).then(function () {
-    return setScheduledJobs();
-  }).then(function () {
-    return notifyAboutStarting();
-  }).then(
-    function () {
-      return registerDone();
-    },function (err) {
-      console.error(err);
-    }
-  );
+  registerACL(server).then(() => registerLoging(server))
+    .then(() => registerAuth(server))
+    .then(() => setScheduledJobs())
+    .then(() => notifyAboutStarting())
+    .then(() => registerDone())
+    .catch(err => { throw new Error(err); });
 }
 
 function notifyAboutStarting() {
   try {
     console.log('Notyfying about running');
     if (!config.debugMode) {
-      let date = new Date();
-      let message = 'Server ran at ' + date.toString();
+      const date = new Date();
+      const message = 'Server ran at ' + date.toString();
 
       const mail = {
         to: config.mail.user, // list of receivers
@@ -90,40 +90,42 @@ function notifyAboutStarting() {
     } else {
       return Promise.resolve();
     }
-  } catch(err) {
+  } catch (err) {
     console.error(err);
   }
 }
 
 function registerACL(server) {
-  return new Promise(function (resolve, reject) {
-    require('./acl.js')(server, function(err) {
-      if (err) {
-        console.log(err);
-        reject();
-      } else {
-        resolve();
+  return new Promise(
+    (resolve, reject) => require('./acl.js')(
+      server,
+      err => {
+        if (err) {
+          console.log(err);
+          reject();
+        } else {
+          resolve();
+        }
       }
-    });
-  });
+    )
+  );
 }
 
 function registerAuth(server) {
-  return new Promise(function (resolve, reject) {
-     const AuthHeader = require('hapi-auth-header');
+  return new Promise((resolve, reject) => {
+    const AuthHeader = require('hapi-auth-header');
 
-    server.register(AuthHeader, (err) => {
+    server.register(AuthHeader, err => {
       if (err) {
         reject();
       } else {
-         server.auth.strategy('simple', 'auth-header', {
-          accessTokenName: 'X-CART-Token',    // optional, 'access_token' by default
-          validateFunc: function (tokens, callback) {
+        server.auth.strategy('simple', 'auth-header', {
+          accessTokenName: 'X-CART-Token', // optional, 'access_token' by default
+          validateFunc(tokens, callback) {
             // For convenience, the request object can be accessed
             // from `this` within validateFunc.
-            var request = this;
-            var headerName = 'X-CART-Token';
-             DAL.users.getUserByToken(tokens[headerName], function (err, user) {
+            const headerName = 'X-CART-Token';
+            DAL.users.getUserByToken(tokens[headerName], (err, user) => {
               if (user) {
                 callback(null, true, user);
               } else {
@@ -158,13 +160,13 @@ function registerStaticFilesServer(server, cb) {
     const plugin = require('inert');
 
     server.register(plugin, cb);
-  } catch(err) {
+  } catch (err) {
     console.error(err);
   }
 }
 
 function registerLoging(server) {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     const Good = require('good');
     server.register({
       register: Good,
@@ -182,7 +184,7 @@ function registerLoging(server) {
           }, 'stdout']
         }
       }
-    }, function (err) {
+    }, err => {
       err ? reject() : resolve();
     });
   });
@@ -192,14 +194,14 @@ function setScheduledJobs() {
   try {
     console.log('Setting scheduled jobs');
 
-    let contractCheckingJob = scheduleService.createDaylyJob(function () {
+    scheduleService.createDaylyJob(() => {
       try {
         contractsCtrl.sendNotifications();
-      } catch(err) {
+      } catch (err) {
         console.error(err);
       }
     });
-  } catch(err) {
+  } catch (err) {
     console.error(err);
   }
 }

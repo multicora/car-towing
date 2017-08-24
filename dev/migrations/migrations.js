@@ -26,7 +26,8 @@ module.exports = function (cb) {
       require('./scripts/v014.js'),
       require('./scripts/v015.js'),
       require('./scripts/v016.js'),
-      require('./scripts/v017.js')
+      require('./scripts/v017.js'),
+      require('./scripts/v018.js'),
     ],
     done: cb
   };

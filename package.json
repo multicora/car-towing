@@ -4,7 +4,10 @@
   "description": "## How to run",
   "main": "dev/index.js",
   "scripts": {
-    "postinstall": "bower i --allow-root"
+    "postinstall": "bower i --allow-root",
+    "dev": "concurrently \"nodemon dev\" \"gulp dev\" --kill-others",
+    "server": "nodemon dev",
+    "lint": "eslint dev"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,10 @@
     "angular-spinner": "^0.8.1",
     "boom": "^3.2.2",
     "bower": "^1.7.9",
+    "concurrently": "^3.5.0",
+    "eslint": "^4.4.1",
+    "eslint-config-nodejs": "^2.0.0",
+    "eslint-plugin-import": "^2.7.0",
     "express": "^4.14.0",
     "glob": "^7.0.6",
     "good": "^7.0.1",
@@ -40,6 +47,7 @@
     "node-schedule": "^1.2.0",
     "node-uuid": "^1.4.7",
     "nodemailer": "^2.7.0",
+    "nodemon": "^1.11.0",
     "password-hash": "^1.2.2",
     "path-exists": "^3.0.0",
     "promise": "^7.1.1",

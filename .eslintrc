@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "no-console": 1
+  },
+  "extends": [
+    "eslint:recommended",
+    "nodejs"
+  ],
+  "globals": {
+    "module": false
+  }
+}

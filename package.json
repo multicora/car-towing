@@ -8,7 +8,8 @@
     "dev": "concurrently \"nodemon dev\" \"gulp dev\" --kill-others",
     "server": "nodemon dev",
     "lint": "eslint dev",
-    "build": "gulp build"
+    "build": "gulp build",
+    "bower": "bower i --allow-root"
   },
   "repository": {
     "type": "git",

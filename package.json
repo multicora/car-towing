@@ -4,7 +4,6 @@
   "description": "## How to run",
   "main": "dev/index.js",
   "scripts": {
-    "postinstall": "bower i --allow-root",
     "dev": "concurrently \"nodemon dev\" \"gulp dev\" --kill-others",
     "server": "nodemon dev",
     "lint": "eslint dev",

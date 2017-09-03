@@ -30,7 +30,7 @@ module.exports = function() {
 function startServer() {
   const server = new Hapi.Server();
   server.connection({
-    port: 8080,
+    port: 80,
     routes: {
       cors: {
         origin: ['*'],
